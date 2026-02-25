@@ -43,8 +43,12 @@ yarn-error.log*
 # Temporary files
 *.tmp
 *.temp
-# Keep .claude/ clean for hand-on section
-.claude/
+# Keep .claude/ clean for hand-on section — except project skills
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/self-assessment/
+!.claude/skills/lesson-quiz/
 blog-posts/
 
 # EPUB files in root directory

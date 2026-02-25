@@ -98,20 +98,21 @@ This project complements [Anthropic's official documentation](https://docs.anthr
 
 ## 📚 Learning Path
 
-**New to Claude Code?** The folders are numbered in **recommended learning order**:
+**Not sure where to start?** Take the [Self-Assessment Quiz](LEARNING-ROADMAP.md#-find-your-level) to find your recommended path.
 
-| Order | Feature | Level | Time | Start Here |
-|-------|---------|-------|------|------------|
-| **1** | [Slash Commands](01-slash-commands/) | ⭐ Beginner | 30 min | ✅ **START** |
-| **2** | [Memory](02-memory/) | ⭐⭐ Beginner+ | 45 min | Essential |
-| **3** | [Skills](03-skills/) | ⭐⭐ Intermediate | 1 hour | Auto-invoke |
-| **4** | [Subagents](04-subagents/) | ⭐⭐⭐ Intermediate+ | 1.5 hours | Delegation |
-| **5** | [MCP](05-mcp/) | ⭐⭐⭐ Intermediate+ | 1 hour | Live data |
-| **6** | [Hooks](06-hooks/) | ⭐⭐ Intermediate | 1 hour | Automation |
-| **7** | [Plugins](07-plugins/) | ⭐⭐⭐⭐ Advanced | 2 hours | Bundles |
-| **8** | [Checkpoints](08-checkpoints/) | ⭐⭐ Intermediate | 45 min | Safe tests |
-| **9** | [Advanced](09-advanced-features/) | ⭐⭐⭐⭐⭐ Advanced | 2-3 hours | Power user |
-| **10** | [CLI Reference](10-cli/) | ⭐⭐ Beginner+ | 1 hour | CLI mastery |
+| Order | Feature | Level | Time | Recommended For |
+|-------|---------|-------|------|-----------------|
+| **1** | [Slash Commands](01-slash-commands/) | ⭐ Beginner | 30 min | Level 1 start |
+| **2** | [Memory](02-memory/) | ⭐⭐ Beginner+ | 45 min | Level 1 |
+| **3** | [Checkpoints](08-checkpoints/) | ⭐⭐ Intermediate | 45 min | Level 1 |
+| **4** | [CLI Basics](10-cli/) | ⭐⭐ Beginner+ | 30 min | Level 1 |
+| **5** | [Skills](03-skills/) | ⭐⭐ Intermediate | 1 hour | Level 2 start |
+| **6** | [Hooks](06-hooks/) | ⭐⭐ Intermediate | 1 hour | Level 2 |
+| **7** | [MCP](05-mcp/) | ⭐⭐⭐ Intermediate+ | 1 hour | Level 2 |
+| **8** | [Subagents](04-subagents/) | ⭐⭐⭐ Intermediate+ | 1.5 hours | Level 2 |
+| **9** | [Advanced](09-advanced-features/) | ⭐⭐⭐⭐⭐ Advanced | 2-3 hours | Level 3 start |
+| **10** | [Plugins](07-plugins/) | ⭐⭐⭐⭐ Advanced | 2 hours | Level 3 |
+| **11** | [CLI Mastery](10-cli/) | ⭐⭐⭐ Advanced | 1 hour | Level 3 |
 
 **Total**: ~11-13 hours | 📖 **[Complete Learning Roadmap →](LEARNING-ROADMAP.md)**
 
