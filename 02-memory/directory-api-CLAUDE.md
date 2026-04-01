@@ -1,61 +1,61 @@
-# API Module Standards
+# Tiêu chuẩn Module API
 
-This file overrides root CLAUDE.md for everything in /src/api/
+Tệp này ghi đè tệp CLAUDE.md gốc cho tất cả các nội dung trong /src/api/
 
-## API-Specific Standards
+## Các tiêu chuẩn đặc thù cho API
 
-### Request Validation
-- Use Zod for schema validation
-- Always validate input
-- Return 400 with validation errors
-- Include field-level error details
+### Xác thực yêu cầu (Request Validation)
+- Sử dụng Zod cho xác thực schema
+- Luôn xác thực đầu vào
+- Trả về mã 400 kèm theo các lỗi xác thực
+- Bao gồm chi tiết lỗi ở mức độ trường dữ liệu
 
-### Authentication
-- All endpoints require JWT token
-- Token in Authorization header
-- Token expires after 24 hours
-- Implement refresh token mechanism
+### Xác thực người dùng (Authentication)
+- Tất cả các endpoint đều yêu cầu mã JWT (JWT token)
+- Token nằm trong header Authorization
+- Token hết hạn sau 24 giờ
+- Triển khai cơ chế refresh token
 
-### Response Format
+### Định dạng phản hồi
 
-All responses must follow this structure:
+Tất cả các phản hồi phải tuân theo cấu trúc này:
 
 ```json
 {
   "success": true,
-  "data": { /* actual data */ },
+  "data": { /* dữ liệu thực tế */ },
   "timestamp": "2025-11-06T10:30:00Z",
   "version": "1.0"
 }
 ```
 
-Error responses:
+Phản hồi lỗi:
 ```json
 {
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "User message",
-    "details": { /* field errors */ }
+    "message": "Thông báo cho người dung",
+    "details": { /* lỗi chi tiết theo từng trường */ }
   },
   "timestamp": "2025-11-06T10:30:00Z"
 }
 ```
 
-### Pagination
-- Use cursor-based pagination (not offset)
-- Include `hasMore` boolean
-- Limit max page size to 100
-- Default page size: 20
+### Phân trang (Pagination)
+- Sử dụng phân trang dựa trên con trỏ (cursor-based pagination), không dùng offset
+- Bao gồm biến boolean `hasMore`
+- Giới hạn kích thước trang tối đa là 100
+- Kích thước trang mặc định: 20
 
-### Rate Limiting
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
-- Return 429 when exceeded
-- Include retry-after header
+### Giới hạn tốc độ (Rate Limiting)
+- 1000 yêu cầu mỗi giờ cho người dùng đã xác thực
+- 100 yêu cầu mỗi giờ cho các endpoint công khai
+- Trả về mã 429 khi vượt quá giới hạn
+- Bao gồm header retry-after
 
-### Caching
-- Use Redis for session caching
-- Cache duration: 5 minutes default
-- Invalidate on write operations
-- Tag cache keys with resource type
+### Ghi nhớ đệm (Caching)
+- Sử dụng Redis để lưu trữ session
+- Thời gian lưu trữ mặc định: 5 phút
+- Hủy bỏ cache (invalidate) khi có các hoạt động ghi
+- Gán thẻ (tag) cho các khóa cache theo loại tài nguyên

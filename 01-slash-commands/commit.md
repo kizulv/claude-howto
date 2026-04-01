@@ -1,26 +1,26 @@
 ---
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*)
-argument-hint: [message]
-description: Create a git commit with context
+argument-hint: [thông điệp]
+description: Tạo một git commit với ngữ cảnh
 ---
 
-## Context
+## Ngữ cảnh (Context)
 
-- Current git status: !`git status`
-- Current git diff: !`git diff HEAD`
-- Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+- Trạng thái git hiện tại: !`git status`
+- Diff git hiện tại: !`git diff HEAD`
+- Nhánh hiện tại: !`git branch --show-current`
+- Các commit gần đây: !`git log --oneline -10`
 
-## Your task
+## Nhiệm vụ của bạn
 
-Based on the above changes, create a single git commit.
+Dựa trên các thay đổi ở trên, hãy tạo một git commit duy nhất.
 
-If a message was provided via arguments, use it: $ARGUMENTS
+Nếu một thông điệp được cung cấp qua các tham số, hãy sử dụng nó: $ARGUMENTS
 
-Otherwise, analyze the changes and create an appropriate commit message following conventional commits format:
-- `feat:` for new features
-- `fix:` for bug fixes
-- `docs:` for documentation changes
-- `refactor:` for code refactoring
-- `test:` for adding tests
-- `chore:` for maintenance tasks
+Nếu không, hãy phân tích các thay đổi và tạo một thông điệp commit phù hợp tuân theo định dạng conventional commits:
+- `feat:` cho các tính năng mới
+- `fix:` cho các bản sửa lỗi
+- `docs:` cho các thay đổi về tài liệu
+- `refactor:` cho việc tái cấu trúc mã nguồn
+- `test:` cho việc thêm các bài kiểm thử
+- `chore:` cho các tác vụ bảo trì

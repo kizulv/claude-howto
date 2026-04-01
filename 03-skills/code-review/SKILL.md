@@ -1,70 +1,70 @@
 ---
 name: code-review-specialist
-description: Comprehensive code review with security, performance, and quality analysis. Use when users ask to review code, analyze code quality, evaluate pull requests, or mention code review, security analysis, or performance optimization.
+description: Review mã nguồn toàn diện với phân tích bảo mật, hiệu năng và chất lượng. Sử dụng khi người dùng yêu cầu review code, phân tích chất lượng mã nguồn, đánh giá pull request, hoặc đề cập đến code review, phân tích bảo mật, hoặc tối ưu hóa hiệu năng.
 ---
 
-# Code Review Skill
+# Kỹ năng Chuyên gia Review Mã nguồn (Code Review Skill)
 
-This skill provides comprehensive code review capabilities focusing on:
+Kỹ năng này cung cấp các khả năng review mã nguồn toàn diện tập trung vào:
 
-1. **Security Analysis**
-   - Authentication/authorization issues
-   - Data exposure risks
-   - Injection vulnerabilities
-   - Cryptographic weaknesses
-   - Sensitive data logging
+1. **Phân tích Bảo mật (Security Analysis)**
+   - Các vấn đề xác thực (authentication) và phân quyền (authorization)
+   - Rủi ro lộ dữ liệu (data exposure)
+   - Các lỗ hổng tiêm mã (injection)
+   - Điểm yếu về mã hóa (cryptographic)
+   - Ghi nhật ký (logging) dữ liệu nhạy cảm
 
-2. **Performance Review**
-   - Algorithm efficiency (Big O analysis)
-   - Memory optimization
-   - Database query optimization
-   - Caching opportunities
-   - Concurrency issues
+2. **Review Hiệu năng (Performance Review)**
+   - Hiệu quả thuật toán (phân tích Big O)
+   - Tối ưu hóa bộ nhớ
+   - Tối ưu hóa truy vấn cơ sở dữ liệu
+   - Các cơ hội ghi nhớ đệm (caching)
+   - Các vấn đề về đồng thời (concurrency)
 
-3. **Code Quality**
-   - SOLID principles
-   - Design patterns
-   - Naming conventions
-   - Documentation
-   - Test coverage
+3. **Chất lượng Mã nguồn (Code Quality)**
+   - Các nguyên tắc SOLID
+   - Các mẫu thiết kế (design patterns)
+   - Quy ước đặt tên
+   - Tài liệu hướng dẫn
+   - Độ bao phủ kiểm thử (test coverage)
 
-4. **Maintainability**
-   - Code readability
-   - Function size (should be < 50 lines)
-   - Cyclomatic complexity
-   - Dependency management
-   - Type safety
+4. **Khả năng bảo trì (Maintainability)**
+   - Khả năng đọc của mã nguồn
+   - Kích thước hàm (nên < 50 dòng)
+   - Độ phức tạp vòng đời (cyclomatic complexity)
+   - Quản lý phụ thuộc (dependencies)
+   - Tính an toàn của kiểu dữ liệu (type safety)
 
-## Review Template
+## Mẫu Review (Review Template)
 
-For each piece of code reviewed, provide:
+Đối với mỗi đoạn mã được review, hãy cung cấp:
 
-### Summary
-- Overall quality assessment (1-5)
-- Key findings count
-- Recommended priority areas
+### Tóm tắt (Summary)
+- Đánh giá chất lượng tổng thể (1-5)
+- Số lượng các phát hiện chính
+- Các khu vực ưu tiên được khuyến nghị
 
-### Critical Issues (if any)
-- **Issue**: Clear description
-- **Location**: File and line number
-- **Impact**: Why this matters
-- **Severity**: Critical/High/Medium
-- **Fix**: Code example
+### Các vấn đề nghiêm trọng (Critical Issues - nếu có)
+- **Vấn đề**: Mô tả rõ ràng
+- **Vị trí**: Tên tệp và số dòng
+- **Tác động**: Tại sao điều này lại quan trọng
+- **Mức độ nghiêm trọng**: Nghiêm trọng/Cao/Trung bình (Critical/High/Medium)
+- **Bản sửa lỗi**: Ví dụ mã nguồn
 
-### Findings by Category
+### Các phát hiện theo Danh mục (Findings by Category)
 
-#### Security (if issues found)
-List security vulnerabilities with examples
+#### Bảo mật (Security - nếu tìm thấy vấn đề)
+Liệt kê các lỗ hổng bảo mật kèm theo ví dụ.
 
-#### Performance (if issues found)
-List performance problems with complexity analysis
+#### Hiệu năng (Performance - nếu tìm thấy vấn đề)
+Liệt kê các vấn đề hiệu năng kèm theo phân tích độ phức tạp.
 
-#### Quality (if issues found)
-List code quality issues with refactoring suggestions
+#### Chất lượng (Quality - nếu tìm thấy vấn đề)
+Liệt kê các vấn đề về chất lượng mã nguồn kèm theo các gợi ý tái cấu trúc.
 
-#### Maintainability (if issues found)
-List maintainability problems with improvements
+#### Khả năng bảo trì (Maintainability - nếu tìm thấy vấn đề)
+Liệt kê các vấn đề về khả năng bảo trì kèm theo các cải tiến.
 
-## Version History
+## Lịch sử Phiên bản (Version History)
 
-- v1.0.0 (2024-12-10): Initial release with security, performance, quality, and maintainability analysis
+- v1.0.0 (2024-12-10): Phiên bản đầu tiên với phân tích bảo mật, hiệu năng, chất lượng và khả năng bảo trì.

@@ -5,20 +5,20 @@
 
 # MCP (Model Context Protocol)
 
-This folder contains comprehensive documentation and examples for MCP server configurations and usage with Claude Code.
+Thư mục này chứa tài liệu hướng dẫn toàn diện và các ví dụ về cấu hình cũng như cách sử dụng máy chủ MCP (MCP server) với Claude Code.
 
-## Overview
+## Tổng quan (Overview)
 
-MCP (Model Context Protocol) is a standardized way for Claude to access external tools, APIs, and real-time data sources. Unlike Memory, MCP provides live access to changing data.
+MCP (Model Context Protocol) là một phương thức tiêu chuẩn hóa để Claude truy cập các công cụ bên ngoài, các API và các nguồn dữ liệu thời gian thực. Khác với Memory, MCP cung cấp quyền truy cập trực tiếp vào dữ liệu thay đổi liên tục.
 
-Key characteristics:
-- Real-time access to external services
-- Live data synchronization
-- Extensible architecture
-- Secure authentication
-- Tool-based interactions
+Các đặc điểm chính:
+- Truy cập thời gian thực vào các dịch vụ bên ngoài
+- Đồng bộ hóa dữ liệu trực tiếp (Live data synchronization)
+- Kiến trúc có khả năng mở rộng
+- Xác thực an toàn
+- Tương tác dựa trên công cụ (Tool-based interactions)
 
-## MCP Architecture
+## Kiến trúc MCP (MCP Architecture)
 
 ```mermaid
 graph TB
@@ -41,7 +41,7 @@ graph TB
     style C fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## MCP Ecosystem
+## Hệ sinh thái MCP (MCP Ecosystem)
 
 ```mermaid
 graph TB
@@ -70,85 +70,85 @@ graph TB
     style K fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## MCP Installation Methods
+## Các phương pháp Cài đặt MCP (MCP Installation Methods)
 
-Claude Code supports multiple transport protocols for MCP server connections:
+Claude Code hỗ trợ nhiều giao thức truyền tải (transport protocols) cho các kết nối máy chủ MCP:
 
-### HTTP Transport (Recommended)
+### Truyền tải qua HTTP (Khuyên dùng)
 
 ```bash
-# Basic HTTP connection
+# Kết nối HTTP cơ bản
 claude mcp add --transport http notion https://mcp.notion.com/mcp
 
-# HTTP with authentication header
+# HTTP với tiêu đề xác thực (authentication header)
 claude mcp add --transport http secure-api https://api.example.com/mcp \
   --header "Authorization: Bearer your-token"
 ```
 
-### Stdio Transport (Local)
+### Truyền tải qua Stdio (Cục bộ)
 
-For locally running MCP servers:
+Đối với các máy chủ MCP chạy tại máy cục bộ:
 
 ```bash
-# Local Node.js server
+# Máy chủ Node.js cục bộ
 claude mcp add --transport stdio myserver -- npx @myorg/mcp-server
 
-# With environment variables
+# Với các biến môi trường
 claude mcp add --transport stdio myserver --env KEY=value -- npx server
 ```
 
-### SSE Transport (Deprecated)
+### Truyền tải qua SSE (Đã lỗi thời)
 
-Server-Sent Events transport is deprecated in favor of `http` but still supported:
+Giao thức Server-Sent Events đã bị lỗi thời để nhường chỗ cho `http` nhưng vẫn được hỗ trợ:
 
 ```bash
 claude mcp add --transport sse legacy-server https://example.com/sse
 ```
 
-### WebSocket Transport
+### Truyền tải qua WebSocket
 
-WebSocket transport for persistent bidirectional connections:
+Giao thức WebSocket dùng cho các kết nối hai chiều liên tục:
 
 ```bash
 claude mcp add --transport ws realtime-server wss://example.com/mcp
 ```
 
-### Windows-Specific Note
+### Lưu ý riêng cho Windows
 
-On native Windows (not WSL), use `cmd /c` for npx commands:
+Trên hệ điều hành Windows bản địa (không phải WSL), hãy sử dụng `cmd /c` cho các lệnh npx:
 
 ```bash
 claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
 ```
 
-### OAuth 2.0 Authentication
+### Xác thực OAuth 2.0
 
-Claude Code supports OAuth 2.0 for MCP servers that require it. When connecting to an OAuth-enabled server, Claude Code handles the entire authentication flow:
+Claude Code hỗ trợ OAuth 2.0 cho các máy chủ MCP yêu cầu nó. Khi kết nối với một máy chủ hỗ trợ OAuth, Claude Code sẽ xử lý toàn bộ luồng xác thực:
 
 ```bash
-# Connect to an OAuth-enabled MCP server (interactive flow)
+# Kết nối với máy chủ MCP hỗ trợ OAuth (luồng tương tác)
 claude mcp add --transport http my-service https://my-service.example.com/mcp
 
-# Pre-configure OAuth credentials for non-interactive setup
+# Cấu hình trước thông tin OAuth cho việc thiết lập không tương tác
 claude mcp add --transport http my-service https://my-service.example.com/mcp \
   --client-id "your-client-id" \
   --client-secret "your-client-secret" \
   --callback-port 8080
 ```
 
-| Feature | Description |
+| Tính năng | Mô tả |
 |---------|-------------|
-| **Interactive OAuth** | Use `/mcp` to trigger the browser-based OAuth flow |
-| **Pre-configured OAuth clients** | Built-in OAuth clients for common services like Notion, Stripe, and others (v2.1.30+) |
-| **Pre-configured credentials** | `--client-id`, `--client-secret`, `--callback-port` flags for automated setup |
-| **Token storage** | Tokens are stored securely in your system keychain |
-| **Step-up auth** | Supports step-up authentication for privileged operations |
-| **Discovery caching** | OAuth discovery metadata is cached for faster reconnections |
-| **Metadata override** | `oauth.authServerMetadataUrl` in `.mcp.json` to override default OAuth metadata discovery |
+| **OAuth Tương tác** | Sử dụng lệnh `/mcp` để kích hoạt luồng OAuth trên trình duyệt |
+| **OAuth client đã cấu hình sẵn** | Các OAuth client tích hợp sẵn cho các dịch vụ phổ biến như Notion, Stripe và các dịch vụ khác (v2.1.30+) |
+| **Thông tin xác thực cấu hình sẵn** | Sử dụng các cờ `--client-id`, `--client-secret`, `--callback-port` để thiết lập tự động |
+| **Lưu trữ Token** | Các token được lưu trữ an toàn trong keychain của hệ thống |
+| **Xác thực nâng cao (Step-up auth)** | Hỗ trợ xác thực bổ sung cho các hoạt động yêu cầu đặc quyền cao |
+| **Bộ nhớ đệm khám phá (Discovery caching)** | Metadata khám phá OAuth được lưu vào bộ nhớ đệm để kết nối lại nhanh hơn |
+| **Ghi đè Metadata** | Sử dụng `oauth.authServerMetadataUrl` trong `.mcp.json` để ghi đè việc khám phá metadata OAuth mặc định |
 
-#### Overriding OAuth Metadata Discovery
+#### Ghi đè việc Khám phá Metadata OAuth
 
-If your MCP server returns errors on the standard OAuth metadata endpoint (`/.well-known/oauth-authorization-server`) but exposes a working OIDC endpoint, you can tell Claude Code to fetch OAuth metadata from a specific URL. Set `authServerMetadataUrl` in the `oauth` object of your server config:
+Nếu máy chủ MCP của bạn trả về lỗi tại endpoint metadata OAuth tiêu chuẩn (`/.well-known/oauth-authorization-server`) nhưng có một endpoint OIDC đang hoạt động, bạn có thể yêu cầu Claude Code lấy metadata OAuth từ một URL cụ thể. Thiết lập `authServerMetadataUrl` trong đối tượng `oauth` của cấu hình máy chủ:
 
 ```json
 {
@@ -164,23 +164,23 @@ If your MCP server returns errors on the standard OAuth metadata endpoint (`/.we
 }
 ```
 
-The URL must use `https://`. This option requires Claude Code v2.1.64 or later.
+URL phải sử dụng `https://`. Tùy chọn này yêu cầu Claude Code phiên bản v2.1.64 trở lên.
 
-### Claude.ai MCP Connectors
+### Các MCP Connector trên Claude.ai
 
-MCP servers configured in your Claude.ai account are automatically available in Claude Code. This means any MCP connections you set up through the Claude.ai web interface will be accessible without additional configuration.
+Các máy chủ MCP được cấu hình trong tài khoản Claude.ai của bạn sẽ tự động khả dụng trong Claude Code. Điều này có nghĩa là bất kỳ kết nối MCP nào bạn thiết lập qua giao diện web Claude.ai đều có thể truy cập được mà không cần cấu hình thêm.
 
-Claude.ai MCP connectors are also available in `--print` mode (v2.1.83+), enabling non-interactive and scripted usage.
+Các MCP connector của Claude.ai cũng khả dụng trong chế độ `--print` (v2.1.83+), cho phép sử dụng trong các tập lệnh và không tương tác.
 
-To disable Claude.ai MCP servers in Claude Code, set the `ENABLE_CLAUDEAI_MCP_SERVERS` environment variable to `false`:
+Để tắt các máy chủ MCP của Claude.ai trong Claude Code, hãy đặt biến môi trường `ENABLE_CLAUDEAI_MCP_SERVERS` thành `false`:
 
 ```bash
 ENABLE_CLAUDEAI_MCP_SERVERS=false claude
 ```
 
-> **Note:** This feature is only available for users logged in with Claude.ai accounts.
+> **Lưu ý:** Tính năng này chỉ dành cho người dùng đã đăng nhập bằng tài khoản Claude.ai.
 
-## MCP Setup Process
+## Quy trình Thiết lập MCP (MCP Setup Process)
 
 ```mermaid
 sequenceDiagram
@@ -189,85 +189,85 @@ sequenceDiagram
     participant Config as Config File
     participant Service as External Service
 
-    User->>Claude: Type /mcp
-    Claude->>Claude: List available MCP servers
-    Claude->>User: Show options
-    User->>Claude: Select GitHub MCP
-    Claude->>Config: Update configuration
-    Config->>Claude: Activate connection
-    Claude->>Service: Test connection
-    Service-->>Claude: Authentication successful
-    Claude->>User: ✅ MCP connected!
+    User->>Claude: Gõ /mcp
+    Claude->>Claude: Liệt kê các máy chủ MCP có sẵn
+    Claude->>User: Hiển thị các tùy chọn
+    User->>Claude: Chọn GitHub MCP
+    Claude->>Config: Cập nhật cấu hình
+    Config->>Claude: Kích hoạt kết nối
+    Claude->>Service: Kiểm tra kết nối
+    Service-->>Claude: Xác thực thành công
+    Claude->>User: ✅ Đã kết nối MCP!
 ```
 
-## MCP Tool Search
+## Tìm kiếm Công cụ MCP (MCP Tool Search)
 
-When MCP tool descriptions exceed 10% of the context window, Claude Code automatically enables tool search to efficiently select the right tools without overwhelming the model context.
+Khi mô tả của các công cụ MCP vượt quá 10% cửa sổ ngữ cảnh (context window), Claude Code tự động bật tính năng tìm kiếm công cụ để chọn đúng công cụ một cách hiệu quả mà không làm quá tải ngữ cảnh của mô hình.
 
-| Setting | Value | Description |
+| Thiết lập | Giá trị | Mô tả |
 |---------|-------|-------------|
-| `ENABLE_TOOL_SEARCH` | `auto` (default) | Automatically enables when tool descriptions exceed 10% of context |
-| `ENABLE_TOOL_SEARCH` | `auto:<N>` | Automatically enables at a custom threshold of `N` tools |
-| `ENABLE_TOOL_SEARCH` | `true` | Always enabled regardless of tool count |
-| `ENABLE_TOOL_SEARCH` | `false` | Disabled; all tool descriptions sent in full |
+| `ENABLE_TOOL_SEARCH` | `auto` (mặc định) | Tự động bật khi mô tả công cụ vượt quá 10% ngữ cảnh |
+| `ENABLE_TOOL_SEARCH` | `auto:<N>` | Tự động bật tại ngưỡng tùy chỉnh là `N` công cụ |
+| `ENABLE_TOOL_SEARCH` | `true` | Luôn bật bất kể số lượng công cụ |
+| `ENABLE_TOOL_SEARCH` | `false` | Tắt; tất cả các mô tả công cụ được gửi đầy đủ |
 
-> **Note:** Tool search requires Sonnet 4 or later, or Opus 4 or later. Haiku models are not supported for tool search.
+> **Lưu ý:** Tính năng tìm kiếm công cụ yêu cầu Sonnet 4 trở lên, hoặc Opus 4 trở lên. Các mô hình Haiku không hỗ trợ tìm kiếm công cụ.
 
-## Dynamic Tool Updates
+## Cập nhật Công cụ Động (Dynamic Tool Updates)
 
-Claude Code supports MCP `list_changed` notifications. When an MCP server dynamically adds, removes, or modifies its available tools, Claude Code receives the update and adjusts its tool list automatically -- no reconnection or restart required.
+Claude Code hỗ trợ các thông báo `list_changed` của MCP. Khi một máy chủ MCP thêm, xóa hoặc sửa đổi các công cụ có sẵn một cách động, Claude Code sẽ nhận được cập nhật và tự động điều chỉnh danh sách công cụ -- không cần kết nối lại hoặc khởi động lại.
 
-## MCP Elicitation
+## Gợi ý thông tin MCP (MCP Elicitation)
 
-MCP servers can request structured input from the user via interactive dialogs (v2.1.49+). This allows an MCP server to ask for additional information mid-workflow -- for example, prompting for a confirmation, selecting from a list of options, or filling in required fields -- adding interactivity to MCP server interactions.
+Các máy chủ MCP có thể yêu cầu đầu vào theo cấu trúc từ người dùng thông qua các hộp thoại tương tác (v2.1.49+). Điều này cho phép máy chủ MCP hỏi thêm thông tin ngay giữa quy trình làm việc -- ví dụ: yêu cầu xác nhận, chọn từ danh sách các tùy chọn hoặc điền vào các trường bắt buộc -- tăng tính tương tác cho các trao đổi với máy chủ MCP.
 
-## Tool Description and Instruction Cap
+## Giới hạn Mô tả và Hướng dẫn Công cụ (Tool Description and Instruction Cap)
 
-As of v2.1.84, Claude Code enforces a **2 KB cap** on tool descriptions and instructions per MCP server. This prevents individual servers from consuming excessive context with overly verbose tool definitions, reducing context bloat and keeping interactions efficient.
+Kể từ phiên bản v2.1.84, Claude Code áp dụng **giới hạn 2 KB** cho các mô tả và hướng dẫn công cụ trên mỗi máy chủ MCP. Điều này ngăn chặn từng máy chủ riêng lẻ tiêu thụ quá nhiều ngữ cảnh với các định nghĩa công cụ quá dài dòng, giúp giảm bớt sự phình to ngữ cảnh và giữ cho các tương tác hiệu quả.
 
-## MCP Prompts as Slash Commands
+## Prompts của MCP dưới dạng các lệnh Slash
 
-MCP servers can expose prompts that appear as slash commands in Claude Code. Prompts are accessible using the naming convention:
+Các máy chủ MCP có thể hiển thị các prompt xuất hiện dưới dạng các lệnh slash trong Claude Code. Các prompt này có thể truy cập được bằng quy ước đặt tên:
 
 ```
 /mcp__<server>__<prompt>
 ```
 
-For example, if a server named `github` exposes a prompt called `review`, you can invoke it as `/mcp__github__review`.
+Ví dụ, nếu một máy chủ có tên `github` hiển thị một prompt tên là `review`, bạn có thể gọi nó bằng lệnh `/mcp__github__review`.
 
-## Server Deduplication
+## Loại bỏ Máy chủ Trùng lặp (Server Deduplication)
 
-When the same MCP server is defined at multiple scopes (local, project, user), the local configuration takes precedence. This allows you to override project-level or user-level MCP settings with local customizations without conflicts.
+Khi cùng một máy chủ MCP được định nghĩa ở nhiều phạm vi (cục bộ, dự án, người dùng), cấu hình cục bộ sẽ được ưu tiên. Điều này cho phép bạn ghi đè các thiết lập MCP ở cấp độ dự án hoặc cấp độ người dùng bằng các tùy chỉnh cục bộ mà không gặp xung đột.
 
-## MCP Resources via @ Mentions
+## Tài nguyên MCP qua lượt nhắc bằng ký hiệu @
 
-You can reference MCP resources directly in your prompts using the `@` mention syntax:
+Bạn có thể tham chiếu trực tiếp các tài nguyên MCP trong prompt của mình bằng cú pháp `@`:
 
 ```
 @server-name:protocol://resource/path
 ```
 
-For example, to reference a specific database resource:
+Ví dụ, để tham chiếu một tài nguyên cơ sở dữ liệu cụ thể:
 
 ```
 @database:postgres://mydb/users
 ```
 
-This allows Claude to fetch and include MCP resource content inline as part of the conversation context.
+Điều này cho phép Claude lấy và đưa nội dung tài nguyên MCP vào trực tiếp như một phần của ngữ cảnh cuộc hội thoại.
 
-## MCP Scopes
+## Phạm vi MCP (MCP Scopes)
 
-MCP configurations can be stored at different scopes with varying levels of sharing:
+Các cấu hình MCP có thể được lưu trữ ở các phạm vi khác nhau với mức độ chia sẻ khác nhau:
 
-| Scope | Location | Description | Shared With | Requires Approval |
+| Phạm vi | Vị trí | Mô tả | Chia sẻ với | Yêu cầu Phê duyệt |
 |-------|----------|-------------|-------------|------------------|
-| **Local** (default) | `~/.claude.json` (under project path) | Private to current user, current project only (was called `project` in older versions) | Just you | No |
-| **Project** | `.mcp.json` | Checked into git repository | Team members | Yes (first use) |
-| **User** | `~/.claude.json` | Available across all projects (was called `global` in older versions) | Just you | No |
+| **Cục bộ (Local)** (mặc định) | `~/.claude.json` (dưới đường dẫn dự án) | Riêng tư cho người dùng hiện tại, chỉ trong dự án hiện tại (được gọi là `project` trong các phiên bản cũ) | Chỉ mình bạn | Không |
+| **Dự án (Project)** | `.mcp.json` | Được commit vào kho lưu trữ git | Các thành viên trong nhóm | Có (lần sử dụng đầu tiên) |
+| **Người dùng (User)** | `~/.claude.json` | Khả dụng trên tất cả các dự án (được gọi là `global` trong các phiên bản cũ) | Chỉ mình bạn | Không |
 
-### Using Project Scope
+### Sử dụng Phạm vi Dự án (Project Scope)
 
-Store project-specific MCP configurations in `.mcp.json`:
+Lưu trữ các cấu hình MCP cụ thể cho dự án trong `.mcp.json`:
 
 ```json
 {
@@ -280,53 +280,55 @@ Store project-specific MCP configurations in `.mcp.json`:
 }
 ```
 
-Team members will see an approval prompt on first use of project MCPs.
+Các thành viên trong nhóm sẽ thấy một lời nhắc phê duyệt trong lần đầu tiên sử dụng các MCP cấp độ dự án.
 
-## MCP Configuration Management
+## Quản lý Cấu hình MCP (MCP Configuration Management)
 
-### Adding MCP Servers
+### Thêm máy chủ MCP
 
 ```bash
-# Add HTTP-based server
+# Thêm máy chủ dựa trên HTTP
 claude mcp add --transport http github https://api.github.com/mcp
 
-# Add local stdio server
+# Thêm máy chủ stdio cục bộ
 claude mcp add --transport stdio database -- npx @company/db-server
 
-# List all MCP servers
+# Liệt kê tất cả các máy chủ MCP
 claude mcp list
 
-# Get details on specific server
+# Tải thông tin chi tiết về một máy chủ cụ thể
 claude mcp get github
 
-# Remove an MCP server
+# Xóa một máy chủ MCP
 claude mcp remove github
 
-# Reset project-specific approval choices
+# Đặt lại các lựa chọn phê duyệt cụ thể cho dự án
 claude mcp reset-project-choices
 
-# Import from Claude Desktop
+# Nhập từ Claude Desktop
 claude mcp add-from-claude-desktop
 ```
 
-## Available MCP Servers Table
+## Bảng các máy chủ MCP có sẵn (Available MCP Servers Table)
 
-| MCP Server | Purpose | Common Tools | Auth | Real-time |
+| Máy chủ MCP | Mục đích | Các công cụ phổ biến | Xác thực | Thời gian thực |
 |------------|---------|--------------|------|-----------|
-| **Filesystem** | File operations | read, write, delete | OS permissions | ✅ Yes |
-| **GitHub** | Repository management | list_prs, create_issue, push | OAuth | ✅ Yes |
-| **Slack** | Team communication | send_message, list_channels | Token | ✅ Yes |
-| **Database** | SQL queries | query, insert, update | Credentials | ✅ Yes |
-| **Google Docs** | Document access | read, write, share | OAuth | ✅ Yes |
-| **Asana** | Project management | create_task, update_status | API Key | ✅ Yes |
-| **Stripe** | Payment data | list_charges, create_invoice | API Key | ✅ Yes |
-| **Memory** | Persistent memory | store, retrieve, delete | Local | ❌ No |
+| **Filesystem** | Các thao tác với tệp | read, write, delete | Quyền của HĐH | ✅ Có |
+| **GitHub** | Quản lý kho lưu trữ | list_prs, create_issue, push | OAuth | ✅ Có |
+| **Slack** | Giao tiếp trong nhóm | send_message, list_channels | Token | ✅ Có |
+| **Database** | Truy vấn SQL | query, insert, update | Thông tin đăng nhập | ✅ Có |
+| **Google Docs** | Truy cập tài liệu | read, write, share | OAuth | ✅ Có |
+| **Asana** | Quản lý dự án | create_task, update_status | API Key | ✅ Có |
+| **Stripe** | Dữ liệu thanh toán | list_charges, create_invoice | API Key | ✅ Có |
+| **Memory** | Bộ nhớ dài hạn | store, retrieve, delete | Cục bộ | ❌ Không |
 
 ## Practical Examples
 
-### Example 1: GitHub MCP Configuration
+## Các ví dụ Thực tế (Practical Examples)
 
-**File:** `.mcp.json` (project root)
+### Ví dụ 1: Cấu hình GitHub MCP
+
+**Tệp:** `.mcp.json` (thư mục gốc dự án)
 
 ```json
 {
@@ -342,56 +344,56 @@ claude mcp add-from-claude-desktop
 }
 ```
 
-**Available GitHub MCP Tools:**
+**Các công cụ GitHub MCP có sẵn:**
 
-#### Pull Request Management
-- `list_prs` - List all PRs in repository
-- `get_pr` - Get PR details including diff
-- `create_pr` - Create new PR
-- `update_pr` - Update PR description/title
-- `merge_pr` - Merge PR to main branch
-- `review_pr` - Add review comments
+#### Quản lý Pull Request (Pull Request Management)
+- `list_prs` - Liệt kê tất cả các PR trong kho lưu trữ
+- `get_pr` - Lấy thông tin chi tiết về PR bao gồm cả phần khác biệt (diff)
+- `create_pr` - Tạo PR mới
+- `update_pr` - Cập nhật mô tả/tiêu đề của PR
+- `merge_pr` - Hợp nhất PR vào nhánh chính (main branch)
+- `review_pr` - Thêm các nhận xét review
 
-**Example request:**
+**Ví dụ yêu cầu:**
 ```
 /mcp__github__get_pr 456
 
-# Returns:
-Title: Add dark mode support
-Author: @alice
-Description: Implements dark theme using CSS variables
-Status: OPEN
-Reviewers: @bob, @charlie
+# Trả về:
+Tiêu đề: Thêm hỗ trợ chế độ tối (dark mode)
+Tác giả: @alice
+Mô tả: Triển khai giao diện tối bằng các biến CSS
+Trạng thái: ĐANG MỞ (OPEN)
+Người review: @bob, @charlie
 ```
 
-#### Issue Management
-- `list_issues` - List all issues
-- `get_issue` - Get issue details
-- `create_issue` - Create new issue
-- `close_issue` - Close issue
-- `add_comment` - Add comment to issue
+#### Quản lý Issue (Issue Management)
+- `list_issues` - Liệt kê tất cả các issue
+- `get_issue` - Lấy thông tin chi tiết về issue
+- `create_issue` - Tạo issue mới
+- `close_issue` - Đóng issue
+- `add_comment` - Thêm nhận xét vào issue
 
-#### Repository Information
-- `get_repo_info` - Repository details
-- `list_files` - File tree structure
-- `get_file_content` - Read file contents
-- `search_code` - Search across codebase
+#### Thông tin Kho lưu trữ (Repository Information)
+- `get_repo_info` - Thông tin chi tiết về kho lưu trữ
+- `list_files` - Cấu trúc cây thư mục tệp
+- `get_file_content` - Đọc nội dung tệp
+- `search_code` - Tìm kiếm trong toàn bộ mã nguồn
 
-#### Commit Operations
-- `list_commits` - Commit history
-- `get_commit` - Specific commit details
-- `create_commit` - Create new commit
+#### Các thao tác Commit (Commit Operations)
+- `list_commits` - Lịch sử commit
+- `get_commit` - Thông tin chi tiết về một commit cụ thể
+- `create_commit` - Tạo commit mới
 
-**Setup**:
+**Thiết lập**:
 ```bash
-export GITHUB_TOKEN="your_github_token"
-# Or use the CLI to add directly:
+export GITHUB_TOKEN="token_github_cua_ban"
+# Hoặc sử dụng CLI để thêm trực tiếp:
 claude mcp add --transport stdio github -- npx @modelcontextprotocol/server-github
 ```
 
-### Environment Variable Expansion in Configuration
+### Triển khai Biến môi trường trong Cấu hình
 
-MCP configurations support environment variable expansion with fallback defaults. The `${VAR}` and `${VAR:-default}` syntax works in the following fields: `command`, `args`, `env`, `url`, and `headers`.
+Cấu hình MCP hỗ trợ triển khai biến môi trường với các giá trị mặc định dự phòng. Cú pháp `${VAR}` và `${VAR:-default}` hoạt động trong các trường sau: `command`, `args`, `env`, `url`, và `headers`.
 
 ```json
 {
@@ -415,13 +417,13 @@ MCP configurations support environment variable expansion with fallback defaults
 }
 ```
 
-Variables are expanded at runtime:
-- `${VAR}` - Uses environment variable, error if not set
-- `${VAR:-default}` - Uses environment variable, falls back to default if not set
+Các biến được triển khai tại thời điểm thực thi (runtime):
+- `${VAR}` - Sử dụng biến môi trường, báo lỗi nếu không được thiết lập
+- `${VAR:-default}` - Sử dụng biến môi trường, quay lại giá trị mặc định nếu không được thiết lập
 
-### Example 2: Database MCP Setup
+### Ví dụ 2: Thiết lập Database MCP
 
-**Configuration:**
+**Cấu hình:**
 
 ```json
 {
@@ -437,14 +439,14 @@ Variables are expanded at runtime:
 }
 ```
 
-**Example Usage:**
+**Ví dụ Sử dụng:**
 
 ```markdown
-User: Fetch all users with more than 10 orders
+Người dùng: Lấy tất cả người dùng có hơn 10 đơn hàng
 
-Claude: I'll query your database to find that information.
+Claude: Tôi sẽ truy vấn cơ sở dữ liệu của bạn để tìm thông tin đó.
 
-# Using MCP database tool:
+# Sử dụng công cụ database của MCP:
 SELECT u.*, COUNT(o.id) as order_count
 FROM users u
 LEFT JOIN orders o ON u.id = o.user_id
@@ -452,77 +454,77 @@ GROUP BY u.id
 HAVING COUNT(o.id) > 10
 ORDER BY order_count DESC;
 
-# Results:
-- Alice: 15 orders
-- Bob: 12 orders
-- Charlie: 11 orders
+# Kết quả:
+- Alice: 15 đơn hàng
+- Bob: 12 đơn hàng
+- Charlie: 11 đơn hàng
 ```
 
-**Setup**:
+**Thiết lập**:
 ```bash
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
-# Or use the CLI to add directly:
+# Hoặc sử dụng CLI để thêm trực tiếp:
 claude mcp add --transport stdio database -- npx @modelcontextprotocol/server-database
 ```
 
-### Example 3: Multi-MCP Workflow
+### Ví dụ 3: Quy trình làm việc Multi-MCP (Multi-MCP Workflow)
 
-**Scenario: Daily Report Generation**
+**Kịch bản: Tạo Báo cáo Hàng ngày**
 
 ```markdown
-# Daily Report Workflow using Multiple MCPs
+# Quy trình tạo báo cáo hàng ngày sử dụng nhiều MCP
 
-## Setup
-1. GitHub MCP - fetch PR metrics
-2. Database MCP - query sales data
-3. Slack MCP - post report
-4. Filesystem MCP - save report
+## Thiết lập
+1. GitHub MCP - lấy các chỉ số PR
+2. Database MCP - truy vấn dữ liệu bán hàng
+3. Slack MCP - đăng báo cáo
+4. Filesystem MCP - lưu báo cáo
 
-## Workflow
+## Quy trình làm việc
 
-### Step 1: Fetch GitHub Data
+### Bước 1: Lấy dữ liệu GitHub
 /mcp__github__list_prs completed:true last:7days
 
-Output:
-- Total PRs: 42
-- Average merge time: 2.3 hours
-- Review turnaround: 1.1 hours
+Đầu ra:
+- Tổng số PR: 42
+- Thời gian hợp nhất trung bình: 2.3 giờ
+- Thời gian phản hồi review: 1.1 giờ
 
-### Step 2: Query Database
+### Bước 2: Truy vấn Cơ sở dữ liệu
 SELECT COUNT(*) as sales, SUM(amount) as revenue
 FROM orders
 WHERE created_at > NOW() - INTERVAL '1 day'
 
-Output:
-- Sales: 247
-- Revenue: $12,450
+Đầu ra:
+- Số đơn hàng: 247
+- Doanh thu: $12,450
 
-### Step 3: Generate Report
-Combine data into HTML report
+### Bước 3: Tạo báo cáo
+Kết hợp dữ liệu thành báo cáo HTML
 
-### Step 4: Save to Filesystem
-Write report.html to /reports/
+### Bước 4: Lưu vào hệ thống tệp (Filesystem)
+Ghi tệp report.html vào thư mục /reports/
 
-### Step 5: Post to Slack
-Send summary to #daily-reports channel
+### Bước 5: Đăng lên Slack
+Gửi bản tóm tắt vào kênh #daily-reports
 
-Final Output:
-✅ Report generated and posted
-📊 47 PRs merged this week
-💰 $12,450 in daily sales
+Kết quả cuối cùng:
+✅ Báo cáo đã được tạo và đăng tải
+📊 47 PR đã được hợp nhất trong tuần này
+💰 $12,450 doanh thu hàng ngày
 ```
 
-**Setup**:
+**Thiết lập**:
 ```bash
-export GITHUB_TOKEN="your_github_token"
+export GITHUB_TOKEN="token_github_cua_ban"
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
-export SLACK_TOKEN="your_slack_token"
-# Add each MCP server via the CLI or configure them in .mcp.json
+export SLACK_TOKEN="token_slack_cua_ban"
+# Thêm từng máy chủ MCP qua CLI hoặc cấu hình chúng trong .mcp.json
 ```
 
-### Example 4: Filesystem MCP Operations
+### Ví dụ 4: Các thao tác Filesystem MCP
 
-**Configuration:**
+**Cấu hình:**
 
 ```json
 {
@@ -535,35 +537,35 @@ export SLACK_TOKEN="your_slack_token"
 }
 ```
 
-**Available Operations:**
+**Các thao tác có sẵn:**
 
-| Operation | Command | Purpose |
+| Thao tác | Lệnh | Mục đích |
 |-----------|---------|---------|
-| List files | `ls ~/projects` | Show directory contents |
-| Read file | `cat src/main.ts` | Read file contents |
-| Write file | `create docs/api.md` | Create new file |
-| Edit file | `edit src/app.ts` | Modify file |
-| Search | `grep "async function"` | Search in files |
-| Delete | `rm old-file.js` | Delete file |
+| Liệt kê tệp | `ls ~/projects` | Hiển thị nội dung thư mục |
+| Đọc tệp | `cat src/main.ts` | Đọc nội dung tệp |
+| Ghi tệp | `create docs/api.md` | Tạo tệp mới |
+| Sửa tệp | `edit src/app.ts` | Chỉnh sửa tệp |
+| Tìm kiếm | `grep "async function"` | Tìm kiếm trong các tệp |
+| Xóa | `rm old-file.js` | Xóa tệp |
 
-**Setup**:
+**Thiết lập**:
 ```bash
-# Use the CLI to add directly:
+# Sử dụng CLI để thêm trực tiếp:
 claude mcp add --transport stdio filesystem -- npx @modelcontextprotocol/server-filesystem /home/user/projects
 ```
 
-## MCP vs Memory: Decision Matrix
+## MCP so với Memory: Ma trận Quyết định (Decision Matrix)
 
 ```mermaid
 graph TD
-    A["Need external data?"]
-    A -->|No| B["Use Memory"]
-    A -->|Yes| C["Does it change frequently?"]
-    C -->|No/Rarely| B
-    C -->|Yes/Often| D["Use MCP"]
+    A["Cần dữ liệu bên ngoài?"]
+    A -->|Không| B["Sử dụng Memory"]
+    A -->|Có| C["Nó có thay đổi thường xuyên không?"]
+    C -->|Không/Hiếm khi| B
+    C -->|Có/Thường xuyên| D["Sử dụng MCP"]
 
-    B -->|Stores| E["Preferences<br/>Context<br/>History"]
-    D -->|Accesses| F["Live APIs<br/>Databases<br/>Services"]
+    B -->|Lưu trữ| E["Sở thích<br/>Ngữ cảnh<br/>Lịch sử"]
+    D -->|Truy cập| F["Live APIs<br/>Cơ sở dữ liệu<br/>Dịch vụ"]
 
     style A fill:#fff3e0,stroke:#333,color:#333
     style B fill:#e1f5fe,stroke:#333,color:#333
@@ -573,7 +575,7 @@ graph TD
     style F fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-## Request/Response Pattern
+## Mô hình Yêu cầu/Phản hồi (Request/Response Pattern)
 
 ```mermaid
 sequenceDiagram
@@ -581,28 +583,28 @@ sequenceDiagram
     participant MCP as MCP Server
     participant DB as Database
 
-    App->>MCP: Request: "SELECT * FROM users WHERE id=1"
-    MCP->>DB: Execute query
-    DB-->>MCP: Result set
-    MCP-->>App: Return parsed data
-    App->>App: Process result
-    App->>App: Continue task
+    App->>MCP: Yêu cầu: "SELECT * FROM users WHERE id=1"
+    MCP->>DB: Thực thi truy vấn
+    DB-->>MCP: Tập kết quả (Result set)
+    MCP-->>App: Trả về dữ liệu đã xử lý
+    App->>App: Xử lý kết quả
+    App->>App: Tiếp tục nhiệm vụ
 
-    Note over MCP,DB: Real-time access<br/>No caching
+    Note over MCP,DB: Truy cập thời gian thực<br/>Không dùng bộ nhớ đệm (caching)
 ```
 
-## Environment Variables
+## Biến môi trường (Environment Variables)
 
-Store sensitive credentials in environment variables:
+Lưu trữ các thông tin xác thực nhạy cảm trong các biến môi trường:
 
 ```bash
-# ~/.bashrc or ~/.zshrc
+# ~/.bashrc hoặc ~/.zshrc
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxx"
 export DATABASE_URL="postgresql://user:pass@localhost/mydb"
 export SLACK_TOKEN="xoxb-xxxxxxxxxxxxx"
 ```
 
-Then reference them in MCP config:
+Sau đó tham chiếu chúng trong cấu hình MCP:
 
 ```json
 {
@@ -612,40 +614,40 @@ Then reference them in MCP config:
 }
 ```
 
-## Claude as MCP Server (`claude mcp serve`)
+## Claude đóng vai trò Máy chủ MCP (`claude mcp serve`)
 
-Claude Code itself can act as an MCP server for other applications. This enables external tools, editors, and automation systems to leverage Claude's capabilities through the standard MCP protocol.
+Bản thân Claude Code có thể hoạt động như một máy chủ MCP cho các ứng dụng khác. Điều này cho phép các công cụ bên ngoài, các trình soạn thảo và hệ thống tự động hóa tận dụng khả năng của Claude thông qua giao thức MCP tiêu chuẩn.
 
 ```bash
-# Start Claude Code as an MCP server on stdio
+# Khởi động Claude Code như một máy chủ MCP trên stdio
 claude mcp serve
 ```
 
-Other applications can then connect to this server as they would any stdio-based MCP server. For example, to add Claude Code as an MCP server in another Claude Code instance:
+Các ứng dụng khác sau đó có thể kết nối với máy chủ này giống như bất kỳ máy chủ MCP dựa trên stdio nào khác. Ví dụ, để thêm Claude Code làm máy chủ MCP trong một phiên bản Claude Code khác:
 
 ```bash
 claude mcp add --transport stdio claude-agent -- claude mcp serve
 ```
 
-This is useful for building multi-agent workflows where one Claude instance orchestrates another.
+Điều này hữu ích cho việc xây dựng các quy trình làm việc đa tác vụ (multi-agent workflows), nơi một phiên bản Claude điều phối một phiên bản khác.
 
-## Managed MCP Configuration (Enterprise)
+## Cấu hình MCP được Quản lý (Dành cho Doanh nghiệp)
 
-For enterprise deployments, IT administrators can enforce MCP server policies through the `managed-mcp.json` configuration file. This file provides exclusive control over which MCP servers are permitted or blocked organization-wide.
+Đối với các triển khai trong doanh nghiệp, quản trị viên IT có thể thực thi chính sách máy chủ MCP thông qua tệp cấu hình `managed-mcp.json`. Tệp này cung cấp quyền kiểm soát độc quyền đối với máy chủ MCP nào được phép hoặc bị chặn trong toàn bộ tổ chức.
 
-**Location:**
+**Vị trí:**
 - macOS: `/Library/Application Support/ClaudeCode/managed-mcp.json`
 - Linux: `~/.config/ClaudeCode/managed-mcp.json`
 - Windows: `%APPDATA%\ClaudeCode\managed-mcp.json`
 
-**Features:**
-- `allowedMcpServers` -- whitelist of permitted servers
-- `deniedMcpServers` -- blocklist of prohibited servers
-- Supports matching by server name, command, and URL patterns
-- Organization-wide MCP policies enforced before user configuration
-- Prevents unauthorized server connections
+**Tính năng:**
+- `allowedMcpServers` -- danh sách trắng (whitelist) các máy chủ được phép
+- `deniedMcpServers` -- danh sách đen (blocklist) các máy chủ bị cấm
+- Hỗ trợ so khớp theo tên máy chủ, lệnh và các mẫu URL
+- Các chính sách MCP toàn tổ chức được thực thi trước cấu hình của người dùng
+- Ngăn chặn các kết nối máy chủ không được phép
 
-**Example configuration:**
+**Ví dụ cấu hình:**
 
 ```json
 {
@@ -670,16 +672,16 @@ For enterprise deployments, IT administrators can enforce MCP server policies th
 }
 ```
 
-> **Note:** When both `allowedMcpServers` and `deniedMcpServers` match a server, the deny rule takes precedence.
+> **Lưu ý:** Khi cả `allowedMcpServers` và `deniedMcpServers` đều khớp với một máy chủ, quy tắc chặn (deny) sẽ được ưu tiên.
 
-## Plugin-Provided MCP Servers
+## Các máy chủ MCP do Plugin cung cấp
 
-Plugins can bundle their own MCP servers, making them available automatically when the plugin is installed. Plugin-provided MCP servers can be defined in two ways:
+Các plugin có thể đi kèm với máy chủ MCP của riêng chúng, giúp chúng tự động có sẵn khi plugin được cài đặt. Các máy chủ MCP do plugin cung cấp có thể được định nghĩa theo hai cách:
 
-1. **Standalone `.mcp.json`** -- Place a `.mcp.json` file in the plugin root directory
-2. **Inline in `plugin.json`** -- Define MCP servers directly within the plugin manifest
+1. **Tệp `.mcp.json` độc lập** -- Đặt tệp `.mcp.json` trong thư mục gốc của plugin.
+2. **Trực tiếp trong `plugin.json`** -- Định nghĩa các máy chủ MCP trực tiếp bên trong tệp manifest của plugin.
 
-Use the `${CLAUDE_PLUGIN_ROOT}` variable to reference paths relative to the plugin's installation directory:
+Sử dụng biến `${CLAUDE_PLUGIN_ROOT}` để tham chiếu các đường dẫn tương đối đến thư mục cài đặt của plugin:
 
 ```json
 {
@@ -695,9 +697,9 @@ Use the `${CLAUDE_PLUGIN_ROOT}` variable to reference paths relative to the plug
 }
 ```
 
-## Subagent-Scoped MCP
+## MCP trong Phạm vi Subagent (Subagent-Scoped MCP)
 
-MCP servers can be defined inline within agent frontmatter using the `mcpServers:` key, scoping them to a specific subagent rather than the entire project. This is useful when an agent needs access to a particular MCP server that other agents in the workflow do not require.
+Các máy chủ MCP có thể được định nghĩa trực tiếp bên trong phần frontmatter của agent bằng khóa `mcpServers:`, giới hạn phạm vi của chúng cho một subagent cụ thể thay vì toàn bộ dự án. Điều này hữu ích khi một agent cần truy cập vào một máy chủ MCP cụ thể mà các agent khác trong quy trình làm việc không cần đến.
 
 ```yaml
 ---
@@ -707,74 +709,74 @@ mcpServers:
     url: https://my-tool.example.com/mcp
 ---
 
-You are an agent with access to my-tool for specialized operations.
+Bạn là một agent có quyền truy cập vào my-tool cho các hoạt động chuyên biệt.
 ```
 
-Subagent-scoped MCP servers are only available within that agent's execution context and are not shared with the parent or sibling agents.
+Các máy chủ MCP trong phạm vi subagent chỉ khả dụng trong ngữ cảnh thực thi của agent đó và không được chia sẻ với các agent cha hoặc agent anh em.
 
-## MCP Output Limits
+## Giới hạn Đầu ra MCP (MCP Output Limits)
 
-Claude Code enforces limits on MCP tool output to prevent context overflow:
+Claude Code thực thi các giới hạn đối với đầu ra của công cụ MCP để ngăn chặn tràn ngữ cảnh (context overflow):
 
-| Limit | Threshold | Behavior |
+| Giới hạn | Ngưỡng | Hành vi |
 |-------|-----------|----------|
-| **Warning** | 10,000 tokens | A warning is displayed that the output is large |
-| **Default max** | 25,000 tokens | Output is truncated beyond this limit |
-| **Disk persistence** | 50,000 characters | Tool results exceeding 50K characters are persisted to disk |
+| **Cảnh báo (Warning)** | 10.000 token | Hiển thị cảnh báo rằng đầu ra quá lớn |
+| **Tối đa mặc định** | 25.000 token | Đầu ra bị cắt bỏ vượt quá giới hạn này |
+| **Lưu trữ trên đĩa** | 50.000 ký tự | Kết quả công cụ vượt quá 50K ký tự sẽ được lưu vào đĩa |
 
-The maximum output limit is configurable via the `MAX_MCP_OUTPUT_TOKENS` environment variable:
+Giới hạn đầu ra tối đa có thể được cấu hình thông qua biến môi trường `MAX_MCP_OUTPUT_TOKENS`:
 
 ```bash
-# Increase the max output to 50,000 tokens
+# Tăng mức đầu ra tối đa lên 50.000 token
 export MAX_MCP_OUTPUT_TOKENS=50000
 ```
 
-## Solving Context Bloat with Code Execution
+## Giải quyết Phình to Ngữ cảnh bằng Thực thi Mã (Code Execution)
 
-As MCP adoption scales, connecting to dozens of servers with hundreds or thousands of tools creates a significant challenge: **context bloat**. This is arguably the biggest problem with MCP at scale, and Anthropic's engineering team has proposed an elegant solution — using code execution instead of direct tool calls.
+Khi việc áp dụng MCP mở rộng, việc kết nối với hàng chục máy chủ với hàng trăm hoặc hàng nghìn công cụ tạo ra một thách thức lớn: **phình to ngữ cảnh (context bloat)**. Đây được cho là vấn đề lớn nhất đối với MCP ở quy mô lớn, và nhóm kỹ thuật của Anthropic đã đề xuất một giải pháp tinh tế — sử dụng thực thi mã thay vì gọi công cụ trực tiếp.
 
-> **Source**: [Code Execution with MCP: Building More Efficient Agents](https://www.anthropic.com/engineering/code-execution-with-mcp) — Anthropic Engineering Blog
+> **Nguồn**: [Code Execution with MCP: Building More Efficient Agents](https://www.anthropic.com/engineering/code-execution-with-mcp) — Anthropic Engineering Blog
 
-### The Problem: Two Sources of Token Waste
+### Vấn đề: Hai Nguồn lãng phí Token
 
-**1. Tool definitions overload the context window**
+**1. Định nghĩa công cụ làm quá tải cửa sổ ngữ cảnh**
 
-Most MCP clients load all tool definitions upfront. When connected to thousands of tools, the model must process hundreds of thousands of tokens before it even reads the user's request.
+Hầu hết các MCP client tải tất cả các định nghĩa công cụ ngay từ đầu. Khi kết nối với hàng nghìn công cụ, mô hình phải xử lý hàng trăm nghìn token trước khi nó đọc được yêu cầu của người dùng.
 
-**2. Intermediate results consume additional tokens**
+**2. Kết quả trung gian tiêu tốn thêm token**
 
-Every intermediate tool result passes through the model's context. Consider transferring a meeting transcript from Google Drive to Salesforce — the full transcript flows through context **twice**: once when reading it, and again when writing it to the destination. A 2-hour meeting transcript could mean 50,000+ extra tokens.
+Mọi kết quả công cụ trung gian đều đi qua ngữ cảnh của mô hình. Hãy xem xét việc chuyển một văn bản cuộc họp từ Google Drive sang Salesforce — toàn bộ văn bản sẽ đi qua ngữ cảnh **hai lần**: một lần khi đọc nó, và một lần nữa khi ghi nó vào đích đến. Một văn bản cuộc họp kéo dài 2 giờ có thể tiêu tốn thêm hơn 50.000 token.
 
 ```mermaid
 graph LR
-    A["Model"] -->|"Tool Call: getDocument"| B["MCP Server"]
-    B -->|"Full transcript (50K tokens)"| A
-    A -->|"Tool Call: updateRecord<br/>(re-sends full transcript)"| B
-    B -->|"Confirmation"| A
+    A["Model"] -->|"Gọi công cụ: getDocument"| B["MCP Server"]
+    B -->|"Toàn bộ văn bản (50K token)"| A
+    A -->|"Gọi công cụ: updateRecord<br/>(gửi lại toàn bộ văn bản)"| B
+    B -->|"Xác nhận"| A
 
     style A fill:#ffcdd2,stroke:#333,color:#333
     style B fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-### The Solution: MCP Tools as Code APIs
+### Giải pháp: Các công cụ MCP dưới dạng các API Mã nguồn (Code APIs)
 
-Instead of passing tool definitions and results through the context window, the agent **writes code** that calls MCP tools as APIs. The code runs in a sandboxed execution environment, and only the final result returns to the model.
+Thay vì chuyển các định nghĩa công cụ và kết quả qua cửa sổ ngữ cảnh, agent sẽ **viết mã** để gọi các công cụ MCP như các API. Mã chạy trong một môi trường thực thi được sandbox, và chỉ kết quả cuối cùng mới được trả về cho mô hình.
 
 ```mermaid
 graph LR
-    A["Model"] -->|"Writes code"| B["Code Execution<br/>Environment"]
-    B -->|"Calls tools directly"| C["MCP Servers"]
-    C -->|"Data stays in<br/>execution env"| B
-    B -->|"Only final result<br/>(minimal tokens)"| A
+    A["Model"] -->|"Viết mã"| B["Môi trường Thực thi mã"]
+    B -->|"Gọi các công cụ trực tiếp"| C["MCP Servers"]
+    C -->|"Dữ liệu ở lại trong<br/>môi trường thực thi"| B
+    B -->|"Chỉ trả về kết quả cuối cùng<br/>(số lượng token tối thiểu)"| A
 
     style A fill:#c8e6c9,stroke:#333,color:#333
     style B fill:#e1f5fe,stroke:#333,color:#333
     style C fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-#### How It Works
+#### Cách thức Hoạt động
 
-MCP tools are presented as a file tree of typed functions:
+Các công cụ MCP được trình bày dưới dạng một cây tệp gồm các hàm được định kiểu (typed functions):
 
 ```
 servers/
@@ -787,7 +789,7 @@ servers/
 └── ...
 ```
 
-Each tool file contains a typed wrapper:
+Mỗi tệp công cụ chứa một trình bao bọc được định kiểu (typed wrapper):
 
 ```typescript
 // ./servers/google-drive/getDocument.ts
@@ -810,13 +812,13 @@ export async function getDocument(
 }
 ```
 
-The agent then writes code to orchestrate the tools:
+Sau đó, agent viết mã để điều phối các công cụ:
 
 ```typescript
 import * as gdrive from './servers/google-drive';
 import * as salesforce from './servers/salesforce';
 
-// Data flows directly between tools — never through the model
+// Dữ liệu chảy trực tiếp giữa các công cụ — không bao giờ đi qua mô hình
 const transcript = (
   await gdrive.getDocument({ documentId: 'abc123' })
 ).content;
@@ -828,86 +830,86 @@ await salesforce.updateRecord({
 });
 ```
 
-**Result: Token usage drops from ~150,000 to ~2,000 — a 98.7% reduction.**
+**Kết quả: Lượng token sử dụng giảm từ ~150.000 xuống còn ~2.000 — giảm 98,7%.**
 
-### Key Benefits
+### Các Lợi ích Chính
 
-| Benefit | Description |
+| Lợi ích | Mô tả |
 |---------|-------------|
-| **Progressive Disclosure** | Agent browses the filesystem to load only the tool definitions it needs, instead of all tools upfront |
-| **Context-Efficient Results** | Data is filtered/transformed in the execution environment before returning to the model |
-| **Powerful Control Flow** | Loops, conditionals, and error handling run in code without round-tripping through the model |
-| **Privacy Preservation** | Intermediate data (PII, sensitive records) stays in the execution environment; never enters the model context |
-| **State Persistence** | Agents can save intermediate results to files and build reusable skill functions |
+| **Tiết lộ Dần dần (Progressive Disclosure)** | Agent duyệt qua hệ thống tệp để chỉ tải các định nghĩa công cụ mà nó cần, thay vì tất cả các công cụ ngay từ đầu |
+| **Kết quả Ngữ cảnh Hiệu quả** | Dữ liệu được lọc/biến đổi trong môi trường thực thi trước khi trả về cho mô hình |
+| **Luồng Kiểm soát Mạnh mẽ** | Các vòng lặp, câu lệnh điều kiện và xử lý lỗi chạy trong mã mà không cần quay vòng qua mô hình |
+| **Bảo vệ Quyền riêng tư** | Dữ liệu trung gian (PII, các hồ sơ nhạy cảm) ở lại trong môi trường thực thi; không bao giờ đi vào ngữ cảnh của mô hình |
+| **Duy trì Trạng thái** | Các agent có thể lưu kết quả trung gian vào tệp và xây dựng các hàm kỹ năng có thể tái sử dụng |
 
-#### Example: Filtering Large Datasets
+#### Ví dụ: Lọc các tập dữ liệu lớn
 
 ```typescript
-// Without code execution — all 10,000 rows flow through context
-// TOOL CALL: gdrive.getSheet(sheetId: 'abc123')
-//   -> returns 10,000 rows in context
+// Không thực thi mã — tất cả 10.000 hàng đều đi qua ngữ cảnh
+// GỌI CÔNG CỤ: gdrive.getSheet(sheetId: 'abc123')
+//   -> trả về 10.000 hàng trong ngữ cảnh
 
-// With code execution — filter in the execution environment
+// Với thực thi mã — lọc trong môi trường thực thi
 const allRows = await gdrive.getSheet({ sheetId: 'abc123' });
 const pendingOrders = allRows.filter(
   row => row["Status"] === 'pending'
 );
-console.log(`Found ${pendingOrders.length} pending orders`);
-console.log(pendingOrders.slice(0, 5)); // Only 5 rows reach the model
+console.log(`Tìm thấy ${pendingOrders.length} đơn hàng đang chờ xử lý`);
+console.log(pendingOrders.slice(0, 5)); // Chỉ 5 hàng được gửi tới mô hình
 ```
 
-#### Example: Loop Without Round-Tripping
+#### Ví dụ: Vòng lặp mà không cần quay vòng qua mô hình
 
 ```typescript
-// Poll for a deployment notification — runs entirely in code
+// Thăm dò thông báo triển khai — chạy hoàn toàn trong mã
 let found = false;
 while (!found) {
   const messages = await slack.getChannelHistory({
     channel: 'C123456'
   });
   found = messages.some(
-    m => m.text.includes('deployment complete')
+    m => m.text.includes('triển khai hoàn tất')
   );
   if (!found) await new Promise(r => setTimeout(r, 5000));
 }
-console.log('Deployment notification received');
+console.log('Đã nhận được thông báo triển khai');
 ```
 
-### Trade-offs to Consider
+### Các Đánh đổi cần Cân nhắc
 
-Code execution introduces its own complexity. Running agent-generated code requires:
+Thực thi mã cũng mang lại những sự phức tạp riêng. Chạy mã do agent tạo ra yêu cầu:
 
-- A **secure sandboxed execution environment** with appropriate resource limits
-- **Monitoring and logging** of executed code
-- Additional **infrastructure overhead** compared to direct tool calls
+- Một **môi trường thực thi được sandbox an toàn** với các giới hạn tài nguyên thích hợp.
+- **Giám sát và ghi nhật ký** mã đã thực thi.
+- Thêm **chi phí hạ tầng** so với việc gọi công cụ trực tiếp.
 
-The benefits — reduced token costs, lower latency, improved tool composition — should be weighed against these implementation costs. For agents with only a few MCP servers, direct tool calls may be simpler. For agents at scale (dozens of servers, hundreds of tools), code execution is a significant improvement.
+Các lợi ích — giảm chi phí token, độ trễ thấp hơn, cải thiện việc kết hợp các công cụ — nên được cân nhắc so với các chi phí triển khai này. Đối với các agent chỉ có một vài máy chủ MCP, gọi công cụ trực tiếp có thể đơn giản hơn. Đối với các agent ở quy mô lớn (hàng chục máy chủ, hàng trăm công cụ), thực thi mã là một cải tiến đáng kể.
 
-### MCPorter: A Runtime for MCP Tool Composition
+### MCPorter: Một Runtime cho việc Kết hợp Công cụ MCP
 
-[MCPorter](https://github.com/steipete/mcporter) is a TypeScript runtime and CLI toolkit that makes calling MCP servers practical without boilerplate — and helps reduce context bloat through selective tool exposure and typed wrappers.
+[MCPorter](https://github.com/steipete/mcporter) là một TypeScript runtime và bộ công cụ CLI giúp việc gọi các máy chủ MCP trở nên thiết thực mà không cần mã rập khuôn (boilerplate) — và giúp giảm phình to ngữ cảnh thông qua việc lộ công cụ có chọn lọc và các trình bao bọc được định kiểu.
 
-**What it solves:** Instead of loading all tool definitions from all MCP servers upfront, MCPorter lets you discover, inspect, and call specific tools on demand — keeping your context lean.
+**Vấn đề nó giải quyết:** Thay vì tải tất cả các định nghĩa công cụ từ tất cả các máy chủ MCP ngay từ đầu, MCPorter cho phép bạn khám phá, kiểm tra và gọi các công cụ cụ thể khi cần — giữ cho ngữ cảnh của bạn luôn tinh gọn.
 
-**Key features:**
+**Các tính năng chính:**
 
-| Feature | Description |
+| Tính năng | Mô tả |
 |---------|-------------|
-| **Zero-config discovery** | Auto-discovers MCP servers from Cursor, Claude, Codex, or local configs |
-| **Typed tool clients** | `mcporter emit-ts` generates `.d.ts` interfaces and ready-to-run wrappers |
-| **Composable API** | `createServerProxy()` exposes tools as camelCase methods with `.text()`, `.json()`, `.markdown()` helpers |
-| **CLI generation** | `mcporter generate-cli` converts any MCP server into a standalone CLI with `--include-tools` / `--exclude-tools` filtering |
-| **Parameter hiding** | Optional parameters stay hidden by default, reducing schema verbosity |
+| **Khám phá không cần cấu hình** | Tự động khám phá các máy chủ MCP từ Cursor, Claude, Codex hoặc các cấu hình cục bộ |
+| **Client công cụ được định kiểu** | `mcporter emit-ts` tạo ra các interface `.d.ts` và các trình bao bọc sẵn sàng chạy |
+| **API có khả năng kết hợp** | `createServerProxy()` hiển thị các công cụ dưới dạng các phương thức camelCase với các trình hỗ trợ `.text()`, `.json()`, `.markdown()` |
+| **Tạo CLI** | `mcporter generate-cli` chuyển đổi bất kỳ máy chủ MCP nào thành một CLI độc lập với bộ lọc `--include-tools` / `--exclude-tools` |
+| **Ẩn tham số** | Các tham số tùy chọn được ẩn theo mặc định, giúp giảm bớt sự dài dòng của schema |
 
-**Installation:**
+**Cài đặt:**
 
 ```bash
-npx mcporter list          # No install required — discover servers instantly
-pnpm add mcporter          # Add to a project
-brew install steipete/tap/mcporter  # macOS via Homebrew
+npx mcporter list          # Không cần cài đặt — khám phá máy chủ ngay lập tức
+pnpm add mcporter          # Thêm vào một dự án
+brew install steipete/tap/mcporter  # macOS thông qua Homebrew
 ```
 
-**Example — composing tools in TypeScript:**
+**Ví dụ — kết hợp các công cụ trong TypeScript:**
 
 ```typescript
 import { createRuntime, createServerProxy } from "mcporter";
@@ -916,7 +918,7 @@ const runtime = await createRuntime();
 const gdrive = createServerProxy(runtime, "google-drive");
 const salesforce = createServerProxy(runtime, "salesforce");
 
-// Data flows between tools without passing through the model context
+// Dữ liệu chảy giữa các công cụ mà không đi qua ngữ cảnh của mô hình
 const doc = await gdrive.getDocument({ documentId: "abc123" });
 await salesforce.updateRecord({
   objectType: "SalesMeeting",
@@ -925,80 +927,16 @@ await salesforce.updateRecord({
 });
 ```
 
-**Example — CLI tool call:**
+**Ví dụ — gọi công cụ qua CLI:**
 
 ```bash
-# Call a specific tool directly
-npx mcporter call linear.create_comment issueId:ENG-123 body:'Looks good!'
+# Gọi trực tiếp một công cụ cụ thể
+npx mcporter call linear.create_comment issueId:ENG-123 body:'Trông ổn đó!'
 
-# List available servers and tools
+# Liệt kê các máy chủ và công cụ có sẵn
 npx mcporter list
 ```
 
-MCPorter complements the code-execution approach described above by providing the runtime infrastructure for calling MCP tools as typed APIs — making it straightforward to keep intermediate data out of the model context.
-
-## Best Practices
-
-### Security Considerations
-
-#### Do's ✅
-- Use environment variables for all credentials
-- Rotate tokens and API keys regularly (monthly recommended)
-- Use read-only tokens when possible
-- Limit MCP server access scope to minimum required
-- Monitor MCP server usage and access logs
-- Use OAuth for external services when available
-- Implement rate limiting on MCP requests
-- Test MCP connections before production use
-- Document all active MCP connections
-- Keep MCP server packages updated
-
-#### Don'ts ❌
-- Don't hardcode credentials in config files
-- Don't commit tokens or secrets to git
-- Don't share tokens in team chats or emails
-- Don't use personal tokens for team projects
-- Don't grant unnecessary permissions
-- Don't ignore authentication errors
-- Don't expose MCP endpoints publicly
-- Don't run MCP servers with root/admin privileges
-- Don't cache sensitive data in logs
-- Don't disable authentication mechanisms
-
-### Configuration Best Practices
-
-1. **Version Control**: Keep `.mcp.json` in git but use environment variables for secrets
-2. **Least Privilege**: Grant minimum permissions needed for each MCP server
-3. **Isolation**: Run different MCP servers in separate processes when possible
-4. **Monitoring**: Log all MCP requests and errors for audit trails
-5. **Testing**: Test all MCP configurations before deploying to production
-
-### Performance Tips
-
-- Cache frequently accessed data at the application level
-- Use MCP queries that are specific to reduce data transfer
-- Monitor response times for MCP operations
-- Consider rate limiting for external APIs
-- Use batching when performing multiple operations
-
-## Installation Instructions
-
-### Prerequisites
-- Node.js and npm installed
-- Claude Code CLI installed
-- API tokens/credentials for external services
-
-### Step-by-Step Setup
-
-1. **Add your first MCP server** using the CLI (example: GitHub):
-```bash
-claude mcp add --transport stdio github -- npx @modelcontextprotocol/server-github
-```
-
-   Or create a `.mcp.json` file in your project root:
-```json
-{
-  "mcpServers": {
     "github": {
       "command": "npx",
       "args": ["@modelcontextprotocol/server-github"],

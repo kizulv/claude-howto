@@ -1,108 +1,108 @@
-# Clean Code Rules for AI Code Generation
+# Quy tắc Clean Code cho việc tạo mã nguồn bằng AI
 
-These rules guide code generation to produce maintainable, professional-quality code.
+Các quy tắc này hướng dẫn việc tạo mã nguồn để tạo ra mã có khả năng bảo trì, đạt chất lượng chuyên nghiệp.
 
-## Meaningful Names
-- Use intention-revealing names that explain why something exists
-- Avoid disinformation and meaningless distinctions (e.g., `data`, `info`, `manager`)
-- Use pronounceable, searchable names
-- Class names: nouns (e.g., `UserAccount`, `PaymentProcessor`)
-- Method names: verbs (e.g., `calculateTotal`, `sendEmail`)
-- Avoid mental mapping and encodings (Hungarian notation, prefixes)
+## Tên có ý nghĩa
+- Sử dụng tên tiết lộ mục đích (intention-revealing names) giải thích tại sao một thứ gì đó tồn tại
+- Tránh thông tin sai lệch và các phân biệt vô nghĩa (ví dụ: `data`, `info`, `manager`)
+- Sử dụng tên có thể phát âm được, có thể tìm kiếm được
+- Tên lớp (Class names): danh từ (ví dụ: `UserAccount`, `PaymentProcessor`)
+- Tên phương thức (Method names): động từ (ví dụ: `calculateTotal`, `sendEmail`)
+- Tránh bản đồ tư duy (mental mapping) và các ký hiệu mã hóa (Hungarian notation, tiền tố)
 
-## Functions
-- Keep functions small (< 20 lines ideal)
-- Do one thing only - Single Responsibility Principle
-- One level of abstraction per function
-- Limit arguments: 0-2 ideal, 3 maximum, avoid flag arguments
-- No side effects - function should do what its name says
-- Separate commands (change state) from queries (return info)
-- Prefer exceptions over error codes
+## Hàm (Functions)
+- Giữ các hàm nhỏ (lý tưởng nhất là < 20 dòng)
+- Chỉ làm một việc duy nhất - Nguyên tắc đơn nhiệm (Single Responsibility Principle)
+- Một cấp độ trừu tượng cho mỗi hàm
+- Giới hạn tham số: lý tưởng từ 0-2, tối đa là 3, tránh các tham số dạng cờ (flag arguments)
+- Không có tác dụng phụ (No side effects) - hàm nên làm đúng những gì tên nó mô tả
+- Tách biệt các lệnh (thay đổi trạng thái) khỏi các truy vấn (trả về thông tin) - Command Query Separation
+- Ưu tiên sử dụng ngoại lệ (exceptions) hơn các mã lỗi (error codes)
 
-## Comments
-- Code should be self-explanatory - avoid comments when possible
-- Good comments: legal info, warnings, TODOs, public API documentation
-- Bad comments: redundant, misleading, or explaining bad code
-- Never comment out code - delete it (version control preserves history)
-- If you need a comment, consider refactoring the code instead
+## Chú thích (Comments)
+- Mã nguồn nên tự giải thích được - tránh chú thích khi có thể
+- Chú thích tốt: thông tin pháp lý, cảnh báo, TODO, tài liệu API công khai
+- Chú thích xấu: dư thừa, gây hiểu lầm, hoặc giải thích mã nguồn tồi
+- Không bao giờ chú thích mã nguồn (comment out) - hãy xóa nó đi (hệ thống quản lý phiên bản sẽ lưu giữ lịch sử)
+- Nếu bạn cần một chú thích, hãy cân nhắc việc tái cấu trúc (refactoring) mã nguồn trước
 
-## Formatting
-- Keep files small and focused
-- Vertical formatting: related concepts close together, blank lines separate concepts
-- Horizontal formatting: limit line length (80-120 characters)
-- Use consistent indentation and team style
-- Group related functions together
+## Định dạng (Formatting)
+- Giữ các file nhỏ và tập trung
+- Định dạng theo chiều dọc: các khái niệm liên quan nên đặt gần nhau, các dòng trống phân tách các khái niệm
+- Định dạng theo chiều ngang: giới hạn độ dài dòng (80-120 ký tự)
+- Sử dụng thụt đầu dòng nhất quán và theo phong cách của nhóm
+- Nhóm các hàm liên quan lại với nhau
 
-## Objects and Data Structures
-- Objects: hide data behind abstractions, expose behavior through methods
-- Data structures: expose data, have minimal behavior
-- Law of Demeter: only talk to immediate friends, avoid `a.getB().getC().doSomething()`
-- Don't expose internal structure through getters/setters blindly
+## Đối tượng và Cấu trúc dữ liệu
+- Đối tượng (Objects): ẩn dữ liệu đằng sau các lớp trừu tượng, để lộ hành vi thông qua các phương thức
+- Cấu trúc dữ liệu (Data structures): để lộ dữ liệu, có rất ít hành vi
+- Định luật Demeter (Law of Demeter): chỉ nói chuyện với những "người bạn" trực tiếp, tránh `a.getB().getC().doSomething()`
+- Đừng để lộ cấu trúc nội bộ thông qua getters/setters một cách mù quáng
 
-## Error Handling
-- Use exceptions, not return codes or error flags
-- Write `try-catch-finally` first when code might fail
-- Provide context in exception messages
-- Don't return `null` - return empty collections or use Optional/Maybe
-- Don't pass `null` as arguments
+## Xử lý lỗi (Error Handling)
+- Sử dụng ngoại lệ, không dùng mã trả về hoặc cờ lỗi
+- Viết `try-catch-finally` trước khi mã nguồn có thể thất bại
+- Cung cấp ngữ cảnh trong các thông báo ngoại lệ
+- Không trả về `null` - trả về tập hợp rỗng hoặc dùng Optional/Maybe
+- Không truyền `null` làm tham số
 
-## Classes
-- Small classes: measured by responsibilities, not lines
-- Single Responsibility Principle: one reason to change
-- High cohesion: class variables used by many methods
-- Low coupling: minimal dependencies between classes
-- Open/Closed Principle: open for extension, closed for modification
+## Lớp (Classes)
+- Các lớp nhỏ: được đo bằng trách nhiệm, không phải bằng số dòng
+- Nguyên tắc đơn nhiệm (Single Responsibility Principle): chỉ có một lý do để thay đổi
+- Độ gắn kết cao (High cohesion): các biến của lớp được sử dụng bởi nhiều phương thức
+- Độ phụ thuộc thấp (Low coupling): sự phụ thuộc tối thiểu giữa các lớp
+- Nguyên tắc Đóng/Mở (Open/Closed Principle): mở để mở rộng, đóng để sửa đổi
 
-## Unit Tests
-- Fast, Independent, Repeatable, Self-validating, Timely (F.I.R.S.T.)
-- One assert per test (or one concept)
-- Test code quality equals production code quality
-- Readable test names that describe what's being tested
-- Arrange-Act-Assert pattern
+## Thử nghiệm đơn vị (Unit Tests)
+- Fast (Nhanh), Independent (Độc lập), Repeatable (Có thể lặp lại), Self-validating (Tự xác thực), Timely (Kịp thời) (F.I.R.S.T.)
+- Một assert cho mỗi test (hoặc một khái niệm)
+- Chất lượng mã thử nghiệm bằng với chất lượng mã sản phẩm
+- Tên test dễ đọc, mô tả những gì đang được thử nghiệm
+- Mô hình Arrange-Act-Assert (Chuẩn bị - Hành động - Xác nhận)
 
-## Code Quality Principles
-- **DRY (Don't Repeat Yourself)**: No duplication
-- **YAGNI (You Aren't Gonna Need It)**: Don't build for hypothetical futures
-- **KISS (Keep It Simple)**: Avoid unnecessary complexity
-- **Boy Scout Rule**: Leave code cleaner than you found it
+## Các nguyên tắc chất lượng mã nguồn
+- **DRY (Don't Repeat Yourself)**: Không trùng lặp
+- **YAGNI (You Aren't Gonna Need It)**: Đừng xây dựng cho những tương lai giả định
+- **KISS (Keep It Simple)**: Tránh sự phức tạp không cần thiết
+- **Quy tắc hướng đạo sinh (Boy Scout Rule)**: Để lại mã nguồn sạch hơn lúc bạn tìm thấy nó
 
-## Code Smells to Avoid
-- Long functions or classes
-- Duplicate code
-- Dead code (unused variables, functions, parameters)
-- Feature envy (method more interested in other class)
-- Inappropriate intimacy (classes knowing too much about each other)
-- Long parameter lists
-- Primitive obsession (overusing primitives instead of small objects)
-- Switch/case statements (consider polymorphism)
-- Temporary fields (class variables only used sometimes)
+## Các "mùi" mã nguồn (Code Smells) cần tránh
+- Hàm hoặc lớp quá dài
+- Mã nguồn bị trùng lặp
+- Mã nguồn "chết" (biến, hàm, tham số không được sử dụng)
+- Feature envy (phương thức quan tâm đến lớp khác nhiều hơn lớp hiện tại)
+- Inappropriate intimacy (các lớp biết quá nhiều về nhau)
+- Danh sách tham số quá dài
+- Primitive obsession (lạm dụng các kiểu dữ liệu cơ bản thay vì các đối tượng nhỏ)
+- Các câu lệnh Switch/case (cân nhắc đa hình - polymorphism)
+- Các trường tạm thời (biến của lớp chỉ thỉnh thoảng được sử dụng)
 
-## Concurrency
-- Keep concurrent code separate from other code
-- Limit scope of synchronized/locked data
-- Use thread-safe collections
-- Keep synchronized sections small
-- Know your execution models and primitives
+## Đa luồng (Concurrency)
+- Giữ mã nguồn đa luồng tách biệt với mã nguồn khác
+- Giới hạn phạm vi của dữ liệu được đồng bộ/khóa (synchronized/locked)
+- Sử dụng các tập hợp an toàn đa luồng (thread-safe collections)
+- Giữ các phần đồng bộ nhỏ
+- Hiểu rõ các mô hình và nguyên tắc thực thi của bạn
 
-## System Design
-- Separate construction from use (dependency injection)
-- Use factories, builders for complex object creation
-- Program to interfaces, not implementations
-- Favor composition over inheritance
-- Apply design patterns when they simplify, not to show off
+## Thiết kế hệ thống (System Design)
+- Tách biệt việc xây dựng (construction) khỏi việc sử dụng (use) - dùng dependency injection
+- Sử dụng các factory, builder cho việc tạo đối tượng phức tạp
+- Lập trình cho các interface, không phải cho các implementation cụ thể
+- Ưu tiên sự kết hợp (composition) hơn là kế thừa (inheritance)
+- Áp dụng các mẫu thiết kế (design patterns) khi chúng làm đơn giản hóa vấn đề, không phải để thể hiện
 
-## Refactoring
-- Refactor continuously, not in big batches
-- Always have passing tests before and after
-- Small steps: one change at a time
-- Common refactorings: Extract Method, Rename, Move, Inline
+## Tái cấu trúc (Refactoring)
+- Tái cấu trúc liên tục, không làm theo các đợt lớn
+- Luôn có các bài test vượt qua trước và sau khi thực hiện
+- Các bước nhỏ: một thay đổi tại một thời điểm
+- Các kỹ thuật tái cấu trúc phổ biến: Extract Method (Tách hàm), Rename (Đổi tên), Move (Di chuyển), Inline (Gộp dòng)
 
-## Documentation
-- Self-documenting code > comments > external docs
-- Public APIs need clear documentation
-- Include examples in documentation
-- Keep docs close to code (ideally in code)
+## Tài liệu (Documentation)
+- Mã nguồn tự giải thích > chú thích > tài liệu bên ngoài
+- Các API công khai cần tài liệu rõ ràng
+- Bao gồm các ví dụ trong tài liệu
+- Giữ tài liệu gần với mã nguồn (lý tưởng nhất là trong mã nguồn)
 
 ---
 
-**Core Philosophy**: Code is read 10x more than written. Optimize for readability and maintainability, not cleverness.
+**Triết lý cốt lõi**: Mã nguồn được đọc nhiều gấp 10 lần so với lúc được viết. Hãy tối ưu hóa cho khả năng đọc và khả năng bảo trì, không phải cho sự thông minh.

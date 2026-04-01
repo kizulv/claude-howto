@@ -1,38 +1,38 @@
 ---
 name: api-documentation-generator
-description: Generate comprehensive, accurate API documentation from source code. Use when creating or updating API documentation, generating OpenAPI specs, or when users mention API docs, endpoints, or documentation.
+description: Tạo tài liệu API toàn diện và chính xác từ mã nguồn. Sử dụng khi tạo hoặc cập nhật tài liệu API, tạo đặc tả OpenAPI, hoặc khi người dùng đề cập đến tài liệu API, các endpoint hoặc tài liệu hướng dẫn.
 ---
 
-# API Documentation Generator Skill
+# Kỹ năng Tạo Tài liệu API (API Documentation Generator Skill)
 
-## Generates
+## Các thành phần tạo ra (Generates)
 
-- OpenAPI/Swagger specifications
-- API endpoint documentation
-- SDK usage examples
-- Integration guides
-- Error code references
-- Authentication guides
+- Đặc tả OpenAPI/Swagger
+- Tài liệu về các endpoint API
+- Các ví dụ sử dụng SDK
+- Hướng dẫn tích hợp
+- Tham chiếu mã lỗi
+- Hướng dẫn xác thực
 
-## Documentation Structure
+## Cấu trúc Tài liệu (Documentation Structure)
 
-### For Each Endpoint
+### Cho mỗi Endpoint
 
 ```markdown
 ## GET /api/v1/users/:id
 
-### Description
-Brief explanation of what this endpoint does
+### Mô tả (Description)
+Giải thích ngắn gọn về chức năng của endpoint này.
 
-### Parameters
+### Tham số (Parameters)
 
-| Name | Type | Required | Description |
+| Tên | Kiểu | Bắt buộc | Mô tả |
 |------|------|----------|-------------|
-| id | string | Yes | User ID |
+| id | string | Có | ID của người dùng |
 
-### Response
+### Phản hồi (Response)
 
-**200 Success**
+**200 Thành công (Success)**
 ```json
 {
   "id": "usr_123",
@@ -42,7 +42,7 @@ Brief explanation of what this endpoint does
 }
 ```
 
-**404 Not Found**
+**404 Không tìm thấy (Not Found)**
 ```json
 {
   "error": "USER_NOT_FOUND",
@@ -50,7 +50,7 @@ Brief explanation of what this endpoint does
 }
 ```
 
-### Examples
+### Ví dụ (Examples)
 
 **cURL**
 ```bash
@@ -72,5 +72,4 @@ response = requests.get(
     headers={'Authorization': 'Bearer token'}
 )
 user = response.json()
-```
 ```

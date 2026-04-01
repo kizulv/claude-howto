@@ -1,334 +1,220 @@
-# Security Policy
+# Chính sách bảo mật
 
-## Overview
+## Tổng quan
 
-The security of the Claude How To project is important to us. This document outlines our security practices and describes how to report security vulnerabilities responsibly.
+Bảo mật của dự án Claude How To là điều quan trọng đối với chúng tôi. Tài liệu này phác thảo các thực hành bảo mật của chúng tôi và mô tả cách báo cáo các lỗ hổng bảo mật một cách có trách nhiệm.
 
-## Supported Versions
+## Các phiên bản được hỗ trợ
 
-We provide security updates for the following versions:
+Chúng tôi cung cấp các bản cập nhật bảo mật cho các phiên bản sau:
 
-| Version | Status | Support Until |
+| Phiên bản | Trạng thái | Hỗ trợ đến khi |
 |---------|--------|---------------|
-| Latest (main) | ✅ Active | Current + 6 months |
-| 1.x releases | ✅ Active | Until next major version |
+| Mới nhất (main) | ✅ Đang hoạt động | Hiện tại + 6 tháng |
+| Các bản phát hành 1.x | ✅ Đang hoạt động | Cho đến phiên bản lớn tiếp theo |
 
-**Note**: As an educational guide project, we focus on maintaining current best practices and documentation security rather than traditional version support. Updates are applied directly to the main branch.
+**Ghi chú**: Là một dự án hướng dẫn giáo dục, chúng tôi tập trung vào việc duy trì các thực hành tốt nhất hiện tại và bảo mật tài liệu hơn là hỗ trợ phiên bản truyền thống. Các cập nhật được áp dụng trực tiếp vào nhánh `main`.
 
-## Security Practices
+## Các thực hành bảo mật
 
-### Code Security
+### Bảo mật mã nguồn
 
-1. **Dependency Management**
-   - All Python dependencies are pinned in `requirements.txt`
-   - Regular updates via dependabot and manual review
-   - Security scanning with Bandit on every commit
-   - Pre-commit hooks for security checks
+1. **Quản lý phụ thuộc (Dependency Management)**
+   - Tất cả các phụ thuộc Python được cố định trong `requirements.txt`
+   - Cập nhật thường xuyên qua Dependabot và kiểm tra thủ công
+   - Quét bảo mật với Bandit trên mỗi commit
+   - Sử dụng pre-commit hooks cho các kiểm tra bảo mật
 
-2. **Code Quality**
-   - Linting with Ruff catches common issues
-   - Type checking with mypy prevents type-related vulnerabilities
-   - Pre-commit hooks enforce standards
-   - All changes reviewed before merging
+2. **Chất lượng mã nguồn**
+   - Sử dụng Ruff để phát hiện các vấn đề phổ biến
+   - Kiểm tra kiểu dữ liệu với mypy để ngăn chặn các lỗ hổng liên quan đến kiểu
+   - Pre-commit hooks thực thi các tiêu chuẩn
+   - Tất cả các thay đổi đều được xem xét trước khi merge
 
-3. **Access Control**
-   - Branch protection on `main` branch
-   - Required reviews before merge
-   - Status checks must pass before merge
-   - Limited write access to repository
+3. **Kiểm soát truy cập**
+   - Bảo vệ nhánh `main`
+   - Bắt buộc review trước khi merge
+   - Các kiểm tra trạng thái phải vượt qua trước khi merge
+   - Giới hạn quyền ghi vào kho lưu trữ
 
-### Documentation Security
+### Bảo mật tài liệu
 
-1. **No Secrets in Examples**
-   - All API keys in examples are placeholders
-   - Credentials are never hardcoded
-   - `.env.example` files show required variables
-   - Clear warnings about secret management
+1. **Không để lộ bí mật trong ví dụ**
+   - Tất cả các khóa API trong ví dụ đều là giá trị làm mẫu (placeholders)
+   - Thông tin xác thực không bao giờ được ghi cứng
+   - Tệp `.env.example` hiển thị các biến bắt buộc
+   - Cảnh báo rõ ràng về quản lý bí mật
 
-2. **Security Best Practices**
-   - Examples demonstrate secure patterns
-   - Security warnings highlighted in documentation
-   - Links to official security guides
-   - Credential handling discussed in relevant sections
+2. **Thực hành tốt nhất về bảo mật**
+   - Các ví dụ minh họa các mẫu (patterns) an toàn
+   - Các cảnh báo bảo mật được làm nổi bật trong tài liệu
+   - Liên kết đến các hướng dẫn bảo mật chính thức
+   - Việc xử lý thông tin xác thực được thảo luận trong các phần liên quan
 
-3. **Content Review**
-   - All documentation reviewed for security issues
-   - Security considerations in contributing guidelines
-   - Validation of external links and references
+3. **Đánh giá nội dung**
+   - Tất cả tài liệu được xem xét kỹ về các vấn đề bảo mật
+   - Các cân nhắc bảo mật có trong hướng dẫn đóng góp
+   - Xác minh các liên kết và tham chiếu bên ngoài
 
-### Dependency Security
+### Bảo mật phụ thuộc
 
-1. **Scanning**
-   - Bandit scans all Python code for vulnerabilities
-   - Dependency vulnerability checks via GitHub security alerts
-   - Regular manual security audits
+1. **Quét lỗi (Scanning)**
+   - Bandit quét tất cả mã Python để tìm lỗ hổng
+   - Kiểm tra lỗ hổng phụ thuộc qua cảnh báo bảo mật của GitHub
+   - Kiểm tra bảo mật thủ công định kỳ
 
-2. **Updates**
-   - Security patches applied promptly
-   - Major versions evaluated carefully
-   - Changelog includes security-related updates
+2. **Cập nhật**
+   - Các bản vá bảo mật được áp dụng kịp thời
+   - Các phiên bản lớn được đánh giá cẩn thận
+   - Nhật ký thay đổi (Changelog) bao gồm các cập nhật liên quan đến bảo mật
 
-3. **Transparency**
-   - Security updates documented in commits
-   - Vulnerability disclosures handled responsibly
-   - Public security advisories when appropriate
+3. **Tính minh bạch**
+   - Các cập nhật bảo mật được ghi lại trong các commit
+   - Việc tiết lộ lỗ hổng được xử lý có trách nhiệm
+   - Các thông báo bảo mật công khai khi thích hợp
 
-## Reporting a Vulnerability
+## Báo cáo lỗ hổng
 
-### Security Issues We Care About
+### Các vấn đề bảo mật chúng tôi quan tâm
 
-We appreciate reports on:
-- **Code vulnerabilities** in scripts or examples
-- **Dependency vulnerabilities** in Python packages
-- **Cryptography issues** in any code examples
-- **Authentication/Authorization flaws** in documentation
-- **Data exposure risks** in configuration examples
-- **Injection vulnerabilities** (SQL, command, etc.)
-- **SSRF/XXE/Path traversal** issues
+Chúng tôi đánh giá cao các báo cáo về:
+- **Lỗ hổng mã nguồn** trong các script hoặc ví dụ
+- **Lỗ hổng phụ thuộc** trong các gói Python
+- **Vấn đề về mật mã** trong bất kỳ ví dụ mã nào
+- **Lỗi xác thực/phân quyền** trong tài liệu
+- **Rủi ro lộ dữ liệu** trong các ví dụ cấu hình
+- **Lỗ hổng Injection** (SQL, command, v.v.)
+- **Vấn đề SSRF/XXE/Path traversal**
 
-### Security Issues Out of Scope
+### Các vấn đề bảo mật nằm ngoài phạm vi
 
-These are outside the scope of this project:
-- Vulnerabilities in Claude Code itself (report to Anthropic)
-- Issues with external services or libraries (report to upstream)
-- Social engineering or user education (not applicable to this guide)
-- Theoretical vulnerabilities without proof of concept
-- Vulnerabilities in dependencies reported through official channels
+Những vấn đề sau nằm ngoài phạm vi của dự án này:
+- Lỗ hổng trong chính Claude Code (vui lòng báo cáo cho Anthropic)
+- Vấn đề với các dịch vụ hoặc thư viện bên ngoài (báo cáo cho bên cung cấp)
+- Tấn công kỹ thuật xã hội (Social engineering) hoặc giáo dục người dùng
+- Lỗ hổng lý thuyết mà không có bằng chứng thực tế (Proof of Concept)
 
-## How to Report
+## Cách báo cáo
 
-### Private Reporting (Preferred)
+### Báo cáo riêng tư (Khuyến nghị)
 
-**For sensitive security issues, please use GitHub's private vulnerability reporting:**
+**Đối với các vấn đề bảo mật nhạy cảm, vui lòng sử dụng tính năng báo cáo lỗ hổng riêng tư của GitHub:**
 
-1. Visit: https://github.com/luongnv89/claude-howto/security/advisories
-2. Click "Report a vulnerability"
-3. Fill in the vulnerability details
-4. Include:
-   - Clear description of the vulnerability
-   - Affected component (file, section, example)
-   - Potential impact
-   - Steps to reproduce (if applicable)
-   - Suggested fix (if you have one)
+1. Truy cập: https://github.com/luongnv89/claude-howto/security/advisories
+2. Nhấn "Report a vulnerability"
+3. Điền các chi tiết về lỗ hổng
+4. Bao gồm:
+   - Mô tả rõ ràng về lỗ hổng
+   - Thành phần bị ảnh hưởng (tệp, phần, ví dụ)
+   - Tác động tiềm tàng
+   - Các bước để tái hiện
+   - Đề xuất cách sửa (nếu có)
 
-**What happens next:**
-- We'll acknowledge receipt within 48 hours
-- We'll investigate and assess severity
-- We'll work with you to develop a fix
-- We'll coordinate disclosure timeline
-- We'll credit you in the security advisory (unless you prefer anonymity)
+### Báo cáo công khai
 
-### Public Reporting
+Đối với các vấn đề không nhạy cảm hoặc đã công khai:
 
-For non-sensitive issues or those already public:
+1. **Mở một GitHub Issue** với nhãn `security`
+2. Bao gồm:
+   - Tiêu đề: `[SECURITY]` kèm theo mô tả ngắn
+   - Mô tả chi tiết
+   - Tệp hoặc phần bị ảnh hưởng
+   - Tác động tiềm tàng
+   - Đề xuất cách sửa
 
-1. **Open a GitHub Issue** with label `security`
-2. Include:
-   - Title: `[SECURITY]` followed by brief description
-   - Detailed description
-   - Affected file or section
-   - Potential impact
-   - Suggested fix
+## Quy trình phản hồi lỗ hổng
 
-## Vulnerability Response Process
+### Đánh giá (24 giờ)
 
-### Assessment (24 hours)
+1. Chúng tôi xác nhận đã nhận được báo cáo
+2. Chúng tôi đánh giá mức độ nghiêm trọng bằng [CVSS v3.1](https://www.first.org/cvss/v3.1/specification-document)
+3. Chúng tôi xác định xem nó có nằm trong phạm vi không
+4. Chúng tôi liên hệ với bạn kèm theo đánh giá ban đầu
 
-1. We acknowledge receipt of the report
-2. We assess severity using [CVSS v3.1](https://www.first.org/cvss/v3.1/specification-document)
-3. We determine if it's in scope
-4. We contact you with initial assessment
+### Phát triển (1-7 ngày)
 
-### Development (1-7 days)
+1. Chúng tôi phát triển bản vá
+2. Chúng tôi xem xét và kiểm tra bản vá
+3. Chúng tôi tạo một thông báo bảo mật
+4. Chúng tôi chuẩn bị ghi chú phát hành (release notes)
 
-1. We develop a fix
-2. We review and test the fix
-3. We create a security advisory
-4. We prepare release notes
+### Công bố (thay đổi tùy theo mức độ nghiêm trọng)
 
-### Disclosure (varies by severity)
+**Nghiêm trọng (Critical - CVSS 9.0-10.0)**
+- Bản vá được phát hành ngay lập tức
+- Thông báo công khai được đưa ra
+- Thông báo trước 24 giờ cho người báo cáo
 
-**Critical (CVSS 9.0-10.0)**
-- Fix released immediately
-- Public advisory issued
-- 24-hour advance notice to reporters
+**Cao (High - CVSS 7.0-8.9)**
+- Bản vá được phát hành trong vòng 48-72 giờ
+- Thông báo trước 5 ngày cho người báo cáo
+- Thông báo công khai khi phát hành
 
-**High (CVSS 7.0-8.9)**
-- Fix released within 48-72 hours
-- 5-day advance notice to reporters
-- Public advisory on release
+**Trung bình (Medium - CVSS 4.0-6.9)**
+- Bản vá được bao gồm trong cập nhật định kỳ tiếp theo
+- Thông báo công khai khi phát hành
 
-**Medium (CVSS 4.0-6.9)**
-- Fix released in next regular update
-- Public advisory on release
+**Thấp (Low - CVSS 0.1-3.9)**
+- Bản vá được bao gồm trong cập nhật định kỳ tiếp theo
 
-**Low (CVSS 0.1-3.9)**
-- Fix included in next regular update
-- Advisory on release
+## Thực hành tốt nhất cho người báo cáo
 
-### Publication
+- **Xác minh vấn đề**: Bạn có thể tái hiện nó một cách nhất quán không?
+- **Tìm kiếm các issue hiện có**: Nó đã được báo cáo chưa?
+- **Kiểm tra tài liệu**: Đã có hướng dẫn về cách sử dụng an toàn chưa?
+- **Kiểm tra bản vá**: Đề xuất sửa lỗi của bạn có hoạt động không?
 
-We publish security advisories that include:
-- Description of the vulnerability
-- Affected components
-- Severity assessment (CVSS score)
-- Fix version
-- Workarounds (if applicable)
-- Credit to reporter (with permission)
+## Nguyên tắc bảo mật cho người đóng góp
 
-## Best Practices for Reporters
+### Khi viết ví dụ
 
-### Before Reporting
-
-- **Verify the issue**: Can you reproduce it consistently?
-- **Search existing issues**: Is it already reported?
-- **Check documentation**: Is there guidance on secure usage?
-- **Test the fix**: Does your suggested fix work?
-
-### When Reporting
-
-- **Be specific**: Provide exact file paths and line numbers
-- **Include context**: Why is this a security issue?
-- **Show impact**: What could an attacker do?
-- **Provide steps**: How can we reproduce it?
-- **Suggest fixes**: How would you fix it?
-
-### After Reporting
-
-- **Be patient**: We have limited resources
-- **Be responsive**: Answer follow-up questions quickly
-- **Keep it confidential**: Don't publicly disclose before fix
-- **Respect coordination**: Follow our timeline for disclosure
-
-## Security Headers and Configuration
-
-### Repository Security
-
-- **Branch protection**: Main branch requires 2 approvals for changes
-- **Status checks**: All CI/CD checks must pass
-- **CODEOWNERS**: Designated reviewers for key files
-- **Signed commits**: Recommended for contributors
-
-### Development Security
-
-```bash
-# Install pre-commit hooks
-pre-commit install
-
-# Run security scans locally
-bandit -c pyproject.toml -r scripts/
-mypy scripts/ --ignore-missing-imports
-ruff check scripts/
-```
-
-### Dependency Security
-
-```bash
-# Check for known vulnerabilities
-pip install safety
-safety check
-
-# Or use pip-audit
-pip install pip-audit
-pip-audit
-```
-
-## Security Guidelines for Contributors
-
-### When Writing Examples
-
-1. **Never hardcode secrets**
+1. **Không bao giờ ghi cứng bí mật**
    ```python
-   # ❌ Bad
+   # ❌ Sai
    api_key = "sk-1234567890"
 
-   # ✅ Good
+   # ✅ Đúng
    api_key = os.getenv("API_KEY")
    ```
 
-2. **Warn about security implications**
+2. **Cảnh báo về các tác động bảo mật**
    ```markdown
-   ⚠️ **Security Note**: Never commit `.env` files to git.
-   Add to `.gitignore` immediately.
+   ⚠️ **Lưu ý bảo mật**: Không bao giờ commit các tệp `.env` lên git.
+   Thêm vào `.gitignore` ngay lập tức.
    ```
 
-3. **Use secure defaults**
-   - Enable authentication by default
-   - Use HTTPS where applicable
-   - Validate and sanitize inputs
-   - Use parameterized queries
+3. **Sử dụng các giá trị mặc định an toàn**
+   - Bật xác thực theo mặc định
+   - Sử dụng HTTPS khi có thể
+   - Xác thực và làm sạch dữ liệu đầu vào
+   - Sử dụng các truy vấn có tham số (parameterized queries)
 
-4. **Document security considerations**
-   - Explain why security matters
-   - Show secure vs. insecure patterns
-   - Link to authoritative sources
-   - Include warnings prominently
+### Khi review đóng góp
 
-### When Reviewing Contributions
+1. **Kiểm tra các bí mật bị lộ**
+   - Quét các mẫu phổ biến (api_key=, password=)
+   - Xem xét các tệp cấu hình
+   - Kiểm tra các biến môi trường
 
-1. **Check for exposed secrets**
-   - Scan for common patterns (api_key=, password=)
-   - Review configuration files
-   - Check environment variables
+2. **Xác minh các thực hành lập trình an toàn**
+   - Không có thông tin xác thực ghi cứng
+   - Xác thực đầu vào đúng cách
+   - Xác thực/phân quyền an toàn
 
-2. **Verify secure coding practices**
-   - No hardcoded credentials
-   - Proper input validation
-   - Secure authentication/authorization
-   - Safe file handling
+## Tài nguyên bảo mật
 
-3. **Test security implications**
-   - Can this be misused?
-   - What's the worst case?
-   - Are there edge cases?
-
-## Security Resources
-
-### Official Standards
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [CWE Top 25](https://cwe.mitre.org/top25/)
 - [CVSS Calculator](https://www.first.org/cvss/calculator/3.1)
 
-### Python Security
-- [Python Security Advisories](https://www.python.org/dev/security/)
-- [PyPI Security](https://pypi.org/help/#security)
-- [Bandit Documentation](https://bandit.readthedocs.io/)
+## Liên hệ
 
-### Dependency Management
-- [OWASP Dependency Check](https://owasp.org/www-project-dependency-check/)
-- [GitHub Security Alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)
+Đối với các câu hỏi liên quan đến bảo mật hoặc thảo luận về các thực hành bảo mật:
 
-### General Security
-- [Anthropic Security](https://www.anthropic.com/)
-- [GitHub Security Best Practices](https://docs.github.com/en/code-security)
-
-## Security Advisories Archive
-
-Past security advisories are available in the [GitHub Security Advisories](https://github.com/luongnv89/claude-howto/security/advisories) tab.
-
-## Contact
-
-For security-related questions or to discuss security practices:
-
-1. **Private Security Report**: Use GitHub's private vulnerability reporting
-2. **General Security Questions**: Open a discussion with `[SECURITY]` tag
-3. **Security Policy Feedback**: Create an issue with `security` label
-
-## Acknowledgments
-
-We appreciate the security researchers and community members who help keep this project secure. Contributors who report vulnerabilities responsibly will be acknowledged in our security advisories (unless they prefer anonymity).
-
-## Policy Updates
-
-This security policy is reviewed and updated:
-- When new vulnerabilities are discovered
-- When security best practices evolve
-- When the project scope changes
-- Annually as a minimum
-
-**Last Updated**: January 2026
-**Next Review**: January 2027
+1. **Báo cáo bảo mật riêng tư**: Sử dụng tính năng báo cáo lỗ hổng của GitHub
+2. **Câu hỏi bảo mật chung**: Mở một thảo luận với thẻ `[SECURITY]`
+3. **Phản hồi chính sách bảo mật**: Tạo một issue với nhãn `security`
 
 ---
 
-Thank you for helping keep Claude How To secure! 🔒
+Cảm ơn bạn đã giúp giữ cho Claude How To được an toàn! 🔒

@@ -3,147 +3,138 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# List of good resources
+# Danh sách các tài nguyên hữu ích
 
-## Official Documentation
+## Tài liệu chính thức
 
-| Resource | Description | Link |
+| Tài nguyên | Mô tả | Liên kết |
 |----------|-------------|------|
-| Claude Code Docs | Official Claude Code documentation | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
-| Anthropic Docs | Full Anthropic documentation | [docs.anthropic.com](https://docs.anthropic.com) |
-| MCP Protocol | Model Context Protocol specification | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
-| MCP Servers | Official MCP server implementations | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
-| Anthropic Cookbook | Code examples and tutorials | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
-| Claude Code Skills | Community skills repository | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
-| Agent Teams | Multi-agent coordination and collaboration | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
-| Scheduled Tasks | Recurring tasks with /loop and cron | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
-| Chrome Integration | Browser automation | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
-| Keybindings | Keyboard shortcut customization | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
-| Desktop App | Native desktop application | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
-| Remote Control | Remote session control | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
-| Auto Mode | Automatic permission management | [code.claude.com/docs/en/auto-mode](https://code.claude.com/docs/en/auto-mode) |
-| Channels | Multi-channel communication | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
-| Voice Dictation | Voice input for Claude Code | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
+| Claude Code Docs | Tài liệu chính thức của Claude Code | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
+| Anthropic Docs | Tài liệu đầy đủ của Anthropic | [docs.anthropic.com](https://docs.anthropic.com) |
+| MCP Protocol | Đặc tả giao thức Model Context Protocol | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
+| MCP Servers | Các triển khai máy chủ MCP chính thức | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
+| Anthropic Cookbook | Ví dụ mã và hướng dẫn | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
+| Claude Code Skills | Kho lưu trữ skill của cộng đồng | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
+| Agent Teams | Điều phối và cộng tác đa agent | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
+| Scheduled Tasks | Các tác vụ định kỳ với /loop và cron | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
+| Chrome Integration | Tự động hóa trình duyệt | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
+| Keybindings | Tùy chỉnh phím tắt | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
+| Desktop App | Ứng dụng máy tính bản ngữ | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
+| Remote Control | Điều khiển phiên làm việc từ xa | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
+| Auto Mode | Quản lý quyền tự động | [code.claude.com/docs/en/auto-mode](https://code.claude.com/docs/en/auto-mode) |
+| Channels | Truyền thông đa kênh | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
+| Voice Dictation | Nhập liệu bằng giọng nói cho Claude Code | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
 
-## Anthropic Engineering Blog
+## Blog kỹ thuật của Anthropic
 
-| Article | Description | Link |
+| Bài viết | Mô tả | Liên kết |
 |---------|-------------|------|
-| Code Execution with MCP | How to solve MCP context bloat using code execution — 98.7% token reduction | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
+| Thực thi mã với MCP | Cách giải quyết vấn đề đầy ngữ cảnh MCP bằng thực thi mã — giảm 98.7% token | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
 
 ---
 
-## Mastering Claude Code in 30 Minutes
+## Làm chủ Claude Code trong 30 phút
 
 _Video_: https://www.youtube.com/watch?v=6eBSHbLKuN0
 
-_**All Tips**_
-- **Explore Advanced Features and Shortcuts**
-  - Regularly check Claude's new code editing and context features in their release notes.
-  - Learn keyboard shortcuts to switch between chat, file, and editor views quickly.
+_**Tất cả các mẹo**_
+- **Khám phá các tính năng nâng cao và phím tắt**
+  - Thường xuyên kiểm tra các tính năng chỉnh sửa mã và ngữ cảnh mới của Claude trong ghi chú phát hành của họ.
+  - Học các phím tắt để chuyển đổi nhanh giữa các chế độ chat, tệp và trình soạn thảo.
 
-- **Efficient Setup**
-  - Create project-specific sessions with clear names/descriptions for easy retrieval.
-  - Pin most-used files or folders so Claude can access them at any time.
-  - Set up Claude's integrations (e.g., GitHub, popular IDEs) to streamline your coding process.
+- **Thiết lập hiệu quả**
+  - Tạo các phiên làm việc theo từng dự án (project-specific sessions) với tên/mô tả rõ ràng để dễ dàng truy xuất.
+  - Ghim (Pin) các tệp hoặc thư mục được sử dụng nhiều nhất để Claude có thể truy cập bất cứ lúc nào.
+  - Thiết lập các tích hợp của Claude (ví dụ: GitHub, các IDE phổ biến) để tối ưu hóa quy trình lập trình của bạn.
 
-- **Effective Codebase Q&A**
-  - Ask Claude detailed questions about architecture, design patterns, and specific modules.
-  - Use file and line references in your questions (e.g., "What does the logic in `app/models/user.py` accomplish?").
-  - For large codebases, provide a summary or manifest to help Claude focus.
-  - **Example prompt**: _"Can you explain the authentication flow implemented in src/auth/AuthService.ts:45-120? How does it integrate with the middleware in src/middleware/auth.ts?"_
+- **Hỏi đáp hiệu quả về cơ sở mã (Codebase Q&A)**
+  - Đặt cho Claude các câu hỏi chi tiết về kiến trúc, các mẫu thiết kế và các module cụ thể.
+  - Sử dụng tham chiếu tệp và dòng trong câu hỏi của bạn (ví dụ: "Logic trong `app/models/user.py` làm nhiệm vụ gì?").
+  - Đối với các cơ sở mã lớn, hãy cung cấp một bản tóm tắt hoặc manifest để giúp Claude tập trung.
+  - **Ví dụ prompt**: _"Bạn có thể giải thích luồng xác thực được triển khai trong src/auth/AuthService.ts:45-120 không? Nó tích hợp như thế nào với middleware trong src/middleware/auth.ts?"_
 
-- **Code Editing & Refactoring**
-  - Use inline comments or requests in code blocks to get focused edits ("Refactor this function for clarity").
-  - Ask for side-by-side before/after comparisons.
-  - Let Claude generate tests or documentation after major edits for quality assurance.
-  - **Example prompt**: _"Refactor the getUserData function in api/users.js to use async/await instead of promises. Show me a before/after comparison and generate unit tests for the refactored version."_
+- **Chỉnh sửa mã & Tái cấu trúc (Refactoring)**
+  - Sử dụng các chú thích nội dòng hoặc yêu cầu trong khối mã để nhận được các chỉnh sửa tập trung ("Tái cấu trúc hàm này để rõ ràng hơn").
+  - Yêu cầu so sánh song song trước/sau khi thay đổi.
+  - Để Claude tạo các bài kiểm thử (tests) hoặc tài liệu sau các chỉnh sửa lớn để đảm bảo chất lượng.
+  - **Ví dụ prompt**: _"Tái cấu trúc hàm getUserData trong api/users.js để sử dụng async/await thay vì promises. Cho tôi xem so sánh trước/sau và tạo unit tests cho phiên bản đã tái cấu trúc."_
 
-- **Context Management**
-  - Limit your pasted code/context to only what's relevant for the current task.
-  - Use structured prompts ("Here's file A, here's function B, my question is X") for best performance.
-  - Remove or collapse large files in the prompt window to avoid exceeding context limits.
-  - **Example prompt**: _"Here's the User model from models/User.js and the validateUser function from utils/validation.js. My question is: how can I add email validation while maintaining backward compatibility?"_
+- **Quản lý ngữ cảnh (Context Management)**
+  - Chỉ dán mã/ngữ cảnh liên quan đến tác vụ hiện tại.
+  - Sử dụng các prompt có cấu trúc ("Đây là tệp A, đây là hàm B, câu hỏi của tôi là X") để đạt hiệu suất tốt nhất.
+  - Loại bỏ hoặc thu gọn các tệp lớn trong cửa sổ prompt để tránh vượt quá giới hạn ngữ cảnh.
+  - **Ví dụ prompt**: _"Đây là model User từ models/User.js và hàm validateUser từ utils/validation.js. Câu hỏi của tôi là: làm thế nào tôi có thể thêm xác thực email trong khi vẫn duy trì tính tương thích ngược?"_
 
-- **Integrate Team Tools**
-  - Connect Claude sessions to your team's repositories and documentation.
-  - Use built-in templates or create custom ones for recurring engineering tasks.
-  - Collaborate by sharing session transcripts and prompts with teammates.
+- **Tích hợp các công cụ nhóm**
+  - Kết nối các phiên làm việc của Claude với kho lưu trữ và tài liệu của nhóm bạn.
+  - Sử dụng các mẫu có sẵn hoặc tạo mẫu tùy chỉnh cho các tác vụ kỹ thuật lặp đi lặp lại.
+  - Cộng tác bằng cách chia sẻ các bản ghi phiên làm việc và các prompt với đồng đội.
 
-- **Boosting Performance**
-  - Give Claude clear, goal-oriented instructions (e.g., "Summarize this class in five bullet points").
-  - Trim unnecessary comments and boilerplate from context windows.
-  - If Claude's output is off track, reset context or rephrase questions for better alignment.
-  - **Example prompt**: _"Summarize the DatabaseManager class in src/db/Manager.ts in five bullet points, focusing on its main responsibilities and key methods."_
+- **Tăng cường hiệu suất**
+  - Đưa cho Claude các hướng dẫn rõ ràng, hướng tới mục tiêu (ví dụ: "Tóm tắt lớp này trong năm gạch đầu dòng").
+  - Cắt tỉa các chú thích không cần thiết và mã rườm rà khỏi cửa sổ ngữ cảnh.
+  - Nếu đầu ra của Claude đi chệch hướng, hãy đặt lại ngữ cảnh hoặc diễn đạt lại câu hỏi để căn chỉnh tốt hơn.
 
-- **Practical Use Examples**
-  - Debugging: Paste errors and stack traces, then ask for possible causes and fixes.
-  - Test Generation: Request property-based, unit, or integration tests for complex logic.
-  - Code Reviews: Ask Claude to identify risky changes, edge cases, or code smells.
-  - **Example prompts**:
-    - _"I'm getting this error: 'TypeError: Cannot read property 'map' of undefined at line 42 in components/UserList.jsx'. Here's the stack trace and the relevant code. What's causing this and how can I fix it?"_
-    - _"Generate comprehensive unit tests for the PaymentProcessor class, including edge cases for failed transactions, timeouts, and invalid inputs."_
-    - _"Review this pull request diff and identify potential security issues, performance bottlenecks, and code smells."_
+- **Ví dụ sử dụng thực tế**
+  - Debugging: Dán các lỗi và stack traces, sau đó hỏi về các nguyên nhân tiềm năng và cách khắc phục.
+  - Tạo Test: Yêu cầu các bài kiểm thử dựa trên thuộc tính (property-based), unit test, hoặc integration test cho các logic phức tạp.
+  - Review mã: Yêu cầu Claude xác định các thay đổi rủi ro, các trường hợp biên (edge cases) hoặc "mùi" của mã (code smells).
 
-- **Workflow Automation**
-  - Script repetitive tasks (like formatting, clean-ups, and repetitive renaming) using Claude prompts.
-  - Use Claude to draft PR descriptions, release notes, or documentation based on code diffs.
-  - **Example prompt**: _"Based on the git diff, create a detailed PR description with a summary of changes, list of modified files, testing steps, and potential impacts. Also generate release notes for version 2.3.0."_
+- **Tự động hóa quy trình làm việc**
+  - Lập trình các tác vụ lặp đi lặp lại (như định dạng, dọn dẹp và đổi tên hàng loạt) bằng các prompt của Claude.
+  - Sử dụng Claude để soạn thảo mô tả PR, ghi chú phát hành hoặc tài liệu dựa trên các thay đổi mã (git diff).
 
-**Tip**: For best results, combine several of these practices—start by pinning critical files and summarizing your goals, then use focused prompts and Claude’s refactoring tools to incrementally improve your codebase and automation.
+**Mẹo**: Để có kết quả tốt nhất, hãy kết hợp nhiều thực hành này—bắt đầu bằng việc ghim các tệp quan trọng và tóm tắt mục tiêu của bạn, sau đó sử dụng các prompt tập trung và các công cụ tái cấu trúc của Claude để cải thiện dần cơ sở mã và tự động hóa của bạn.
 
+### Quy trình làm việc được khuyến nghị với Claude Code
 
-**Recommended workflow with Claude Code**
+#### Đối với một kho lưu trữ mới (New Repository)
 
-### Recommended Workflow with Claude Code
+1. **Khởi tạo Repo & Tích hợp Claude**
+   - Thiết lập kho lưu trữ mới với cấu trúc thiết yếu: README, LICENSE, .gitignore, các cấu hình gốc.
+   - Tạo tệp `CLAUDE.md` mô tả kiến trúc, các mục tiêu cấp cao và quy tắc lập trình.
+   - Cài đặt Claude Code và liên kết nó với kho lưu trữ của bạn để nhận gợi ý mã, khung kiểm thử và tự động hóa quy trình.
 
-#### For a New Repository
+2. **Sử dụng Chế độ Plan và Specs**
+   - Sử dụng chế độ plan (`shift-tab` hoặc `/plan`) để soạn thảo đặc tả chi tiết trước khi triển khai các tính năng.
+   - Hỏi Claude các gợi ý về kiến trúc và bố cục ban đầu của dự án.
+   - Duy trì một chuỗi prompt rõ ràng, hướng tới mục tiêu—hỏi về sơ lược các thành phần, các module chính và trách nhiệm của chúng.
 
-1. **Initialize the Repo & Claude Integration**
-   - Set up your new repository with essential structure: README, LICENSE, .gitignore, root configs.
-   - Create a `CLAUDE.md` file describing the architecture, high-level goals, and coding guidelines.
-   - Install Claude Code and link it to your repository for code suggestions, test scaffolding, and workflow automation.
+3. **Phát triển & Review lặp đi lặp lại**
+   - Triển khai các tính năng cốt lõi theo từng phần nhỏ, sử dụng prompt để Claude tạo mã, tái cấu trúc và viết tài liệu.
+   - Yêu cầu unit tests và các ví dụ sau mỗi lần hoàn thành một phần.
+   - Duy trì danh sách tác vụ đang thực hiện trong `CLAUDE.md`.
 
-2. **Use Plan Mode and Specs**
-   - Use plan mode (`shift-tab` or `/plan`) to draft a detailed specification before implementing features.
-   - Ask Claude for architecture suggestions and initial project layout.
-   - Keep a clear, goal-oriented prompt sequence—ask for component outlines, major modules, and responsibilities.
-
-3. **Iterative Develop & Review**
-   - Implement core features in small chunks, prompting Claude for code generation, refactoring, and documentation.
-   - Request unit tests and examples after each increment.
-   - Maintain a running task list in CLAUDE.md.
-
-4. **Automate CI/CD and Deployment**
-   - Use Claude to scaffold GitHub Actions, npm/yarn scripts, or deployment workflows.
-   - Adapt pipelines easily by updating your CLAUDE.md and requesting corresponding commands/scripts.
+4. **Tự động hóa CI/CD và Triển khai**
+   - Sử dụng Claude để tạo khung GitHub Actions, npm/yarn scripts, hoặc các quy trình triển khai.
+   - Dễ dàng điều chỉnh các pipeline bằng cách cập nhật `CLAUDE.md` và yêu cầu các lệnh/script tương ứng.
 
 ```mermaid
 graph TD
-    A[Start New Repository] --> B[Initialize Repository Structure]
-    B --> C[Create README, LICENSE, .gitignore]
-    C --> D[Create CLAUDE.md]
-    D --> E[Document Architecture & Guidelines]
-    E --> F[Install & Link Claude Code]
+    A[Bắt đầu Repo mới] --> B[Khởi tạo cấu trúc Repo]
+    B --> C[Tạo README, LICENSE, .gitignore]
+    C --> D[Tạo CLAUDE.md]
+    D --> E[Tài liệu hóa kiến trúc & Quy tắc]
+    E --> F[Cài đặt & Liên kết Claude Code]
 
-    F --> G[Enter Plan Mode]
-    G --> H[Draft Feature Specification]
-    H --> I[Get Architecture Suggestions]
-    I --> J[Define Components & Modules]
+    F --> G[Vào Chế độ Plan]
+    G --> H[Soạn đặc tả tính năng]
+    H --> I[Nhận gợi ý kiến trúc]
+    I --> J[Định nghĩa Component & Module]
 
-    J --> K[Implement Feature Chunk]
-    K --> L[Generate Code with Claude]
-    L --> M[Request Unit Tests]
-    M --> N[Review & Refactor]
-    N --> O{More Features?}
-    O -->|Yes| K
-    O -->|No| P[Update Task List in CLAUDE.md]
+    J --> K[Triển khai từng phần tính năng]
+    K --> L[Tạo mã với Claude]
+    L --> M[Yêu cầu Unit Tests]
+    M --> N[Review & Tái cấu trúc]
+    N --> O{Còn tính năng?}
+    O -->|Còn| K
+    O -->|Hết| P[Cập nhật danh sách tác vụ trong CLAUDE.md]
 
-    P --> Q[Setup CI/CD Pipeline]
-    Q --> R[Scaffold GitHub Actions]
-    R --> S[Create Deployment Scripts]
-    S --> T[Test Automation]
-    T --> U[Repository Ready]
+    P --> Q[Thiết lập CI/CD Pipeline]
+    Q --> R[Tạo khung GitHub Actions]
+    R --> S[Tạo Script triển khai]
+    S --> T[Tự động hóa kiểm thử]
+    T --> U[Repo đã sẵn sàng]
 
     style A fill:#e1f5ff
     style G fill:#fff4e1
@@ -152,63 +143,62 @@ graph TD
     style U fill:#90EE90
 ```
 
-#### For an Existing Repository
+#### Đối với một kho lưu trữ hiện có (Existing Repository)
 
-1. **Repository & Context Setup**
-   - Add or update `CLAUDE.md` to document repo structure, coding patterns, and key files. For legacy repos, use `CLAUDE_LEGACY.md` covering frameworks, version maps, instructions, bugs, and upgrade notes.
-   - Pin or highlight main files Claude should use for context.
+1. **Thiết lập Repo & Ngữ cảnh**
+   - Thêm hoặc cập nhật `CLAUDE.md` để tài liệu hóa cấu trúc repo, các mẫu lập trình và các tệp quan trọng. Đối với các repo cũ (legacy), hãy sử dụng `CLAUDE_LEGACY.md` bao gồm các framework, bản đồ phiên bản, hướng dẫn, lỗi và ghi chú nâng cấp.
+   - Ghim hoặc làm nổi bật các tệp chính mà Claude nên sử dụng để lấy ngữ cảnh.
 
-2. **Contextual Code Q&A**
-   - Ask Claude for code reviews, bug explanations, refactors, or migration plans referencing specific files/functions.
-   - Give Claude explicit boundaries (e.g., "modify only these files" or "no new dependencies").
+2. **Hỏi đáp mã nguồn theo ngữ cảnh**
+   - Yêu cầu Claude review mã, giải thích lỗi, tái cấu trúc hoặc lập kế hoạch di chuyển (migration) tham chiếu đến các tệp/hàm cụ thể.
+   - Đưa cho Claude các ranh giới rõ ràng (ví dụ: "chỉ chỉnh sửa những tệp này" hoặc "không thêm phụ thuộc mới").
 
-3. **Branch, Worktree, and Multi-Session Management**
-   - Use multiple git worktrees for isolated features or bug fixes and launch separate Claude sessions per worktree.
-   - Keep terminal tabs/windows organized by branch or feature for parallel workflows.
+3. **Quản lý Branch, Worktree và Đa phiên làm việc**
+   - Sử dụng nhiều git worktrees cho các tính năng hoặc bản sửa lỗi riêng biệt và khởi chạy các phiên làm việc Claude riêng cho mỗi worktree.
+   - Giữ các tab/cửa sổ terminal được sắp xếp theo branch hoặc tính năng cho các quy trình làm việc song song.
 
-4. **Team Tools and Automation**
-   - Synchronize custom commands via `.claude/commands/` for cross-team consistency.
-   - Automate repetitive tasks, PR creation, and code formatting via Claude's slash commands or hooks.
-   - Share sessions and context with team members for collaborative troubleshooting and review.
+4. **Công cụ nhóm và Tự động hóa**
+   - Đồng bộ hóa các lệnh tùy chỉnh qua `.claude/commands/` để đảm bảo tính nhất quán trong nhóm.
+   - Tự động hóa các tác vụ lặp đi lặp lại, tạo PR và định dạng mã qua các lệnh slash hoặc hooks của Claude.
 
 ```mermaid
 graph TD
-    A[Start with Existing Repository] --> B{Legacy Codebase?}
-    B -->|Yes| C[Create CLAUDE_LEGACY.md]
-    B -->|No| D[Create/Update CLAUDE.md]
-    C --> E[Document Frameworks & Version Maps]
-    D --> F[Document Structure & Patterns]
-    E --> G[Pin Key Files for Context]
+    A[Bắt đầu với Repo hiện có] --> B{Cơ sở mã cũ?}
+    B -->|Đúng| C[Tạo CLAUDE_LEGACY.md]
+    B -->|Sai| D[Tạo/Cập nhật CLAUDE.md]
+    C --> E[Tài liệu hóa Framework & Phiên bản]
+    D --> F[Tài liệu hóa cấu trúc & Mẫu]
+    E --> G[Ghim các tệp chính cho ngữ cảnh]
     F --> G
 
-    G --> H[Identify Task Type]
-    H --> I{Task Category}
-    I -->|Bug Fix| J[Ask Claude for Bug Analysis]
-    I -->|Code Review| K[Request Code Review]
-    I -->|Refactor| L[Plan Refactoring Strategy]
-    I -->|Migration| M[Create Migration Plan]
+    G --> H[Xác định loại tác vụ]
+    H --> I{Hạng mục tác vụ}
+    I -->|Sửa lỗi| J[Hỏi Claude phân tích lỗi]
+    I -->|Review mã| K[Yêu cầu Review mã]
+    I -->|Tái cấu trúc| L[Lập chiến lược tái cấu trúc]
+    I -->|Di chuyển| M[Tạo kế hoạch di chuyển]
 
-    J --> N[Set Explicit Boundaries]
+    J --> N[Thiết lập ranh giới rõ ràng]
     K --> N
     L --> N
     M --> N
 
-    N --> O{Multiple Features?}
-    O -->|Yes| P[Create Git Worktrees]
-    O -->|No| Q[Work on Main Branch]
-    P --> R[Launch Separate Claude Sessions]
-    R --> S[Organize Terminal Tabs]
+    N --> O{Nhiều tính năng?}
+    O -->|Đúng| P[Tạo Git Worktrees]
+    O -->|Sai| Q[Làm việc trên nhánh chính]
+    P --> R[Khởi chạy các phiên Claude riêng]
+    R --> S[Sắp xếp các tab Terminal]
     Q --> S
 
-    S --> T[Setup Team Automation]
-    T --> U[Sync .claude/commands/]
-    U --> V[Configure Slash Commands]
-    V --> W[Setup Hooks for Automation]
-    W --> X[Share Session Context with Team]
+    S --> T[Thiết lập tự động hóa nhóm]
+    T --> U[Đồng bộ .claude/commands/]
+    U --> V[Cấu hình các lệnh Slash]
+    V --> W[Thiết lập Hook cho tự động hóa]
+    W --> X[Chia sẻ ngữ cảnh phiên với nhóm]
 
-    X --> Y{More Tasks?}
-    Y -->|Yes| H
-    Y -->|No| Z[Workflow Complete]
+    X --> Y{Còn tác vụ?}
+    Y -->|Còn| H
+    Y -->|Hết| Z[Quy trình hoàn tất]
 
     style A fill:#e1f5ff
     style C fill:#ffecec
@@ -218,31 +208,23 @@ graph TD
     style Z fill:#90EE90
 ```
 
-**Tips**:
-- Start each new feature or fix with a spec and plan mode prompt.
-- For legacy and complex repos, store detailed guidance in CLAUDE.md/CLAUDE_LEGACY.md.
-- Give clear, focused instructions and break down complex work into multi-phase plans.
-- Regularly clean up sessions, prune context, and remove completed worktrees to avoid clutter.
-
-These steps capture the core recommendations for smooth workflows with Claude Code in both new and existing codebases.
-
 ---
 
-## New Features & Capabilities (March 2026)
+## Các tính năng & Khả năng mới (Tháng 3 năm 2026)
 
-### Key Feature Resources
+### Tài nguyên tính năng chính
 
-| Feature | Description | Learn More |
+| Tính năng | Mô tả | Tìm hiểu thêm |
 |---------|-------------|------------|
-| **Auto Memory** | Claude automatically learns and remembers your preferences across sessions | [Memory Guide](02-memory/) |
-| **Remote Control** | Programmatically control Claude Code sessions from external tools and scripts | [Advanced Features](09-advanced-features/) |
-| **Web Sessions** | Access Claude Code through browser-based interfaces for remote development | [CLI Reference](10-cli/) |
-| **Desktop App** | Native desktop application for Claude Code with enhanced UI | [Claude Code Docs](https://code.claude.com/docs/en/desktop) |
-| **Extended Thinking** | Deep reasoning toggle via `Alt+T`/`Option+T` or `MAX_THINKING_TOKENS` env var | [Advanced Features](09-advanced-features/) |
-| **Permission Modes** | Fine-grained control: default, acceptEdits, plan, auto, dontAsk, bypassPermissions | [Advanced Features](09-advanced-features/) |
-| **7-Tier Memory** | Managed Policy, Project, Project Rules, User, User Rules, Local, Auto Memory | [Memory Guide](02-memory/) |
-| **Hook Events** | 25 events: PreToolUse, PostToolUse, PostToolUseFailure, Stop, StopFailure, SubagentStart, SubagentStop, Notification, Elicitation, and more | [Hooks Guide](06-hooks/) |
-| **Agent Teams** | Coordinate multiple agents working together on complex tasks | [Subagents Guide](04-subagents/) |
-| **Scheduled Tasks** | Set up recurring tasks with `/loop` and cron tools | [Advanced Features](09-advanced-features/) |
-| **Chrome Integration** | Browser automation with headless Chromium | [Advanced Features](09-advanced-features/) |
-| **Keyboard Customization** | Customize keybindings including chord sequences | [Advanced Features](09-advanced-features/) |
+| **Auto Memory** | Claude tự động học và ghi nhớ các sở thích của bạn qua các phiên làm việc | [Hướng dẫn Memory](02-memory/) |
+| **Remote Control** | Điều khiển các phiên làm việc Claude Code bằng lập trình từ các công cụ và script bên ngoài | [Tính năng nâng cao](09-advanced-features/) |
+| **Web Sessions** | Truy cập Claude Code thông qua giao diện trình duyệt cho phát triển từ xa | [Tham chiếu CLI](10-cli/) |
+| **Desktop App** | Ứng dụng máy tính bản ngữ cho Claude Code với giao diện người dùng cải tiến | [Claude Code Docs](https://code.claude.com/docs/en/desktop) |
+| **Extended Thinking** | Bật tắt suy nghĩ sâu qua `Alt+T`/`Option+T` hoặc biến môi trường `MAX_THINKING_TOKENS` | [Tính năng nâng cao](09-advanced-features/) |
+| **Permission Modes** | Kiểm soát chi tiết: default, acceptEdits, plan, auto, dontAsk, bypassPermissions | [Tính năng nâng cao](09-advanced-features/) |
+| **Memory 7 cấp** | Managed Policy, Project, Project Rules, User, User Rules, Local, Auto Memory | [Hướng dẫn Memory](02-memory/) |
+| **Sự kiện Hook** | 25 sự kiện: PreToolUse, PostToolUse, SubagentStart, ConfigChange, và nhiều hơn nữa | [Hướng dẫn Hooks](06-hooks/) |
+| **Agent Teams** | Điều phối nhiều agent làm việc cùng nhau trong các tác vụ phức tạp | [Hướng dẫn Subagents](04-subagents/) |
+| **Scheduled Tasks** | Thiết lập các tác vụ định kỳ với `/loop` và các công cụ cron | [Tính năng nâng cao](09-advanced-features/) |
+| **Chrome Integration** | Tự động hóa trình duyệt với Chromium không giao diện (headless) | [Tính năng nâng cao](09-advanced-features/) |
+| **Tùy chỉnh bàn phím** | Tùy chỉnh tổ hợp phím bao gồm cả chuỗi chord | [Tính năng nâng cao](09-advanced-features/) |

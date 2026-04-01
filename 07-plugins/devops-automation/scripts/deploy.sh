@@ -1,28 +1,28 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Starting deployment..."
+echo "🚀 Bắt đầu triển khai..."
 
-# Load environment
+# Tải cấu hình môi trường
 ENV=${1:-staging}
-echo "📦 Target environment: $ENV"
+echo "📦 Môi trường đích: $ENV"
 
-# Pre-deployment checks
-echo "✓ Running pre-deployment checks..."
+# Các kiểm tra trước khi triển khai
+echo "✓ Đang chạy các kiểm tra trước triển khai..."
 npm run lint
 npm test
 
 # Build
-echo "🔨 Building application..."
+echo "🔨 Đang build ứng dụng..."
 npm run build
 
-# Deploy
-echo "🚢 Deploying to $ENV..."
+# Triển khai
+echo "🚢 Đang triển khai lên $ENV..."
 kubectl apply -f k8s/$ENV/
 
-# Health check
-echo "🏥 Running health checks..."
+# Kiểm tra sức khỏe
+echo "🏥 Đang chạy các bài kiểm tra sức khỏe..."
 sleep 10
 curl -f http://api.$ENV.example.com/health
 
-echo "✅ Deployment complete!"
+echo "✅ Triển khai hoàn tất!"

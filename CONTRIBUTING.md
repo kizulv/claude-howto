@@ -3,356 +3,232 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Contributing to Claude How To
+# Đóng góp cho Claude How To
 
-Thank you for your interest in contributing to this project! This guide will help you understand how to contribute effectively.
+Cảm ơn bạn đã quan tâm đến việc đóng góp cho dự án này! Hướng dẫn này sẽ giúp bạn hiểu cách đóng góp một cách hiệu quả.
 
-## About This Project
+## Về dự án này
 
-Claude How To is a visual, example-driven guide to Claude Code. We provide:
-- **Mermaid diagrams** explaining how features work
-- **Production-ready templates** you can use immediately
-- **Real-world examples** with context and best practices
-- **Progressive learning paths** from beginner to advanced
+Claude How To là một hướng dẫn trực quan, dựa trên ví dụ cho Claude Code. Chúng tôi cung cấp:
+- **Sơ đồ Mermaid** giải thích cách thức hoạt động của các tính năng
+- **Mẫu sẵn sàng cho sản phẩm (Production-ready templates)** bạn có thể dùng ngay
+- **Ví dụ thực tế** kèm theo ngữ cảnh và các thực hành tốt nhất
+- **Lộ trình học tập lũy tiến** từ cơ bản đến nâng cao
 
-## Types of Contributions
+## Các loại đóng góp
 
-### 1. New Examples or Templates
-Add examples for existing features (slash commands, skills, hooks, etc.):
-- Copy-paste ready code
-- Clear explanations of how it works
-- Use cases and benefits
-- Troubleshooting tips
+### 1. Ví dụ hoặc Mẫu mới
+Thêm ví dụ cho các tính năng hiện có (slash commands, skills, hooks, v.v.):
+- Mã nguồn sẵn sàng để sao chép-dán
+- Giải thích rõ ràng về cách thức hoạt động
+- Các tình huống sử dụng và lợi ích
+- Mẹo khắc phục sự cố
 
-### 2. Documentation Improvements
-- Clarify confusing sections
-- Fix typos and grammar
-- Add missing information
-- Improve code examples
+### 2. Cải thiện tài liệu
+- Làm rõ các phần gây khó hiểu
+- Sửa lỗi chính tả và ngữ pháp
+- Thêm các thông tin còn thiếu
+- Cải thiện các ví dụ mã
 
-### 3. Feature Guides
-Create guides for new Claude Code features:
-- Step-by-step tutorials
-- Architecture diagrams
-- Common patterns and anti-patterns
-- Real-world workflows
+### 3. Hướng dẫn tính năng
+Tạo hướng dẫn cho các tính năng mới của Claude Code:
+- Hướng dẫn từng bước
+- Sơ đồ kiến trúc
+- Các mẫu (patterns) phổ biến và các lỗi cần tránh (anti-patterns)
+- Quy trình làm việc thực tế
 
-### 4. Bug Reports
-Report issues you encounter:
-- Describe what you expected
-- Describe what actually happened
-- Include steps to reproduce
-- Add relevant Claude Code version and OS
+### 4. Báo cáo lỗi
+Báo cáo các vấn đề bạn gặp phải:
+- Mô tả những gì bạn mong đợi
+- Mô tả những gì thực tế đã xảy ra
+- Bao gồm các bước để tái hiện
+- Thêm phiên bản Claude Code và hệ điều hành (OS) liên quan
 
-### 5. Feedback and Suggestions
-Help improve the guide:
-- Suggest better explanations
-- Point out gaps in coverage
-- Recommend new sections or reorganization
+### 5. Phản hồi và Đề xuất
+Giúp cải thiện hướng dẫn:
+- Đề xuất các cách giải thích tốt hơn
+- Chỉ ra các lỗ hổng trong nội dung
+- Đề xuất các phần mới hoặc sắp xếp lại cấu trúc
 
-## Getting Started
+## Bắt đầu
 
-### 1. Fork and Clone
+### 1. Fork và Clone
 ```bash
 git clone https://github.com/luongnv89/claude-howto.git
 cd claude-howto
 ```
 
-### 2. Create a Branch
-Use a descriptive branch name:
+### 2. Tạo một Branch
+Sử dụng tên branch có tính mô tả:
 ```bash
 git checkout -b add/feature-name
 git checkout -b fix/issue-description
 git checkout -b docs/improvement-area
 ```
 
-### 3. Set Up Your Environment
+### 3. Thiết lập môi trường
 ```bash
-# Create virtual environment
+# Tạo môi trường ảo
 python3 -m venv .venv
 source .venv/bin/activate
 
-# Install pre-commit hooks (optional but recommended)
+# Cài đặt pre-commit hooks (tùy chọn nhưng khuyến nghị)
 pip install pre-commit
 pre-commit install
 
-# Run pre-commit checks manually
+# Chạy kiểm tra pre-commit thủ công
 pre-commit run --all-files
 ```
 
-## Directory Structure
+## Cấu trúc thư mục
 
 ```
-├── 01-slash-commands/      # User-invoked shortcuts
-├── 02-memory/              # Persistent context examples
-├── 03-skills/              # Reusable capabilities
-├── 04-subagents/           # Specialized AI assistants
-├── 05-mcp/                 # Model Context Protocol examples
-├── 06-hooks/               # Event-driven automation
-├── 07-plugins/             # Bundled features
-├── 08-checkpoints/         # Session snapshots
+├── 01-slash-commands/      # Các phím tắt người dùng gọi
+├── 02-memory/              # Các ví dụ về ngữ cảnh bền vững
+├── 03-skills/              # Các khả năng có thể tái sử dụng
+├── 04-subagents/           # Các trợ lý AI chuyên biệt
+├── 05-mcp/                 # Các ví dụ Model Context Protocol
+├── 06-hooks/               # Tự động hóa dựa trên sự kiện
+├── 07-plugins/             # Các tính năng đóng gói
+├── 08-checkpoints/         # Ảnh chụp nhanh phiên làm việc
 ├── 09-advanced-features/   # Planning, thinking, backgrounds
-├── 10-cli/                 # CLI reference
-├── scripts/                # Build and utility scripts
-└── README.md               # Main guide
+├── 10-cli/                 # Tham chiếu CLI
+├── scripts/                # Script build và tiện ích
+└── README.md               # Hướng dẫn chính
 ```
 
-## How to Contribute Examples
+## Cách đóng góp ví dụ
 
-### Adding a Slash Command
-1. Create a `.md` file in `01-slash-commands/`
-2. Include:
-   - Clear description of what it does
-   - Use cases
-   - Installation instructions
-   - Usage examples
-   - Customization tips
-3. Update `01-slash-commands/README.md`
+### Thêm một Slash Command
+1. Tạo một tệp `.md` trong `01-slash-commands/`
+2. Bao gồm:
+   - Mô tả rõ ràng về chức năng
+   - Các tình huống sử dụng
+   - Hướng dẫn cài đặt
+   - Ví dụ sử dụng
+   - Mẹo tùy chỉnh
+3. Cập nhật `01-slash-commands/README.md`
 
-### Adding a Skill
-1. Create a directory in `03-skills/`
-2. Include:
-   - `SKILL.md` - Main documentation
-   - `scripts/` - Helper scripts if needed
-   - `templates/` - Prompt templates
-   - Example usage in README
-3. Update `03-skills/README.md`
+### Thêm một Skill
+1. Tạo một thư mục trong `03-skills/`
+2. Bao gồm:
+   - `SKILL.md` - Tài liệu chính
+   - `scripts/` - Script hỗ trợ nếu cần
+   - `templates/` - Các mẫu prompt
+   - Ví dụ sử dụng trong README
+3. Cập nhật `03-skills/README.md`
 
-### Adding a Subagent
-1. Create a `.md` file in `04-subagents/`
-2. Include:
-   - Agent purpose and capabilities
-   - System prompt structure
-   - Example use cases
-   - Integration examples
-3. Update `04-subagents/README.md`
+## Hướng dẫn viết lách
 
-### Adding MCP Configuration
-1. Create a `.json` file in `05-mcp/`
-2. Include:
-   - Configuration explanation
-   - Required environment variables
-   - Setup instructions
-   - Usage examples
-3. Update `05-mcp/README.md`
+### Phong cách Markdown
+- Sử dụng các tiêu đề rõ ràng (H2 cho các phần chính, H3 cho các phần phụ)
+- Giữ các đoạn văn ngắn và tập trung
+- Sử dụng gạch đầu dòng cho danh sách
+- Bao gồm các khối mã với chỉ định ngôn ngữ
+- Thêm dòng trống giữa các phần
 
-### Adding a Hook
-1. Create a `.sh` file in `06-hooks/`
-2. Include:
-   - Shebang and description
-   - Clear comments explaining logic
-   - Error handling
-   - Security considerations
-3. Update `06-hooks/README.md`
+### Các ví dụ mã
+- Đảm bảo ví dụ sẵn sàng để sao chép-dán
+- Chú thích các logic không hiển nhiên
+- Bao gồm cả phiên bản đơn giản và nâng cao
+- Hiển thị các tình huống sử dụng thực tế
 
-## Writing Guidelines
+## Quy tắc Commit
 
-### Markdown Style
-- Use clear headings (H2 for sections, H3 for subsections)
-- Keep paragraphs short and focused
-- Use bullet points for lists
-- Include code blocks with language specification
-- Add blank lines between sections
-
-### Code Examples
-- Make examples copy-paste ready
-- Comment non-obvious logic
-- Include both simple and advanced versions
-- Show real-world use cases
-- Highlight potential issues
-
-### Documentation
-- Explain the "why" not just the "what"
-- Include prerequisites
-- Add troubleshooting sections
-- Link to related topics
-- Keep it beginner-friendly
-
-### JSON/YAML
-- Use proper indentation (2 or 4 spaces consistently)
-- Add comments explaining configuration
-- Include validation examples
-
-### Diagrams
-- Use Mermaid when possible
-- Keep diagrams simple and readable
-- Include descriptions below diagrams
-- Link to relevant sections
-
-## Commit Guidelines
-
-Follow conventional commit format:
+Tuân theo định dạng conventional commit:
 ```
-type(scope): description
+type(scope): mô tả
 
-[optional body]
+[phần thân tùy chọn]
 ```
 
-Types:
-- `feat`: New feature or example
-- `fix`: Bug fix or correction
-- `docs`: Documentation changes
-- `refactor`: Code restructuring
-- `style`: Formatting changes
-- `test`: Test additions or changes
-- `chore`: Build, dependencies, etc.
+Các loại (Types):
+- `feat`: Tính năng hoặc ví dụ mới
+- `fix`: Sửa lỗi hoặc đính chính
+- `docs`: Các thay đổi về tài liệu
+- `refactor`: Tái cấu trúc mã
+- `style`: Các thay đổi về định dạng
+- `test`: Thêm hoặc thay đổi kiểm thử
+- `chore`: Build, phụ thuộc, v.v.
 
-Examples:
+Ví dụ:
 ```
-feat(slash-commands): Add API documentation generator
-docs(memory): Improve personal preferences example
-fix(README): Correct table of contents link
-docs(skills): Add comprehensive code review skill
-```
-
-## Before Submitting
-
-### Checklist
-- [ ] Code follows project style and conventions
-- [ ] New examples include clear documentation
-- [ ] README files are updated (both local and root)
-- [ ] No sensitive information (API keys, credentials)
-- [ ] Examples are tested and working
-- [ ] Links are verified and correct
-- [ ] Files have proper permissions (scripts are executable)
-- [ ] Commit message is clear and descriptive
-
-### Local Testing
-```bash
-# Check file formatting
-pre-commit run --all-files
-
-# Verify links work (if applicable)
-# Test examples manually with Claude Code
-
-# Review your changes
-git diff
-
-# Test the EPUB generation (if docs changed)
-uv run scripts/build_epub.py
+feat(slash-commands): Thêm trình tạo tài liệu API
+docs(memory): Cải thiện ví dụ về tùy chỉnh cá nhân
+fix(README): Sửa lỗi liên kết mục lục
+docs(skills): Thêm skill review mã nguồn toàn diện
 ```
 
-## Pull Request Process
+## Trước khi gửi
 
-1. **Create PR with clear description**:
-   - What does this add/fix?
-   - Why is it needed?
-   - Related issues (if any)
+### Danh sách kiểm tra
+- [ ] Mã tuân thủ phong cách và quy ước của dự án
+- [ ] Các ví dụ mới bao gồm tài liệu rõ ràng
+- [ ] Các tệp README đã được cập nhật (cả ở thư mục bộ phận và gốc)
+- [ ] Không có thông tin nhạy cảm (khóa API, thông tin xác thực)
+- [ ] Các ví dụ đã được kiểm tra và hoạt động đúng
+- [ ] Các liên kết đã được xác minh và chính xác
+- [ ] Các tệp có quyền hạn phù hợp (scripts có quyền thực thi)
+- [ ] Thông điệp commit rõ ràng và có tính mô tả
 
-2. **Include relevant details**:
-   - New feature? Include use cases
-   - Documentation? Explain improvements
-   - Examples? Show before/after
+## Quy trình Pull Request
 
-3. **Link to issues**:
-   - Use `Closes #123` to auto-close related issues
+1. **Tạo PR với mô tả rõ ràng**:
+   - PR này thêm/sửa cái gì?
+   - Tại sao nó cần thiết?
+   - Các issue liên quan (nếu có)
 
-4. **Be patient with reviews**:
-   - Maintainers may suggest improvements
-   - Iterate based on feedback
-   - Final decision rests with maintainers
+2. **Bao gồm các chi tiết liên quan**:
+   - Tính năng mới? Bao gồm các tình huống sử dụng
+   - Tài liệu? Giải thích các điểm cải thiện
+   - Ví dụ? Hiển thị trước/sau khi thay đổi
 
-## Code Review Process
+3. **Liên kết tới issues**:
+   - Sử dụng `Closes #123` để tự động đóng các issue liên quan
 
-Reviewers will check:
-- **Accuracy**: Does it work as described?
-- **Quality**: Is it production-ready?
-- **Consistency**: Does it follow project patterns?
-- **Documentation**: Is it clear and complete?
-- **Security**: Are there any vulnerabilities?
+4. **Kiên nhẫn với các phản hồi**:
+   - Người duy trì có thể đề xuất các cải tiến
+   - Lặp lại dựa trên phản hồi
 
-## Reporting Issues
+## Chính sách dự án
 
-### Bug Reports
-Include:
-- Claude Code version
-- Operating system
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- Screenshots if applicable
+### Thông tin nhạy cảm
+- Không bao giờ commit khóa API, token hoặc thông tin xác thực
+- Sử dụng các giá trị làm mẫu trong các ví dụ
+- Bao gồm `.env.example` cho các tệp cấu hình
+- Viết tài liệu về các biến môi trường bắt buộc
 
-### Feature Requests
-Include:
-- Use case or problem being solved
-- Proposed solution
-- Alternatives you've considered
-- Additional context
+### Chất lượng mã nguồn
+- Giữ các ví dụ tập trung và dễ đọc
+- Tránh các giải pháp quá phức tạp (over-engineering)
+- Chú thích cho các logic không hiển nhiên
+- Kiểm tra kỹ lưỡng trước khi gửi
 
-### Documentation Issues
-Include:
-- What's confusing or missing
-- Suggested improvements
-- Examples or references
+## Nhận sự trợ giúp
 
-## Project Policies
+- **Câu hỏi**: Mở một cuộc thảo luận trong GitHub Issues
+- **Trợ giúp chung**: Kiểm tra tài liệu hiện có
+- **Trợ giúp phát triển**: Xem lại các ví dụ tương tự
 
-### Sensitive Information
-- Never commit API keys, tokens, or credentials
-- Use placeholder values in examples
-- Include `.env.example` for configuration files
-- Document required environment variables
+## Bảo mật
 
-### Code Quality
-- Keep examples focused and readable
-- Avoid over-engineering solutions
-- Include comments for non-obvious logic
-- Test thoroughly before submitting
+Khi đóng góp ví dụ và tài liệu, vui lòng tuân thủ các thực hành lập trình an toàn:
+- **Không bao giờ ghi cứng (hardcode) bí mật hoặc khóa API** - Sử dụng biến môi trường
+- **Cảnh báo về các tác động bảo mật** - Nêu bật các rủi ro tiềm ẩn
 
-### Intellectual Property
-- Original content owned by author
-- Project uses educational license
-- Respect existing copyrights
-- Provide attribution where needed
+Đối với các vấn đề bảo mật, xem [SECURITY.md](SECURITY.md) về quy trình báo cáo lỗ hổng của chúng tôi.
 
-## Getting Help
+## Quy tắc ứng xử
 
-- **Questions**: Open a discussion in GitHub Issues
-- **General Help**: Check existing documentation
-- **Development Help**: Review similar examples
-- **Code Review**: Tag maintainers in PRs
+Chúng tôi cam kết cung cấp một cộng đồng cởi mở và hòa nhập. Vui lòng đọc [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) để biết đầy đủ các tiêu chuẩn cộng đồng của chúng tôi.
 
-## Recognition
+Tóm lại:
+- Hãy tôn trọng và hòa nhập
+- Đón nhận phản hồi một cách lịch sự
+- Tránh quấy rối hoặc phân biệt đối xử
 
-Contributors are recognized in:
-- README.md Contributors section
-- GitHub contributors page
-- Commit history
+## Giấy phép
 
-## Security
+Bằng cách đóng góp cho dự án này, bạn đồng ý rằng các đóng góp của bạn sẽ được cấp phép theo Giấy phép MIT. Xem tệp [LICENSE](LICENSE) để biết chi tiết.
 
-When contributing examples and documentation, please follow secure coding practices:
-
-- **Never hardcode secrets or API keys** - Use environment variables
-- **Warn about security implications** - Highlight potential risks
-- **Use secure defaults** - Enable security features by default
-- **Validate inputs** - Show proper input validation and sanitization
-- **Include security notes** - Document security considerations
-
-For security issues, see [SECURITY.md](SECURITY.md) for our vulnerability reporting process.
-
-## Code of Conduct
-
-We are committed to providing a welcoming and inclusive community. Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for our full community standards.
-
-In brief:
-- Be respectful and inclusive
-- Welcome feedback gracefully
-- Help others learn and grow
-- Avoid harassment or discrimination
-- Report issues to maintainers
-
-All contributors are expected to uphold this code and treat each other with kindness and respect.
-
-## License
-
-By contributing to this project, you agree that your contributions will be licensed under the MIT License. See [LICENSE](LICENSE) file for details.
-
-## Questions?
-
-- Check the [README](README.md)
-- Review [LEARNING-ROADMAP.md](LEARNING-ROADMAP.md)
-- Look at existing examples
-- Open an issue for discussion
-
-Thank you for contributing! 🙏
+Cảm ơn bạn đã đóng góp! 🙏

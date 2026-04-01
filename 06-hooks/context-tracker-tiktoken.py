@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
-Context Usage Tracker (tiktoken version) - Tracks token consumption per request.
+Trình theo dõi sử dụng ngữ cảnh (phiên bản tiktoken) - Theo dõi lượng tiêu thụ token theo từng yêu cầu.
 
-Uses UserPromptSubmit as "pre-message" hook and Stop as "post-response" hook
-to calculate the delta in token usage for each request.
+Sử dụng UserPromptSubmit làm hook "pre-message" và Stop làm hook "post-response"
+để tính toán sự thay đổi (delta) trong việc sử dụng token cho mỗi yêu cầu.
 
-This version uses tiktoken with p50k_base encoding for ~90-95% accuracy.
-Requires: pip install tiktoken
+Phiên bản này sử dụng tiktoken với bảng mã p50k_base để có độ chính xác ~90-95%.
+Yêu cầu: pip install tiktoken
 
-For a zero-dependency version, see context-tracker.py.
+Đối với phiên bản không có phụ thuộc (zero-dependency), xem context-tracker.py.
 
-Usage:
-    Configure both hooks to use the same script:
-    - UserPromptSubmit: saves current token count
-    - Stop: calculates delta and reports usage
+Cách dùng:
+    Cấu hình cả hai hook để sử dụng cùng một script:
+    - UserPromptSubmit: lưu số lượng token hiện tại
+    - Stop: tính toán delta và báo cáo mức sử dụng
 """
 import json
 import os
@@ -27,40 +27,40 @@ try:
 except ImportError:
     TIKTOKEN_AVAILABLE = False
     print(
-        "Warning: tiktoken not installed. Install with: pip install tiktoken",
+        "Cảnh báo: tiktoken chưa được cài đặt. Cài đặt bằng: pip install tiktoken",
         file=sys.stderr,
     )
 
-# Configuration
-CONTEXT_LIMIT = 128000  # Claude's context window (adjust for your model)
+# Cấu hình
+CONTEXT_LIMIT = 128000  # Cửa sổ ngữ cảnh của Claude (điều chỉnh cho mô hình của bạn)
 
 
 def get_state_file(session_id: str) -> str:
-    """Get temp file path for storing pre-message token count, isolated by session."""
+    """Lấy đường dẫn tệp tạm để lưu trữ số lượng token trước tin nhắn, tách biệt theo phiên."""
     return os.path.join(tempfile.gettempdir(), f"claude-context-{session_id}.json")
 
 
 def count_tokens(text: str) -> int:
     """
-    Count tokens using tiktoken with p50k_base encoding.
+    Đếm số token bằng tiktoken với bảng mã p50k_base.
 
-    This provides ~90-95% accuracy compared to Claude's actual tokenizer.
-    Falls back to character estimation if tiktoken is not available.
+    Điều này mang lại độ chính xác ~90-95% so với tokenizer thực tế của Claude.
+    Quay lại ước tính theo ký tự nếu không có tiktoken.
 
-    Note: Anthropic hasn't released an official offline tokenizer.
-    tiktoken with p50k_base is a reasonable approximation since both
-    Claude and GPT models use BPE (byte-pair encoding).
+    Lưu ý: Anthropic chưa phát hành tokenizer ngoại tuyến chính thức.
+    tiktoken với p50k_base là một ước tính hợp lý vì cả mô hình
+    Claude và GPT đều sử dụng BPE (byte-pair encoding).
     """
     if TIKTOKEN_AVAILABLE:
         enc = tiktoken.get_encoding("p50k_base")
         return len(enc.encode(text))
     else:
-        # Fallback to character estimation (~4 chars per token)
+        # Quay lại ước tính theo ký tự (~4 ký tự mỗi token)
         return len(text) // 4
 
 
 def read_transcript(transcript_path: str) -> str:
-    """Read and concatenate all content from transcript file."""
+    """Đọc và nối tất cả nội dung từ tệp bản ghi (transcript)."""
     if not transcript_path or not os.path.exists(transcript_path):
         return ""
 
@@ -69,7 +69,7 @@ def read_transcript(transcript_path: str) -> str:
         for line in f:
             try:
                 entry = json.loads(line.strip())
-                # Extract text content from various message formats
+                # Trích xuất nội dung văn bản từ các định dạng tin nhắn khác nhau
                 if "message" in entry:
                     msg = entry["message"]
                     if isinstance(msg.get("content"), str):
@@ -85,28 +85,28 @@ def read_transcript(transcript_path: str) -> str:
 
 
 def handle_user_prompt_submit(data: dict) -> None:
-    """Pre-message hook: Save current token count before request."""
+    """Hook trước tin nhắn: Lưu số lượng token hiện tại trước khi thực hiện yêu cầu."""
     session_id = data.get("session_id", "unknown")
     transcript_path = data.get("transcript_path", "")
 
     transcript_content = read_transcript(transcript_path)
     current_tokens = count_tokens(transcript_content)
 
-    # Save to temp file for later comparison
+    # Lưu vào tệp tạm để so sánh sau
     state_file = get_state_file(session_id)
     with open(state_file, "w") as f:
         json.dump({"pre_tokens": current_tokens}, f)
 
 
 def handle_stop(data: dict) -> None:
-    """Post-response hook: Calculate and report token delta."""
+    """Hook sau phản hồi: Tính toán và báo cáo sự thay đổi token."""
     session_id = data.get("session_id", "unknown")
     transcript_path = data.get("transcript_path", "")
 
     transcript_content = read_transcript(transcript_path)
     current_tokens = count_tokens(transcript_content)
 
-    # Load pre-message count
+    # Tải lại số lượng token trước tin nhắn
     state_file = get_state_file(session_id)
     pre_tokens = 0
     if os.path.exists(state_file):
@@ -117,20 +117,20 @@ def handle_stop(data: dict) -> None:
         except (json.JSONDecodeError, IOError):
             pass
 
-    # Calculate delta
+    # Tính toán delta
     delta_tokens = current_tokens - pre_tokens
     remaining = CONTEXT_LIMIT - current_tokens
     percentage = (current_tokens / CONTEXT_LIMIT) * 100
 
-    # Report usage (stderr so it doesn't interfere with hook output)
-    method = "tiktoken" if TIKTOKEN_AVAILABLE else "estimated"
+    # Báo cáo việc sử dụng (stderr để không can thiệp vào đầu ra của hook)
+    method = "tiktoken" if TIKTOKEN_AVAILABLE else "ước tính"
     print(
-        f"Context ({method}): ~{current_tokens:,} tokens "
-        f"({percentage:.1f}% used, ~{remaining:,} remaining)",
+        f"Ngữ cảnh ({method}): ~{current_tokens:,} token "
+        f"({percentage:.1f}% đã dùng, còn ~{remaining:,})",
         file=sys.stderr,
     )
     if delta_tokens > 0:
-        print(f"This request: ~{delta_tokens:,} tokens", file=sys.stderr)
+        print(f"Yêu cầu này: ~{delta_tokens:,} token", file=sys.stderr)
 
 
 def main():

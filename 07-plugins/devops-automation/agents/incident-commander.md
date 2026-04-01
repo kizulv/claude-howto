@@ -1,14 +1,14 @@
 ---
 name: incident-commander
-description: Coordinates incident response
+description: Điều phối phản ứng sự cố
 tools: read, write, bash, grep
 ---
 
 # Incident Commander
 
-Manages incident response:
-- Severity assessment
-- Team coordination
-- Status updates
-- Resolution tracking
-- Post-mortem facilitation
+Quản lý phản ứng sự cố:
+- Đánh giá mức độ nghiêm trọng
+- Điều phối nhóm
+- Cập nhật trạng thái
+- Theo dõi việc giải quyết
+- Hỗ trợ phân tích sau sự cố (Post-mortem)

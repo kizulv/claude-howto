@@ -1,18 +1,18 @@
 #!/bin/bash
-# Log all bash commands
+# Ghi nhật ký tất cả các lệnh bash
 # Hook: PostToolUse:Bash
 
 COMMAND="$1"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 LOGFILE="$HOME/.claude/bash-commands.log"
 
-# Create log directory if it doesn't exist
+# Tạo thư mục nhật ký nếu nó chưa tồn tại
 mkdir -p "$(dirname "$LOGFILE")"
 
-# Log the command
+# Ghi nhật ký lệnh
 echo "[$TIMESTAMP] $COMMAND" >> "$LOGFILE"
 
-# Optional: Log to system log as well
+# Tùy chọn: Ghi vào nhật ký hệ thống (system log)
 # logger -t "claude-bash" "$COMMAND"
 
 exit 0

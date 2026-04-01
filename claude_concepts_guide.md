@@ -3,457 +3,366 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Complete Guide to Claude Concepts
+# Hướng dẫn đầy đủ về các khái niệm của Claude
 
-A comprehensive reference guide covering Slash Commands, Subagents, Memory, MCP Protocol, and Agent Skills with tables, diagrams, and practical examples.
+Một hướng dẫn tham chiếu toàn diện bao gồm Slash Commands, Subagents, Memory, Giao thức MCP và Agent Skills với các bảng, sơ đồ và ví dụ thực tế.
 
 ---
 
-## Table of Contents
+## Mục lục
 
 1. [Slash Commands](#slash-commands)
 2. [Subagents](#subagents)
 3. [Memory](#memory)
-4. [MCP Protocol](#mcp-protocol)
+4. [Giao thức MCP](#mcp-protocol)
 5. [Agent Skills](#agent-skills)
 6. [Plugins](#plugins)
 7. [Hooks](#hooks)
-8. [Checkpoints and Rewind](#checkpoints-and-rewind)
-9. [Advanced Features](#advanced-features)
-10. [Comparison & Integration](#comparison--integration)
+8. [Checkpoints và Rewind](#checkpoints-and-rewind)
+9. [Các tính năng nâng cao](#advanced-features)
+10. [So sánh & Tích hợp](#comparison--integration)
 
 ---
 
 ## Slash Commands
 
-### Overview
+### Tổng quan
 
-Slash commands are user-invoked shortcuts stored as Markdown files that Claude Code can execute. They enable teams to standardize frequently-used prompts and workflows.
+Slash commands là các phím tắt do người dùng gọi, được lưu trữ dưới dạng các tệp Markdown mà Claude Code có thể thực thi. Chúng cho phép các nhóm chuẩn hóa các prompt và quy trình làm việc thường xuyên sử dụng.
 
-### Architecture
+### Kiến trúc
 
 ```mermaid
 graph TD
-    A["User Input: /command-name"] -->|Triggers| B["Search .claude/commands/"]
-    B -->|Finds| C["command-name.md"]
-    C -->|Loads| D["Markdown Content"]
-    D -->|Executes| E["Claude Processes Prompt"]
-    E -->|Returns| F["Result in Context"]
+    A["Đầu vào người dùng: /tên-lệnh"] -->|Kích hoạt| B["Tìm kiếm trong .claude/commands/"]
+    B -->|Tìm thấy| C["tên-lệnh.md"]
+    C -->|Tải| D["Nội dung Markdown"]
+    D -->|Thực thi| E["Claude xử lý Prompt"]
+    E -->|Trả về| F["Kết quả trong ngữ cảnh"]
 ```
 
-### File Structure
+### Cấu trúc tệp
 
 ```mermaid
 graph LR
-    A["Project Root"] -->|contains| B[".claude/commands/"]
-    B -->|contains| C["optimize.md"]
-    B -->|contains| D["test.md"]
-    B -->|contains| E["docs/"]
-    E -->|contains| F["generate-api-docs.md"]
-    E -->|contains| G["generate-readme.md"]
+    A["Gốc dự án"] -->|chứa| B[".claude/commands/"]
+    B -->|chứa| C["optimize.md"]
+    B -->|chứa| D["test.md"]
+    B -->|chứa| E["docs/"]
+    E -->|chứa| F["generate-api-docs.md"]
+    E -->|chứa| G["generate-readme.md"]
 ```
 
-### Command Organization Table
+### Bảng tổ chức lệnh
 
-| Location | Scope | Availability | Use Case | Git Tracked |
+| Vị trí | Phạm vi | Khả dụng | Tình huống sử dụng | Được theo dõi bởi Git |
 |----------|-------|--------------|----------|-------------|
-| `.claude/commands/` | Project-specific | Team members | Team workflows, shared standards | ✅ Yes |
-| `~/.claude/commands/` | Personal | Individual user | Personal shortcuts across projects | ❌ No |
-| Subdirectories | Namespaced | Based on parent | Organize by category | ✅ Yes |
+| `.claude/commands/` | Theo dự án | Thành viên trong nhóm | Quy trình làm việc nhóm, tiêu chuẩn chung | ✅ Có |
+| `~/.claude/commands/` | Cá nhân | Người dùng cá nhân | Phím tắt cá nhân trên mọi dự án | ❌ Không |
+| Thư mục con | Theo không gian tên (Namespaced) | Dựa trên thư mục cha | Tổ chức theo hạng mục | ✅ Có |
 
-### Features & Capabilities
+### Các tính năng & Khả năng
 
-| Feature | Example | Supported |
+| Tính năng | Ví dụ | Được hỗ trợ |
 |---------|---------|-----------|
-| Shell script execution | `bash scripts/deploy.sh` | ✅ Yes |
-| File references | `@path/to/file.js` | ✅ Yes |
-| Bash integration | `$(git log --oneline)` | ✅ Yes |
-| Arguments | `/pr --verbose` | ✅ Yes |
-| MCP commands | `/mcp__github__list_prs` | ✅ Yes |
+| Thực thi shell script | `bash scripts/deploy.sh` | ✅ Có |
+| Tham chiếu tệp | `@path/to/file.js` | ✅ Có |
+| Tích hợp Bash | `$(git log --oneline)` | ✅ Có |
+| Tham số (Arguments) | `/pr --verbose` | ✅ Có |
+| Các lệnh MCP | `/mcp__github__list_prs` | ✅ Có |
 
-### Practical Examples
+### Ví dụ thực tế
 
-#### Example 1: Code Optimization Command
+#### Ví dụ 1: Lệnh tối ưu hóa mã nguồn
 
-**File:** `.claude/commands/optimize.md`
+**Tệp:** `.claude/commands/optimize.md`
 
 ```markdown
 ---
-name: Code Optimization
-description: Analyze code for performance issues and suggest optimizations
+name: Tối ưu hóa mã nguồn
+description: Phân tích mã nguồn để tìm các vấn đề hiệu suất và đề xuất tối ưu hóa
 tags: performance, analysis
 ---
 
-# Code Optimization
+# Tối ưu hóa mã nguồn
 
-Review the provided code for the following issues in order of priority:
+Hãy xem xét mã được cung cấp để tìm các vấn đề sau đây theo thứ tự ưu tiên:
 
-1. **Performance bottlenecks** - identify O(n²) operations, inefficient loops
-2. **Memory leaks** - find unreleased resources, circular references
-3. **Algorithm improvements** - suggest better algorithms or data structures
-4. **Caching opportunities** - identify repeated computations
-5. **Concurrency issues** - find race conditions or threading problems
+1. **Nút thắt hiệu suất** - xác định các toán tử O(n²), các vòng lặp không hiệu quả
+2. **Rò rỉ bộ nhớ** - tìm các tài nguyên không được giải phóng, tham chiếu vòng
+3. **Cải tiến thuật toán** - đề xuất các thuật toán hoặc cấu trúc dữ liệu tốt hơn
+4. **Cơ hội bộ nhớ đệm (Caching)** - xác định các tính toán lặp lại
+5. **Vấn đề đồng thời** - tìm các điều kiện đua (race conditions) hoặc vấn đề luồng
 
-Format your response with:
-- Issue severity (Critical/High/Medium/Low)
-- Location in code
-- Explanation
-- Recommended fix with code example
+Định dạng phản hồi của bạn gồm:
+- Mức độ nghiêm trọng (Critical/High/Medium/Low)
+- Vị trí trong mã
+- Giải thích
+- Cách khắc phục đề xuất kèm theo ví dụ mã
 ```
 
-**Usage:**
+**Sử dụng:**
 ```bash
-# User types in Claude Code
+# Người dùng gõ trong Claude Code
 /optimize
 
-# Claude loads the prompt and waits for code input
+# Claude tải prompt và đợi đầu vào mã nguồn
 ```
 
-#### Example 2: Pull Request Helper Command
+#### Ví dụ 2: Lệnh hỗ trợ Pull Request
 
-**File:** `.claude/commands/pr.md`
+**Tệp:** `.claude/commands/pr.md`
 
 ```markdown
 ---
-name: Prepare Pull Request
-description: Clean up code, stage changes, and prepare a pull request
+name: Chuẩn bị Pull Request
+description: Dọn dẹp mã, stage các thay đổi và chuẩn bị một pull request
 tags: git, workflow
 ---
 
-# Pull Request Preparation Checklist
+# Danh sách kiểm tra chuẩn bị Pull Request
 
-Before creating a PR, execute these steps:
+Trước khi tạo một PR, hãy thực hiện các bước sau:
 
-1. Run linting: `prettier --write .`
-2. Run tests: `npm test`
-3. Review git diff: `git diff HEAD`
-4. Stage changes: `git add .`
-5. Create commit message following conventional commits:
-   - `fix:` for bug fixes
-   - `feat:` for new features
-   - `docs:` for documentation
-   - `refactor:` for code restructuring
-   - `test:` for test additions
-   - `chore:` for maintenance
+1. Chạy linting: `prettier --write .`
+2. Chạy tests: `npm test`
+3. Xem xét git diff: `git diff HEAD`
+4. Stage các thay đổi: `git add .`
+5. Tạo thông điệp commit tuân theo conventional commits:
+   - `fix:` cho các bản sửa lỗi
+   - `feat:` cho các tính năng mới
+   - `docs:` cho tài liệu
+   - `refactor:` cho việc tái cấu trúc mã
+   - `test:` cho việc thêm kiểm thử
+   - `chore:` cho việc bảo trì
 
-6. Generate PR summary including:
-   - What changed
-   - Why it changed
-   - Testing performed
-   - Potential impacts
+6. Tạo bản tóm tắt PR bao gồm:
+   - Những gì đã thay đổi
+   - Tại sao nó thay đổi
+   - Các bài kiểm thử đã thực hiện
+   - Các tác động tiềm tàng
 ```
 
-**Usage:**
+**Sử dụng:**
 ```bash
 /pr
 
-# Claude runs through checklist and prepares the PR
+# Claude chạy qua danh sách kiểm tra và chuẩn bị PR
 ```
 
-#### Example 3: Hierarchical Documentation Generator
+#### Ví dụ 3: Trình tạo tài liệu phân cấp
 
-**File:** `.claude/commands/docs/generate-api-docs.md`
+**Tệp:** `.claude/commands/docs/generate-api-docs.md`
 
 ```markdown
 ---
-name: Generate API Documentation
-description: Create comprehensive API documentation from source code
+name: Tạo tài liệu API
+description: Tạo tài liệu API toàn diện từ mã nguồn
 tags: documentation, api
 ---
 
-# API Documentation Generator
+# Trình tạo tài liệu API
 
-Generate API documentation by:
+Tạo tài liệu API bằng cách:
 
-1. Scanning all files in `/src/api/`
-2. Extracting function signatures and JSDoc comments
-3. Organizing by endpoint/module
-4. Creating markdown with examples
-5. Including request/response schemas
-6. Adding error documentation
+1. Quét tất cả các tệp trong `/src/api/`
+2. Trích xuất chữ ký hàm và các chú thích JSDoc
+3. Tổ chức theo endpoint/module
+4. Tạo markdown kèm theo ví dụ
+5. Bao gồm các schema yêu cầu/phản hồi
+6. Thêm tài liệu về lỗi
 
-Output format:
-- Markdown file in `/docs/api.md`
-- Include curl examples for all endpoints
-- Add TypeScript types
+Định dạng đầu ra:
+- Tệp Markdown trong `/docs/api.md`
+- Bao gồm các ví dụ curl cho tất cả các endpoint
+- Thêm các kiểu dữ liệu TypeScript
 ```
 
-### Command Lifecycle Diagram
+### Sơ đồ vòng đời của lệnh
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Claude as Claude Code
-    participant FS as File System
+    participant FS as Hệ thống tệp
     participant CLI as Shell/Bash
 
-    User->>Claude: Types /optimize
-    Claude->>FS: Searches .claude/commands/
-    FS-->>Claude: Returns optimize.md
-    Claude->>Claude: Loads Markdown content
-    Claude->>User: Displays prompt context
-    User->>Claude: Provides code to analyze
-    Claude->>CLI: (May execute scripts)
-    CLI-->>Claude: Results
-    Claude->>User: Returns analysis
+    User->>Claude: Gõ /optimize
+    Claude->>FS: Tìm kiếm trong .claude/commands/
+    FS-->>Claude: Trả về optimize.md
+    Claude->>Claude: Tải nội dung Markdown
+    Claude->>User: Hiển thị ngữ cảnh prompt
+    User->>Claude: Cung cấp mã nguồn để phân tích
+    Claude->>CLI: (Có thể thực thi các script)
+    CLI-->>Claude: Kết quả
+    Claude->>User: Trả về phân tích
 ```
 
-### Best Practices
+### Thực hành tốt nhất
 
-| ✅ Do | ❌ Don't |
+| ✅ Nên làm | ❌ Không nên làm |
 |------|---------|
-| Use clear, action-oriented names | Create commands for one-time tasks |
-| Document trigger words in description | Build complex logic in commands |
-| Keep commands focused on single task | Create redundant commands |
-| Version control project commands | Hardcode sensitive information |
-| Organize in subdirectories | Create long lists of commands |
-| Use simple, readable prompts | Use abbreviated or cryptic wording |
+| Sử dụng tên rõ ràng, hướng tới hành động | Tạo lệnh cho các tác vụ chỉ dùng một lần |
+| Viết từ khóa kích hoạt trong mô tả | Xây dựng logic phức tạp trong các lệnh |
+| Giữ các lệnh tập trung vào một tác vụ duy nhất | Tạo các lệnh dư thừa |
+| Quản lý phiên bản cho các lệnh dự án | Ghi cứng các thông tin nhạy cảm |
+| Tổ chức trong các thư mục con | Tạo các danh sách lệnh quá dài |
+| Sử dụng các prompt đơn giản, dễ đọc | Sử dụng các từ viết tắt hoặc khó hiểu |
 
 ---
 
 ## Subagents
 
-### Overview
+### Tổng quan
 
-Subagents are specialized AI assistants with isolated context windows and customized system prompts. They enable delegated task execution while maintaining clean separation of concerns.
+Subagents là các trợ lý AI chuyên biệt với các cửa sổ ngữ cảnh độc lập và các system prompt tùy chỉnh. Chúng cho phép ủy quyền thực thi tác vụ trong khi vẫn duy trì sự phân tách rõ ràng các mối quan tâm.
 
-### Architecture Diagram
+### Sơ đồ kiến trúc
 
 ```mermaid
 graph TB
-    User["👤 User"]
-    Main["🎯 Main Agent<br/>(Coordinator)"]
-    Reviewer["🔍 Code Reviewer<br/>Subagent"]
-    Tester["✅ Test Engineer<br/>Subagent"]
-    Docs["📝 Documentation<br/>Subagent"]
+    User["👤 Người dùng"]
+    Main["🎯 Agent chính<br/>(Điều phối viên)"]
+    Reviewer["🔍 Reviewer mã<br/>Subagent"]
+    Tester["✅ Kỹ sư kiểm thử<br/>Subagent"]
+    Docs["📝 Người viết tài liệu<br/>Subagent"]
 
-    User -->|asks| Main
-    Main -->|delegates| Reviewer
-    Main -->|delegates| Tester
-    Main -->|delegates| Docs
-    Reviewer -->|returns result| Main
-    Tester -->|returns result| Main
-    Docs -->|returns result| Main
-    Main -->|synthesizes| User
+    User -->|yêu cầu| Main
+    Main -->|ủy quyền| Reviewer
+    Main -->|ủy quyền| Tester
+    Main -->|ủy quyền| Docs
+    Reviewer -->|trả về kết quả| Main
+    Tester -->|trả về kết quả| Main
+    Docs -->|trả về kết quả| Main
+    Main -->|tổng hợp| User
 ```
 
-### Subagent Lifecycle
+### Vòng đời của Subagent
 
 ```mermaid
 sequenceDiagram
     participant User
-    participant MainAgent as Main Agent
-    participant CodeReviewer as Code Reviewer<br/>Subagent
-    participant Context as Separate<br/>Context Window
+    participant MainAgent as Agent chính
+    participant CodeReviewer as Reviewer mã<br/>Subagent
+    participant Context as Cửa sổ ngữ cảnh<br/>độc lập
 
-    User->>MainAgent: "Build new auth feature"
-    MainAgent->>MainAgent: Analyze task
-    MainAgent->>CodeReviewer: "Review this code"
-    CodeReviewer->>Context: Initialize clean context
-    Context->>CodeReviewer: Load reviewer instructions
-    CodeReviewer->>CodeReviewer: Perform review
-    CodeReviewer-->>MainAgent: Return findings
-    MainAgent->>MainAgent: Incorporate results
-    MainAgent-->>User: Provide synthesis
+    User->>MainAgent: "Xây dựng tính năng auth mới"
+    MainAgent->>MainAgent: Phân tích tác vụ
+    MainAgent->>CodeReviewer: "Review mã nguồn này"
+    CodeReviewer->>Context: Khởi tạo ngữ cảnh sạch
+    Context->>CodeReviewer: Tải hướng dẫn cho reviewer
+    CodeReviewer->>CodeReviewer: Thực hiện review
+    CodeReviewer-->>MainAgent: Trả về kết quả tìm thấy
+    MainAgent->>MainAgent: Kết hợp kết quả
+    MainAgent-->>User: Cung cấp bản tổng hợp
 ```
 
-### Subagent Configuration Table
+### Bảng cấu hình Subagent
 
-| Configuration | Type | Purpose | Example |
+| Cấu hình | Kiểu | Mục đích | Ví dụ |
 |---------------|------|---------|---------|
-| `name` | String | Agent identifier | `code-reviewer` |
-| `description` | String | Purpose & trigger terms | `Comprehensive code quality analysis` |
-| `tools` | List/String | Allowed capabilities | `read, grep, diff, lint_runner` |
-| `system_prompt` | Markdown | Behavioral instructions | Custom guidelines |
+| `name` | Chuỗi | Định danh agent | `code-reviewer` |
+| `description` | Chuỗi | Mục đích & các từ khóa kích hoạt | `Phân tích toàn diện chất lượng mã và khả năng bảo trì` |
+| `tools` | Danh sách/Chuỗi | Các khả năng được phép | `read, grep, diff, lint_runner` |
+| `system_prompt` | Markdown | Hướng dẫn hành vi | Các quy tắc tùy chỉnh |
 
-### Tool Access Hierarchy
+### Hệ thống quyền hạn công cụ
 
 ```mermaid
 graph TD
-    A["Subagent Configuration"] -->|Option 1| B["Inherit All Tools<br/>from Main Thread"]
-    A -->|Option 2| C["Specify Individual Tools"]
-    B -->|Includes| B1["File Operations"]
-    B -->|Includes| B2["Shell Commands"]
-    B -->|Includes| B3["MCP Tools"]
-    C -->|Explicit List| C1["read, grep, diff"]
-    C -->|Explicit List| C2["Bash(npm:*), Bash(test:*)"]
+    A["Cấu hình Subagent"] -->|Lựa chọn 1| B["Kế thừa tất cả công cụ<br/>từ luồng chính"]
+    A -->|Lựa chọn 2| C["Chỉ định từng công cụ"]
+    B -->|Bao gồm| B1["Các thao tác tệp"]
+    B -->|Bao gồm| B2["Các câu lệnh Shell"]
+    B -->|Bao gồm| B3["Các công cụ MCP"]
+    C -->|Danh sách rõ ràng| C1["read, grep, diff"]
+    C -->|Danh sách rõ ràng| C2["Bash(npm:*), Bash(test:*)"]
 ```
 
-### Practical Examples
+### Ví dụ thực tế
 
-#### Example 1: Complete Subagent Setup
+#### Ví dụ 1: Thiết lập Subagent hoàn chỉnh
 
-**File:** `.claude/agents/code-reviewer.md`
+**Tệp:** `.claude/agents/code-reviewer.md`
 
 ```yaml
 ---
 name: code-reviewer
-description: Comprehensive code quality and maintainability analysis
+description: Phân tích toàn diện chất lượng và khả năng bảo trì mã nguồn
 tools: read, grep, diff, lint_runner
 ---
 
-# Code Reviewer Agent
+# Agent Reviewer Mã nguồn
 
-You are an expert code reviewer specializing in:
-- Performance optimization
-- Security vulnerabilities
-- Code maintainability
-- Testing coverage
-- Design patterns
+Bạn là một chuyên gia review mã nguồn chuyên về:
+- Tối ưu hóa hiệu suất
+- Các lỗ hổng bảo mật
+- Khả năng bảo trì mã nguồn
+- Độ bao phủ kiểm thử (testing coverage)
+- Các mẫu thiết kế (design patterns)
 
-## Review Priorities (in order)
+## Ưu tiên Review (theo thứ tự)
 
-1. **Security Issues** - Authentication, authorization, data exposure
-2. **Performance Problems** - O(n²) operations, memory leaks, inefficient queries
-3. **Code Quality** - Readability, naming, documentation
-4. **Test Coverage** - Missing tests, edge cases
-5. **Design Patterns** - SOLID principles, architecture
+1. **Vấn đề bảo mật** - Xác thực, phân quyền, lộ dữ liệu
+2. **Vấn đề hiệu suất** - Toán tử O(n²), rò rỉ bộ nhớ, truy vấn không hiệu quả
+3. **Chất lượng mã** - Khả năng đọc, đặt tên, tài liệu
+4. **Độ bao phủ kiểm thử** - Thiếu tests, các trường hợp biên
+5. **Mẫu thiết kế** - Các nguyên tắc SOLID, kiến trúc
 
-## Review Output Format
+## Định dạng đầu ra Review
 
-For each issue:
-- **Severity**: Critical / High / Medium / Low
-- **Category**: Security / Performance / Quality / Testing / Design
-- **Location**: File path and line number
-- **Issue Description**: What's wrong and why
-- **Suggested Fix**: Code example
-- **Impact**: How this affects the system
-
-## Example Review
-
-### Issue: N+1 Query Problem
-- **Severity**: High
-- **Category**: Performance
-- **Location**: src/user-service.ts:45
-- **Issue**: Loop executes database query in each iteration
-- **Fix**: Use JOIN or batch query
+Với mỗi vấn đề:
+- **Mức độ nghiêm trọng**: Critical / High / Medium / Low
+- **Hạng mục**: Security / Performance / Quality / Testing / Design
+- **Vị trí**: Đường dẫn tệp và số dòng
+- **Mô tả vấn đề**: Có gì sai và tại sao
+- **Cách khắc phục đề xuất**: Ví dụ mã
+- **Tác động**: Điều này ảnh hưởng thế nào đến hệ thống
 ```
 
-**File:** `.claude/agents/test-engineer.md`
+**Tệp:** `.claude/agents/test-engineer.md`
 
 ```yaml
 ---
 name: test-engineer
-description: Test strategy, coverage analysis, and automated testing
+description: Chiến lược kiểm thử, phân tích độ bao phủ và kiểm thử tự động
 tools: read, write, bash, grep
 ---
 
-# Test Engineer Agent
+# Agent Kỹ sư Kiểm thử
 
-You are expert at:
-- Writing comprehensive test suites
-- Ensuring high code coverage (>80%)
-- Testing edge cases and error scenarios
-- Performance benchmarking
-- Integration testing
+Bạn là chuyên gia về:
+- Viết các bộ kiểm thử (test suites) toàn diện
+- Đảm bảo độ bao phủ mã nguồn cao (>80%)
+- Kiểm thử các trường hợp biên và kịch bảnh lỗi
+- Benchmarking hiệu suất
+- Kiểm thử tích hợp (integration testing)
 
-## Testing Strategy
+## Chiến lược Kiểm thử
 
-1. **Unit Tests** - Individual functions/methods
-2. **Integration Tests** - Component interactions
-3. **End-to-End Tests** - Complete workflows
-4. **Edge Cases** - Boundary conditions
-5. **Error Scenarios** - Failure handling
+1. **Unit Tests** - Các hàm/phương thức riêng lẻ
+2. **Integration Tests** - Sự tương tác giữa các thành phần
+3. **End-to-End Tests** - Quy trình làm việc hoàn chỉnh
+4. **Edge Cases** - Các điều kiện biên
+5. **Error Scenarios** - Xử lý thất bại
 
-## Test Output Requirements
+## Yêu cầu đầu ra Kiểm thử
 
-- Use Jest for JavaScript/TypeScript
-- Include setup/teardown for each test
-- Mock external dependencies
-- Document test purpose
-- Include performance assertions when relevant
-
-## Coverage Requirements
-
-- Minimum 80% code coverage
-- 100% for critical paths
-- Report missing coverage areas
+- Sử dụng Jest cho JavaScript/TypeScript
+- Bao gồm setup/teardown cho mỗi test
+- Mock các phụ thuộc bên ngoài
+- Viết tài liệu cho mục đích của test
+- Bao gồm các khẳng định (assertions) hiệu suất nếu liên quan
 ```
 
-**File:** `.claude/agents/documentation-writer.md`
+**Tệp:** `.claude/agents/documentation-writer.md`
 
 ```yaml
 ---
 name: documentation-writer
-description: Technical documentation, API docs, and user guides
+description: Tài liệu kỹ thuật, tài liệu API và hướng dẫn người dùng
 tools: read, write, grep
 ---
-
-# Documentation Writer Agent
-
-You create:
-- API documentation with examples
-- User guides and tutorials
-- Architecture documentation
-- Changelog entries
-- Code comment improvements
-
-## Documentation Standards
-
-1. **Clarity** - Use simple, clear language
-2. **Examples** - Include practical code examples
-3. **Completeness** - Cover all parameters and returns
-4. **Structure** - Use consistent formatting
-5. **Accuracy** - Verify against actual code
-
-## Documentation Sections
-
-### For APIs
-- Description
-- Parameters (with types)
-- Returns (with types)
-- Throws (possible errors)
-- Examples (curl, JavaScript, Python)
-- Related endpoints
-
-### For Features
-- Overview
-- Prerequisites
-- Step-by-step instructions
-- Expected outcomes
-- Troubleshooting
-- Related topics
-```
-
-#### Example 2: Subagent Delegation in Action
-
-```markdown
-# Scenario: Building a Payment Feature
-
-## User Request
-"Build a secure payment processing feature that integrates with Stripe"
-
-## Main Agent Flow
-
-1. **Planning Phase**
-   - Understands requirements
-   - Determines tasks needed
-   - Plans architecture
-
-2. **Delegates to Code Reviewer Subagent**
-   - Task: "Review the payment processing implementation for security"
-   - Context: Auth, API keys, token handling
-   - Reviews for: SQL injection, key exposure, HTTPS enforcement
-
-3. **Delegates to Test Engineer Subagent**
-   - Task: "Create comprehensive tests for payment flows"
-   - Context: Success scenarios, failures, edge cases
-   - Creates tests for: Valid payments, declined cards, network failures, webhooks
-
-4. **Delegates to Documentation Writer Subagent**
-   - Task: "Document the payment API endpoints"
-   - Context: Request/response schemas
-   - Produces: API docs with curl examples, error codes
-
-5. **Synthesis**
-   - Main agent collects all outputs
-   - Integrates findings
-   - Returns complete solution to user
-```
-
-#### Example 3: Tool Permission Scoping
-
-**Restrictive Setup - Limited to Specific Commands**
 
 ```yaml
 ---
@@ -777,196 +686,116 @@ All responses must follow this structure:
 - Limit max page size to 100
 - Default page size: 20
 
-### Rate Limiting
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
-- Return 429 when exceeded
-- Include retry-after header
+### Rate Limiting#### Ví dụ 4: Cập nhật Memory trong phiên làm việc
 
-### Caching
-- Use Redis for session caching
-- Cache duration: 5 minutes default
-- Invalidate on write operations
-- Tag cache keys with resource type
-~~~~
-
-#### Example 3: Personal Memory
-
-**File:** `~/.claude/CLAUDE.md`
-
-~~~~markdown
-# My Development Preferences
-
-## About Me
-- **Experience Level**: 8 years full-stack development
-- **Preferred Languages**: TypeScript, Python
-- **Communication Style**: Direct, with examples
-- **Learning Style**: Visual diagrams with code
-
-## Code Preferences
-
-### Error Handling
-I prefer explicit error handling with try-catch blocks and meaningful error messages.
-Avoid generic errors. Always log errors for debugging.
-
-### Comments
-Use comments for WHY, not WHAT. Code should be self-documenting.
-Comments should explain business logic or non-obvious decisions.
-
-### Testing
-I prefer TDD (test-driven development).
-Write tests first, then implementation.
-Focus on behavior, not implementation details.
-
-### Architecture
-I prefer modular, loosely-coupled design.
-Use dependency injection for testability.
-Separate concerns (Controllers, Services, Repositories).
-
-## Debugging Preferences
-- Use console.log with prefix: `[DEBUG]`
-- Include context: function name, relevant variables
-- Use stack traces when available
-- Always include timestamps in logs
-
-## Communication
-- Explain complex concepts with diagrams
-- Show concrete examples before explaining theory
-- Include before/after code snippets
-- Summarize key points at the end
-
-## Project Organization
-I organize my projects as:
-```
-project/
-  ├── src/
-  │   ├── api/
-  │   ├── services/
-  │   ├── models/
-  │   └── utils/
-  ├── tests/
-  ├── docs/
-  └── docker/
-```
-
-## Tooling
-- **IDE**: VS Code with vim keybindings
-- **Terminal**: Zsh with Oh-My-Zsh
-- **Format**: Prettier (100 char line length)
-- **Linter**: ESLint with airbnb config
-- **Test Framework**: Jest with React Testing Library
-~~~~
-
-#### Example 4: Memory Update During Session
-
-**Session Interaction:**
+**Tương tác trong phiên:**
 
 ```markdown
-User: Remember that I prefer using React hooks instead of class components
-     for all new components.
+Người dùng: Hãy nhớ rằng tôi ưu tiên sử dụng React hooks thay vì class components
+          cho tất cả các component mới.
 
-Claude: I'm adding that to your memory. Which memory file should this go in?
-        1. Project memory (./CLAUDE.md)
-        2. Personal memory (~/.claude/CLAUDE.md)
+Claude: Tôi đang thêm điều đó vào bộ nhớ của bạn. Thông tin này nên được lưu vào tệp nào?
+        1. Bộ nhớ dự án (./CLAUDE.md)
+        2. Bộ nhớ cá nhân (~/.claude/CLAUDE.md)
 
-User: Project memory
+Người dùng: Bộ nhớ dự án
 
-Claude: ✅ Memory saved!
+Claude: ✅ Đã lưu bộ nhớ!
 
-Added to ./CLAUDE.md:
+Đã thêm vào ./CLAUDE.md:
 ---
 
-### Component Development
-- Use functional components with React Hooks
-- Prefer hooks over class components
-- Custom hooks for reusable logic
-- Use useCallback for event handlers
-- Use useMemo for expensive computations
+### Phát triển Component
+- Sử dụng functional components với React Hooks
+- Ưu tiên hooks thay vì class components
+- Sử dụng Custom hooks cho logic có thể tái sử dụng
+- Sử dụng useCallback cho các event handlers
+- Sử dụng useMemo cho các tính toán tốn kém
 ```
 
-### Memory in Claude Web/Desktop
+### Memory trong Claude Web/Desktop
 
-#### Memory Synthesis Timeline
+#### Dòng thời gian tổng hợp bộ nhớ
 
 ```mermaid
 graph LR
-    A["Day 1: User<br/>Conversations"] -->|24 hours| B["Day 2: Memory<br/>Synthesis"]
-    B -->|Automatic| C["Memory Updated<br/>Summarized"]
-    C -->|Loaded in| D["Day 2-N:<br/>New Conversations"]
-    D -->|Add to| E["Memory"]
-    E -->|24 hours later| F["Memory Refreshed"]
+    A["Ngày 1: Các hội thoại<br/>của người dùng"] -->|24 giờ| B["Ngày 2: Tổng hợp<br/>Bộ nhớ"]
+    B -->|Tự động| C["Bộ nhớ được cập nhật<br/>và tóm tắt"]
+    C -->|Được tải vào| D["Ngày 2-N:<br/>Các hội thoại mới"]
+    D -->|Thêm vào| E["Bộ nhớ"]
+    E -->|24 giờ sau| F["Bộ nhớ được làm mới"]
 ```
 
-**Example Memory Summary:**
+**Ví dụ tóm tắt bộ nhớ:**
 
 ```markdown
-## Claude's Memory of User
+## Bộ nhớ của Claude về người dùng
 
-### Professional Background
-- Senior full-stack developer with 8 years experience
-- Focus on TypeScript/Node.js backends and React frontends
-- Active open source contributor
-- Interested in AI and machine learning
+### Nền tảng chuyên môn
+- Nhà phát triển full-stack cấp cao với 8 năm kinh nghiệm
+- Tập trung vào backend Node.js/TypeScript và frontend React
+- Người đóng góp tích cực cho mã nguồn mở
+- Quan tâm đến AI và Machine Learning
 
-### Project Context
-- Currently building e-commerce platform
+### Ngữ cảnh dự án
+- Hiện đang xây dựng nền tảng thương mại điện tử
 - Tech stack: Node.js, PostgreSQL, React 18, Docker
-- Working with team of 5 developers
-- Using CI/CD and blue-green deployments
+- Làm việc trong nhóm gồm 5 nhà phát triển
+- Sử dụng CI/CD và blue-green deployments
 
-### Communication Preferences
-- Prefers direct, concise explanations
-- Likes visual diagrams and examples
-- Appreciates code snippets
-- Explains business logic in comments
+### Ưu tiên giao tiếp
+- Thích các giải thích trực tiếp, ngắn gọn
+- Thích các sơ đồ trực quan và ví dụ
+- Đánh giá cao các đoạn mã mẫu
+- Giải thích logic nghiệp vụ trong chú thích
 
-### Current Goals
-- Improve API performance
-- Increase test coverage to 90%
-- Implement caching strategy
-- Document architecture
+### Mục tiêu hiện tại
+- Cải thiện hiệu suất API
+- Tăng độ bao phủ kiểm thử lên 90%
+- Triển khai chiến lược bộ nhớ đệm (caching)
+- Tài liệu hóa kiến trúc
 ```
 
-### Memory Features Comparison
+### So sánh các tính năng Memory
 
-| Feature | Claude Web/Desktop | Claude Code (CLAUDE.md) |
+| Tính năng | Claude Web/Desktop | Claude Code (CLAUDE.md) |
 |---------|-------------------|------------------------|
-| Auto-synthesis | ✅ Every 24h | ❌ Manual |
-| Cross-project | ✅ Shared | ❌ Project-specific |
-| Team access | ✅ Shared projects | ✅ Git-tracked |
-| Searchable | ✅ Built-in | ✅ Through `/memory` |
-| Editable | ✅ In-chat | ✅ Direct file edit |
-| Import/Export | ✅ Yes | ✅ Copy/paste |
-| Persistent | ✅ 24h+ | ✅ Indefinite |
+| Tự động tổng hợp | ✅ Mỗi 24h | ❌ Thủ công |
+| Đa dự án | ✅ Chia sẻ chung | ❌ Theo từng dự án |
+| Truy cập nhóm | ✅ Các dự án chia sẻ | ✅ Được theo dõi bởi Git |
+| Có thể tìm kiếm | ✅ Tích hợp sẵn | ✅ Qua lệnh `/memory` |
+| Có thể chỉnh sửa | ✅ Trong cửa sổ chat | ✅ Chỉnh sửa tệp trực tiếp |
+| Xuất/Nhập | ✅ Có | ✅ Copy/paste |
+| Lưu giữ lâu dài | ✅ Trên 24h | ✅ Vô thời hạn |
 
 ---
 
-## MCP Protocol
+## Giao thức MCP
 
-### Overview
+### Tổng quan
 
-MCP (Model Context Protocol) is a standardized way for Claude to access external tools, APIs, and real-time data sources. Unlike Memory, MCP provides live access to changing data.
+MCP (Model Context Protocol) là một phương thức tiêu chuẩn hóa để Claude truy cập các công cụ, API và nguồn dữ liệu thời gian thực bên ngoài. Khác với Memory, MCP cung cấp quyền truy cập trực tiếp vào dữ liệu luôn thay đổi.
 
-### MCP Architecture
+### Kiến trúc MCP
 
 ```mermaid
 graph TB
     A["Claude"]
     B["MCP Server"]
-    C["External Service"]
+    C["Dịch vụ bên ngoài"]
 
-    A -->|Request: list_issues| B
-    B -->|Query| C
-    C -->|Data| B
-    B -->|Response| A
+    A -->|Yêu cầu: list_issues| B
+    B -->|Truy vấn| C
+    C -->|Dữ liệu| B
+    B -->|Phản hồi| A
 
-    A -->|Request: create_issue| B
-    B -->|Action| C
-    C -->|Result| B
-    B -->|Response| A
+    A -->|Yêu cầu: create_issue| B
+    B -->|Hành động| C
+    C -->|Kết quả| B
+    B -->|Phản hồi| A
 ```
 
-### MCP Ecosystem
+### Hệ sinh thái MCP
 
 ```mermaid
 graph TB
@@ -983,44 +812,44 @@ graph TB
     F -->|Docs| K["Google Drive"]
 ```
 
-### MCP Setup Process
+### Quy trình thiết lập MCP
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Claude as Claude Code
-    participant Config as Config File
-    participant Service as External Service
+    participant Config as Tệp cấu hình
+    participant Service as Dịch vụ bên ngoài
 
-    User->>Claude: Type /mcp
-    Claude->>Claude: List available MCP servers
-    Claude->>User: Show options
-    User->>Claude: Select GitHub MCP
-    Claude->>Config: Update configuration
-    Config->>Claude: Activate connection
-    Claude->>Service: Test connection
-    Service-->>Claude: Authentication successful
-    Claude->>User: ✅ MCP connected!
+    User->>Claude: Gõ /mcp
+    Claude->>Claude: Liệt kê các MCP server có sẵn
+    Claude->>User: Hiển thị các lựa chọn
+    User->>Claude: Chọn GitHub MCP
+    Claude->>Config: Cập nhật cấu hình
+    Config->>Claude: Kích hoạt kết nối
+    Claude->>Service: Kiểm tra kết nối
+    Service-->>Claude: Xác thực thành công
+    Claude->>User: ✅ MCP đã kết nối!
 ```
 
-### Available MCP Servers Table
+### Bảng các MCP Server phổ biến
 
-| MCP Server | Purpose | Common Tools | Auth | Real-time |
+| MCP Server | Mục đích | Các công cụ phổ biến | Xác thực | Thời gian thực |
 |------------|---------|--------------|------|-----------|
-| **Filesystem** | File operations | read, write, delete | OS permissions | ✅ Yes |
-| **GitHub** | Repository management | list_prs, create_issue, push | OAuth | ✅ Yes |
-| **Slack** | Team communication | send_message, list_channels | Token | ✅ Yes |
-| **Database** | SQL queries | query, insert, update | Credentials | ✅ Yes |
-| **Google Docs** | Document access | read, write, share | OAuth | ✅ Yes |
-| **Asana** | Project management | create_task, update_status | API Key | ✅ Yes |
-| **Stripe** | Payment data | list_charges, create_invoice | API Key | ✅ Yes |
-| **Memory** | Persistent memory | store, retrieve, delete | Local | ❌ No |
+| **Filesystem** | Thao tác tệp | read, write, delete | Quyền của OS | ✅ Có |
+| **GitHub** | Quản lý kho mã nguồn | list_prs, create_issue, push | OAuth | ✅ Có |
+| **Slack** | Giao tiếp nhóm | send_message, list_channels | Token | ✅ Có |
+| **Database** | Truy vấn SQL | query, insert, update | Thông tin đăng nhập | ✅ Có |
+| **Google Docs** | Truy cập tài liệu | read, write, share | OAuth | ✅ Có |
+| **Asana** | Quản lý dự án | create_task, update_status | API Key | ✅ Có |
+| **Stripe** | Dữ liệu thanh toán | list_charges, create_invoice | API Key | ✅ Có |
+| **Memory** | Bộ nhớ lâu dài | store, retrieve, delete | Cục bộ | ❌ Không |
 
-### Practical Examples
+### Ví dụ thực tế
 
-#### Example 1: GitHub MCP Configuration
+#### Ví dụ 1: Cấu hình GitHub MCP
 
-**File:** `.mcp.json` (project scope) or `~/.claude.json` (user scope)
+**Tệp:** `.mcp.json` (phạm vi dự án) hoặc `~/.claude.json` (phạm vi người dùng)
 
 ```json
 {
@@ -1036,53 +865,53 @@ sequenceDiagram
 }
 ```
 
-**Available GitHub MCP Tools:**
+**Các công cụ GitHub MCP có sẵn:**
 
 ~~~~markdown
-# GitHub MCP Tools
+# Các công cụ GitHub MCP
 
-## Pull Request Management
-- `list_prs` - List all PRs in repository
-- `get_pr` - Get PR details including diff
-- `create_pr` - Create new PR
-- `update_pr` - Update PR description/title
-- `merge_pr` - Merge PR to main branch
-- `review_pr` - Add review comments
+## Quản lý Pull Request
+- `list_prs` - Liệt kê tất cả PR trong repo
+- `get_pr` - Lấy chi tiết PR bao gồm cả diff
+- `create_pr` - Tạo PR mới
+- `update_pr` - Cập nhật mô tả/tiêu đề PR
+- `merge_pr` - Merge PR vào nhánh chính
+- `review_pr` - Thêm phản hồi (review)
 
-Example request:
+Yêu cầu ví dụ:
 ```
 /mcp__github__get_pr 456
 
-# Returns:
-Title: Add dark mode support
-Author: @alice
-Description: Implements dark theme using CSS variables
-Status: OPEN
+# Trả về:
+Tiêu đề: Add dark mode support
+Tác giả: @alice
+Mô tả: Implements dark theme using CSS variables
+Trạng thái: OPEN
 Reviewers: @bob, @charlie
 ```
 
-## Issue Management
-- `list_issues` - List all issues
-- `get_issue` - Get issue details
-- `create_issue` - Create new issue
-- `close_issue` - Close issue
-- `add_comment` - Add comment to issue
+## Quản lý Issue
+- `list_issues` - Liệt kê tất cả các issues
+- `get_issue` - Lấy chi tiết issue
+- `create_issue` - Tạo issue mới
+- `close_issue` - Đóng issue
+- `add_comment` - Thêm bình luận vào issue
 
-## Repository Information
-- `get_repo_info` - Repository details
-- `list_files` - File tree structure
-- `get_file_content` - Read file contents
-- `search_code` - Search across codebase
+## Thông tin Kho mã nguồn
+- `get_repo_info` - Chi tiết repo
+- `list_files` - Cấu trúc cây thư mục
+- `get_file_content` - Đọc nội dung tệp
+- `search_code` - Tìm kiếm trong toàn bộ mã nguồn
 
-## Commit Operations
-- `list_commits` - Commit history
-- `get_commit` - Specific commit details
-- `create_commit` - Create new commit
+## Các thao tác Commit
+- `list_commits` - Lịch sử commit
+- `get_commit` - Chi tiết một commit cụ thể
+- `create_commit` - Tạo commit mới
 ~~~~
 
-#### Example 2: Database MCP Setup
+#### Ví dụ 2: Thiết lập Database MCP
 
-**Configuration:**
+**Cấu hình:**
 
 ```json
 {
@@ -1098,14 +927,14 @@ Reviewers: @bob, @charlie
 }
 ```
 
-**Example Usage:**
+**Sử dụng ví dụ:**
 
 ```markdown
-User: Fetch all users with more than 10 orders
+Người dùng: Lấy tất cả người dùng có hơn 10 đơn hàng
 
-Claude: I'll query your database to find that information.
+Claude: Tôi sẽ truy vấn cơ sở dữ liệu của bạn để tìm thông tin đó.
 
-# Using MCP database tool:
+# Sử dụng công cụ database MCP:
 SELECT u.*, COUNT(o.id) as order_count
 FROM users u
 LEFT JOIN orders o ON u.id = o.user_id
@@ -1113,62 +942,62 @@ GROUP BY u.id
 HAVING COUNT(o.id) > 10
 ORDER BY order_count DESC;
 
-# Results:
-- Alice: 15 orders
-- Bob: 12 orders
-- Charlie: 11 orders
+# Kết quả:
+- Alice: 15 đơn hàng
+- Bob: 12 đơn hàng
+- Charlie: 11 đơn hàng
 ```
 
-#### Example 3: Multi-MCP Workflow
+#### Ví dụ 3: Quy trình làm việc đa MCP (Multi-MCP)
 
-**Scenario: Daily Report Generation**
+**Kịch bản: Tạo báo cáo hàng ngày**
 
 ```markdown
-# Daily Report Workflow using Multiple MCPs
+# Quy trình báo cáo hàng ngày sử dụng nhiều MCP
 
-## Setup
-1. GitHub MCP - fetch PR metrics
-2. Database MCP - query sales data
-3. Slack MCP - post report
-4. Filesystem MCP - save report
+## Thiết lập
+1. GitHub MCP - lấy các chỉ số PR
+2. Database MCP - truy vấn dữ liệu bán hàng
+3. Slack MCP - đăng bài báo cáo
+4. Filesystem MCP - lưu báo cáo
 
-## Workflow
+## Quy trình
 
-### Step 1: Fetch GitHub Data
+### Bước 1: Lấy dữ liệu từ GitHub
 /mcp__github__list_prs completed:true last:7days
 
-Output:
-- Total PRs: 42
-- Average merge time: 2.3 hours
-- Review turnaround: 1.1 hours
+Đầu ra:
+- Tổng số PR: 42
+- Thời gian merge trung bình: 2.3 giờ
+- Thời gian phản hồi review: 1.1 giờ
 
-### Step 2: Query Database
+### Bước 2: Truy vấn cơ sở dữ liệu
 SELECT COUNT(*) as sales, SUM(amount) as revenue
 FROM orders
 WHERE created_at > NOW() - INTERVAL '1 day'
 
-Output:
-- Sales: 247
-- Revenue: $12,450
+Đầu ra:
+- Số đơn hàng: 247
+- Doanh thu: $12,450
 
-### Step 3: Generate Report
-Combine data into HTML report
+### Bước 3: Tạo báo cáo
+Kết hợp dữ liệu vào báo cáo HTML
 
-### Step 4: Save to Filesystem
-Write report.html to /reports/
+### Bước 4: Lưu vào hệ thống tệp
+Ghi file report.html vào thư mục /reports/
 
-### Step 5: Post to Slack
-Send summary to #daily-reports channel
+### Bước 5: Đăng lên Slack
+Gửi bản tóm tắt vào kênh #daily-reports
 
-Final Output:
-✅ Report generated and posted
-📊 47 PRs merged this week
-💰 $12,450 in daily sales
+Kết quả cuối cùng:
+✅ Báo cáo đã được tạo và đăng tải
+📊 47 PR đã được merge trong tuần này
+💰 Doanh thu hàng ngày đạt $12,450
 ```
 
-#### Example 4: Filesystem MCP Operations
+#### Ví dụ 4: Các thao tác Filesystem MCP
 
-**Configuration:**
+**Cấu hình:**
 
 ```json
 {
@@ -1181,70 +1010,70 @@ Final Output:
 }
 ```
 
-**Available Operations:**
+**Các thao tác có sẵn:**
 
-| Operation | Command | Purpose |
+| Thao tác | Lệnh | Mục đích |
 |-----------|---------|---------|
-| List files | `ls ~/projects` | Show directory contents |
-| Read file | `cat src/main.ts` | Read file contents |
-| Write file | `create docs/api.md` | Create new file |
-| Edit file | `edit src/app.ts` | Modify file |
-| Search | `grep "async function"` | Search in files |
-| Delete | `rm old-file.js` | Delete file |
+| Liệt kê tệp | `ls ~/projects` | Hiển thị nội dung thư mục |
+| Đọc tệp | `cat src/main.ts` | Đọc nội dung tệp |
+| Ghi tệp | `create docs/api.md` | Tạo tệp mới |
+| Sửa tệp | `edit src/app.ts` | Thay đổi tệp |
+| Tìm kiếm | `grep "async function"` | Tìm kiếm trong các tệp |
+| Xóa | `rm old-file.js` | Xóa tệp |
 
-### MCP vs Memory: Decision Matrix
+### MCP vs Memory: Ma trận quyết định
 
 ```mermaid
 graph TD
-    A["Need external data?"]
-    A -->|No| B["Use Memory"]
-    A -->|Yes| C["Does it change frequently?"]
-    C -->|No/Rarely| B
-    C -->|Yes/Often| D["Use MCP"]
+    A["Cần dữ liệu bên ngoài?"]
+    A -->|Không| B["Sử dụng Memory"]
+    A -->|Có| C["Dữ liệu có thay đổi thường xuyên không?"]
+    C -->|Không hoặc hiếm khi| B
+    C -->|Có hoặc thường xuyên| D["Sử dụng MCP"]
 
-    B -->|Stores| E["Preferences<br/>Context<br/>History"]
-    D -->|Accesses| F["Live APIs<br/>Databases<br/>Services"]
+    B -->|Lưu trữ| E["Ưu tiên<br/>Ngữ cảnh<br/>Lịch sử"]
+    D -->|Truy cập| F["Live APIs<br/>Cơ sở dữ liệu<br/>Dịch vụ"]
 
     style B fill:#e1f5ff
     style D fill:#fff9c4
 ```
 
-### Request/Response Pattern
+### Mô hình Yêu cầu/Phản hồi (Request/Response)
 
 ```mermaid
 sequenceDiagram
     participant App as Claude
     participant MCP as MCP Server
-    participant DB as Database
+    participant DB as Cơ sở dữ liệu
 
-    App->>MCP: Request: "SELECT * FROM users WHERE id=1"
-    MCP->>DB: Execute query
-    DB-->>MCP: Result set
-    MCP-->>App: Return parsed data
-    App->>App: Process result
-    App->>App: Continue task
+    App->>MCP: Yêu cầu: "SELECT * FROM users WHERE id=1"
+    MCP->>DB: Thực thi truy vấn
+    DB-->>MCP: Tập kết quả
+    MCP-->>App: Trả về dữ liệu đã phân tích
+    App->>App: Xử lý kết quả
+    App->>App: Tiếp tục tác vụ
 
-    Note over MCP,DB: Real-time access<br/>No caching
+    Note over MCP,DB: Truy cập thời gian thực<br/>Không có bộ nhớ đệm
 ```
 
 ---
 
 ## Agent Skills
 
-### Overview
+### Tổng quan
 
-Agent Skills are reusable, model-invoked capabilities packaged as folders containing instructions, scripts, and resources. Claude automatically detects and uses relevant skills.
+Agent Skills là những khả năng có thể tái sử dụng, do mô hình gọi ra, được đóng gói dưới dạng các thư mục chứa hướng dẫn, script và tài nguyên. Claude tự động phát hiện và sử dụng các skill liên quan.
 
-### Skill Architecture
+### Kiến trúc Skill
 
 ```mermaid
 graph TB
-    A["Skill Directory"]
+    A["Thư mục Skill"]
     B["SKILL.md"]
-    C["YAML Metadata"]
-    D["Instructions"]
-    E["Scripts"]
-    F["Templates"]
+    C["Siêu dữ liệu YAML"]
+    D["Hướng dẫn"]
+    E["Các Script"]
+    F["Các Template"]
 
     A --> B
     B --> C
@@ -1253,39 +1082,39 @@ graph TB
     F --> A
 ```
 
-### Skill Loading Process
+### Quy trình tải Skill
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Claude as Claude
-    participant System as System
+    participant System as Hệ thống
     participant Skill as Skill
 
-    User->>Claude: "Create Excel report"
-    Claude->>System: Scan available skills
-    System->>System: Load skill metadata
-    Claude->>Claude: Match user request to skills
-    Claude->>Skill: Load xlsx skill SKILL.md
-    Skill-->>Claude: Return instructions + tools
-    Claude->>Claude: Execute skill
-    Claude->>User: Generate Excel file
+    User->>Claude: "Tạo báo cáo Excel"
+    Claude->>System: Quét các skill có sẵn
+    System->>System: Tải siêu dữ liệu skill
+    Claude->>Claude: Khớp yêu cầu người dùng với các skill
+    Claude->>Skill: Tải tệp SKILL.md của skill xlsx
+    Skill-->>Claude: Trả về hướng dẫn + công cụ
+    Claude->>Claude: Thực thi skill
+    Claude->>User: Tạo tệp Excel
 ```
 
-### Skill Types & Locations Table
+### Bảng các loại Skill & Vị trí
 
-| Type | Location | Scope | Shared | Sync | Best For |
+| Loại | Vị trí | Phạm vi | Chia sẻ | Đồng bộ | Phù hợp cho |
 |------|----------|-------|--------|------|----------|
-| Pre-built | Built-in | Global | All users | Auto | Document creation |
-| Personal | `~/.claude/skills/` | Individual | No | Manual | Personal automation |
-| Project | `.claude/skills/` | Team | Yes | Git | Team standards |
-| Plugin | Via plugin install | Varies | Depends | Auto | Integrated features |
+| Tích hợp sẵn | Built-in | Toàn cầu | Mọi người dùng | Tự động | Tạo tài liệu |
+| Cá nhân | `~/.claude/skills/` | Cá nhân | Không | Thủ công | Tự động hóa cá nhân |
+| Dự án | `.claude/skills/` | Nhóm | Có | Git | Tiêu chuẩn nhóm |
+| Plugin | Qua cài đặt plugin | Thay đổi | Tùy thuộc | Tự động | Các tính năng tích hợp |
 
-### Pre-built Skills
+### Các Skill tích hợp sẵn (Pre-built Skills)
 
 ```mermaid
 graph TB
-    A["Pre-built Skills"]
+    A["Các Skill tích hợp sẵn"]
     B["PowerPoint (pptx)"]
     C["Excel (xlsx)"]
     D["Word (docx)"]
@@ -1296,35 +1125,35 @@ graph TB
     A --> D
     A --> E
 
-    B --> B1["Create presentations"]
-    B --> B2["Edit slides"]
-    C --> C1["Create spreadsheets"]
-    C --> C2["Analyze data"]
-    D --> D1["Create documents"]
-    D --> D2["Format text"]
-    E --> E1["Generate PDFs"]
-    E --> E2["Fill forms"]
+    B --> B1["Tạo bài thuyết trình"]
+    B --> B2["Chỉnh sửa slide"]
+    C --> C1["Tạo bảng tính"]
+    C --> C2["Phân tích dữ liệu"]
+    D --> D1["Tạo tài liệu"]
+    D --> D2["Định dạng văn bản"]
+    E --> E1["Tạo tệp PDF"]
+    E --> E2["Điền biểu mẫu"]
 ```
 
-### Bundled Skills
+### Các Skill đi kèm (Bundled Skills)
 
-Claude Code now includes 5 bundled skills available out of the box:
+Claude Code hiện bao gồm 5 skill đi kèm sẵn có:
 
-| Skill | Command | Purpose |
+| Skill | Lệnh | Mục đích |
 |-------|---------|---------|
-| **Simplify** | `/simplify` | Simplify complex code or explanations |
-| **Batch** | `/batch` | Run operations across multiple files or items |
-| **Debug** | `/debug` | Systematic debugging of issues with root cause analysis |
-| **Loop** | `/loop` | Schedule recurring tasks on a timer |
-| **Claude API** | `/claude-api` | Interact with the Anthropic API directly |
+| **Simplify** | `/simplify` | Đơn giản hóa mã phức tạp hoặc các giải thích |
+| **Batch** | `/batch` | Chạy các thao tác trên nhiều tệp hoặc mục |
+| **Debug** | `/debug` | Sửa lỗi hệ thống với phân tích nguyên nhân gốc rễ |
+| **Loop** | `/loop` | Lên lịch các tác vụ định kỳ theo thời gian |
+| **Claude API** | `/claude-api` | Tương tác trực tiếp với Anthropic API |
 
-These bundled skills are always available and do not require installation or configuration.
+Các skill này luôn sẵn có và không yêu cầu cài đặt hay cấu hình thêm.
 
-### Practical Examples
+### Ví dụ thực tế
 
-#### Example 1: Custom Code Review Skill
+#### Ví dụ 1: Skill Review mã nguồn tùy chỉnh
 
-**Directory Structure:**
+**Cấu trúc thư mục:**
 
 ```
 ~/.claude/skills/code-review/
@@ -1337,84 +1166,85 @@ These bundled skills are always available and do not require installation or con
     └── compare-complexity.py
 ```
 
-**File:** `~/.claude/skills/code-review/SKILL.md`
+**Tệp:** `~/.claude/skills/code-review/SKILL.md`
 
 ```yaml
 ---
-name: Code Review Specialist
-description: Comprehensive code review with security, performance, and quality analysis
+name: Chuyên gia Review Mã nguồn
+description: Review mã nguồn toàn diện tập trung vào bảo mật, hiệu suất và chất lượng
 version: "1.0.0"
 tags:
   - code-review
   - quality
   - security
-when_to_use: When users ask to review code, analyze code quality, or evaluate pull requests
+when_to_use: Khi người dùng yêu cầu review mã, phân tích chất lượng hoặc đánh giá pull request
 effort: high
 shell: bash
 ---
 
-# Code Review Skill
+# Skill Review Mã nguồn
 
-This skill provides comprehensive code review capabilities focusing on:
+Skill này cung cấp các khả năng review mã nguồn toàn diện tập trung vào:
 
-1. **Security Analysis**
-   - Authentication/authorization issues
-   - Data exposure risks
-   - Injection vulnerabilities
-   - Cryptographic weaknesses
-   - Sensitive data logging
+1. **Phân tích bảo mật**
+   - Các vấn đề xác thực/phân quyền
+   - Rủi ro lộ dữ liệu
+   - Các lỗ hổng injection
+   - Điểm yếu mã hóa
+   - Việc log dữ liệu nhạy cảm
 
-2. **Performance Review**
-   - Algorithm efficiency (Big O analysis)
-   - Memory optimization
-   - Database query optimization
-   - Caching opportunities
-   - Concurrency issues
+2. **Đánh giá hiệu suất**
+   - Hiệu quả thuật toán (phân tích Big O)
+   - Tối ưu hóa bộ nhớ
+   - Tối ưu hóa truy vấn cơ sở dữ liệu
+   - Các cơ hội sử dụng bộ nhớ đệm
+   - Các vấn đề về đồng thời
 
-3. **Code Quality**
-   - SOLID principles
-   - Design patterns
-   - Naming conventions
-   - Documentation
-   - Test coverage
+3. **Chất lượng mã nguồn**
+   - Các nguyên tắc SOLID
+   - Các mẫu thiết kế (Design patterns)
+   - Các quy ước đặt tên
+   - Tài liệu
+   - Độ bao phủ kiểm thử
 
-4. **Maintainability**
-   - Code readability
-   - Function size (should be < 50 lines)
-   - Cyclomatic complexity
-   - Dependency management
+4. **Khả năng bảo trì**
+   - Độ dễ đọc của mã
+   - Kích thước hàm (nên < 50 dòng)
+   - Độ phức tạp vòng đời (Cyclomatic complexity)
+   - Quản lý phụ thuộc
    - Type safety
 
-## Review Template
+## Mẫu Review
 
-For each piece of code reviewed, provide:
+Với mỗi đoạn mã được review, hãy cung cấp:
 
-### Summary
-- Overall quality assessment (1-5)
-- Key findings count
-- Recommended priority areas
+### Tóm tắt (Summary)
+- Đánh giá chất lượng tổng thể (1-5)
+- Số lượng các phát hiện chính
+- Các khu vực ưu tiên khuyến nghị
 
-### Critical Issues (if any)
-- **Issue**: Clear description
-- **Location**: File and line number
-- **Impact**: Why this matters
-- **Severity**: Critical/High/Medium
-- **Fix**: Code example
+### Các vấn đề nghiêm trọng (nếu có)
+- **Vấn đề**: Mô tả rõ ràng
+- **Vị trí**: Tên tệp và số dòng
+- **Tác động**: Tại sao điều này lại quan trọng
+- **Mức độ**: Critical/High/Medium
+- **Cách sửa**: Ví dụ mã
 
-### Findings by Category
+### Các phát hiện theo hạng mục
 
-#### Security (if issues found)
-List security vulnerabilities with examples
+#### Bảo mật (nếu tìm thấy vấn đề)
+Liệt kê các lỗ hổng bảo mật kèm ví dụ
 
-#### Performance (if issues found)
-List performance problems with complexity analysis
+#### Hiệu suất (nếu tìm thấy vấn đề)
+Liệt kê các vấn đề hiệu suất kèm phân tích độ phức tạp
 
-#### Quality (if issues found)
-List code quality issues with refactoring suggestions
+#### Chất lượng (nếu tìm thấy vấn đề)
+Liệt kê các vấn đề chất lượng mã kèm gợi ý tái cấu trúc
 
-#### Maintainability (if issues found)
-List maintainability problems with improvements
+#### Khả năng bảo trì (nếu tìm thấy vấn đề)
+Liệt kê các vấn đề bảo trì kèm các cải tiến
 ```
+
 ## Python Script: analyze-metrics.py
 
 ```python
@@ -1423,19 +1253,19 @@ import re
 import sys
 
 def analyze_code_metrics(code):
-    """Analyze code for common metrics."""
+    """Phân tích mã nguồn cho các chỉ số phổ biến."""
 
-    # Count functions
+    # Đếm số hàm
     functions = len(re.findall(r'^def\s+\w+', code, re.MULTILINE))
 
-    # Count classes
+    # Đếm số lớp
     classes = len(re.findall(r'^class\s+\w+', code, re.MULTILINE))
 
-    # Average line length
+    # Độ dài dòng trung bình
     lines = code.split('\n')
     avg_length = sum(len(l) for l in lines) / len(lines) if lines else 0
 
-    # Estimate complexity
+    # Ước tính độ phức tạp
     complexity = len(re.findall(r'\b(if|elif|else|for|while|and|or)\b', code))
 
     return {
@@ -1458,8 +1288,8 @@ if __name__ == '__main__':
 ```python
 #!/usr/bin/env python3
 """
-Compare cyclomatic complexity of code before and after changes.
-Helps identify if refactoring actually simplifies code structure.
+So sánh độ phức tạp cyclomatic của mã nguồn trước và sau khi thay đổi.
+Giúp xác định xem việc tái cấu trúc có thực sự làm đơn giản hóa cấu trúc mã hay không.
 """
 
 import re
@@ -1467,7 +1297,7 @@ import sys
 from typing import Dict, Tuple
 
 class ComplexityAnalyzer:
-    """Analyze code complexity metrics."""
+    """Phân tích các chỉ số độ phức tạp của mã nguồn."""
 
     def __init__(self, code: str):
         self.code = code
@@ -1475,12 +1305,12 @@ class ComplexityAnalyzer:
 
     def calculate_cyclomatic_complexity(self) -> int:
         """
-        Calculate cyclomatic complexity using McCabe's method.
-        Count decision points: if, elif, else, for, while, except, and, or
+        Tính toán độ phức tạp cyclomatic bằng phương pháp của McCabe.
+        Đếm các điểm quyết định: if, elif, else, for, while, except, and, or
         """
-        complexity = 1  # Base complexity
+        complexity = 1  # Độ phức tạp cơ bản
 
-        # Count decision points
+        # Đếm các điểm quyết định
         decision_patterns = [
             r'\bif\b',
             r'\belif\b',
@@ -1499,21 +1329,21 @@ class ComplexityAnalyzer:
 
     def calculate_cognitive_complexity(self) -> int:
         """
-        Calculate cognitive complexity - how hard is it to understand?
-        Based on nesting depth and control flow.
+        Tính toán độ phức tạp nhận thức - mã nguồn khó hiểu đến mức nào?
+        Dựa trên độ sâu lồng nhau và luồng điều khiển.
         """
         cognitive = 0
         nesting_depth = 0
 
         for line in self.lines:
-            # Track nesting depth
+            # Theo dõi độ sâu lồng nhau
             if re.search(r'^\s*(if|for|while|def|class|try)\b', line):
                 nesting_depth += 1
                 cognitive += nesting_depth
             elif re.search(r'^\s*(elif|else|except|finally)\b', line):
                 cognitive += nesting_depth
 
-            # Reduce nesting when unindenting
+            # Giảm độ sâu khi thoát khỏi khối
             if line and not line[0].isspace():
                 nesting_depth = 0
 
@@ -1521,23 +1351,23 @@ class ComplexityAnalyzer:
 
     def calculate_maintainability_index(self) -> float:
         """
-        Maintainability Index ranges from 0-100.
-        > 85: Excellent
-        > 65: Good
-        > 50: Fair
-        < 50: Poor
+        Chỉ số khả năng bảo trì nằm trong khoảng 0-100.
+        > 85: Tuyệt vời
+        > 65: Tốt
+        > 50: Khá
+        < 50: Kém
         """
         lines = len(self.lines)
         cyclomatic = self.calculate_cyclomatic_complexity()
         cognitive = self.calculate_cognitive_complexity()
 
-        # Simplified MI calculation
+        # Công thức MI đơn giản hóa
         mi = 171 - 5.2 * (cyclomatic / lines) - 0.23 * (cognitive) - 16.2 * (lines / 1000)
 
         return max(0, min(100, mi))
 
     def get_complexity_report(self) -> Dict:
-        """Generate comprehensive complexity report."""
+        """Tạo báo cáo độ phức tạp toàn diện."""
         return {
             'cyclomatic_complexity': self.calculate_cyclomatic_complexity(),
             'cognitive_complexity': self.calculate_cognitive_complexity(),
@@ -1548,7 +1378,7 @@ class ComplexityAnalyzer:
 
 
 def compare_files(before_file: str, after_file: str) -> None:
-    """Compare complexity metrics between two code versions."""
+    """So sánh các chỉ số phức tạp giữa hai phiên bản mã nguồn."""
 
     with open(before_file, 'r') as f:
         before_code = f.read()
@@ -1563,279 +1393,161 @@ def compare_files(before_file: str, after_file: str) -> None:
     after_metrics = after_analyzer.get_complexity_report()
 
     print("=" * 60)
-    print("CODE COMPLEXITY COMPARISON")
+    print("SO SÁNH ĐỘ PHỨC TẠP MÃ NGUỒN")
     print("=" * 60)
 
-    print("\nBEFORE:")
-    print(f"  Cyclomatic Complexity:    {before_metrics['cyclomatic_complexity']}")
-    print(f"  Cognitive Complexity:     {before_metrics['cognitive_complexity']}")
-    print(f"  Maintainability Index:    {before_metrics['maintainability_index']}")
-    print(f"  Lines of Code:            {before_metrics['lines_of_code']}")
-    print(f"  Avg Line Length:          {before_metrics['avg_line_length']}")
+    print("\nTRƯỚC KHI THAY ĐỔI:")
+    print(f"  Độ phức tạp Cyclomatic:    {before_metrics['cyclomatic_complexity']}")
+    print(f"  Độ phức tạp Nhận thức:      {before_metrics['cognitive_complexity']}")
+    print(f"  Chỉ số Khả năng Bảo trì:    {before_metrics['maintainability_index']}")
+    print(f"  Số dòng mã:                {before_metrics['lines_of_code']}")
+    print(f"  Độ dài dòng trung bình:    {before_metrics['avg_line_length']}")
 
-    print("\nAFTER:")
-    print(f"  Cyclomatic Complexity:    {after_metrics['cyclomatic_complexity']}")
-    print(f"  Cognitive Complexity:     {after_metrics['cognitive_complexity']}")
-    print(f"  Maintainability Index:    {after_metrics['maintainability_index']}")
-    print(f"  Lines of Code:            {after_metrics['lines_of_code']}")
-    print(f"  Avg Line Length:          {after_metrics['avg_line_length']}")
+    print("\nSAU KHI THAY ĐỔI:")
+    print(f"  Độ phức tạp Cyclomatic:    {after_metrics['cyclomatic_complexity']}")
+    print(f"  Độ phức tạp Nhận thức:      {after_metrics['cognitive_complexity']}")
+    print(f"  Chỉ số Khả năng Bảo trì:    {after_metrics['maintainability_index']}")
+    print(f"  Số dòng mã:                {after_metrics['lines_of_code']}")
+    print(f"  Độ dài dòng trung bình:    {after_metrics['avg_line_length']}")
 
-    print("\nCHANGES:")
+    print("\nTHAY ĐỔI:")
     cyclomatic_change = after_metrics['cyclomatic_complexity'] - before_metrics['cyclomatic_complexity']
     cognitive_change = after_metrics['cognitive_complexity'] - before_metrics['cognitive_complexity']
     mi_change = after_metrics['maintainability_index'] - before_metrics['maintainability_index']
     loc_change = after_metrics['lines_of_code'] - before_metrics['lines_of_code']
 
-    print(f"  Cyclomatic Complexity:    {cyclomatic_change:+d}")
-    print(f"  Cognitive Complexity:     {cognitive_change:+d}")
-    print(f"  Maintainability Index:    {mi_change:+.2f}")
-    print(f"  Lines of Code:            {loc_change:+d}")
+    print(f"  Độ phức tạp Cyclomatic:    {cyclomatic_change:+d}")
+    print(f"  Độ phức tạp Nhận thức:      {cognitive_change:+d}")
+    print(f"  Chỉ số Khả năng Bảo trì:    {mi_change:+.2f}")
+    print(f"  Số dòng mã:                {loc_change:+d}")
 
-    print("\nASSESSMENT:")
+    print("\nĐÁNH GIÁ:")
     if mi_change > 0:
-        print("  ✅ Code is MORE maintainable")
+        print("  ✅ Mã nguồn DỄ BẢO TRÌ HƠN")
     elif mi_change < 0:
-        print("  ⚠️  Code is LESS maintainable")
+        print("  ⚠️  Mã nguồn KHÓ BẢO TRÌ HƠN")
     else:
-        print("  ➡️  Maintainability unchanged")
+        print("  ➡️  Khả năng bảo trì không đổi")
+e versions."""
 
-    if cyclomatic_change < 0:
-        print("  ✅ Complexity DECREASED")
-    elif cyclomatic_change > 0:
-        print("  ⚠️  Complexity INCREASED")
-    else:
-        print("  ➡️  Complexity unchanged")
-
-    print("=" * 60)
-
-
-if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: python compare-complexity.py <before_file> <after_file>")
-        sys.exit(1)
-
-    compare_files(sys.argv[1], sys.argv[2])
-```
-
-## Template: review-checklist.md
-
-```markdown
-# Code Review Checklist
-
-## Security Checklist
-- [ ] No hardcoded credentials or secrets
-- [ ] Input validation on all user inputs
-- [ ] SQL injection prevention (parameterized queries)
-- [ ] CSRF protection on state-changing operations
-- [ ] XSS prevention with proper escaping
-- [ ] Authentication checks on protected endpoints
-- [ ] Authorization checks on resources
-- [ ] Secure password hashing (bcrypt, argon2)
-- [ ] No sensitive data in logs
-- [ ] HTTPS enforced
-
-## Performance Checklist
-- [ ] No N+1 queries
-- [ ] Appropriate use of indexes
-- [ ] Caching implemented where beneficial
-- [ ] No blocking operations on main thread
-- [ ] Async/await used correctly
-- [ ] Large datasets paginated
-- [ ] Database connections pooled
-- [ ] Regular expressions optimized
-- [ ] No unnecessary object creation
-- [ ] Memory leaks prevented
-
-## Quality Checklist
-- [ ] Functions < 50 lines
-- [ ] Clear variable naming
-- [ ] No duplicate code
-- [ ] Proper error handling
-- [ ] Comments explain WHY, not WHAT
-- [ ] No console.logs in production
-- [ ] Type checking (TypeScript/JSDoc)
-- [ ] SOLID principles followed
-- [ ] Design patterns applied correctly
-- [ ] Self-documenting code
-
-## Testing Checklist
-- [ ] Unit tests written
-- [ ] Edge cases covered
-- [ ] Error scenarios tested
-- [ ] Integration tests present
-- [ ] Coverage > 80%
-- [ ] No flaky tests
-- [ ] Mock external dependencies
-- [ ] Clear test names
-```
-
-## Template: finding-template.md
-
-~~~~markdown
-# Code Review Finding Template
-
-Use this template when documenting each issue found during code review.
-
----
-
-## Issue: [TITLE]
-
-### Severity
-- [ ] Critical (blocks deployment)
-- [ ] High (should fix before merge)
-- [ ] Medium (should fix soon)
-- [ ] Low (nice to have)
-
-### Category
-- [ ] Security
-- [ ] Performance
-- [ ] Code Quality
-- [ ] Maintainability
-- [ ] Testing
-- [ ] Design Pattern
-- [ ] Documentation
-
-### Location
-**File:** `src/components/UserCard.tsx`
-
-**Lines:** 45-52
-
-**Function/Method:** `renderUserDetails()`
-
-### Issue Description
-
-**What:** Describe what the issue is.
-
-**Why it matters:** Explain the impact and why this needs to be fixed.
-
-**Current behavior:** Show the problematic code or behavior.
-
-**Expected behavior:** Describe what should happen instead.
-
-### Code Example
-
-#### Current (Problematic)
-
-```typescript
-// Shows the N+1 query problem
-const users = fetchUsers();
+    with open(before_fconst users = fetchUsers();
 users.forEach(user => {
-  const posts = fetchUserPosts(user.id); // Query per user!
+  const posts = fetchUserPosts(user.id); // Truy vấn theo từng user! (Lỗi N+1)
   renderUserPosts(posts);
 });
 ```
 
-#### Suggested Fix
+#### Cách sửa đề xuất
 
 ```typescript
-// Optimized with JOIN query
+// Được tối ưu hóa với truy vấn JOIN
 const usersWithPosts = fetchUsersWithPosts();
 usersWithPosts.forEach(({ user, posts }) => {
   renderUserPosts(posts);
 });
 ```
 
-### Impact Analysis
+### Phân tích tác động
 
-| Aspect | Impact | Severity |
-|--------|--------|----------|
-| Performance | 100+ queries for 20 users | High |
-| User Experience | Slow page load | High |
-| Scalability | Breaks at scale | Critical |
-| Maintainability | Hard to debug | Medium |
+| Khía cạnh | Tác động | Mức độ nghiêm trọng |
+|-----------|----------|-----------------------|
+| Hiệu suất | >100 truy vấn cho 20 người dùng | Cao |
+| Trải nghiệm người dùng | Trang tải chậm | Cao |
+| Khả năng mở rộng | Gây treo hệ thống khi dữ liệu lớn | Nghiêm trọng |
+| Khả năng bảo trì | Khó debug | Trung bình |
 
-### Related Issues
+### Các Issue liên quan
 
-- Similar issue in `AdminUserList.tsx` line 120
-- Related PR: #456
-- Related issue: #789
+- Lỗi tương tự trong `AdminUserList.tsx` dòng 120
+- PR liên quan: #456
+- Issue liên quan: #789
 
-### Additional Resources
+### Tài nguyên bổ sung
 
-- [N+1 Query Problem](https://en.wikipedia.org/wiki/N%2B1_problem)
-- [Database Join Documentation](https://docs.example.com/joins)
-- [Performance Optimization Guide](./docs/performance.md)
+- [Vấn đề truy vấn N+1](https://en.wikipedia.org/wiki/N%2B1_problem)
+- [Tài liệu về Database Join](https://docs.example.com/joins)
+- [Hướng dẫn tối ưu hiệu suất](./docs/performance.md)
 
-### Reviewer Notes
+### Ghi chú của Reviewer
 
-- This is a common pattern in this codebase
-- Consider adding this to the code style guide
-- Might be worth creating a helper function
+- Đây là một pattern phổ biến trong codebase này
+- Cân nhắc thêm nội dung này vào hướng dẫn phong cách code (code style guide)
+- Có thể nên tạo một hàm helper dùng chung
 
-### Author Response (for feedback)
+### Phản hồi của tác giả (để nhận feedback)
 
-*To be filled by the code author:*
+*Phần này dành cho tác giả của mã nguồn điền vào:*
 
-- [ ] Fix implemented in commit: `abc123`
-- [ ] Fix status: Complete / In Progress / Needs Discussion
-- [ ] Questions or concerns: (describe)
+- [ ] Đã sửa trong commit: `abc123`
+- [ ] Trạng thái sửa lỗi: Hoàn thành / Đang thực hiện / Cần thảo luận
+- [ ] Câu hỏi hoặc lo ngại: (mô tả)
 
 ---
 
-## Finding Statistics (for Reviewer)
+## Thống kê phát hiện (Dành cho Reviewer)
 
-When reviewing multiple findings, track:
+Khi review nhiều phát hiện, hãy theo dõi:
 
-- **Total Issues Found:** X
-- **Critical:** X
-- **High:** X
-- **Medium:** X
-- **Low:** X
+- **Tổng số vấn đề tìm thấy:** X
+- **Nghiêm trọng (Critical):** X
+- **Cao (High):** X
+- **Trung bình (Medium):** X
+- **Thấp (Low):** X
 
-**Recommendation:** ✅ Approve / ⚠️ Request Changes / 🔄 Needs Discussion
+**Khuyến nghị:** ✅ Phê duyệt (Approve) / ⚠️ Yêu cầu thay đổi (Request Changes) / 🔄 Cần thảo luận thêm
 
-**Overall Code Quality:** 1-5 stars
+**Chất lượng code tổng thể:** 1-5 sao
 ~~~~
 
-## Usage Example
+## Ví dụ sử dụng
 
 ~~~~markdown
-User: Review this React component code
+Người dùng: Review đoạn code React component này giúp tôi
 
-Claude: I'll conduct a comprehensive code review using my Code Review Skill.
+Claude: Tôi sẽ tiến hành review mã nguồn toàn diện bằng Skill Review Mã nguồn của mình.
 
-[Loads SKILL.md]
-[Analyzes code against checklist]
-[Runs Python metrics script]
-[Applies templates]
+[Tải SKILL.md]
+[Phân tích code dựa trên checklist]
+[Chạy script Python phân tích chỉ số]
+[Áp dụng các mẫu template]
 
-## Code Review Results
+## Kết quả Review Mã nguồn
 
-### Summary
-Quality Score: 3.5/5
-Key Findings: 7 items
-Priority Areas: Performance optimization, error handling
+### Tóm tắt
+Điểm chất lượng: 3.5/5
+Các phát hiện chính: 7 mục
+Khu vực ưu tiên: Tối ưu hiệu suất, xử lý lỗi
 
-### Critical Issues: 1
+### Các vấn đề nghiêm trọng: 1
 
-**Issue**: N+1 Query Problem
-**Location**: UserComponent.tsx, lines 45-52
-**Impact**: Renders 100+ database queries for list of 20 users
-**Severity**: High
-**Fix**:
+**Vấn đề**: Lỗi truy vấn N+1 (N+1 Query Problem)
+**Vị trí**: UserComponent.tsx, dòng 45-52
+**Tác động**: Thực thi >100 truy vấn DB cho danh sách 20 người dùng
+**Mức độ nghiêm trọng**: Cao
+**Cách sửa**:
 ```javascript
-// Before: N+1 queries
+// Trước: N+1 truy vấn
 const users = fetchUsers();
-users.forEach(user => fetchUserPosts(user.id)); // 20+ queries
+users.forEach(user => fetchUserPosts(user.id)); // 20+ truy vấn
 
-// After: Single query with JOIN
-const users = fetchUsersWithPosts(); // 1 query
+// Sau: Truy vấn đơn với JOIN
+const users = fetchUsersWithPosts(); // 1 truy vấn duy nhất
 ```
 
-### Performance Findings
-- Missing pagination on large lists
-- Recommendation: Use React.memo() for items
-- Database query: Could be optimized with index
+### Phát hiện về Hiệu suất
+- Thiếu phân trang (pagination) cho danh sách lớn
+- Khuyến nghị: Sử dụng React.memo() cho các item
+- Truy vấn DB: Có thể tối ưu hóa bằng index
 
-### Quality Findings
-- Function in line 20 is 127 lines (max: 50)
-- Missing error boundary
-- Props should have TypeScript types
+### Phát hiện về Chất lượng
+- Hàm ở dòng 20 dài 127 dòng (tối đa: 50)
+- Thiếu error boundary
+- Props nên có kiểu dữ liệu TypeScript
 ~~~~
 
-#### Example 2: Brand Voice Skill
+#### Ví dụ 2: Skill Giọng văn Thương hiệu (Brand Voice)
 
-**Directory Structure:**
+**Cấu trúc thư mục:**
 
 ```
 .claude/skills/brand-voice/
@@ -1848,176 +1560,177 @@ const users = fetchUsersWithPosts(); // 1 query
     └── blog-post-template.md
 ```
 
-**File:** `.claude/skills/brand-voice/SKILL.md`
+**Tệp:** `.claude/skills/brand-voice/SKILL.md`
 
 ```yaml
 ---
-name: Brand Voice Consistency
-description: Ensure all communication matches brand voice and tone guidelines
+name: Tính nhất quán của Thương hiệu
+description: Đảm bảo mọi giao tiếp phù hợp với hướng dẫn về giọng văn và tông điệu thương hiệu
 tags:
   - brand
   - writing
   - consistency
-when_to_use: When creating marketing copy, customer communications, or public-facing content
+when_to_use: Khi tạo nội dung marketing, giao tiếp với khách hàng hoặc nội dung công khai
 ---
 
-# Brand Voice Skill
+# Skill Giọng văn Thương hiệu
 
-## Overview
-This skill ensures all communications maintain consistent brand voice, tone, and messaging.
+## Tổng quan
+Skill này đảm bảo mọi giao tiếp duy trì tính nhất quán về giọng văn, tông điệu và thông điệp thương hiệu.
 
-## Brand Identity
+## Bản sắc Thương hiệu
 
-### Mission
-Help teams automate their development workflows with AI
+### Sứ mệnh
+Giúp các đội ngũ tự động hóa quy trình phát triển của họ bằng AI
 
-### Values
-- **Simplicity**: Make complex things simple
-- **Reliability**: Rock-solid execution
-- **Empowerment**: Enable human creativity
+### Giá trị cốt lõi
+- **Sự đơn giản**: Làm cho những điều phức tạp trở nên đơn giản
+- **Sự tin cậy**: Thực thi vững chắc như bàn thạch
+- **Sự trao quyền**: Thúc đẩy khả năng sáng tạo của con người
 
-### Tone of Voice
-- **Friendly but professional** - approachable without being casual
-- **Clear and concise** - avoid jargon, explain technical concepts simply
-- **Confident** - we know what we're doing
-- **Empathetic** - understand user needs and pain points
+### Tông điệu (Tone of Voice)
+- **Thân thiện nhưng chuyên nghiệp** - dễ tiếp cận nhưng không suồng sã
+- **Rõ ràng và ngắn gọn** - tránh thuật ngữ khó hiểu, giải thích các khái niệm kỹ thuật một cách đơn giản
+- **Tự tin** - chúng tôi biết mình đang làm gì
+- **Thấu hiểu** - hiểu nhu cầu và khó khăn của người dùng
 
-## Writing Guidelines
+## Hướng dẫn Viết
 
-### Do's ✅
-- Use "you" when addressing readers
-- Use active voice: "Claude generates reports" not "Reports are generated by Claude"
-- Start with value proposition
-- Use concrete examples
-- Keep sentences under 20 words
-- Use lists for clarity
-- Include calls-to-action
+### Nên làm ✅
+- Sử dụng "bạn" khi xưng hô với người đọc
+- Sử dụng câu chủ động: "Claude tạo báo cáo" thay vì "Báo cáo được tạo bởi Claude"
+- Bắt đầu với giá trị mang lại (value proposition)
+- Sử dụng các ví dụ cụ thể
+- Giữ câu văn dưới 20 từ
+- Sử dụng danh sách (list) để tăng độ rõ ràng
+- Bao gồm lời kêu gọi hành động (CTA)
 
-### Don'ts ❌
-- Don't use corporate jargon
-- Don't patronize or oversimplify
-- Don't use "we believe" or "we think"
-- Don't use ALL CAPS except for emphasis
-- Don't create walls of text
-- Don't assume technical knowledge
+### Không nên làm ❌
+- Không sử dụng thuật ngữ doanh nghiệp sáo rỗng (corporate jargon)
+- Không trịch thượng hoặc làm đơn giản hóa quá mức
+- Không sử dụng "chúng tôi tin rằng" hoặc "chúng tôi nghĩ rằng"
+- Không viết HOA TOÀN BỘ trừ khi muốn nhấn mạnh
+- Không tạo ra những "bức tường văn bản" quá dài
+- Không mặc định người dùng đã có kiến thức kỹ thuật
 
-## Vocabulary
+## Từ vựng
 
-### ✅ Preferred Terms
-- Claude (not "the Claude AI")
-- Code generation (not "auto-coding")
-- Agent (not "bot")
-- Streamline (not "revolutionize")
-- Integrate (not "synergize")
+### ✅ Thuật ngữ ưu tiên
+- Claude (không phải "AI Claude")
+- Tạo mã nguồn (không phải "code tự động")
+- Agent (không phải "bot")
+- Tối ưu hóa (không phải "cách mạng hóa")
+- Tích hợp (không phải "hiệp lực")
 
-### ❌ Avoid Terms
-- "Cutting-edge" (overused)
-- "Game-changer" (vague)
-- "Leverage" (corporate-speak)
-- "Utilize" (use "use")
-- "Paradigm shift" (unclear)
+### ❌ Thuật ngữ cần tránh
+- "Đỉnh cao/Hàng đầu" (bị lạm dụng)
+- "Thay đổi cuộc chơi" (mơ hồ)
+- "Tận dụng/Đòn bẩy" (văn phong công sở sáo rỗng)
+- "Vận dụng" (hãy dùng "sử dụng")
+- "Bước ngoặt lịch sử" (không rõ ràng)
 ```
-## Examples
 
-### ✅ Good Example
-"Claude automates your code review process. Instead of manually checking each PR, Claude reviews security, performance, and quality—saving your team hours every week."
+## Ví dụ
 
-Why it works: Clear value, specific benefits, action-oriented
+### ✅ Ví dụ Tốt
+"Claude tự động hóa quy trình review mã nguồn của bạn. Thay vì kiểm tra từng PR một cách thủ công, Claude sẽ review bảo mật, hiệu suất và chất lượng—giúp đội ngũ của bạn tiết kiệm hàng giờ mỗi tuần."
 
-### ❌ Bad Example
-"Claude leverages cutting-edge AI to provide comprehensive software development solutions."
+Tại sao hiệu quả: Giá trị rõ ràng, lợi ích cụ thể, hướng tới hành động.
 
-Why it doesn't work: Vague, corporate jargon, no specific value
+### ❌ Ví dụ Xấu
+"Claude vận dụng AI đỉnh cao để cung cấp các giải pháp phát triển phần mềm toàn diện."
+
+Tại sao không hiệu quả: Mơ hồ, dùng thuật ngữ sáo rỗng, không có giá trị cụ thể.
 
 ## Template: Email
 
 ```
-Subject: [Clear, benefit-driven subject]
+Tiêu đề: [Tiêu đề rõ ràng, hướng tới lợi ích]
 
-Hi [Name],
+Chào [Tên],
 
-[Opening: What's the value for them]
+[Mở đầu: Giá trị mang lại cho họ là gì]
 
-[Body: How it works / What they'll get]
+[Thân bài: Cách thức hoạt động / Họ sẽ nhận được gì]
 
-[Specific example or benefit]
+[Ví dụ hoặc lợi ích cụ thể]
 
-[Call to action: Clear next step]
+[Lời kêu gọi hành động: Bước tiếp theo rõ ràng]
 
-Best regards,
-[Name]
+Trân trọng,
+[Tên]
 ```
 
-## Template: Social Media
+## Template: Mạng xã hội
 
 ```
-[Hook: Grab attention in first line]
-[2-3 lines: Value or interesting fact]
-[Call to action: Link, question, or engagement]
-[Emoji: 1-2 max for visual interest]
+[Hook: Thu hút sự chú ý ngay dòng đầu tiên]
+[2-3 dòng: Giá trị hoặc sự thật thú vị]
+[Lời kêu gọi hành động: Link, câu hỏi hoặc tương tác]
+[Emoji: Tối đa 1-2 cái để tăng sự thú vị]
 ```
 
-## File: tone-examples.md
+## Tệp: tone-examples.md
 ```
-Exciting announcement:
-"Save 8 hours per week on code reviews. Claude reviews your PRs automatically."
+Thông báo hào hứng:
+"Tiết kiệm 8 giờ mỗi tuần cho việc review code. Claude sẽ review PR của bạn một cách tự động."
 
-Empathetic support:
-"We know deployments can be stressful. Claude handles testing so you don't have to worry."
+Hỗ trợ thấu hiểu:
+"Chúng tôi hiểu rằng việc deploy có thể rất căng thẳng. Claude sẽ đảm nhận phần kiểm thử để bạn không còn phải lo lắng."
 
-Confident product feature:
-"Claude doesn't just suggest code. It understands your architecture and maintains consistency."
+Tính năng sản phẩm tự tin:
+"Claude không chỉ gợi ý code. Nó hiểu kiến trúc của bạn và duy trì tính nhất quán."
 
-Educational blog post:
-"Let's explore how agents improve code review workflows. Here's what we learned..."
+Bài blog giáo dục:
+"Hãy cùng khám phá cách các agent cải thiện quy trình review mã nguồn. Đây là những gì chúng tôi đã học được..."
 ```
 
-#### Example 3: Documentation Generator Skill
+#### Ví dụ 3: Skill Tạo Tài liệu (Documentation Generator)
 
-**File:** `.claude/skills/doc-generator/SKILL.md`
+**Tệp:** `.claude/skills/doc-generator/SKILL.md`
 
 ~~~~yaml
 ---
-name: API Documentation Generator
-description: Generate comprehensive, accurate API documentation from source code
+name: Trình tạo Tài liệu API
+description: Tạo tài liệu API toàn diện và chính xác từ mã nguồn
 version: "1.0.0"
 tags:
   - documentation
   - api
   - automation
-when_to_use: When creating or updating API documentation
+when_to_use: Khi tạo mới hoặc cập nhật tài liệu API
 ---
 
-# API Documentation Generator Skill
+# Skill Trình tạo Tài liệu API
 
-## Generates
+## Các sản phẩm tạo ra
 
-- OpenAPI/Swagger specifications
-- API endpoint documentation
-- SDK usage examples
-- Integration guides
-- Error code references
-- Authentication guides
+- Đặc tả OpenAPI/Swagger
+- Tài liệu chi tiết các endpoint API
+- Ví dụ sử dụng SDK
+- Hướng dẫn tích hợp
+- Danh mục mã lỗi (error codes)
+- Hướng dẫn xác thực
 
-## Documentation Structure
+## Cấu trúc Tài liệu
 
-### For Each Endpoint
+### Cho mỗi Endpoint
 
 ```markdown
 ## GET /api/v1/users/:id
 
-### Description
-Brief explanation of what this endpoint does
+### Mô tả
+Giải thích ngắn gọn endpoint này làm gì
 
-### Parameters
+### Tham số
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| id | string | Yes | User ID |
+| Tên | Kiểu | Bắt buộc | Mô tả |
+|-----|------|----------|-------|
+| id | string | Có | ID người dùng |
 
-### Response
+### Phản hồi
 
-**200 Success**
+**200 Thành công**
 ```json
 {
   "id": "usr_123",
@@ -2027,15 +1740,15 @@ Brief explanation of what this endpoint does
 }
 ```
 
-**404 Not Found**
+**404 Không tìm thấy**
 ```json
 {
   "error": "USER_NOT_FOUND",
-  "message": "User does not exist"
+  "message": "Người dùng không tồn tại"
 }
 ```
 
-### Examples
+### Ví dụ
 
 **cURL**
 ```bash
@@ -2059,7 +1772,7 @@ response = requests.get(
 user = response.json()
 ```
 
-## Python Script: generate-docs.py
+## Script Python: generate-docs.py
 
 ```python
 #!/usr/bin/env python3
@@ -2068,13 +1781,13 @@ import json
 from typing import Dict, List
 
 class APIDocExtractor(ast.NodeVisitor):
-    """Extract API documentation from Python source code."""
+    """Trích xuất tài liệu API từ mã nguồn Python."""
 
     def __init__(self):
         self.endpoints = []
 
     def visit_FunctionDef(self, node):
-        """Extract function documentation."""
+        """Trích xuất tài liệu của hàm."""
         if node.name.startswith('get_') or node.name.startswith('post_'):
             doc = ast.get_docstring(node)
             endpoint = {
@@ -2087,20 +1800,20 @@ class APIDocExtractor(ast.NodeVisitor):
         self.generic_visit(node)
 
     def _extract_return_type(self, node):
-        """Extract return type from function annotation."""
+        """Trích xuất kiểu dữ liệu trả về từ annotation của hàm."""
         if node.returns:
             return ast.unparse(node.returns)
         return "Any"
 
 def generate_markdown_docs(endpoints: List[Dict]) -> str:
-    """Generate markdown documentation from endpoints."""
-    docs = "# API Documentation\n\n"
+    """Tạo tài liệu markdown từ danh sách endpoint."""
+    docs = "# Tài liệu API\n\n"
 
     for endpoint in endpoints:
         docs += f"## {endpoint['name']}\n\n"
         docs += f"{endpoint['docstring']}\n\n"
-        docs += f"**Parameters**: {', '.join(endpoint['params'])}\n\n"
-        docs += f"**Returns**: {endpoint['returns']}\n\n"
+        docs += f"**Tham số**: {', '.join(endpoint['params'])}\n\n"
+        docs += f"**Kiểu trả về**: {endpoint['returns']}\n\n"
         docs += "---\n\n"
 
     return docs
@@ -2115,28 +1828,30 @@ if __name__ == '__main__':
 
     markdown = generate_markdown_docs(extractor.endpoints)
     print(markdown)
+```
 ~~~~
-### Skill Discovery & Invocation
+
+### Quy trình Phát hiện & Gọi Skill
 
 ```mermaid
 graph TD
-    A["User Request"] --> B["Claude Analyzes"]
-    B -->|Scans| C["Available Skills"]
-    C -->|Metadata check| D["Skill Description Match?"]
-    D -->|Yes| E["Load SKILL.md"]
-    D -->|No| F["Try next skill"]
-    F -->|More skills?| D
-    F -->|No more| G["Use general knowledge"]
-    E --> H["Extract Instructions"]
-    H --> I["Execute Skill"]
-    I --> J["Return Results"]
+    A["Yêu cầu người dùng"] --> B["Claude phân tích"]
+    B -->|Quét| C["Các Skill có sẵn"]
+    C -->|Kiểm tra Metadata| D["Mô tả Skill phù hợp?"]
+    D -->|Có| E["Tải SKILL.md"]
+    D -->|Không| F["Thử Skill tiếp theo"]
+    F -->|Còn Skill?| D
+    F -->|Hết Skill| G["Sử dụng kiến thức chung"]
+    E --> H["Trích xuất hướng dẫn"]
+    H --> I["Thực thi Skill"]
+    I --> J["Trả về kết quả"]
 ```
 
-### Skill vs Other Features
+### So sánh Skill với các tính năng khác
 
 ```mermaid
 graph TB
-    A["Extending Claude"]
+    A["Mở rộng Claude"]
     B["Slash Commands"]
     C["Subagents"]
     D["Memory"]
@@ -2149,22 +1864,22 @@ graph TB
     A --> E
     A --> F
 
-    B -->|User-invoked| G["Quick shortcuts"]
-    C -->|Auto-delegated| H["Isolated contexts"]
-    D -->|Persistent| I["Cross-session context"]
-    E -->|Real-time| J["External data access"]
-    F -->|Auto-invoked| K["Autonomous execution"]
+    B -->|Người dùng gọi| G["Phím tắt nhanh"]
+    C -->|Tự động ủy quyền| H["Ngữ cảnh cô lập"]
+    D -->|Lưu trữ lâu dài| I["Ngữ cảnh đa phiên"]
+    E -->|Thời gian thực| J["Truy cập dữ liệu ngoài"]
+    F -->|Tự động gọi| K["Thực thi tự chủ"]
 ```
 
 ---
 
 ## Claude Code Plugins
 
-### Overview
+### Tổng quan
 
-Claude Code Plugins are bundled collections of customizations (slash commands, subagents, MCP servers, and hooks) that install with a single command. They represent the highest-level extension mechanism—combining multiple features into cohesive, shareable packages.
+Claude Code Plugins là tập hợp các tùy chỉnh (slash lệnh, subagents, MCP server và hooks) được đóng gói và cài đặt chỉ với một lệnh duy nhất. Chúng đại diện cho cơ chế mở rộng cấp cao nhất—kết hợp nhiều tính năng thành các gói thống nhất và có thể chia sẻ.
 
-### Architecture
+### Kiến trúc Plugin
 
 ```mermaid
 graph TB
@@ -2173,73 +1888,73 @@ graph TB
     C["Subagents"]
     D["MCP Servers"]
     E["Hooks"]
-    F["Configuration"]
+    F["Cấu hình"]
 
-    A -->|bundles| B
-    A -->|bundles| C
-    A -->|bundles| D
-    A -->|bundles| E
-    A -->|bundles| F
+    A -->|đóng gói| B
+    A -->|đóng gói| C
+    A -->|đóng gói| D
+    A -->|đóng gói| E
+    A -->|đóng gói| F
 ```
 
-### Plugin Loading Process
+### Quy trình tải Plugin
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Claude as Claude Code
-    participant Plugin as Plugin Marketplace
-    participant Install as Installation
+    participant Plugin as Chợ Plugin
+    participant Install as Cài đặt
     participant SlashCmds as Slash Commands
     participant Subagents
     participant MCPServers as MCP Servers
     participant Hooks
-    participant Tools as Configured Tools
+    participant Tools as Công cụ đã cấu hình
 
     User->>Claude: /plugin install pr-review
-    Claude->>Plugin: Download plugin manifest
-    Plugin-->>Claude: Return plugin definition
-    Claude->>Install: Extract components
-    Install->>SlashCmds: Configure
-    Install->>Subagents: Configure
-    Install->>MCPServers: Configure
-    Install->>Hooks: Configure
-    SlashCmds-->>Tools: Ready to use
-    Subagents-->>Tools: Ready to use
-    MCPServers-->>Tools: Ready to use
-    Hooks-->>Tools: Ready to use
-    Tools-->>Claude: Plugin installed ✅
+    Claude->>Plugin: Tải plugin manifest
+    Plugin-->>Claude: Trả về định nghĩa plugin
+    Claude->>Install: Trích xuất các thành phần
+    Install->>SlashCmds: Cấu hình
+    Install->>Subagents: Cấu hình
+    Install->>MCPServers: Cấu hình
+    Install->>Hooks: Cấu hình
+    SlashCmds-->>Tools: Sẵn sàng sử dụng
+    Subagents-->>Tools: Sẵn sàng sử dụng
+    MCPServers-->>Tools: Sẵn sàng sử dụng
+    Hooks-->>Tools: Sẵn sàng sử dụng
+    Tools-->>Claude: Đã cài đặt Plugin ✅
 ```
 
-### Plugin Types & Distribution
+### Loại Plugin & Phân phối
 
-| Type | Scope | Shared | Authority | Examples |
-|------|-------|--------|-----------|----------|
-| Official | Global | All users | Anthropic | PR Review, Security Guidance |
-| Community | Public | All users | Community | DevOps, Data Science |
-| Organization | Internal | Team members | Company | Internal standards, tools |
-| Personal | Individual | Single user | Developer | Custom workflows |
+| Loại | Phạm vi | Chia sẻ | Thẩm quyền | Ví dụ |
+|------|---------|---------|-----------|--------|
+| Chính thức | Toàn cầu | Mọi người dùng | Anthropic | Review PR, Hướng dẫn bảo mật |
+| Cộng đồng | Công khai | Mọi người dùng | Cộng đồng | DevOps, Khoa học dữ liệu |
+| Tổ chức | Nội bộ | Thành viên nhóm | Công ty | Tiêu chuẩn nội bộ, công cụ riêng |
+| Cá nhân | Cá nhân | Một người dùng | Nhà phát triển | Quy trình làm việc tùy chỉnh |
 
-### Plugin Definition Structure
+### Cấu trúc định nghĩa Plugin
 
 ```yaml
 ---
-name: plugin-name
+name: ten-plugin
 version: "1.0.0"
-description: "What this plugin does"
-author: "Your Name"
+description: "Plugin này làm gì"
+author: "Tên của bạn"
 license: MIT
 
-# Plugin metadata
+# Siêu dữ liệu plugin
 tags:
-  - category
-  - use-case
+  - danh-muc
+  - truong-hop-su-dung
 
-# Requirements
+# Yêu cầu
 requires:
   - claude-code: ">=1.0.0"
 
-# Components bundled
+# Các thành phần đi kèm
 components:
   - type: commands
     path: commands/
@@ -2250,14 +1965,14 @@ components:
   - type: hooks
     path: hooks/
 
-# Configuration
+# Cấu hình
 config:
   auto_load: true
   enabled_by_default: true
 ---
 ```
 
-### Plugin Structure
+### Cấu trúc thư mục Plugin
 
 ```
 my-plugin/
@@ -2291,17 +2006,233 @@ my-plugin/
     └── plugin.test.js
 ```
 
-### Practical Examples
+### Ví dụ thực tế
 
-#### Example 1: PR Review Plugin
+#### Ví dụ 1: Plugin Review PR
 
-**File:** `.claude-plugin/plugin.json`
+**Tệp:** `.claude-plugin/plugin.json`
 
 ```json
 {
   "name": "pr-review",
   "version": "1.0.0",
-  "description": "Complete PR review workflow with security, testing, and docs",
+  "description": "Toàn bộ quy trình review PR với bảo mật, kiểm thử và tài liệu",
+  "author": {
+    "name": "Anthropic"
+  },
+  "license": "MIT"
+}
+```
+
+**Tệp:** `commands/review-pr.md`
+
+```markdown
+---
+name: Review PR
+description: Bắt đầu review PR toàn diện với các kiểm tra bảo mật và kiểm thử
+---
+
+# PR Review
+
+Lệnh này bắt đầu một quy trình review pull request đầy đủ bao gồm:
+
+1. Phân tích bảo mật
+2. Xác minh độ bao phủ kiểm thử
+3. Cập nhật tài liệu
+4. Kiểm tra chất lượng code
+5. Đánh giá tác động hiệu suất
+```
+
+**Tệp:** `agents/security-reviewer.md`
+
+```yaml
+---
+name: security-reviewer
+description: Review mã nguồn tập trung vào bảo mật
+tools: read, grep, diff
+---
+
+# Chuyên gia Review Bảo mật
+
+Chuyên sâu vào việc tìm kiếm các lỗ hổng bảo mật:
+- Các vấn đề xác thực/phân quyền
+- Rò rỉ dữ liệu
+- Các cuộc tấn công Injection
+- Cấu hình bảo mật
+```
+
+**Cài đặt:**
+
+```bash
+/plugin install pr-review
+
+# Kết quả:
+# ✅ Đã cài đặt 3 slash lệnh
+# ✅ Đã cấu hình 3 subagents
+# ✅ Đã kết nối 2 MCP server
+# ✅ Đã đăng ký 4 hooks
+# ✅ Sẵn sàng sử dụng!
+```
+
+#### Ví dụ 2: Plugin DevOps
+
+**Các thành phần:**
+
+```
+devops-automation/
+├── commands/
+│   ├── deploy.md
+│   ├── rollback.md
+│   ├── status.md
+│   └── incident.md
+├── agents/
+│   ├── deployment-specialist.md
+│   ├── incident-commander.md
+│   └── alert-analyzer.md
+├── mcp/
+│   ├── github-config.json
+│   ├── kubernetes-config.json
+│   └── prometheus-config.json
+├── hooks/
+│   ├── pre-deploy.js
+│   ├── post-deploy.js
+│   └── on-error.js
+└── scripts/
+    ├── deploy.sh
+    ├── rollback.sh
+    └── health-check.sh
+```
+
+#### Ví dụ 3: Plugin Tài liệu (Documentation)
+
+**Các thành phần đi kèm:**
+
+```
+documentation/
+├── commands/
+│   ├── generate-api-docs.md
+│   ├── generate-readme.md
+│   ├── sync-docs.md
+│   └── validate-docs.md
+├── agents/
+│   ├── api-documenter.md
+│   ├── code-commentator.md
+│   └── example-generator.md
+├── mcp/
+│   ├── github-docs-config.json
+│   └── slack-announce-config.json
+└── templates/
+    ├── api-endpoint.md
+    ├── function-docs.md
+    └── adr-template.md
+```
+
+### Plugin Marketplace (Chợ Plugin)
+
+```mermaid
+graph TB
+    A["Chợ Plugin"]
+    B["Chính thức<br/>Anthropic"]
+    C["Chợ ứng dụng<br/>Cộng đồng"]
+    D["Kho lưu trữ<br/>Doanh nghiệp"]
+
+    A --> B
+    A --> C
+    A --> D
+
+    B -->|Danh mục| B1["Phát triển"]
+    B -->|Danh mục| B2["DevOps"]
+    B -->|Danh mục| B3["Tài liệu"]
+
+    C -->|Tìm kiếm| C1["Tự động hóa DevOps"]
+    C -->|Tìm kiếm| C2["Phát triển Mobile"]
+    C -->|Tìm kiếm| C3["Khoa học dữ liệu"]
+
+    D -->|Nội bộ| D1["Tiêu chuẩn công ty"]
+    D -->|Nội bộ| D2["Hệ thống cũ (Legacy)"]
+    D -->|Nội bộ| D3["Tuân thủ (Compliance)"]
+```
+
+### Cài đặt Plugin & Vòng đời
+
+```mermaid
+graph LR
+    A["Khám phá"] -->|Duyệt| B["Marketplace"]
+    B -->|Chọn| C["Trang Plugin"]
+    C -->|Xem| D["Các thành phần"]
+    D -->|Cài đặt| E["/plugin install"]
+    E -->|Trích xuất| F["Cấu hình"]
+    F -->|Kích hoạt| G["Sử dụng"]
+    G -->|Kiểm tra| H["Cập nhật"]
+    H -->|Có bản mới| G
+    G -->|Xong| I["Vô hiệu hóa"]
+    I -->|Sau đó| J["Bật lại"]
+    J -->|Quay lại| G
+```
+
+### So sánh các tính năng Plugin
+
+| Tính năng | Slash Command | Skill | Subagent | Plugin |
+|-----------|---------------|-------|----------|--------|
+| **Cài đặt** | Copy thủ công | Copy thủ công | Cấu hình thủ công | Một lệnh duy nhất |
+| **Thời gian thiết lập** | 5 phút | 10 phút | 15 phút | 2 phút |
+| **Đóng gói** | Một tệp đơn | Một tệp đơn | Một tệp đơn | Nhiều tệp |
+| **Phiên bản** | Thủ công | Thủ công | Thủ công | Tự động |
+| **Chia sẻ nhóm** | Copy tệp | Copy tệp | Copy tệp | Install ID |
+| **Cập nhật** | Thủ công | Thủ công | Thủ công | Có sẵn tự động |
+| **Phụ thuộc** | Không có | Không có | Không có | Có thể bao gồm |
+| **Marketplace** | Không | Không | Không | Có |
+| **Phân phối** | Kho lưu trữ | Kho lưu trữ | Kho lưu trữ | Marketplace |
+
+### Các trường hợp sử dụng Plugin
+
+| Trường hợp | Khuyến nghị | Tại sao |
+|------------|-------------|---------|
+| **Onboarding nhóm** | ✅ Dùng Plugin | Cài đặt tức thì mọi cấu hình |
+| **Thiết lập Framework** | ✅ Dùng Plugin | Đóng gói các lệnh đặc thù cho framework |
+| **Tiêu chuẩn doanh nghiệp** | ✅ Dùng Plugin | Phân phối tập trung, kiểm soát phiên bản |
+| **Tự động hóa tác vụ nhanh** | ❌ Dùng Command | Quá phức tạp cho việc nhỏ |
+| **Chuyên môn một lĩnh vực** | ❌ Dùng Skill | Quá nặng, hãy dùng skill thay thế |
+| **Phân tích chuyên dụng** | ❌ Dùng Subagent | Tạo thủ công hoặc dùng skill |
+| **Truy cập dữ liệu thực** | ❌ Dùng MCP | Đứng độc lập, không cần đóng gói |
+
+### Khi nào nên tạo Plugin
+
+```mermaid
+graph TD
+    A["Tôi có nên tạo một plugin?"]
+    A -->|Cần nhiều thành phần| B{"Nhiều lệnh<br/>hoặc subagents<br/>hoặc MCP?"}
+    B -->|Có| C["✅ Tạo Plugin"]
+    B -->|Không| D["Sử dụng tính năng lẻ"]
+    A -->|Quy trình nhóm| E{"Chia sẻ với<br/>nhóm?"}
+    E -->|Có| C
+    E -->|Không| F["Giữ cấu hình cục bộ"]
+    A -->|Thiết lập phức tạp| G{"Cần tự động<br/>cấu hình?"}
+    G -->|Có| C
+    G -->|Không| D
+```
+
+### Xuất bản một Plugin
+
+**Các bước xuất bản:**
+
+1. Tạo cấu trúc plugin với tất cả các thành phần
+2. Viết manifest `.claude-plugin/plugin.json`
+3. Tạo `README.md` kèm tài liệu hướng dẫn
+4. Kiểm thử cục bộ với `/plugin install ./my-plugin`
+5. Gửi lên chợ plugin (plugin marketplace)
+6. Được review và phê duyệt
+7. Được xuất bản trên marketplace
+8. Người dùng có thể cài đặt với một lệnh duy nhất
+
+**Ví dụ nội dung đệ trình:**
+
+~~~~markdown
+# Plugin Review PR
+
+## Mô tả
+Toàn bộ quy trình review PR với các kiểm tra về bảo mật, kiểm thử và tài liệu.
+ review workflow with security, testing, and docs",
   "author": {
     "name": "Anthropic"
   },
@@ -2467,381 +2398,381 @@ graph LR
 | **Updates** | Manual | Manual | Manual | Auto-available |
 | **Dependencies** | None | None | None | May include |
 | **Marketplace** | No | No | No | Yes |
-| **Distribution** | Repository | Repository | Repository | Marketplace |
+| **Phân phối** | Repository | Repository | Repository | Marketplace |
 
-### Plugin Use Cases
+### Các trường hợp sử dụng Plugin
 
-| Use Case | Recommendation | Why |
+| Trường hợp | Khuyến nghị | Tại sao |
 |----------|-----------------|-----|
-| **Team Onboarding** | ✅ Use Plugin | Instant setup, all configurations |
-| **Framework Setup** | ✅ Use Plugin | Bundles framework-specific commands |
-| **Enterprise Standards** | ✅ Use Plugin | Central distribution, version control |
-| **Quick Task Automation** | ❌ Use Command | Overkill complexity |
-| **Single Domain Expertise** | ❌ Use Skill | Too heavy, use skill instead |
-| **Specialized Analysis** | ❌ Use Subagent | Create manually or use skill |
-| **Live Data Access** | ❌ Use MCP | Standalone, don't bundle |
+| **Onboarding nhóm** | ✅ Dùng Plugin | Cài đặt tức thì, đầy đủ cấu hình |
+| **Thiết lập Framework** | ✅ Dùng Plugin | Gói các lệnh đặc thù của framework |
+| **Tiêu chuẩn doanh nghiệp** | ✅ Dùng Plugin | Phân phối tập trung, quản lý phiên bản |
+| **Tự động hóa tác vụ nhanh** | ❌ Dùng Command | Quá phức tạp không cần thiết |
+| **Chuyên môn một lĩnh vực** | ❌ Dùng Skill | Quá nặng, hãy dùng skill thay thế |
+| **Phân tích chuyên biệt** | ❌ Dùng Subagent | Tạo thủ công hoặc dùng skill |
+| **Truy cập dữ liệu trực tiếp** | ❌ Dùng MCP | Độc lập, không nên đóng gói kèm |
 
-### When to Create a Plugin
+### Khi nào nên tạo Plugin
 
 ```mermaid
 graph TD
-    A["Should I create a plugin?"]
-    A -->|Need multiple components| B{"Multiple commands<br/>or subagents<br/>or MCPs?"}
-    B -->|Yes| C["✅ Create Plugin"]
-    B -->|No| D["Use Individual Feature"]
-    A -->|Team workflow| E{"Share with<br/>team?"}
-    E -->|Yes| C
-    E -->|No| F["Keep as Local Setup"]
-    A -->|Complex setup| G{"Needs auto<br/>configuration?"}
-    G -->|Yes| C
-    G -->|No| D
+    A["Tôi có nên tạo plugin không?"]
+    A -->|Cần nhiều thành phần| B{"Nhiều lệnh<br/>hoặc subagents<br/>hoặc MCPs?"}
+    B -->|Có| C["✅ Tạo Plugin"]
+    B -->|Không| D["Dùng tính năng riêng lẻ"]
+    A -->|Quy trình làm việc nhóm| E{"Chia sẻ với<br/>nhóm?"}
+    E -->|Có| C
+    E -->|Không| F["Giữ thiết lập cục bộ"]
+    A -->|Thiết lập phức tạp| G{"Cần tự động<br/>cấu hình?"}
+    G -->|Có| C
+    G -->|Không| D
 ```
 
-### Publishing a Plugin
+### Xuất bản Plugin
 
-**Steps to publish:**
+**Các bước xuất bản:**
 
-1. Create plugin structure with all components
-2. Write `.claude-plugin/plugin.json` manifest
-3. Create `README.md` with documentation
-4. Test locally with `/plugin install ./my-plugin`
-5. Submit to plugin marketplace
-6. Get reviewed and approved
-7. Published on marketplace
-8. Users can install with one command
+1. Tạo cấu trúc plugin với tất cả các thành phần
+2. Viết manifest `.claude-plugin/plugin.json`
+3. Tạo `README.md` với tài liệu hướng dẫn
+4. Kiểm tra cục bộ với `/plugin install ./my-plugin`
+5. Gửi lên marketplace của plugin
+6. Được xem xét và phê duyệt
+7. Được xuất bản trên marketplace
+8. Người dùng có thể cài đặt bằng một lệnh duy nhất
 
-**Example submission:**
+**Ví dụ bản đăng ký:**
 
 ~~~~markdown
 # PR Review Plugin
 
-## Description
-Complete PR review workflow with security, testing, and documentation checks.
+## Mô tả
+Quy trình review PR hoàn chỉnh với các kiểm tra về bảo mật, thử nghiệm và tài liệu.
 
-## What's Included
-- 3 slash commands for different review types
-- 3 specialized subagents
-- GitHub and CodeQL MCP integration
-- Automated security scanning hooks
+## Những gì bao gồm
+- 3 slash commands cho các loại review khác nhau
+- 3 subagents chuyên biệt
+- Tích hợp GitHub và CodeQL MCP
+- Các hook quét bảo mật tự động
 
-## Installation
+## Cài đặt
 ```bash
 /plugin install pr-review
 ```
 
-## Features
-✅ Security analysis
-✅ Test coverage checking
-✅ Documentation verification
-✅ Code quality assessment
-✅ Performance impact analysis
+## Tính năng
+✅ Phân tích bảo mật
+✅ Kiểm tra độ bao phủ thử nghiệm (test coverage)
+✅ Xác minh tài liệu
+✅ Đánh giá chất lượng mã nguồn
+✅ Phân tích tác động hiệu năng
 
-## Usage
+## Cách dùng
 ```bash
 /review-pr
 /check-security
 /check-tests
 ```
 
-## Requirements
+## Yêu cầu
 - Claude Code 1.0+
-- GitHub access
-- CodeQL (optional)
+- Quyền truy cập GitHub
+- CodeQL (tùy chọn)
 ~~~~
 
-### Plugin vs Manual Configuration
+### Plugin so với Cấu hình thủ công
 
-**Manual Setup (2+ hours):**
-- Install slash commands one by one
-- Create subagents individually
-- Configure MCPs separately
-- Set up hooks manually
-- Document everything
-- Share with team (hope they configure correctly)
+**Thiết lập thủ công (2+ giờ):**
+- Cài đặt từng slash command một
+- Tạo từng subagent riêng lẻ
+- Cấu hình các MCP riêng biệt
+- Thiết lập các hook thủ công
+- Tài liệu hóa mọi thứ
+- Chia sẻ với nhóm (hy vọng họ cấu hình đúng)
 
-**With Plugin (2 minutes):**
+**Với Plugin (2 phút):**
 ```bash
 /plugin install pr-review
-# ✅ Everything installed and configured
-# ✅ Ready to use immediately
-# ✅ Team can reproduce exact setup
+# ✅ Mọi thứ đã được cài đặt và cấu hình
+# ✅ Sẵn sàng sử dụng ngay lập tức
+# ✅ Nhóm có thể tái lập chính xác thiết lập
 ```
 
 ---
 
-## Comparison & Integration
+## So sánh & Tích hợp
 
-### Feature Comparison Matrix
+### Bảng so sánh tính năng
 
-| Feature | Invocation | Persistence | Scope | Use Case |
+| Tính năng | Cách gọi | Tính bền vững | Phạm vi | Trường hợp sử dụng |
 |---------|-----------|------------|-------|----------|
-| **Slash Commands** | Manual (`/cmd`) | Session only | Single command | Quick shortcuts |
-| **Subagents** | Auto-delegated | Isolated context | Specialized task | Task distribution |
-| **Memory** | Auto-loaded | Cross-session | User/team context | Long-term learning |
-| **MCP Protocol** | Auto-queried | Real-time external | Live data access | Dynamic information |
-| **Skills** | Auto-invoked | Filesystem-based | Reusable expertise | Automated workflows |
+| **Slash Commands** | Thủ công (`/cmd`) | Chỉ trong phiên | Lệnh đơn lẻ | Phím tắt nhanh |
+| **Subagents** | Tự động điều phối | Ngữ cảnh cô lập | Tác vụ chuyên biệt | Phân chia công việc |
+| **Memory** | Tự động tải | Xuyên suốt các phiên | Ngữ cảnh người dùng/nhóm | Học tập dài hạn |
+| **MCP Protocol** | Tự động truy vấn | Ngoại vi thời gian thực | Truy cập dữ liệu sống | Thông tin động |
+| **Skills** | Tự động kích hoạt | Dựa trên hệ thống tệp | Chuyên môn tái sử dụng | Quy trình tự động |
 
-### Interaction Timeline
+### Dòng thời gian tương tác
 
 ```mermaid
 graph LR
-    A["Session Start"] -->|Load| B["Memory (CLAUDE.md)"]
-    B -->|Discover| C["Available Skills"]
-    C -->|Register| D["Slash Commands"]
-    D -->|Connect| E["MCP Servers"]
-    E -->|Ready| F["User Interaction"]
+    A["Bắt đầu phiên"] -->|Tải| B["Memory (CLAUDE.md)"]
+    B -->|Khám phá| C["Các Skills có sẵn"]
+    C -->|Đăng ký| D["Slash Commands"]
+    D -->|Kết nối| E["MCP Servers"]
+    E -->|Sẵn sàng| F["Tương tác người dùng"]
 
-    F -->|Type /cmd| G["Slash Command"]
-    F -->|Request| H["Skill Auto-Invoke"]
-    F -->|Query| I["MCP Data"]
-    F -->|Complex task| J["Delegate to Subagent"]
+    F -->|Nhập /cmd| G["Slash Command"]
+    F -->|Yêu cầu| H["Tự động gọi Skill"]
+    F -->|Truy vấn| I["Dữ liệu MCP"]
+    F -->|Tác vụ phức tạp| J["Ủy quyền cho Subagent"]
 
-    G -->|Uses| B
-    H -->|Uses| B
-    I -->|Uses| B
-    J -->|Uses| B
+    G -->|Sử dụng| B
+    H -->|Sử dụng| B
+    I -->|Sử dụng| B
+    J -->|Sử dụng| B
 ```
 
-### Practical Integration Example: Customer Support Automation
+### Ví dụ tích hợp thực tế: Tự động hóa hỗ trợ khách hàng
 
-#### Architecture
+#### Kiến trúc
 
 ```mermaid
 graph TB
-    User["Customer Email"] -->|Receives| Router["Support Router"]
+    User["Email khách hàng"] -->|Nhận| Router["Bộ định tuyến hỗ trợ"]
 
-    Router -->|Analyze| Memory["Memory<br/>Customer history"]
-    Router -->|Lookup| MCP1["MCP: Customer DB<br/>Previous tickets"]
-    Router -->|Check| MCP2["MCP: Slack<br/>Team status"]
+    Router -->|Phân tích| Memory["Bộ nhớ<br/>Lịch sử khách hàng"]
+    Router -->|Tra cứu| MCP1["MCP: DB Khách hàng<br/>Các ticket trước đó"]
+    Router -->|Kiểm tra| MCP2["MCP: Slack<br/>Trạng thái nhóm"]
 
-    Router -->|Route Complex| Sub1["Subagent: Tech Support<br/>Context: Technical issues"]
-    Router -->|Route Simple| Sub2["Subagent: Billing<br/>Context: Payment issues"]
-    Router -->|Route Urgent| Sub3["Subagent: Escalation<br/>Context: Priority handling"]
+    Router -->|Điều hướng phức tạp| Sub1["Subagent: Hỗ trợ kỹ thuật<br/>Ngữ cảnh: Vấn đề kỹ thuật"]
+    Router -->|Điều hướng đơn giản| Sub2["Subagent: Thanh toán<br/>Ngữ cảnh: Vấn đề thanh toán"]
+    Router -->|Điều hướng khẩn cấp| Sub3["Subagent: Leo thang<br/>Ngữ cảnh: Xử lý ưu tiên"]
 
-    Sub1 -->|Format| Skill1["Skill: Response Generator<br/>Brand voice maintained"]
-    Sub2 -->|Format| Skill2["Skill: Response Generator"]
-    Sub3 -->|Format| Skill3["Skill: Response Generator"]
+    Sub1 -->|Định dạng| Skill1["Skill: Trình tạo câu trả lời<br/>Duy trì giọng điệu thương hiệu"]
+    Sub2 -->|Định dạng| Skill2["Skill: Trình tạo câu trả lời"]
+    Sub3 -->|Định dạng| Skill3["Skill: Trình tạo câu trả lời"]
 
-    Skill1 -->|Generate| Output["Formatted Response"]
-    Skill2 -->|Generate| Output
-    Skill3 -->|Generate| Output
+    Skill1 -->|Tạo ra| Output["Câu trả lời đã định dạng"]
+    Skill2 -->|Tạo ra| Output
+    Skill3 -->|Tạo ra| Output
 
-    Output -->|Post| MCP3["MCP: Slack<br/>Notify team"]
-    Output -->|Send| Reply["Customer Reply"]
+    Output -->|Đăng| MCP3["MCP: Slack<br/>Thông báo cho nhóm"]
+    Output -->|Gửi| Reply["Phản hồi khách hàng"]
 ```
 
-#### Request Flow
+#### Luồng yêu cầu
 
 ```markdown
-## Customer Support Request Flow
+## Luồng yêu cầu hỗ trợ khách hàng
 
-### 1. Incoming Email
-"I'm getting error 500 when trying to upload files. This is blocking my workflow!"
+### 1. Email đến
+"Tôi gặp lỗi 500 khi cố gắng tải tập tin. Điều này đang làm gián đoạn công việc của tôi!"
 
-### 2. Memory Lookup
-- Loads CLAUDE.md with support standards
-- Checks customer history: VIP customer, 3rd incident this month
+### 2. Tra cứu bộ nhớ
+- Tải CLAUDE.md với các tiêu chuẩn hỗ trợ
+- Kiểm tra lịch sử khách hàng: Khách hàng VIP, sự cố thứ 3 trong tháng này
 
-### 3. MCP Queries
-- GitHub MCP: List open issues (finds related bug report)
-- Database MCP: Check system status (no outages reported)
-- Slack MCP: Check if engineering is aware
+### 3. Truy vấn MCP
+- GitHub MCP: Liệt kê các vấn đề đang mở (tìm thấy báo cáo lỗi liên quan)
+- Database MCP: Kiểm tra trạng thái hệ thống (không có báo cáo ngừng hoạt động)
+- Slack MCP: Kiểm tra xem đội ngũ kỹ thuật đã biết chưa
 
-### 4. Skill Detection & Loading
-- Request matches "Technical Support" skill
-- Loads support response template from Skill
+### 4. Phát hiện & Tải Skill
+- Yêu cầu khớp với skill "Hỗ trợ kỹ thuật"
+- Tải mẫu phản hồi hỗ trợ từ Skill
 
-### 5. Subagent Delegation
-- Routes to Tech Support Subagent
-- Provides context: customer history, error details, known issues
-- Subagent has full access to: read, bash, grep tools
+### 5. Ủy quyền Subagent
+- Điều hướng đến Subagent Hỗ trợ kỹ thuật
+- Cung cấp ngữ cảnh: lịch sử khách hàng, chi tiết lỗi, các vấn đề đã biết
+- Subagent có toàn quyền truy cập: các công cụ read, bash, grep
 
-### 6. Subagent Processing
-Tech Support Subagent:
-- Searches codebase for 500 error in file upload
-- Finds recent change in commit 8f4a2c
-- Creates workaround documentation
+### 6. Xử lý của Subagent
+Subagent Hỗ trợ kỹ thuật:
+- Tìm kiếm trong mã nguồn lỗi 500 khi tải tập tin
+- Tìm thấy thay đổi gần đây trong commit 8f4a2c
+- Tạo tài liệu hướng dẫn khắc phục tạm thời
 
-### 7. Skill Execution
-Response Generator Skill:
-- Uses Brand Voice guidelines
-- Formats response with empathy
-- Includes workaround steps
-- Links to related documentation
+### 7. Thực thi Skill
+Skill Trình tạo câu trả lời:
+- Sử dụng hướng dẫn Giọng điệu thương hiệu
+- Định dạng phản hồi với sự thấu cảm
+- Bao gồm các bước khắc phục tạm thời
+- Liên kết đến tài liệu liên quan
 
-### 8. MCP Output
-- Posts update to #support Slack channel
-- Tags engineering team
-- Updates ticket in Jira MCP
+### 8. Đầu ra MCP
+- Đăng cập nhật lên kênh Slack #support
+- Gắn thẻ đội ngũ kỹ thuật
+- Cập nhật ticket trong Jira MCP
 
-### 9. Response
-Customer receives:
-- Empathetic acknowledgment
-- Explanation of cause
-- Immediate workaround
-- Timeline for permanent fix
-- Link to related issues
+### 9. Phản hồi
+Khách hàng nhận được:
+- Sự xác nhận thấu hiểu
+- Giải thích nguyên nhân
+- Cách khắc phục tạm thời ngay lập tức
+- Lộ trình sửa lỗi vĩnh viễn
+- Liên kết đến các vấn đề liên quan
 ```
 
-### Complete Feature Orchestration
+### Điều phối tính năng hoàn chỉnh
 
 ```mermaid
 sequenceDiagram
-    participant User
+    participant User as Người dùng
     participant Claude as Claude Code
-    participant Memory as Memory<br/>CLAUDE.md
+    participant Memory as Bộ nhớ<br/>CLAUDE.md
     participant MCP as MCP Servers
     participant Skills as Skills
     participant SubAgent as Subagents
 
-    User->>Claude: Request: "Build auth system"
-    Claude->>Memory: Load project standards
-    Memory-->>Claude: Auth standards, team practices
-    Claude->>MCP: Query GitHub for similar implementations
-    MCP-->>Claude: Code examples, best practices
-    Claude->>Skills: Detect matching Skills
-    Skills-->>Claude: Security Review Skill + Testing Skill
-    Claude->>SubAgent: Delegate implementation
-    SubAgent->>SubAgent: Build feature
-    Claude->>Skills: Apply Security Review Skill
-    Skills-->>Claude: Security checklist results
-    Claude->>SubAgent: Delegate testing
-    SubAgent-->>Claude: Test results
-    Claude->>User: Complete system delivered
+    User->>Claude: Yêu cầu: "Xây dựng hệ thống auth"
+    Claude->>Memory: Tải các tiêu chuẩn dự án
+    Memory-->>Claude: Tiêu chuẩn auth, thực hành của nhóm
+    Claude->>MCP: Truy vấn GitHub cho các triển khai tương tự
+    MCP-->>Claude: Ví dụ mã, thực hành tốt nhất
+    Claude->>Skills: Phát hiện các Skills phù hợp
+    Skills-->>Claude: Skill Review Bảo mật + Skill Testing
+    Claude->>SubAgent: Ủy quyền triển khai
+    SubAgent->>SubAgent: Xây dựng tính năng
+    Claude->>Skills: Áp dụng Skill Review Bảo mật
+    Skills-->>Claude: Kết quả checklist bảo mật
+    Claude->>SubAgent: Ủy quyền thử nghiệm
+    SubAgent-->>Claude: Kết quả thử nghiệm
+    Claude->>User: Hệ thống hoàn chỉnh đã được bàn giao
 ```
 
-### When to Use Each Feature
+### Khi nào nên dùng từng tính năng
 
 ```mermaid
 graph TD
-    A["New Task"] --> B{Type of Task?}
+    A["Tác vụ mới"] --> B{Loại tác vụ?}
 
-    B -->|Repeated workflow| C["Slash Command"]
-    B -->|Need real-time data| D["MCP Protocol"]
-    B -->|Remember for next time| E["Memory"]
-    B -->|Specialized subtask| F["Subagent"]
-    B -->|Domain-specific work| G["Skill"]
+    B -->|Quy trình lặp lại| C["Slash Command"]
+    B -->|Cần dữ liệu thời gian thực| D["Giao thức MCP"]
+    B -->|Ghi nhớ cho lần sau| E["Bộ nhớ (Memory)"]
+    B -->|Tác vụ con chuyên biệt| F["Subagent"]
+    B -->|Công việc đặc thù lĩnh vực| G["Skill"]
 
-    C --> C1["✅ Team shortcut"]
-    D --> D1["✅ Live API access"]
-    E --> E1["✅ Persistent context"]
-    F --> F1["✅ Parallel execution"]
-    G --> G1["✅ Auto-invoked expertise"]
+    C --> C1["✅ Phím tắt của nhóm"]
+    D --> D1["✅ Truy cập API trực tiếp"]
+    E --> E1["✅ Ngữ cảnh bền vững"]
+    F --> F1["✅ Thực thi song song"]
+    G --> G1["✅ Chuyên môn tự động gọi"]
 ```
 
-### Selection Decision Tree
+### Cây quyết định lựa chọn
 
 ```mermaid
 graph TD
-    Start["Need to extend Claude?"]
+    Start["Cần mở rộng Claude?"]
 
-    Start -->|Quick repeated task| A{"Manual or Auto?"}
-    A -->|Manual| B["Slash Command"]
-    A -->|Auto| C["Skill"]
+    Start -->|Tác vụ nhanh lặp lại| A{"Thủ công hay Tự động?"}
+    A -->|Thủ công| B["Slash Command"]
+    A -->|Tự động| C["Skill"]
 
-    Start -->|Need external data| D{"Real-time?"}
-    D -->|Yes| E["MCP Protocol"]
-    D -->|No/Cross-session| F["Memory"]
+    Start -->|Cần dữ liệu bên ngoài| D{"Thời gian thực?"}
+    D -->|Có| E["Giao thức MCP"]
+    D -->|Không/Xuyên suốt các phiên| F["Bộ nhớ (Memory)"]
 
-    Start -->|Complex project| G{"Multiple roles?"}
-    G -->|Yes| H["Subagents"]
-    G -->|No| I["Skills + Memory"]
+    Start -->|Dự án phức tạp| G{"Nhiều vai trò?"}
+    G -->|Có| H["Subagents"]
+    G -->|Không| I["Skills + Bộ nhớ"]
 
-    Start -->|Long-term context| J["Memory"]
-    Start -->|Team workflow| K["Slash Command +<br/>Memory"]
-    Start -->|Full automation| L["Skills +<br/>Subagents +<br/>MCP"]
+    Start -->|Ngữ cảnh dài hạn| J["Bộ nhớ (Memory)"]
+    Start -->|Quy trình làm việc nhóm| K["Slash Command +<br/>Bộ nhớ"]
+    Start -->|Tự động hóa hoàn toàn| L["Skills +<br/>Subagents +<br/>MCP"]
 ```
 
 ---
 
-## Summary Table
+## Bảng tóm tắt
 
-| Aspect | Slash Commands | Subagents | Memory | MCP | Skills | Plugins |
+| Khía cạnh | Slash Commands | Subagents | Memory | MCP | Skills | Plugins |
 |--------|---|---|---|---|---|---|
-| **Setup Difficulty** | Easy | Medium | Easy | Medium | Medium | Easy |
-| **Learning Curve** | Low | Medium | Low | Medium | Medium | Low |
-| **Team Benefit** | High | High | Medium | High | High | Very High |
-| **Automation Level** | Low | High | Medium | High | High | Very High |
-| **Context Management** | Single-session | Isolated | Persistent | Real-time | Persistent | All features |
-| **Maintenance Burden** | Low | Medium | Low | Medium | Medium | Low |
-| **Scalability** | Good | Excellent | Good | Excellent | Excellent | Excellent |
-| **Shareability** | Fair | Fair | Good | Good | Good | Excellent |
-| **Versioning** | Manual | Manual | Manual | Manual | Manual | Automatic |
-| **Installation** | Manual copy | Manual config | N/A | Manual config | Manual copy | One command |
+| **Độ khó thiết lập** | Dễ | Trung bình | Dễ | Trung bình | Trung bình | Dễ |
+| **Đường cong học tập** | Thấp | Trung bình | Thấp | Trung bình | Trung bình | Thấp |
+| **Lợi ích cho nhóm** | Cao | Cao | Trung bình | Cao | Cao | Rất cao |
+| **Mức độ tự động hóa** | Thấp | Cao | Trung bình | Cao | Cao | Rất cao |
+| **Quản lý ngữ cảnh** | Phiên đơn lẻ | Cô lập | Bền vững | Thời gian thực | Bền vững | Tất cả tính năng |
+| **Gánh nặng bảo trì** | Thấp | Trung bình | Thấp | Trung bình | Trung bình | Thấp |
+| **Khả năng mở rộng** | Tốt | Xuất sắc | Tốt | Xuất sắc | Xuất sắc | Xuất sắc |
+| **Khả năng chia sẻ** | Khá | Khá | Tốt | Tốt | Tốt | Xuất sắc |
+| **Quản lý phiên bản** | Thủ công | Thủ công | Thủ công | Thủ công | Thủ công | Tự động |
+| **Cài đặt** | Sao chép thủ công | Cấu hình thủ công | N/A | Cấu hình thủ công | Sao chép thủ công | Một lệnh duy nhất |
 
 ---
 
-## Quick Start Guide
+## Hướng dẫn bắt đầu nhanh
 
-### Week 1: Start Simple
-- Create 2-3 slash commands for common tasks
-- Enable Memory in Settings
-- Document team standards in CLAUDE.md
+### Tuần 1: Bắt đầu đơn giản
+- Tạo 2-3 slash commands cho các tác vụ phổ biến
+- Bật Memory trong Cài đặt
+- Tài liệu hóa các tiêu chuẩn của nhóm trong CLAUDE.md
 
-### Week 2: Add Real-time Access
-- Set up 1 MCP (GitHub or Database)
-- Use `/mcp` to configure
-- Query live data in your workflows
+### Tuần 2: Thêm truy cập thời gian thực
+- Thiết lập 1 MCP (GitHub hoặc Database)
+- Sử dụng lệnh `/mcp` để cấu hình
+- Truy vấn dữ liệu thực trong quy trình của bạn
 
-### Week 3: Distribute Work
-- Create first Subagent for specific role
-- Use `/agents` command
-- Test delegation with simple task
+### Tuần 3: Phân chia công việc
+- Tạo Subagent đầu tiên cho một vai trò cụ thể
+- Sử dụng lệnh `/agents`
+- Kiểm tra việc ủy quyền với một tác vụ đơn giản
 
-### Week 4: Automate Everything
-- Create first Skill for repeated automation
-- Use Skill marketplace or build custom
-- Combine all features for full workflow
+### Tuần 4: Tự động hóa mọi thứ
+- Tạo Skill đầu tiên cho việc tự động hóa lặp lại
+- Sử dụng Skill marketplace hoặc tự xây dựng
+- Kết hợp tất cả các tính năng cho một quy trình làm việc hoàn chỉnh
 
-### Ongoing
-- Review and update Memory monthly
-- Add new Skills as patterns emerge
-- Optimize MCP queries
-- Refine Subagent prompts
+### Tiếp tục duy trì
+- Xem lại và cập nhật Memory hàng tháng
+- Thêm các Skill mới khi các khuôn mẫu xuất hiện
+- Tối ưu hóa các truy vấn MCP
+- Tinh chỉnh các dòng lệnh (prompts) cho Subagent
 
 ---
 
 ## Hooks
 
-### Overview
+### Tổng quan
 
-Hooks are event-driven shell commands that execute automatically in response to Claude Code events. They enable automation, validation, and custom workflows without manual intervention.
+Hooks là các lệnh shell được định hướng theo sự kiện, tự động thực thi khi có các sự kiện tương ứng trong Claude Code. Chúng cho phép tự động hóa, xác thực và tùy chỉnh quy trình làm việc mà không cần can thiệp thủ công.
 
-### Hook Events
+### Các sự kiện Hook
 
-Claude Code supports **25 hook events** across four hook types (command, http, prompt, agent):
+Claude Code hỗ trợ **25 sự kiện hook** thuộc bốn loại (command, http, prompt, agent):
 
-| Hook Event | Trigger | Use Cases |
+| Sự kiện Hook | Kích hoạt khi | Trường hợp sử dụng |
 |------------|---------|-----------|
-| **SessionStart** | Session begins/resumes/clear/compact | Environment setup, initialization |
-| **InstructionsLoaded** | CLAUDE.md or rules file loaded | Validation, transformation, augmentation |
-| **UserPromptSubmit** | User submits prompt | Input validation, prompt filtering |
-| **PreToolUse** | Before any tool runs | Validation, approval gates, logging |
-| **PermissionRequest** | Permission dialog shown | Auto-approve/deny flows |
-| **PostToolUse** | After tool succeeds | Auto-formatting, notifications, cleanup |
-| **PostToolUseFailure** | Tool execution fails | Error handling, logging |
-| **Notification** | Notification sent | Alerting, external integrations |
-| **SubagentStart** | Subagent spawned | Context injection, initialization |
-| **SubagentStop** | Subagent finishes | Result validation, logging |
-| **Stop** | Claude finishes responding | Summary generation, cleanup tasks |
-| **StopFailure** | API error ends turn | Error recovery, logging |
-| **TeammateIdle** | Agent team teammate idle | Work distribution, coordination |
-| **TaskCompleted** | Task marked complete | Post-task processing |
-| **TaskCreated** | Task created via TaskCreate | Task tracking, logging |
-| **ConfigChange** | Config file changes | Validation, propagation |
-| **CwdChanged** | Working directory changes | Directory-specific setup |
-| **FileChanged** | Watched file changes | File monitoring, rebuild triggers |
-| **PreCompact** | Before context compaction | State preservation |
-| **PostCompact** | After compaction completes | Post-compact actions |
-| **WorktreeCreate** | Worktree being created | Environment setup, dependency install |
-| **WorktreeRemove** | Worktree being removed | Cleanup, resource deallocation |
-| **Elicitation** | MCP server requests user input | Input validation |
-| **ElicitationResult** | User responds to elicitation | Response processing |
-| **SessionEnd** | Session terminates | Cleanup, final logging |
+| **SessionStart** | Phiên bắt đầu/tiếp tục/xóa/nén | Thiết lập môi trường, khởi tạo |
+| **InstructionsLoaded** | Tải file CLAUDE.md hoặc quy tắc | Xác thực, biến đổi, bổ sung thông tin |
+| **UserPromptSubmit** | Người dùng gửi câu lệnh | Xác thực đầu vào, lọc câu lệnh |
+| **PreToolUse** | Trước khi bất kỳ công cụ nào chạy | Xác thực, cổng phê duyệt, ghi nhật ký |
+| **PermissionRequest** | Hiển thị hộp thoại xin quyền | Luồng tự động phê duyệt/từ chối |
+| **PostToolUse** | Sau khi công cụ chạy thành công | Tự động định dạng, thông báo, dọn dẹp |
+| **PostToolUseFailure** | Công cụ thực thi thất bại | Xử lý lỗi, ghi nhật ký |
+| **Notification** | Thông báo được gửi đi | Cảnh báo, tích hợp bên ngoài |
+| **SubagentStart** | Subagent được tạo ra | Chèn ngữ cảnh, khởi tạo |
+| **SubagentStop** | Subagent hoàn thành | Xác thực kết quả, ghi nhật ký |
+| **Stop** | Claude hoàn tất phản hồi | Tạo tóm tắt, các tác vụ dọn dẹp |
+| **StopFailure** | Lỗi API kết thúc lượt | Khôi phục sau lỗi, ghi nhật ký |
+| **TeammateIdle** | Đồng đội trong nhóm agent rảnh rỗi | Phân chia công việc, điều phối |
+| **TaskCompleted** | Tác vụ được đánh dấu hoàn tất | Xử lý sau tác vụ |
+| **TaskCreated** | Tác vụ được tạo qua TaskCreate | Theo dõi tác vụ, ghi nhật ký |
+| **ConfigChange** | File cấu hình thay đổi | Xác thực, lan truyền thay đổi |
+| **CwdChanged** | Thư mục làm việc thay đổi | Thiết lập riêng cho thư mục |
+| **FileChanged** | File đang theo dõi thay đổi | Giám sát file, kích hoạt build lại |
+| **PreCompact** | Trước khi nén ngữ cảnh | Bảo toàn trạng thái |
+| **PostCompact** | Sau khi nén hoàn tất | Các hành động sau khi nén |
+| **WorktreeCreate** | Worktree đang được tạo | Thiết lập môi trường, cài đặt dependency |
+| **WorktreeRemove** | Worktree đang bị xóa | Dọn dẹp, giải phóng tài nguyên |
+| **Elicitation** | Server MCP yêu cầu người dùng nhập | Xác thực đầu vào |
+| **ElicitationResult** | Người dùng phản hồi yêu cầu nhập | Xử lý phản hồi |
+| **SessionEnd** | Phiên kết thúc | Dọn dẹp, ghi nhật ký cuối cùng |
 
-### Common Hooks
+### Các Hook phổ biến
 
-Hooks are configured in `~/.claude/settings.json` (user-level) or `.claude/settings.json` (project-level):
+Hooks được cấu hình trong `~/.claude/settings.json` (cấp người dùng) hoặc `.claude/settings.json` (cấp dự án):
 
 ```json
 {
@@ -2872,73 +2803,73 @@ Hooks are configured in `~/.claude/settings.json` (user-level) or `.claude/setti
 }
 ```
 
-### Hook Environment Variables
+### Biến môi trường trong Hook
 
-- `$CLAUDE_FILE_PATH` - Path to file being edited/written
-- `$CLAUDE_TOOL_NAME` - Name of tool being used
-- `$CLAUDE_SESSION_ID` - Current session identifier
-- `$CLAUDE_PROJECT_DIR` - Project directory path
+- `$CLAUDE_FILE_PATH` - Đường dẫn tới file đang được sửa/viết
+- `$CLAUDE_TOOL_NAME` - Tên của công cụ đang được dùng
+- `$CLAUDE_SESSION_ID` - Mã định danh phiên hiện tại
+- `$CLAUDE_PROJECT_DIR` - Đường dẫn thư mục dự án
 
-### Best Practices
+### Thực hành tốt nhất
 
-✅ **Do:**
-- Keep hooks fast (< 1 second)
-- Use hooks for validation and automation
-- Handle errors gracefully
-- Use absolute paths
+✅ **Nên:**
+- Giữ cho hook chạy nhanh (< 1 giây)
+- Dùng hook để xác thực và tự động hóa
+- Xử lý lỗi một cách khéo léo
+- Dùng đường dẫn tuyệt đối
 
-❌ **Don't:**
-- Make hooks interactive
-- Use hooks for long-running tasks
-- Hardcode credentials
+❌ **Không nên:**
+- Làm cho hook có tính tương tác (yêu cầu người dùng nhập)
+- Dùng hook cho các tác vụ chạy lâu
+- Lưu cứng (hardcode) thông tin đăng nhập trong lệnh
 
-**See**: [06-hooks/](06-hooks/) for detailed examples
+**Xem thêm**: [06-hooks/](06-hooks/) để biết các ví dụ chi tiết
 
 ---
 
-## Checkpoints and Rewind
+## Checkpoints và Rewind
 
-### Overview
+### Tổng quan
 
-Checkpoints allow you to save conversation state and rewind to previous points, enabling safe experimentation and exploration of multiple approaches.
+Checkpoints cho phép bạn lưu trạng thái cuộc hội thoại và quay lại (rewind) các điểm trước đó, giúp thử nghiệm an toàn và khám phá nhiều cách tiếp cận khác nhau.
 
-### Key Concepts
+### Các khái niệm chính
 
-| Concept | Description |
+| Khái niệm | Mô tả |
 |---------|-------------|
-| **Checkpoint** | Snapshot of conversation state including messages, files, and context |
-| **Rewind** | Return to a previous checkpoint, discarding subsequent changes |
-| **Branch Point** | Checkpoint from which multiple approaches are explored |
+| **Checkpoint** | Ảnh chụp trạng thái hội thoại bao gồm tin nhắn, tập tin và ngữ cảnh |
+| **Rewind** | Quay lại một checkpoint trước đó, hủy bỏ các thay đổi sau đó |
+| **Branch Point** | Điểm checkpoint mà từ đó nhiều cách tiếp cận được khám phá |
 
-### Accessing Checkpoints
+### Truy cập Checkpoints
 
-Checkpoints are created automatically with every user prompt. To rewind:
+Checkpoints được tạo tự động sau mỗi câu lệnh của người dùng. Để quay lại:
 
 ```bash
-# Press Esc twice to open the checkpoint browser
+# Nhấn Esc hai lần để mở trình duyệt checkpoint
 Esc + Esc
 
-# Or use the /rewind command
+# Hoặc dùng lệnh /rewind
 /rewind
 ```
 
-When you select a checkpoint, you choose from five options:
-1. **Restore code and conversation** -- Revert both to that point
-2. **Restore conversation** -- Rewind messages, keep current code
-3. **Restore code** -- Revert files, keep conversation
-4. **Summarize from here** -- Compress conversation into a summary
-5. **Never mind** -- Cancel
+Khi bạn chọn một checkpoint, bạn có 5 tùy chọn:
+1. **Restore code and conversation** -- Khôi phục cả mã nguồn và hội thoại về điểm đó
+2. **Restore conversation** -- Quay lại các tin nhắn, nhưng giữ mã nguồn hiện tại
+3. **Restore code** -- Khôi phục các tập tin, nhưng giữ hội thoại hiện tại
+4. **Summarize from here** -- Nén hội thoại thành một bản tóm tắt
+5. **Never mind** -- Hủy bỏ
 
-### Use Cases
+### Các trường hợp sử dụng
 
-| Scenario | Workflow |
+| Tình huống | Quy trình |
 |----------|----------|
-| **Exploring Approaches** | Save → Try A → Save → Rewind → Try B → Compare |
-| **Safe Refactoring** | Save → Refactor → Test → If fail: Rewind |
-| **A/B Testing** | Save → Design A → Save → Rewind → Design B → Compare |
-| **Mistake Recovery** | Notice issue → Rewind to last good state |
+| **Khám phá cách tiếp cận** | Lưu → Thử A → Lưu → Rewind → Thử B → So sánh |
+| **Refactor an toàn** | Lưu → Refactor → Thử nghiệm → Nếu lỗi: Rewind |
+| **Thử nghiệm A/B** | Lưu → Thiết kế A → Lưu → Rewind → Thiết kế B → So sánh |
+| **Khôi phục sai lầm** | Phát hiện vấn đề → Rewind về trạng thái tốt nhất gần nhất |
 
-### Configuration
+### Cấu hình
 
 ```json
 {
@@ -2946,153 +2877,153 @@ When you select a checkpoint, you choose from five options:
 }
 ```
 
-**See**: [08-checkpoints/](08-checkpoints/) for detailed examples
+**Xem thêm**: [08-checkpoints/](08-checkpoints/) để biết các ví dụ chi tiết
 
 ---
 
-## Advanced Features
+## Các tính năng nâng cao
 
-### Planning Mode
+### Planning Mode (Chế độ lập kế hoạch)
 
-Create detailed implementation plans before coding.
+Tạo kế hoạch triển khai chi tiết trước khi bắt đầu viết code.
 
-**Activation:**
+**Kích hoạt:**
 ```bash
-/plan Implement user authentication system
+/plan Triển khai hệ thống xác thực người dùng
 ```
 
-**Benefits:**
-- Clear roadmap with time estimates
-- Risk assessment
-- Systematic task breakdown
-- Opportunity for review and modification
+**Lợi ích:**
+- Lộ trình rõ ràng với ước tính thời gian
+- Đánh giá rủi ro
+- Chia nhỏ tác vụ một cách hệ thống
+- Cơ hội để xem xét và sửa đổi kế hoạch
 
-### Extended Thinking
+### Extended Thinking (Suy nghĩ mở rộng)
 
-Deep reasoning for complex problems.
+Lập luận sâu cho các vấn đề phức tạp.
 
-**Activation:**
-- Toggle with `Alt+T` (or `Option+T` on macOS) during a session
-- Set `MAX_THINKING_TOKENS` environment variable for programmatic control
+**Kích hoạt:**
+- Bật/tắt bằng phím `Alt+T` (hoặc `Option+T` trên macOS) trong phiên làm việc
+- Thiết lập biến môi trường `MAX_THINKING_TOKENS` để điều khiển bằng lập trình
 
 ```bash
-# Enable extended thinking via environment variable
+# Bật suy nghĩ mở rộng qua biến môi trường
 export MAX_THINKING_TOKENS=50000
-claude -p "Should we use microservices or monolith?"
+claude -p "Chúng ta nên dùng microservices hay monolith?"
 ```
 
-**Benefits:**
-- Thorough analysis of trade-offs
-- Better architectural decisions
-- Consideration of edge cases
-- Systematic evaluation
+**Lợi ích:**
+- Phân tích kỹ lưỡng các ưu nhược điểm
+- Đưa ra quyết định kiến trúc tốt hơn
+- Xem xét các trường hợp biên (edge cases)
+- Đánh giá một cách hệ thống
 
-### Background Tasks
+### Background Tasks (Tác vụ nền)
 
-Run long operations without blocking the conversation.
+Chạy các hoạt động lâu mà không làm gián đoạn hội thoại.
 
-**Usage:**
+**Cách dùng:**
 ```bash
-User: Run tests in background
+User: Chạy các bài kiểm tra trong nền
 
-Claude: Started task bg-1234
+Claude: Đã bắt đầu tác vụ bg-1234
 
-/task list           # Show all tasks
-/task status bg-1234 # Check progress
-/task show bg-1234   # View output
-/task cancel bg-1234 # Cancel task
+/task list           # Hiển thị tất cả tác vụ
+/task status bg-1234 # Kiểm tra tiến độ
+/task show bg-1234   # Xem kết quả đầu ra
+/task cancel bg-1234 # Hủy tác vụ
 ```
 
-### Permission Modes
+### Các chế độ phân quyền (Permission Modes)
 
-Control what Claude can do.
+Kiểm soát những gì Claude có thể làm.
 
-| Mode | Description | Use Case |
+| Chế độ | Mô tả | Trường hợp sử dụng |
 |------|-------------|----------|
-| **default** | Standard permissions with prompts for sensitive actions | General development |
-| **acceptEdits** | Automatically accept file edits without confirmation | Trusted editing workflows |
-| **plan** | Analysis and planning only, no file modifications | Code review, architecture planning |
-| **auto** | Automatically approve safe actions, prompt only for risky ones | Balanced autonomy with safety |
-| **dontAsk** | Execute all actions without confirmation prompts | Experienced users, automation |
-| **bypassPermissions** | Full unrestricted access, no safety checks | CI/CD pipelines, trusted scripts |
+| **default** | Quyền tiêu chuẩn, hỏi trước khi thực hiện các hành động nhạy cảm | Phát triển thông thường |
+| **acceptEdits** | Tự động chấp nhận sửa đổi file mà không cần xác nhận | Quy trình chỉnh sửa tin cậy |
+| **plan** | Chỉ phân tích và lập kế hoạch, không sửa đổi file | Review code, lập kế hoạch kiến trúc |
+| **auto** | Tự động phê duyệt các hành động an toàn, chỉ hỏi các hành động rủi ro | Cân bằng giữa tự chủ và an toàn |
+| **dontAsk** | Thực hiện mọi hành động mà không cần thông báo xác nhận | Người dùng kinh nghiệm, tự động hóa |
+| **bypassPermissions** | Toàn quyền không giới hạn, không kiểm tra an toàn | Đường ống CI/CD, script tin cậy |
 
-**Usage:**
+**Cách dùng:**
 ```bash
-claude --permission-mode plan          # Read-only analysis
-claude --permission-mode acceptEdits   # Auto-accept edits
-claude --permission-mode auto          # Auto-approve safe actions
-claude --permission-mode dontAsk       # No confirmation prompts
+claude --permission-mode plan          # Phân tích chỉ đọc
+claude --permission-mode acceptEdits   # Tự động chấp nhận chỉnh sửa
+claude --permission-mode auto          # Tự động phê duyệt hành động an toàn
+claude --permission-mode dontAsk       # Không hiển thị thông báo xác nhận
 ```
 
-### Headless Mode (Print Mode)
+### Headless Mode (Chế độ Print)
 
-Run Claude Code without interactive input for automation and CI/CD using the `-p` (print) flag.
+Chạy Claude Code mà không cần nhập liệu tương tác, dùng cho tự động hóa và CI/CD bằng cờ `-p` (print).
 
-**Usage:**
+**Cách dùng:**
 ```bash
-# Run specific task
-claude -p "Run all tests"
+# Chạy tác vụ cụ thể
+claude -p "Chạy tất cả bài kiểm tra"
 
-# Pipe input for analysis
-cat error.log | claude -p "explain this error"
+# Chuyển hướng đầu vào để phân tích
+cat error.log | claude -p "giải thích lỗi này"
 
-# CI/CD integration (GitHub Actions)
+# Tích hợp CI/CD (GitHub Actions)
 - name: AI Code Review
-  run: claude -p "Review PR changes and report issues"
+  run: claude -p "Review các thay đổi PR và báo cáo vấn đề"
 
-# JSON output for scripting
-claude -p --output-format json "list all functions in src/"
+# Đầu ra dạng JSON cho lập trình script
+claude -p --output-format json "liệt kê tất cả hàm trong src/"
 ```
 
-### Scheduled Tasks
+### Scheduled Tasks (Tác vụ định kỳ)
 
-Run tasks on a repeating schedule using the `/loop` command.
+Chạy các tác vụ theo lịch trình lặp lại bằng lệnh `/loop`.
 
-**Usage:**
+**Cách dùng:**
 ```bash
-/loop every 30m "Run tests and report failures"
-/loop every 2h "Check for dependency updates"
-/loop every 1d "Generate daily summary of code changes"
+/loop every 30m "Chạy kiểm tra và báo cáo lỗi"
+/loop every 2h "Kiểm tra cập nhật dependency"
+/loop every 1d "Tạo tóm tắt thay đổi mã nguồn hàng ngày"
 ```
 
-Scheduled tasks run in the background and report results when complete. They are useful for continuous monitoring, periodic checks, and automated maintenance workflows.
+Các tác vụ định kỳ chạy trong nền và báo cáo kết quả khi hoàn thành. Chúng hữu ích cho việc giám sát liên tục, kiểm tra định kỳ và quy trình bảo trì tự động.
 
-### Chrome Integration
+### Tích hợp Chrome
 
-Claude Code can integrate with the Chrome browser for web automation tasks. This enables capabilities like navigating web pages, filling forms, taking screenshots, and extracting data from websites directly within your development workflow.
+Claude Code có thể tích hợp với trình duyệt Chrome cho các tác vụ tự động hóa web. Điều này cho phép các khả năng như điều hướng trang web, điền form, chụp ảnh màn hình và trích xuất dữ liệu từ các trang web trực tiếp trong quy trình phát triển của bạn.
 
-### Session Management
+### Quản lý phiên (Session Management)
 
-Manage multiple work sessions.
+Quản lý nhiều phiên làm việc.
 
-**Commands:**
+**Các lệnh:**
 ```bash
-/resume                # Resume a previous conversation
-/rename "Feature"      # Name the current session
-/fork                  # Fork into a new session
-claude -c              # Continue most recent conversation
-claude -r "Feature"    # Resume session by name/ID
+/resume                # Tiếp tục một hội thoại trước đó
+/rename "Feature"      # Đặt tên cho phiên hiện tại
+/fork                  # Nhánh sang một phiên mới
+claude -c              # Tiếp tục hội thoại gần đây nhất
+claude -r "Feature"    # Tiếp tục phiên theo tên/ID
 ```
 
-### Interactive Features
+### Tính năng tương tác
 
-**Keyboard Shortcuts:**
-- `Ctrl + R` - Search command history
-- `Tab` - Autocomplete
-- `↑ / ↓` - Command history
-- `Ctrl + L` - Clear screen
+**Phím tắt:**
+- `Ctrl + R` - Tìm kiếm lịch sử lệnh
+- `Tab` - Tự động hoàn thành
+- `↑ / ↓` - Lịch sử lệnh
+- `Ctrl + L` - Xóa màn hình
 
-**Multi-line Input:**
+**Nhập liệu nhiều dòng:**
 ```bash
 User: \
-> Long complex prompt
-> spanning multiple lines
+> Câu lệnh dài và phức tạp
+> trải dài trên nhiều dòng
 > \end
 ```
 
-### Configuration
+### Cấu hình
 
-Complete configuration example:
+Ví dụ cấu hình đầy đủ:
 
 ```json
 {
@@ -3114,19 +3045,19 @@ Complete configuration example:
 }
 ```
 
-**See**: [09-advanced-features/](09-advanced-features/) for comprehensive guide
+**Xem thêm**: [09-advanced-features/](09-advanced-features/) để biết hướng dẫn toàn diện
 
 ---
 
-## Resources
+## Tài nguyên
 
-- [Claude Code Documentation](https://code.claude.com/docs/en/overview)
-- [Anthropic Documentation](https://docs.anthropic.com)
-- [MCP GitHub Servers](https://github.com/modelcontextprotocol/servers)
+- [Tài liệu Claude Code](https://code.claude.com/docs/en/overview)
+- [Tài liệu Anthropic](https://docs.anthropic.com)
+- [Các Server MCP trên GitHub](https://github.com/modelcontextprotocol/servers)
 - [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
 
 ---
 
-*Last updated: March 2026*
-*For Claude Haiku 4.5, Sonnet 4.6, and Opus 4.6*
-*Now includes: Hooks, Checkpoints, Planning Mode, Extended Thinking, Background Tasks, Permission Modes (6 modes), Headless Mode, Session Management, Auto Memory, Agent Teams, Scheduled Tasks, Chrome Integration, Channels, Voice Dictation, and Bundled Skills*
+*Cập nhật lần cuối: Tháng 3 năm 2026*
+*Dùng cho Claude Haiku 4.5, Sonnet 4.6, và Opus 4.6*
+*Hiện bao gồm: Hooks, Checkpoints, Planning Mode, Extended Thinking, Background Tasks, Permission Modes (6 chế độ), Headless Mode, Quản lý phiên, Tự động ghi nhớ, Nhóm Agent, Tác vụ định kỳ, Tích hợp Chrome, Kênh, Đọc chính tả giọng nói, và Các Skills đóng gói sẵn*

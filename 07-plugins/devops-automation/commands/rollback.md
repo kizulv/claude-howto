@@ -1,14 +1,14 @@
 ---
 name: Rollback
-description: Rollback to previous deployment
+description: Hoàn tác về phiên bản triển khai trước đó
 ---
 
-# Rollback Deployment
+# Hoàn tác triển khai (Rollback Deployment)
 
-Rollback to previous stable version:
+Hoàn tác về phiên bản ổn định trước đó:
 
-1. Identify previous deployment
-2. Verify rollback target is healthy
-3. Execute rollback procedure
-4. Run health checks
-5. Notify team
+1. Xác định bản triển khai trước đó
+2. Xác minh mục tiêu hoàn tác đang ở trạng thái khỏe mạnh
+3. Thực hiện quy trình hoàn tác
+4. Chạy các bài kiểm tra sức khỏe
+5. Thông báo cho nhóm

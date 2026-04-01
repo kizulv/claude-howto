@@ -3,263 +3,263 @@
   <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Memory Guide
+# Hướng dẫn về Bộ nhớ (Memory Guide)
 
-Memory enables Claude to retain context across sessions and conversations. It exists in two forms: automatic synthesis in claude.ai, and filesystem-based CLAUDE.md in Claude Code.
+Bộ nhớ (Memory) cho phép Claude lưu giữ ngữ cảnh qua các phiên làm việc và các cuộc hội thoại. Nó tồn tại dưới hai dạng: tổng hợp tự động trên claude.ai và dựa trên hệ thống tệp tin (CLAUDE.md) trong Claude Code.
 
-## Overview
+## Tổng quan
 
-Memory in Claude Code provides persistent context that carries across multiple sessions and conversations. Unlike temporary context windows, memory files allow you to:
+Bộ nhớ trong Claude Code cung cấp ngữ cảnh bền vững xuyên suốt nhiều phiên làm việc và cuộc hội thoại. Không giống như các cửa sổ ngữ cảnh tạm thời, các tệp bộ nhớ cho phép bạn:
 
-- Share project standards across your team
-- Store personal development preferences
-- Maintain directory-specific rules and configurations
-- Import external documentation
-- Version control memory as part of your project
+- Chia sẻ các tiêu chuẩn dự án trong toàn đội ngũ của bạn
+- Lưu trữ các sở thích phát triển cá nhân
+- Duy trì các quy tắc và cấu hình đặc thù cho từng thư mục
+- Nhập (Import) các tài liệu bên ngoài
+- Quản lý phiên bản bộ nhớ như một phần của dự án
 
-The memory system operates at multiple levels, from global personal preferences down to specific subdirectories, allowing for fine-grained control over what Claude remembers and how it applies that knowledge.
+Hệ thống bộ nhớ hoạt động ở nhiều cấp độ, từ các tùy chọn cá nhân toàn cầu cho đến các thư mục cụ thể, cho phép kiểm soát chi tiết về những gì Claude ghi nhớ và cách nó áp dụng kiến thức đó.
 
-## Memory Commands Quick Reference
+## Bảng tra cứu nhanh các lệnh Bộ nhớ
 
-| Command | Purpose | Usage | When to Use |
+| Lệnh | Mục đích | Cách dùng | Khi nào sử dụng |
 |---------|---------|-------|-------------|
-| `/init` | Initialize project memory | `/init` | Starting new project, first-time CLAUDE.md setup |
-| `/memory` | Edit memory files in editor | `/memory` | Extensive updates, reorganization, reviewing content |
-| `#` prefix | Quick single-line memory add | `# Your rule here` | Adding quick rules during conversation |
-| `# new rule into memory` | Explicit memory addition | `# new rule into memory<br/>Your detailed rule` | Adding complex multi-line rules |
-| `# remember this` | Natural language memory | `# remember this<br/>Your instruction` | Conversational memory updates |
-| `@path/to/file` | Import external content | `@README.md` or `@docs/api.md` | Referencing existing documentation in CLAUDE.md |
+| `/init` | Khởi tạo bộ nhớ dự án | `/init` | Khi bắt đầu dự án mới, thiết lập CLAUDE.md lần đầu |
+| `/memory` | Chỉnh sửa các tệp bộ nhớ trong trình soạn thảo | `/memory` | Khi cần cập nhật lớn, tổ chức lại, hoặc xem lại nội dung |
+| Tiền tố `#` | Thêm bộ nhớ nhanh một dòng | `# Quy tắc của bạn ở đây` | Thêm các quy tắc nhanh trong lúc hội thoại |
+| `# new rule into memory` | Thêm bộ nhớ rõ ràng | `# new rule into memory<br/>Quy tắc chi tiết của bạn` | Thêm các quy tắc phức tạp nhiều dòng |
+| `# remember this` | Thêm bộ nhớ bằng ngôn ngữ tự nhiên | `# remember this<br/>Hướng dẫn của bạn` | Cập nhật bộ nhớ theo phong cách hội thoại |
+| `@path/to/file` | Nhập nội dung bên ngoài | `@README.md` hoặc `@docs/api.md` | Tham chiếu tài liệu hiện có vào CLAUDE.md |
 
-## Quick Start: Initializing Memory
+## Bắt đầu nhanh: Khởi tạo Bộ nhớ
 
-### The `/init` Command
+### Lệnh `/init`
 
-The `/init` command is the fastest way to set up project memory in Claude Code. It initializes a CLAUDE.md file with foundational project documentation.
+Lệnh `/init` là cách nhanh nhất để thiết lập bộ nhớ dự án trong Claude Code. Nó khởi tạo một tệp CLAUDE.md với các tài liệu nền tảng của dự án.
 
-**Usage:**
+**Cách dùng:**
 
 ```bash
 /init
 ```
 
-**What it does:**
+**Nó làm gì:**
 
-- Creates a new CLAUDE.md file in your project (typically at `./CLAUDE.md` or `./.claude/CLAUDE.md`)
-- Establishes project conventions and guidelines
-- Sets up the foundation for context persistence across sessions
-- Provides a template structure for documenting your project standards
+- Tạo một tệp CLAUDE.md mới trong dự án của bạn (thường tại `./CLAUDE.md` hoặc `./.claude/CLAUDE.md`)
+- Thiết lập các quy ước và hướng dẫn của dự án
+- Tạo nền tảng cho việc duy trì ngữ cảnh qua các phiên làm việc
+- Cung cấp cấu trúc mẫu để tài liệu hóa các tiêu chuẩn dự án của bạn
 
-**Enhanced interactive mode:** Set `CLAUDE_CODE_NEW_INIT=true` to enable a multi-phase interactive flow that walks you through project setup step by step:
+**Chế độ tương tác nâng cao:** Thiết lập `CLAUDE_CODE_NEW_INIT=true` để bật luồng tương tác đa giai đoạn hướng dẫn bạn thiết lập dự án từng bước một:
 
 ```bash
 CLAUDE_CODE_NEW_INIT=true claude
 /init
 ```
 
-**When to use `/init`:**
+**Khi nào nên dùng `/init`:**
 
-- Starting a new project with Claude Code
-- Establishing team coding standards and conventions
-- Creating documentation about your codebase structure
-- Setting up memory hierarchy for collaborative development
+- Bắt đầu một dự án mới với Claude Code
+- Thiết lập các tiêu chuẩn và quy ước lập trình cho đội ngũ
+- Tạo tài liệu về cấu trúc mã nguồn của bạn
+- Thiết lập phân cấp bộ nhớ cho việc phát triển cộng tác
 
-**Example workflow:**
+**Ví dụ quy trình:**
 
 ```markdown
-# In your project directory
+# Trong thư mục dự án của bạn
 /init
 
-# Claude creates CLAUDE.md with structure like:
-# Project Configuration
-## Project Overview
-- Name: Your Project
-- Tech Stack: [Your technologies]
-- Team Size: [Number of developers]
+# Claude tạo CLAUDE.md với cấu trúc như:
+# Cấu hình dự án (Project Configuration)
+## Tổng quan dự án (Project Overview)
+- Tên: Dự án của bạn
+- Công nghệ: [Các công nghệ của bạn]
+- Quy mô đội ngũ: [Số lượng lập trình viên]
 
-## Development Standards
-- Code style preferences
-- Testing requirements
-- Git workflow conventions
+## Tiêu chuẩn phát triển (Development Standards)
+- Các tùy chọn phong cách lập trình
+- Yêu cầu kiểm thử
+- Quy ước quy trình Git
 ```
 
-### Quick Memory Updates with `#`
+### Cập nhật bộ nhớ nhanh với `#`
 
-You can quickly add information to memory during any conversation by starting your message with `#`:
+Bạn có thể nhanh chóng thêm thông tin vào bộ nhớ trong bất kỳ cuộc hội thoại nào bằng cách bắt đầu tin nhắn với ký tự `#`:
 
-**Syntax:**
+**Cú pháp:**
 
 ```markdown
-# Your memory rule or instruction here
+# Quy tắc hoặc hướng dẫn bộ nhớ của bạn ở đây
 ```
 
-**Examples:**
+**Ví dụ:**
 
 ```markdown
-# Always use TypeScript strict mode in this project
+# Luôn sử dụng chế độ strict mode của TypeScript trong dự án này
 
-# Prefer async/await over promise chains
+# Ưu tiên sử dụng async/await thay vì chuỗi promise
 
-# Run npm test before every commit
+# Chạy npm test trước mỗi lần commit
 
-# Use kebab-case for file names
+# Sử dụng kebab-case cho tên file
 ```
 
-**How it works:**
+**Cách hoạt động:**
 
-1. Start your message with `#` followed by your rule
-2. Claude recognizes this as a memory update request
-3. Claude asks which memory file to update (project or personal)
-4. The rule is added to the appropriate CLAUDE.md file
-5. Future sessions automatically load this context
+1. Bắt đầu tin nhắn của bạn với `#` kèm theo quy tắc của bạn
+2. Claude nhận diện đây là một yêu cầu cập nhật bộ nhớ
+3. Claude hỏi bạn muốn cập nhật tệp bộ nhớ nào (dự án hay cá nhân)
+4. Quy tắc sẽ được thêm vào tệp CLAUDE.md phù hợp
+5. Các phiên làm việc trong tương lai sẽ tự động tải ngữ cảnh này
 
-**Alternative patterns:**
+**Các mẫu thay thế:**
 
 ```markdown
 # new rule into memory
-Always validate user input with Zod schemas
+Luôn xác thực đầu vào người dùng bằng Zod schemas
 
 # remember this
-Use semantic versioning for all releases
+Sử dụng semantic versioning cho tất cả các bản phát hành
 
 # add to memory
-Database migrations must be reversible
+Các bản di chuyển cơ sở dữ liệu (Database migrations) phải có khả năng hoàn tác (reversible)
 ```
 
-### The `/memory` Command
+### Lệnh `/memory`
 
-The `/memory` command provides direct access to edit your CLAUDE.md memory files within Claude Code sessions. It opens your memory files in your system editor for comprehensive editing.
+Lệnh `/memory` cung cấp truy cập trực tiếp để chỉnh sửa các tệp bộ nhớ CLAUDE.md của bạn trong các phiên làm việc của Claude Code. Nó mở các tệp bộ nhớ trong trình soạn thảo hệ thống của bạn để chỉnh sửa toàn diện.
 
-**Usage:**
+**Cách dùng:**
 
 ```bash
 /memory
 ```
 
-**What it does:**
+**Nó làm gì:**
 
-- Opens your memory files in your system's default editor
-- Allows you to make extensive additions, modifications, and reorganizations
-- Provides direct access to all memory files in the hierarchy
-- Enables you to manage persistent context across sessions
+- Mở các tệp bộ nhớ trong trình soạn thảo mặc định của hệ thống
+- Cho phép bạn thực hiện các bổ sung, sửa đổi và tổ chức lại trên diện rộng
+- Cung cấp truy cập trực tiếp vào tất cả các tệp bộ nhớ trong hệ thống phân cấp
+- Cho phép bạn quản lý ngữ cảnh bền vững qua các phiên làm việc
 
-**When to use `/memory`:**
+**Khi nào nên dùng `/memory`:**
 
-- Reviewing existing memory content
-- Making extensive updates to project standards
-- Reorganizing memory structure
-- Adding detailed documentation or guidelines
-- Maintaining and updating memory as your project evolves
+- Xem lại nội dung bộ nhớ hiện có
+- Thực hiện cập nhật lớn cho các tiêu chuẩn dự án
+- Tổ chức lại cấu trúc bộ nhớ
+- Thêm tài liệu hoặc hướng dẫn chi tiết
+- Bảo trì và cập nhật bộ nhớ khi dự án của bạn phát triển
 
-**Comparison: `/memory` vs `/init`**
+**So sánh: `/memory` và `/init`**
 
-| Aspect | `/memory` | `/init` |
+| Khía cạnh | `/memory` | `/init` |
 |--------|-----------|---------|
-| **Purpose** | Edit existing memory files | Initialize new CLAUDE.md |
-| **When to use** | Update/modify project context | Begin new projects |
-| **Action** | Opens editor for changes | Generates starter template |
-| **Workflow** | Ongoing maintenance | One-time setup |
+| **Mục đích** | Chỉnh sửa các tệp bộ nhớ hiện có | Khởi tạo CLAUDE.md mới |
+| **Khi nào dùng** | Cập nhật/sửa đổi ngữ cảnh dự án | Bắt đầu dự án mới |
+| **Hành động** | Mở trình soạn thảo để thay đổi | Tạo bản mẫu khởi đầu |
+| **Quy trình** | Bảo trì liên tục | Thiết lập một lần |
 
-**Example workflow:**
+**Ví dụ quy trình:**
 
 ```markdown
-# Open memory for editing
+# Mở bộ nhớ để chỉnh sửa
 /memory
 
-# Claude presents options:
-# 1. Managed Policy Memory
-# 2. Project Memory (./CLAUDE.md)
-# 3. User Memory (~/.claude/CLAUDE.md)
-# 4. Local Project Memory
+# Claude hiển thị các tùy chọn:
+# 1. Managed Policy Memory (Bộ nhớ chính sách quản lý)
+# 2. Project Memory (./CLAUDE.md - Bộ nhớ dự án)
+# 3. User Memory (~/.claude/CLAUDE.md - Bộ nhớ người dùng)
+# 4. Local Project Memory (Bộ nhớ dự án cục bộ)
 
-# Choose option 2 (Project Memory)
-# Your default editor opens with ./CLAUDE.md content
+# Chọn tùy chọn 2 (Project Memory)
+# Trình soạn thảo mặc định của bạn mở ra với nội dung của ./CLAUDE.md
 
-# Make changes, save, and close editor
-# Claude automatically reloads the updated memory
+# Thực hiện thay đổi, lưu và đóng trình soạn thảo
+# Claude tự động tải lại bộ nhớ đã cập nhật
 ```
 
-**Using Memory Imports:**
+**Sử dụng Memory Imports:**
 
-CLAUDE.md files support the `@path/to/file` syntax to include external content:
+Các tệp CLAUDE.md hỗ trợ cú pháp `@path/to/file` để bao gồm nội dung bên ngoài:
 
 ```markdown
-# Project Documentation
-See @README.md for project overview
-See @package.json for available npm commands
-See @docs/architecture.md for system design
+# Tài liệu dự án
+Xem @README.md để biết tổng quan về dự án
+Xem @package.json để biết các lệnh npm hiện có
+Xem @docs/architecture.md để biết thiết kế hệ thống
 
-# Import from home directory using absolute path
+# Nhập từ thư mục home bằng đường dẫn tuyệt đối
 @~/.claude/my-project-instructions.md
 ```
 
-**Import features:**
+**Các tính năng của Import:**
 
-- Both relative and absolute paths are supported (e.g., `@docs/api.md` or `@~/.claude/my-project-instructions.md`)
-- Recursive imports are supported with a maximum depth of 5
-- First-time imports from external locations trigger an approval dialog for security
-- Import directives are not evaluated inside markdown code spans or code blocks (so documenting them in examples is safe)
-- Helps avoid duplication by referencing existing documentation
-- Automatically includes referenced content in Claude's context
+- Hỗ trợ cả đường dẫn tương đối và tuyệt đối (ví dụ: `@docs/api.md` hoặc `@~/.claude/my-project-instructions.md`)
+- Hỗ trợ nhập đệ quy với độ sâu tối đa là 5
+- Lần đầu nhập từ các vị trí bên ngoài sẽ kích hoạt hộp thoại phê duyệt vì lý do bảo mật
+- Các chỉ thị nhập không được đánh giá bên trong các khối mã markdown (vì vậy việc ghi tài liệu về chúng trong ví dụ là an toàn)
+- Giúp tránh trùng lặp bằng cách tham chiếu đến các tài liệu hiện có
+- Tự động bao gồm nội dung được tham chiếu vào ngữ cảnh của Claude
 
-## Memory Architecture
+## Kiến trúc Bộ nhớ
 
-Memory in Claude Code follows a hierarchical system where different scopes serve different purposes:
+Bộ nhớ trong Claude Code tuân theo một hệ thống phân cấp nơi các phạm vi khác nhau phục vụ các mục đích khác nhau:
 
 ```mermaid
 graph TB
-    A["Claude Session"]
-    B["User Input"]
-    C["Memory System"]
-    D["Memory Storage"]
+    A["Phiên làm việc Claude"]
+    B["Đầu vào người dùng"]
+    C["Hệ thống bộ nhớ"]
+    D["Lưu trữ bộ nhớ"]
 
-    B -->|User provides info| C
-    C -->|Synthesizes every 24h| D
-    D -->|Loads automatically| A
-    A -->|Uses context| C
+    B -->|Người dùng cung cấp thông tin| C
+    C -->|Tổng hợp sau mỗi 24h| D
+    D -->|Tải tự động| A
+    A -->|Sử dụng ngữ cảnh| C
 ```
 
-## Memory Hierarchy in Claude Code
+## Phân cấp Bộ nhớ trong Claude Code
 
-Claude Code uses a multi-tier hierarchical memory system. Memory files are automatically loaded when Claude Code launches, with higher-level files taking precedence.
+Claude Code sử dụng hệ thống bộ nhớ phân cấp nhiều tầng. Các tệp bộ nhớ được tự động tải khi Claude Code khởi chạy, với các tệp ở cấp cao hơn sẽ có mức độ ưu tiên lớn hơn.
 
-**Complete Memory Hierarchy (in order of precedence):**
+**Phân cấp bộ nhớ đầy đủ (theo thứ tự ưu tiên):**
 
-1. **Managed Policy** - Organization-wide instructions
+1. **Managed Policy (Chính sách quản lý)** - Các hướng dẫn áp dụng trong toàn tổ chức
    - macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`
    - Linux/WSL: `/etc/claude-code/CLAUDE.md`
    - Windows: `C:\Program Files\ClaudeCode\CLAUDE.md`
 
-2. **Managed Drop-ins** - Alphabetically merged policy files (v2.1.83+)
-   - `managed-settings.d/` directory alongside the managed policy CLAUDE.md
-   - Files are merged in alphabetical order for modular policy management
+2. **Managed Drop-ins** - Các tệp chính sách được hợp nhất theo thứ tự bảng chữ cái (v2.1.83+)
+   - Thư mục `managed-settings.d/` nằm cạnh tệp CLAUDE.md của chính sách quản lý
+   - Các tệp được hợp nhất theo thứ tự bảng chữ cái để quản lý chính sách theo module
 
-3. **Project Memory** - Team-shared context (version controlled)
-   - `./.claude/CLAUDE.md` or `./CLAUDE.md` (in repository root)
+3. **Project Memory (Bộ nhớ dự án)** - Ngữ cảnh được chia sẻ trong đội ngũ (được quản lý phiên bản)
+   - `./.claude/CLAUDE.md` hoặc `./CLAUDE.md` (trong thư mục gốc của repository)
 
-4. **Project Rules** - Modular, topic-specific project instructions
+4. **Project Rules (Quy tắc dự án)** - Các hướng dẫn dự án theo module và chủ đề cụ thể
    - `./.claude/rules/*.md`
 
-5. **User Memory** - Personal preferences (all projects)
+5. **User Memory (Bộ nhớ người dùng)** - Các sở thích cá nhân (áp dụng cho mọi dự án)
    - `~/.claude/CLAUDE.md`
 
-6. **User-Level Rules** - Personal rules (all projects)
+6. **User-Level Rules (Quy tắc cấp người dùng)** - Các quy tắc cá nhân (áp dụng cho mọi dự án)
    - `~/.claude/rules/*.md`
 
-7. **Local Project Memory** - Personal project-specific preferences
+7. **Local Project Memory (Bộ nhớ dự án cục bộ)** - Các sở thích cá nhân đặc thù cho từng dự án
    - `./CLAUDE.local.md`
 
-> **Note**: `CLAUDE.local.md` is not mentioned in the [official documentation](https://code.claude.com/docs/en/memory) as of March 2026. It may still work as a legacy feature. For new projects, consider using `~/.claude/CLAUDE.md` (user-level) or `.claude/rules/` (project-level, path-scoped) instead.
+> **Lưu ý**: `CLAUDE.local.md` không còn được nhắc đến trong [tài liệu chính thức](https://code.claude.com/docs/en/memory) tính đến tháng 3 năm 2026. Nó có thể vẫn hoạt động như một tính năng di sản. Đối với các dự án mới, hãy cân nhắc sử dụng `~/.claude/CLAUDE.md` (cấp người dùng) hoặc `.claude/rules/` (cấp dự án, theo phạm vi đường dẫn).
 
-8. **Auto Memory** - Claude's automatic notes and learnings
+8. **Auto Memory (Bộ nhớ tự động)** - Các ghi chú và bài học tự động của Claude
    - `~/.claude/projects/<project>/memory/`
 
-**Memory Discovery Behavior:**
+**Hành vi phát hiện Bộ nhớ:**
 
-Claude searches for memory files in this order, with earlier locations taking precedence:
+Claude tìm kiếm các tệp bộ nhớ theo thứ tự này, với các vị trí sớm hơn sẽ có mức độ ưu tiên lớn hơn:
 
 ```mermaid
 graph TD
-    A["Managed Policy<br/>/Library/.../ClaudeCode/CLAUDE.md"] -->|highest priority| A2["Managed Drop-ins<br/>managed-settings.d/"]
+    A["Managed Policy<br/>/Library/.../ClaudeCode/CLAUDE.md"] -->|ưu tiên cao nhất| A2["Managed Drop-ins<br/>managed-settings.d/"]
     A2 --> B["Project Memory<br/>./CLAUDE.md"]
     B --> C["Project Rules<br/>./.claude/rules/*.md"]
     C --> D["User Memory<br/>~/.claude/CLAUDE.md"]
@@ -282,12 +282,12 @@ graph TD
     style I fill:#e1f5fe,stroke:#333,color:#333
 ```
 
-## Excluding CLAUDE.md Files with `claudeMdExcludes`
+## Loại trừ các tệp CLAUDE.md với `claudeMdExcludes`
 
-In large monorepos, some CLAUDE.md files may be irrelevant to your current work. The `claudeMdExcludes` setting lets you skip specific CLAUDE.md files so they are not loaded into context:
+Trong các monorepo lớn, một số tệp CLAUDE.md có thể không liên quan đến công việc hiện tại của bạn. Thiết lập `claudeMdExcludes` cho phép bạn bỏ qua các tệp CLAUDE.md cụ thể để chúng không được tải vào ngữ cảnh:
 
 ```jsonc
-// In ~/.claude/settings.json or .claude/settings.json
+// Trong ~/.claude/settings.json hoặc .claude/settings.json
 {
   "claudeMdExcludes": [
     "packages/legacy-app/CLAUDE.md",
@@ -296,35 +296,35 @@ In large monorepos, some CLAUDE.md files may be irrelevant to your current work.
 }
 ```
 
-Patterns are matched against paths relative to the project root. This is particularly useful for:
+Các mẫu (patterns) được khớp với các đường dẫn tương đối so với thư mục gốc của dự án. Điều này đặc biệt hữu ích cho:
 
-- Monorepos with many sub-projects, where only some are relevant
-- Repositories that contain vendored or third-party CLAUDE.md files
-- Reducing noise in Claude's context window by excluding stale or unrelated instructions
+- Monorepo với nhiều dự án con, nơi chỉ một số dự án là liên quan
+- Các repository chứa các tệp CLAUDE.md của bên thứ ba hoặc nhà cung cấp (vendored)
+- Giảm thiểu sự nhiễu trong cửa sổ ngữ cảnh của Claude bằng cách loại trừ các hướng dẫn cũ hoặc không liên quan
 
-## Settings File Hierarchy
+## Phân cấp tệp Thiết lập (Settings File Hierarchy)
 
-Claude Code settings (including `autoMemoryDirectory`, `claudeMdExcludes`, and other configuration) are resolved from a five-level hierarchy, with higher levels taking precedence:
+Các thiết lập của Claude Code (bao gồm `autoMemoryDirectory`, `claudeMdExcludes`, và các cấu hình khác) được giải quyết từ hệ thống phân cấp năm cấp độ, với các cấp cao hơn sẽ có mức độ ưu tiên lớn hơn:
 
-| Level | Location | Scope |
+| Cấp độ | Vị trí | Phạm vi |
 |-------|----------|-------|
-| 1 (Highest) | Managed policy (system-level) | Organization-wide enforcement |
-| 2 | `managed-settings.d/` (v2.1.83+) | Modular policy drop-ins, merged alphabetically |
-| 3 | `~/.claude/settings.json` | User preferences |
-| 4 | `.claude/settings.json` | Project-level (committed to git) |
-| 5 (Lowest) | `.claude/settings.local.json` | Local overrides (git-ignored) |
+| 1 (Cao nhất) | Managed policy (cấp hệ thống) | Áp dụng bắt buộc trong toàn tổ chức |
+| 2 | `managed-settings.d/` (v2.1.83+) | Các phần bổ sung chính sách theo module, hợp nhất theo bảng chữ cái |
+| 3 | `~/.claude/settings.json` | Sở thích người dùng |
+| 4 | `.claude/settings.json` | Cấp dự án (được commit vào git) |
+| 5 (Thấp nhất) | `.claude/settings.local.json` | Các giá trị ghi đè cục bộ (bị git bỏ qua) |
 
-**Platform-specific configuration (v2.1.51+):**
+**Cấu hình đặc thù theo nền tảng (v2.1.51+):**
 
-Settings can also be configured via:
-- **macOS**: Property list (plist) files
+Các thiết lập cũng có thể được cấu hình thông qua:
+- **macOS**: Các tệp Property list (plist)
 - **Windows**: Windows Registry
 
-These platform-native mechanisms are read alongside JSON settings files and follow the same precedence rules.
+Các cơ chế gốc của nền tảng này được đọc cùng với các tệp thiết lập JSON và tuân theo các quy tắc ưu tiên tương tự.
 
-## Modular Rules System
+## Hệ thống Quy tắc theo Module (Modular Rules System)
 
-Create organized, path-specific rules using the `.claude/rules/` directory structure. Rules can be defined at both the project level and user level:
+Tạo các quy tắc có tính tổ chức và đặc thù cho từng đường dẫn bằng cách sử dụng cấu trúc thư mục `.claude/rules/`. Các quy tắc có thể được định nghĩa ở cả cấp dự án và cấp người dùng:
 
 ```
 your-project/
@@ -334,375 +334,365 @@ your-project/
 │       ├── code-style.md
 │       ├── testing.md
 │       ├── security.md
-│       └── api/                  # Subdirectories supported
+│       └── api/                  # Hỗ trợ thư mục con
 │           ├── conventions.md
 │           └── validation.md
 
 ~/.claude/
 ├── CLAUDE.md
-└── rules/                        # User-level rules (all projects)
+└── rules/                        # Quy tắc cấp người dùng (mọi dự án)
     ├── personal-style.md
     └── preferred-patterns.md
 ```
 
-Rules are discovered recursively within the `rules/` directory, including any subdirectories. User-level rules at `~/.claude/rules/` are loaded before project-level rules, allowing personal defaults that projects can override.
+Các quy tắc được phát hiện đệ quy bên trong thư mục `rules/`, bao gồm bất kỳ thư mục con nào. Các quy tắc cấp người dùng tại `~/.claude/rules/` được tải trước quy tắc cấp dự án, cho phép các thiết lập cá nhân mặc định mà dự án có thể ghi đè.
 
-### Path-Specific Rules with YAML Frontmatter
+### Các quy tắc theo đường dẫn cụ thể với YAML Frontmatter
 
-Define rules that apply only to specific file paths:
+Định nghĩa các quy tắc chỉ áp dụng cho các đường dẫn tệp cụ thể:
 
 ```markdown
 ---
 paths: src/api/**/*.ts
 ---
 
-# API Development Rules
+# Quy tắc phát triển API
 
-- All API endpoints must include input validation
-- Use Zod for schema validation
-- Document all parameters and response types
-- Include error handling for all operations
+- Tất cả các endpoint API phải bao gồm xác thực đầu vào
+- Sử dụng Zod để xác thực schema
+- Tài liệu hóa tất cả các tham số và kiểu dữ liệu phản hồi
+- Bao gồm xử lý lỗi cho tất cả các hoạt động
 ```
 
-**Glob Pattern Examples:**
+**Ví dụ về Glob Pattern:**
 
-- `**/*.ts` - All TypeScript files
-- `src/**/*` - All files under src/
-- `src/**/*.{ts,tsx}` - Multiple extensions
-- `{src,lib}/**/*.ts, tests/**/*.test.ts` - Multiple patterns
+- `**/*.ts` - Tất cả các file TypeScript
+- `src/**/*` - Tất cả các file trong thư mục src/
+- `src/**/*.{ts,tsx}` - Nhiều phần mở rộng file
+- `{src,lib}/**/*.ts, tests/**/*.test.ts` - Nhiều mẫu đường dẫn
 
-### Subdirectories and Symlinks
+### Thư mục con và Symlinks
 
-Rules in `.claude/rules/` support two organizational features:
+Các quy tắc trong `.claude/rules/` hỗ trợ hai tính năng tổ chức:
 
-- **Subdirectories**: Rules are discovered recursively, so you can organize them into topic-based folders (e.g., `rules/api/`, `rules/testing/`, `rules/security/`)
-- **Symlinks**: Symlinks are supported for sharing rules across multiple projects. For example, you can symlink a shared rule file from a central location into each project's `.claude/rules/` directory
+- **Thư mục con**: Các quy tắc được phát hiện đệ quy, vì vậy bạn có thể tổ chức chúng thành các thư mục theo chủ đề (ví dụ: `rules/api/`, `rules/testing/`, `rules/security/`)
+- **Symlinks**: Các liên kết tượng trưng (symlinks) được hỗ trợ để chia sẻ quy tắc qua nhiều dự án. Ví dụ, bạn có thể tạo một symlink từ một tệp quy tắc dùng chung ở một vị trí trung tâm vào thư mục `.claude/rules/` của mỗi dự án
 
-## Memory Locations Table
+## Bảng vị trí Bộ nhớ
 
-| Location | Scope | Priority | Shared | Access | Best For |
+| Vị trí | Phạm vi | Ưu tiên | Chia sẻ | Truy cập | Phù hợp nhất cho |
 |----------|-------|----------|--------|--------|----------|
-| `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) | Managed Policy | 1 (Highest) | Organization | System | Company-wide policies |
-| `/etc/claude-code/CLAUDE.md` (Linux/WSL) | Managed Policy | 1 (Highest) | Organization | System | Organization standards |
-| `C:\Program Files\ClaudeCode\CLAUDE.md` (Windows) | Managed Policy | 1 (Highest) | Organization | System | Corporate guidelines |
-| `managed-settings.d/*.md` (alongside policy) | Managed Drop-ins | 1.5 | Organization | System | Modular policy files (v2.1.83+) |
-| `./CLAUDE.md` or `./.claude/CLAUDE.md` | Project Memory | 2 | Team | Git | Team standards, shared architecture |
-| `./.claude/rules/*.md` | Project Rules | 3 | Team | Git | Path-specific, modular rules |
-| `~/.claude/CLAUDE.md` | User Memory | 4 | Individual | Filesystem | Personal preferences (all projects) |
-| `~/.claude/rules/*.md` | User Rules | 5 | Individual | Filesystem | Personal rules (all projects) |
-| `./CLAUDE.local.md` | Project Local | 6 | Individual | Git (ignored) | Personal project-specific preferences |
-| `~/.claude/projects/<project>/memory/` | Auto Memory | 7 (Lowest) | Individual | Filesystem | Claude's automatic notes and learnings |
+| `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) | Chính sách quản lý | 1 (Cao nhất) | Tổ chức | Hệ thống | Chính sách toàn công ty |
+| `/etc/claude-code/CLAUDE.md` (Linux/WSL) | Chính sách quản lý | 1 (Cao nhất) | Tổ chức | Hệ thống | Tiêu chuẩn tổ chức |
+| `C:\Program Files\ClaudeCode\CLAUDE.md` (Windows) | Chính sách quản lý | 1 (Cao nhất) | Tổ chức | Hệ thống | Hướng dẫn tập đoàn |
+| `managed-settings.d/*.md` (cùng vị trí chính sách) | Managed Drop-ins | 1.5 | Tổ chức | Hệ thống | Các file chính sách theo module (v2.1.83+) |
+| `./CLAUDE.md` hoặc `./.claude/CLAUDE.md` | Bộ nhớ dự án | 2 | Đội ngũ | Git | Tiêu chuẩn đội ngũ, kiến trúc dùng chung |
+| `./.claude/rules/*.md` | Quy tắc dự án | 3 | Đội ngũ | Git | Quy tắc theo đường dẫn, theo module |
+| `~/.claude/CLAUDE.md` | Bộ nhớ người dùng | 4 | Cá nhân | Hệ thống tệp | Sở thích cá nhân (cho mọi dự án) |
+| `~/.claude/rules/*.md` | Quy tắc người dùng | 5 | Cá nhân | Hệ thống tệp | Quy tắc cá nhân (cho mọi dự án) |
+| `./CLAUDE.local.md` | Dự án cục bộ | 6 | Cá nhân | Git (bỏ qua) | Sở thích cá nhân đặc thù cho từng dự án |
+| `~/.claude/projects/<project>/memory/` | Bộ nhớ tự động | 7 (Thấp nhất) | Cá nhân | Hệ thống tệp | Các ghi chú và bài học tự động của Claude |
 
-## Memory Update Lifecycle
+## Vòng đời cập nhật Bộ nhớ
 
-Here's how memory updates flow through your Claude Code sessions:
+Dưới đây là cách các cập nhật bộ nhớ luân chuyển qua các phiên làm việc Claude Code của bạn:
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Claude as Claude Code
-    participant Editor as File System
+    participant Editor as Hệ thống tệp
     participant Memory as CLAUDE.md
 
-    User->>Claude: "Remember: use async/await"
-    Claude->>User: "Which memory file?"
-    User->>Claude: "Project memory"
-    Claude->>Editor: Open ~/.claude/settings.json
-    Claude->>Memory: Write to ./CLAUDE.md
-    Memory-->>Claude: File saved
-    Claude->>Claude: Load updated memory
-    Claude-->>User: "Memory saved!"
+    User->>Claude: "Ghi nhớ: sử dụng async/await"
+    Claude->>User: "Tệp bộ nhớ nào?"
+    User->>Claude: "Bộ nhớ dự án"
+    Claude->>Editor: Mở ~/.claude/settings.json
+    Claude->>Memory: Ghi vào ./CLAUDE.md
+    Memory-->>Claude: File đã được lưu
+    Claude->>Claude: Tải bộ nhớ đã cập nhật
+    Claude-->>User: "Đã lưu bộ nhớ!"
 ```
 
-## Auto Memory
+## Bộ nhớ tự động (Auto Memory)
 
-Auto memory is a persistent directory where Claude automatically records learnings, patterns, and insights as it works with your project. Unlike CLAUDE.md files which you write and maintain manually, auto memory is written by Claude itself during sessions.
+Bộ nhớ tự động là một thư mục bền vững nơi Claude tự động ghi lại các bài học, mẫu hình và hiểu biết khi làm việc với dự án của bạn. Khác với các tệp CLAUDE.md mà bạn tự viết và bảo trì thủ công, bộ nhớ tự động được chính Claude viết trong các phiên làm việc.
 
-### How Auto Memory Works
+### Cách Bộ nhớ tự động hoạt động
 
-- **Location**: `~/.claude/projects/<project>/memory/`
-- **Entrypoint**: `MEMORY.md` serves as the main file in the auto memory directory
-- **Topic files**: Optional additional files for specific subjects (e.g., `debugging.md`, `api-conventions.md`)
-- **Loading behavior**: The first 200 lines of `MEMORY.md` are loaded into the system prompt at session start. Topic files are loaded on demand, not at startup.
-- **Read/write**: Claude reads and writes memory files during sessions as it discovers patterns and project-specific knowledge
+- **Vị trí**: `~/.claude/projects/<project>/memory/`
+- **Điểm nhập (Entrypoint)**: `MEMORY.md` đóng vai trò là tệp chính trong thư mục bộ nhớ tự động
+- **Các tệp chủ đề (Topic files)**: Các tệp bổ sung tùy chọn cho các chủ đề cụ thể (ví dụ: `debugging.md`, `api-conventions.md`)
+- **Hành vi tải**: 200 dòng đầu tiên của `MEMORY.md` được tải vào lời nhắc hệ thống (system prompt) khi bắt đầu phiên làm việc. Các tệp chủ đề được tải theo yêu cầu, không phải lúc khởi động.
+- **Đọc/Ghi**: Claude đọc và ghi vào các tệp bộ nhớ trong suốt phiên làm việc khi nó khám phá ra các mẫu hình và kiến thức đặc thù của dự án
 
-### Auto Memory Architecture
+### Kiến trúc Bộ nhớ tự động
 
 ```mermaid
 graph TD
-    A["Claude Session Starts"] --> B["Load MEMORY.md<br/>(first 200 lines)"]
-    B --> C["Session Active"]
-    C --> D["Claude discovers<br/>patterns & insights"]
-    D --> E{"Write to<br/>auto memory"}
-    E -->|General notes| F["MEMORY.md"]
-    E -->|Topic-specific| G["debugging.md"]
-    E -->|Topic-specific| H["api-conventions.md"]
-    C --> I["On-demand load<br/>topic files"]
+    A["Bắt đầu phiên làm việc Claude"] --> B["Tải MEMORY.md<br/>(200 dòng đầu tiên)"]
+    B --> C["Phiên làm việc đang hoạt động"]
+    C --> D["Claude khám phá<br/>mẫu hình & hiểu biết"]
+    D --> E{"Ghi vào<br/>bộ nhớ tự động"}
+    E -->|Ghi chú chung| F["MEMORY.md"]
+    E -->|Đặc thù chủ đề| G["debugging.md"]
+    E -->|Đặc thù chủ đề| H["api-conventions.md"]
+    C --> I["Tải theo yêu cầu<br/>các tệp chủ đề"]
     I --> C
-
-    style A fill:#e1f5fe,stroke:#333,color:#333
-    style B fill:#e1f5fe,stroke:#333,color:#333
-    style C fill:#e8f5e9,stroke:#333,color:#333
-    style D fill:#f3e5f5,stroke:#333,color:#333
-    style E fill:#fff3e0,stroke:#333,color:#333
-    style F fill:#fce4ec,stroke:#333,color:#333
-    style G fill:#fce4ec,stroke:#333,color:#333
-    style H fill:#fce4ec,stroke:#333,color:#333
-    style I fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-### Auto Memory Directory Structure
+### Cấu trúc thư mục Bộ nhớ tự động
 
 ```
 ~/.claude/projects/<project>/memory/
-├── MEMORY.md              # Entrypoint (first 200 lines loaded at startup)
-├── debugging.md           # Topic file (loaded on demand)
-├── api-conventions.md     # Topic file (loaded on demand)
-└── testing-patterns.md    # Topic file (loaded on demand)
+├── MEMORY.md              # Điểm nhập (200 dòng đầu tiên được tải lúc khởi động)
+├── debugging.md           # Tệp chủ đề (tải theo yêu cầu)
+├── api-conventions.md     # Tệp chủ đề (tải theo yêu cầu)
+└── testing-patterns.md    # Tệp chủ đề (tải theo yêu cầu)
 ```
 
-### Version Requirement
+### Yêu cầu phiên bản
 
-Auto memory requires **Claude Code v2.1.59 or later**. If you are on an older version, upgrade first:
+Bộ nhớ tự động yêu cầu **Claude Code v2.1.59 hoặc mới hơn**. Nếu bạn đang sử dụng phiên bản cũ hơn, hãy nâng cấp lên:
 
 ```bash
 npm install -g @anthropic-ai/claude-code@latest
 ```
 
-### Custom Auto Memory Directory
+### Tùy chỉnh thư mục Bộ nhớ tự động
 
-By default, auto memory is stored in `~/.claude/projects/<project>/memory/`. You can change this location using the `autoMemoryDirectory` setting (available since **v2.1.74**):
+Mặc định, bộ nhớ tự động được lưu trữ tại `~/.claude/projects/<project>/memory/`. Bạn có thể thay đổi vị trí này bằng cách sử dụng cài đặt `autoMemoryDirectory` (có sẵn từ phiên bản **v2.1.74**):
 
 ```jsonc
-// In ~/.claude/settings.json or .claude/settings.local.json (user/local settings only)
+// Trong ~/.claude/settings.json hoặc .claude/settings.local.json (chỉ dành cho cài đặt người dùng/cục bộ)
 {
   "autoMemoryDirectory": "/path/to/custom/memory/directory"
 }
 ```
 
-> **Note**: `autoMemoryDirectory` can only be set in user-level (`~/.claude/settings.json`) or local settings (`.claude/settings.local.json`), not in project or managed policy settings.
+> **Lưu ý**: `autoMemoryDirectory` chỉ có thể được thiết lập trong cài đặt cấp người dùng (`~/.claude/settings.json`) hoặc cài đặt cục bộ (`.claude/settings.local.json`), không phải trong cài đặt dự án hoặc chính sách quản lý.
 
-This is useful when you want to:
+Điều này hữu ích khi bạn muốn:
 
-- Store auto memory in a shared or synced location
-- Separate auto memory from the default Claude configuration directory
-- Use a project-specific path outside the default hierarchy
+- Lưu trữ bộ nhớ tự động ở một vị trí chung hoặc được đồng bộ hóa
+- Tách bộ nhớ tự động khỏi thư mục cấu hình mặc định của Claude
+- Sử dụng một đường dẫn đặc thù cho dự án nằm ngoài hệ thống phân cấp mặc định
 
-### Worktree and Repository Sharing
+### Chia sẻ giữa Worktree và Repository
 
-All worktrees and subdirectories within the same git repository share a single auto memory directory. This means switching between worktrees or working in different subdirectories of the same repo will read and write to the same memory files.
+Tất cả các worktree và thư mục con trong cùng một git repository đều chia sẻ một thư mục bộ nhớ tự động duy nhất. Điều này có nghĩa là việc chuyển đổi giữa các worktree hoặc làm việc trong các thư mục con khác nhau của cùng một repo sẽ đọc và ghi vào cùng một tệp bộ nhớ.
 
-### Subagent Memory
+### Bộ nhớ của Subagent (Subagent Memory)
 
-Subagents (spawned via tools like Task or parallel execution) can have their own memory context. Use the `memory` frontmatter field in the subagent definition to specify which memory scopes to load:
+Các subagent (được tạo ra qua các công cụ như Task hoặc thực thi song song) có thể có ngữ cảnh bộ nhớ riêng. Sử dụng trường frontmatter `memory` trong định nghĩa subagent để chỉ định phạm vi bộ nhớ nào cần tải:
 
 ```yaml
-memory: user      # Load user-level memory only
-memory: project   # Load project-level memory only
-memory: local     # Load local memory only
+memory: user      # Chỉ tải bộ nhớ cấp người dùng
+memory: project   # Chỉ tải bộ nhớ cấp dự án
+memory: local     # Chỉ tải bộ nhớ cục bộ
 ```
 
-This allows subagents to operate with focused context rather than inheriting the full memory hierarchy.
+Điều này cho phép các subagent hoạt động với ngữ cảnh tập trung thay vì kế thừa toàn bộ hệ thống phân cấp bộ nhớ.
 
-### Controlling Auto Memory
+### Kiểm soát Bộ nhớ tự động
 
-Auto memory can be controlled via the `CLAUDE_CODE_DISABLE_AUTO_MEMORY` environment variable:
+Bộ nhớ tự động có thể được kiểm soát thông qua biến môi trường `CLAUDE_CODE_DISABLE_AUTO_MEMORY`:
 
-| Value | Behavior |
+| Giá trị | Hành vi |
 |-------|----------|
-| `0` | Force auto memory **on** |
-| `1` | Force auto memory **off** |
-| *(unset)* | Default behavior (auto memory enabled) |
+| `0` | Bắt buộc **bật** bộ nhớ tự động |
+| `1` | Bắt buộc **tắt** bộ nhớ tự động |
+| *(chưa đặt)* | Hành vi mặc định (bộ nhớ tự động được bật) |
 
 ```bash
-# Disable auto memory for a session
+# Tắt bộ nhớ tự động cho một phiên làm việc
 CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude
 
-# Force auto memory on explicitly
+# Bật bộ nhớ tự động một cách rõ ràng
 CLAUDE_CODE_DISABLE_AUTO_MEMORY=0 claude
 ```
 
-## Additional Directories with `--add-dir`
+## Thêm các thư mục bổ sung với `--add-dir`
 
-The `--add-dir` flag allows Claude Code to load CLAUDE.md files from additional directories beyond the current working directory. This is useful for monorepos or multi-project setups where context from other directories is relevant.
+Cờ `--add-dir` cho phép Claude Code tải các tệp CLAUDE.md từ các thư mục bổ sung ngoài thư mục làm việc hiện tại. Điều này hữu ích cho các monorepo hoặc các thiết lập đa dự án nơi ngữ cảnh từ các thư mục khác là liên quan.
 
-To enable this feature, set the environment variable:
+Để bật tính năng này, hãy đặt biến môi trường:
 
 ```bash
 CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1
 ```
 
-Then launch Claude Code with the flag:
+Sau đó khởi động Claude Code với cờ:
 
 ```bash
 claude --add-dir /path/to/other/project
 ```
 
-Claude will load CLAUDE.md from the specified additional directory alongside the memory files from your current working directory.
+Claude sẽ tải CLAUDE.md từ thư mục bổ sung được chỉ định cùng với các tệp bộ nhớ từ thư mục làm việc hiện tại của bạn.
 
-## Practical Examples
+## Các ví dụ thực tế
 
-### Example 1: Project Memory Structure
+### Ví dụ 1: Cấu trúc Bộ nhớ dự án
 
-**File:** `./CLAUDE.md`
+**Tệp:** `./CLAUDE.md`
 
 ```markdown
-# Project Configuration
+# Cấu hình dự án (Project Configuration)
 
-## Project Overview
-- **Name**: E-commerce Platform
-- **Tech Stack**: Node.js, PostgreSQL, React 18, Docker
-- **Team Size**: 5 developers
-- **Deadline**: Q4 2025
+## Tổng quan dự án (Project Overview)
+- **Tên**: Nền tảng thương mại điện tử
+- **Công nghệ**: Node.js, PostgreSQL, React 18, Docker
+- **Quy mô đội ngũ**: 5 lập trình viên
+- **Thời hạn**: Quý 4 năm 2025
 
-## Architecture
+## Kiến trúc
 @docs/architecture.md
 @docs/api-standards.md
 @docs/database-schema.md
 
-## Development Standards
+## Tiêu chuẩn phát triển
 
-### Code Style
-- Use Prettier for formatting
-- Use ESLint with airbnb config
-- Maximum line length: 100 characters
-- Use 2-space indentation
+### Phong cách lập trình (Code Style)
+- Sử dụng Prettier để định dạng
+- Sử dụng ESLint với cấu hình airbnb
+- Độ dài dòng tối đa: 100 ký tự
+- Sử dụng thụt lề 2 khoảng trắng
 
-### Naming Conventions
-- **Files**: kebab-case (user-controller.js)
-- **Classes**: PascalCase (UserService)
-- **Functions/Variables**: camelCase (getUserById)
-- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
-- **Database Tables**: snake_case (user_accounts)
+### Quy ước đặt tên (Naming Conventions)
+- **Tệp (Files)**: kebab-case (user-controller.js)
+- **Lớp (Classes)**: PascalCase (UserService)
+- **Hàm/Biến (Functions/Variables)**: camelCase (getUserById)
+- **Hằng số (Constants)**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **Bảng cơ sở dữ liệu (Database Tables)**: snake_case (user_accounts)
 
-### Git Workflow
-- Branch names: `feature/description` or `fix/description`
-- Commit messages: Follow conventional commits
-- PR required before merge
-- All CI/CD checks must pass
-- Minimum 1 approval required
+### Quy trình Git (Git Workflow)
+- Tên nhánh: `feature/description` hoặc `fix/description`
+- Thông điệp commit: Tuân theo conventional commits
+- Yêu cầu PR trước khi merge
+- Tất cả các kiểm tra CI/CD phải vượt qua
+- Yêu cầu tối thiểu 1 phê duyệt
 
-### Testing Requirements
-- Minimum 80% code coverage
-- All critical paths must have tests
-- Use Jest for unit tests
-- Use Cypress for E2E tests
-- Test filenames: `*.test.ts` or `*.spec.ts`
+### Yêu cầu kiểm thử (Testing Requirements)
+- Độ bao phủ code tối thiểu 80%
+- Tất cả các đường dẫn quan trọng phải có bài kiểm thử
+- Sử dụng Jest cho unit tests
+- Sử dụng Cypress cho E2E tests
+- Tên file kiểm thử: `*.test.ts` hoặc `*.spec.ts`
 
-### API Standards
-- RESTful endpoints only
-- JSON request/response
-- Use HTTP status codes correctly
-- Version API endpoints: `/api/v1/`
-- Document all endpoints with examples
+### Tiêu chuẩn API (API Standards)
+- Chỉ sử dụng các endpoint RESTful
+- Yêu cầu/Phản hồi dạng JSON
+- Sử dụng mã trạng thái HTTP đúng cách
+- Gán phiên bản cho API endpoint: `/api/v1/`
+- Tài liệu hóa tất cả các endpoint kèm theo ví dụ
 
-### Database
-- Use migrations for schema changes
-- Never hardcode credentials
-- Use connection pooling
-- Enable query logging in development
-- Regular backups required
+### Cơ sở dữ liệu (Database)
+- Sử dụng migration cho các thay đổi schema
+- Không bao giờ để lộ thông tin xác thực (credentials)
+- Sử dụng kết nối theo cụm (connection pooling)
+- Bật nhật ký truy vấn (query logging) trong môi trường phát triển
+- Yêu cầu sao lưu định kỳ
 
-### Deployment
-- Docker-based deployment
-- Kubernetes orchestration
-- Blue-green deployment strategy
-- Automatic rollback on failure
-- Database migrations run before deploy
+### Triển khai (Deployment)
+- Triển khai dựa trên Docker
+- Điều phối bằng Kubernetes
+- Chiến lược triển khai Blue-green
+- Tự động hoàn tác (rollback) khi thất bại
+- Chạy migrations cơ sở dữ liệu trước khi triển khai
 
-## Common Commands
+## Các lệnh thông dụng
 
-| Command | Purpose |
+| Lệnh | Mục đích |
 |---------|---------|
-| `npm run dev` | Start development server |
-| `npm test` | Run test suite |
-| `npm run lint` | Check code style |
-| `npm run build` | Build for production |
-| `npm run migrate` | Run database migrations |
+| `npm run dev` | Bắt đầu server phát triển |
+| `npm test` | Chạy bộ kiểm thử |
+| `npm run lint` | Kiểm tra phong cách lập trình |
+| `npm run build` | Build cho production |
+| `npm run migrate` | Chạy các bản di chuyển cơ sở dữ liệu |
 
-## Team Contacts
-- Tech Lead: Sarah Chen (@sarah.chen)
-- Product Manager: Mike Johnson (@mike.j)
+## Liên hệ đội ngũ
+- Trưởng nhóm kỹ thuật (Tech Lead): Sarah Chen (@sarah.chen)
+- Quản lý sản phẩm: Mike Johnson (@mike.j)
 - DevOps: Alex Kim (@alex.k)
 
-## Known Issues & Workarounds
-- PostgreSQL connection pooling limited to 20 during peak hours
-- Workaround: Implement query queuing
-- Safari 14 compatibility issues with async generators
-- Workaround: Use Babel transpiler
+## Các vấn đề đã biết & Cách khắc phục
+- Kết nối PostgreSQL bị giới hạn ở mức 20 trong giờ cao điểm
+- Cách khắc phục: Triển khai hàng đợi truy vấn (query queuing)
+- Vấn đề tương thích Safari 14 với async generators
+- Cách khắc phục: Sử dụng trình chuyển đổi Babel
 
-## Related Projects
-- Analytics Dashboard: `/projects/analytics`
-- Mobile App: `/projects/mobile`
-- Admin Panel: `/projects/admin`
+## Các dự án liên quan
+- Dashboard Phân tích: `/projects/analytics`
+- Ứng dụng Di động: `/projects/mobile`
+- Bảng Quản trị: `/projects/admin`
 ```
 
-### Example 2: Directory-Specific Memory
+### Ví dụ 2: Bộ nhớ đặc thù thư mục
 
-**File:** `./src/api/CLAUDE.md`
+**Tệp:** `./src/api/CLAUDE.md`
 
 ```markdown
-# API Module Standards
+# Tiêu chuẩn Module API
 
-This file overrides root CLAUDE.md for everything in /src/api/
+Tệp này ghi đè tệp CLAUDE.md gốc cho tất cả các nội dung trong /src/api/
 
-## API-Specific Standards
+## Các tiêu chuẩn đặc thù cho API
 
-### Request Validation
-- Use Zod for schema validation
-- Always validate input
-- Return 400 with validation errors
-- Include field-level error details
+### Xác thực yêu cầu (Request Validation)
+- Sử dụng Zod cho xác thực schema
+- Luôn xác thực đầu vào
+- Trả về mã 400 kèm theo các lỗi xác thực
+- Bao gồm chi tiết lỗi ở mức độ trường dữ liệu
 
-### Authentication
-- All endpoints require JWT token
-- Token in Authorization header
-- Token expires after 24 hours
-- Implement refresh token mechanism
+### Xác thực người dùng (Authentication)
+- Tất cả các endpoint đều yêu cầu mã JWT (JWT token)
+- Token nằm trong header Authorization
+- Token hết hạn sau 24 giờ
+- Triển khai cơ chế refresh token
 
-### Response Format
+### Định dạng phản hồi
 
-All responses must follow this structure:
+Tất cả các phản hồi phải tuân theo cấu trúc này:
 
 ```json
 {
   "success": true,
-  "data": { /* actual data */ },
+  "data": { /* dữ liệu thực tế */ },
   "timestamp": "2025-11-06T10:30:00Z",
   "version": "1.0"
 }
 ```
 
-Error responses:
+Phản hồi lỗi:
 ```json
 {
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "User message",
-    "details": { /* field errors */ }
+    "message": "Thông báo cho người dùng",
+    "details": { /* lỗi theo từng trường */ }
   },
   "timestamp": "2025-11-06T10:30:00Z"
 }
 ```
 
-### Pagination
-- Use cursor-based pagination (not offset)
-- Include `hasMore` boolean
-- Limit max page size to 100
-- Default page size: 20
+### Phân trang (Pagination)
+- Sử dụng phân trang dựa trên con trỏ (cursor-based pagination), không dùng offset
+- Bao gồm biến boolean `hasMore`
+- Giới hạn kích thước trang tối đa là 100
+- Kích thước trang mặc định: 20
 
-### Rate Limiting
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
-- Return 429 when exceeded
-- Include retry-after header
+### Giới hạn tốc độ (Rate Limiting)
+- 1000 yêu cầu mỗi giờ cho người dùng đã xác thực
+- 100 yêu cầu mỗi giờ cho các endpoint công khai
+- Trả về mã 429 khi vượt quá giới hạn
+- Bao gồm header retry-after
 
-### Caching
-- Use Redis for session caching
-- Cache duration: 5 minutes default
-- Invalidate on write operations
-- Tag cache keys with resource type
+### Ghi nhớ đệm (Caching)
+- Sử dụng Redis để lưu trữ session
+- Thời gian lưu trữ mặc định: 5 phút
+- Hủy bỏ cache (invalidate) khi có các hoạt động ghi
+- Gắn thẻ (tag) cho các khóa cache theo loại tài nguyên
 ```
 
 ### Example 3: Personal Memory
@@ -927,18 +917,124 @@ graph LR
 ### Don'ts - What To Avoid
 
 - **Don't store secrets**: Never include API keys, passwords, tokens, or credentials
+- **Don't include sensitive data**: Không bao gồm khóa API, mật khẩu, mã thông báo hoặc thông tin xác thực.
 
-- **Don't include sensitive data**: No PII, private information, or proprietary secrets
+- **Don't include sensitive data**: Không bao gồm PII, thông tin cá nhân hoặc bí mật độc quyền.
 
-- **Don't duplicate content**: Use imports (`@path`) to reference existing documentation instead
+- **Don't duplicate content**: Sử dụng các tệp nhập (`@path`) để tham chiếu tài liệu hiện có thay vì sao chép nội dung.
 
-- **Don't be vague**: Avoid generic statements like "follow best practices" or "write good code"
+- **Don't be vague**: Tránh các tuyên bố chung chung như "tuân theo các phương pháp hay nhất" hoặc "viết mã tốt".
+
+### Ví dụ 3: Bộ nhớ cá nhân (Personal Memory)
+
+**Tệp:** `~/.claude.md` (hoặc cấu hình tương đương)
+
+```markdown
+# Sở thích cá nhân của Lập trình viên
+
+Tệp này cung cấp ngữ cảnh về cách tôi (người dùng) thích làm việc trên tất cả các dự án.
+
+## Phong cách giao tiếp
+- Trình bày ngắn gọn, đi thẳng vào vấn đề
+- Giải thích các quyết định kiến trúc quan trọng
+- Luôn hiển thị các thay đổi quan trọng trong mã nguồn
+- Sử dụng biểu tượng cảm xúc (emoji) một cách chừng mực để tăng tính dễ đọc
+
+## Sở thích kỹ thuật
+- Luôn ưu tiên sử dụng TypeScript hơn JavaScript
+- Thích các hàm thuần túy (pure functions) và tính bất biến (immutability)
+- Sử dụng async/await thay vì promises hoặc callbacks
+- Viết JSDoc cho tất cả các hàm công khai (public functions)
+- Ưu tiên sử dụng Tailwind CSS cho các thành phần UI
+- Sử dụng các hook tùy chỉnh cho logic phức tạp trong React
+
+## Quy trình làm việc (Workflow)
+- Luôn chạy kiểm thử (tests) trước khi hoàn thành nhiệm vụ
+- Tự động định dạng mã nguồn trước khi lưu
+- Tạo danh sách kiểm tra (checklist) cho các tác vụ lớn
+- Cung cấp tóm tắt các thay đổi sau mỗi phiên làm việc
+
+## Công cụ & Phím tắt
+- Sử dụng VS Code làm trình soạn thảo chính
+- Sử dụng phím tắt iTerm2 để điều hướng nhanh
+- Thích sử dụng git bằng dòng lệnh (CLI)
+```
+
+### Ví dụ 4: Quy tắc theo Module (Module-specific Rules)
+
+**Tệp:** `./src/components/CLAUDE.md`
+
+```markdown
+# Quy tắc thành phần UI (UI Component Rules)
+
+Tệp này áp dụng cho tất cả các thành phần trong thư mục components.
+
+## Tiêu chuẩn thành phần
+- Mỗi thành phần phải nằm trong thư mục riêng
+- Cấu trúc: `ComponentName/index.tsx`, `ComponentName/styles.css`, `ComponentName/types.ts`
+- Luôn sử dụng Functional Components với React.FC
+- Định nghĩa PropTypes/Interfaces một cách rõ ràng
+- Tránh sử dụng 'any' bằng mọi giá trị
+
+## Quy tắc thiết kế (Design Rules)
+- Sử dụng các biến hệ thống thiết kế (design system tokens) cho màu sắc
+- Đảm bảo tính khả dụng (accessibility) - sử dụng thuộc tính aria khi cần
+- Kiểm tra tính đáp ứng (responsive) cho thiết bị di động đầu tiên (mobile-first)
+- Sử dụng Framer Motion cho các hiệu ứng chuyển động (animations)
+
+## Xử lý trạng thái (State Management)
+- Sử dụng `useState` cho trạng thái cục bộ
+- Sử dụng `useContext` cho trạng thái chia sẻ trong module
+- Giữ cho trạng thái càng gần nơi sử dụng càng tốt (lifting state up chỉ khi cần)
+```
+
+## Các mẹo và Thực hành tốt nhất (Best Practices)
+
+Để tận dụng tối đa hệ thống bộ nhớ của Claude, hãy tuân theo các hướng dẫn sau:
+
+1.  **Càng cụ thể càng tốt**: Tránh các hướng dẫn mơ hồ. Thay vì nói "Viết mã nguồn sạch", hãy nói "Sử dụng quy tắc đặt tên camelCase và giới hạn hàm dưới 20 dòng".
+2.  **Sử dụng Đường dẫn Tuyệt đối cho Tài liệu**: Khi tham chiếu các tệp tài liệu trong CLAUDE.md, hãy sử dụng đường dẫn tương đương từ gốc dự án (ví dụ: `@docs/setup.md`).
+3.  **Kết hợp CLAUDE.md với Auto Memory**: Sử dụng CLAUDE.md cho các quy tắc **bắt buộc** và Auto Memory để Claude tự học các **mẫu hình** (patterns) thực tế.
+4.  **Phân cấp hóa**: Đừng đưa mọi thứ vào tệp gốc `CLAUDE.md`. Hãy chia nhỏ các quy tắc vào các thư mục con để Claude chỉ tải những gì cần thiết.
+5.  **Cập nhật Định kỳ**: Khi dự án tiến triển, hãy cập nhật các tệp CLAUDE.md để phản ánh những thay đổi trong công nghệ hoặc quy trình của đội ngũ.
+6.  **Sử dụng Markdown rõ ràng**: Sử dụng tiêu đề (headers), danh sách (lists) và bảng (tables) để Claude dễ dàng phân tích cấu trúc thông tin.
+7.  **Giới hạn Dung lượng**: Cố gắng giữ phần quan trọng nhất của `MEMORY.md` hoặc `CLAUDE.md` trong khoảng 200 dòng đầu tiên để đảm bảo nó luôn được tải.
+
+## Khắc phục sự cố (Troubleshooting)
+
+### Claude không tuân theo các quy tắc
+- **Nguyên nhân**: Tệp CLAUDE.md quá lớn hoặc quy tắc bị xung đột. 
+- **Giải pháp**: Kiểm tra xem tài liệu có vượt quá giới hạn tải không. Sử dụng `/config` để xem dự án đang nhận diện tệp nào. Làm cho quy tắc rõ ràng hơn hoặc di chuyển chúng vào thư mục con liên quan.
+
+### Auto Memory không hoạt động
+- **Nguyên nhân**: Phiên bản Claude Code cũ hoặc biến môi trường `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`.
+- **Giải pháp**: Chạy `npm install -g @anthropic-ai/claude-code@latest` để cập nhật. Đảm bảo biến môi trường không bị tắt.
+
+### Xung đột giữa các mức độ bộ nhớ
+- **Nguyên nhân**: Quy tắc ở cấp độ cá nhân (`~/.claude.md`) xung đột với quy tắc dự án.
+- **Giải pháp**: Quy tắc ở cấp độ sâu hơn (thư mục con > dự án > cá nhân) sẽ được ưu tiên. Hãy kiểm tra xem bạn có vô tình override quy tắc quan trọng nào không.
+
+### Claude tải quá nhiều thông tin
+- **Nguyên nhân**: Sử dụng quá nhiều `@filename` tham chiếu cùng lúc.
+- **Giải pháp**: Chỉ tham chiếu những tệp thực sự cần thiết cho ngữ cảnh chung. Đối với các tài liệu lớn, hãy hướng dẫn Claude tìm kiếm chúng khi cần thay vì tải tự động.
+
+---
+
+## Kết luận (Conclusion)
+
+Hệ thống bộ nhớ của Claude Code là một công cụ mạnh mẽ giúp biến một AI thông dụng thành một "cộng sự" am hiểu sâu sắc về dự án và sở thích của bạn. Bằng cách kết hợp giữa quản lý thủ công (CLAUDE.md) và học máy tự động (Auto Memory), bạn có thể duy trì một môi trường phát triển hiệu quả, nhất quán và thông minh.
+
+Hãy bắt đầu bằng việc tạo một tệp `CLAUDE.md` cơ bản ở gốc dự án của bạn ngay hôm nay!
+
+---
+
+| [Trang trước: 01-Slash Commands](../01-slash-commands/README.md) | [Mục lục](../INDEX.md) | [Trang tiếp theo: 03-Skills](../03-skills/README.md) |
+|:---:|:---:|:---:|
+| [Sổ tay Lệnh Slash](../01-slash-commands/README.md) | [Hướng dẫn sử dụng](../README.md) | [Kỹ năng Claude](../03-skills/README.md) |
 
 - **Don't make it too long**: Keep individual memory files focused and under 500 lines
 
 - **Don't over-organize**: Use hierarchy strategically; don't create excessive subdirectory overrides
-
-- **Don't forget to update**: Stale memory can cause confusion and outdated practices
 
 - **Don't exceed nesting limits**: Memory imports support up to 5 levels of nesting
 

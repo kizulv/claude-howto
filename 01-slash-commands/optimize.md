@@ -1,19 +1,19 @@
 ---
-description: Analyze code for performance issues and suggest optimizations
+description: Phân tích mã nguồn để tìm các vấn đề về hiệu năng và đề xuất tối ưu hóa
 ---
 
-# Code Optimization
+# Tối ưu hóa mã nguồn (Code Optimization)
 
-Review the provided code for the following issues in order of priority:
+Rà soát mã nguồn được cung cấp để tìm các vấn đề sau theo thứ tự ưu tiên:
 
-1. **Performance bottlenecks** - identify O(n²) operations, inefficient loops
-2. **Memory leaks** - find unreleased resources, circular references
-3. **Algorithm improvements** - suggest better algorithms or data structures
-4. **Caching opportunities** - identify repeated computations
-5. **Concurrency issues** - find race conditions or threading problems
+1. **Nghẽn hiệu năng (Performance bottlenecks)** - xác định các hoạt động O(n²), các vòng lặp thiếu hiệu quả
+2. **Rò rỉ bộ nhớ (Memory leaks)** - tìm các tài nguyên chưa được giải phóng, các tham chiếu vòng
+3. **Cải tiến thuật toán (Algorithm improvements)** - đề xuất các thuật toán hoặc cấu trúc dữ liệu tốt hơn
+4. **Cơ hội ghi nhớ đệm (Caching opportunities)** - xác định các phép tính lặp lại
+5. **Vấn đề đồng thời (Concurrency issues)** - tìm các tình trạng tranh chấp (race conditions) hoặc các vấn đề về luồng (threading)
 
-Format your response with:
-- Issue severity (Critical/High/Medium/Low)
-- Location in code
-- Explanation
-- Recommended fix with code example
+Định dạng câu trả lời của bạn với:
+- Mức độ nghiêm trọng của vấn đề (Nghiêm trọng/Cao/Trung bình/Thấp)
+- Vị trí trong mã nguồn
+- Giải thích
+- Cách khắc phục được khuyến nghị kèm theo ví dụ mã nguồn

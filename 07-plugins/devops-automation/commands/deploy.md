@@ -1,15 +1,15 @@
 ---
 name: Deploy
-description: Deploy application to production or staging
+description: Triển khai ứng dụng lên production hoặc staging
 ---
 
-# Deploy Application
+# Triển khai ứng dụng (Deploy Application)
 
-Execute deployment workflow:
+Thực hiện workflow triển khai:
 
-1. Run pre-deployment checks
-2. Build application
-3. Run tests
-4. Deploy to target environment
-5. Run health checks
-6. Notify team on Slack
+1. Chạy các kiểm tra trước khi triển khai
+2. Build ứng dụng
+3. Chạy các bài kiểm tra (tests)
+4. Triển khai lên môi trường đích
+5. Chạy các bài kiểm tra sức khỏe (health checks)
+6. Thông báo cho nhóm trên Slack

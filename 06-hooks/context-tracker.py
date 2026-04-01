@@ -1,44 +1,44 @@
 #!/usr/bin/env python3
 """
-Context Usage Tracker - Tracks token consumption per request.
+Trình theo dõi sử dụng ngữ cảnh - Theo dõi lượng tiêu thụ token theo từng yêu cầu.
 
-Uses UserPromptSubmit as "pre-message" hook and Stop as "post-response" hook
-to calculate the delta in token usage for each request.
+Sử dụng UserPromptSubmit làm hook "pre-message" và Stop làm hook "post-response"
+để tính toán sự thay đổi (delta) trong việc sử dụng token cho mỗi yêu cầu.
 
-This version uses character-based estimation (no dependencies).
-For better accuracy, see context-tracker-tiktoken.py.
+Phiên bản này sử dụng ước tính dựa trên ký tự (không có phụ thuộc).
+Để có độ chính xác tốt hơn, xem context-tracker-tiktoken.py.
 
-Usage:
-    Configure both hooks to use the same script:
-    - UserPromptSubmit: saves current token count
-    - Stop: calculates delta and reports usage
+Cách dùng:
+    Cấu hình cả hai hook để sử dụng cùng một script:
+    - UserPromptSubmit: lưu số lượng token hiện tại
+    - Stop: tính toán delta và báo cáo mức sử dụng
 """
 import json
 import os
 import sys
 import tempfile
 
-# Configuration
-CONTEXT_LIMIT = 128000  # Claude's context window (adjust for your model)
+# Cấu hình
+CONTEXT_LIMIT = 128000  # Cửa sổ ngữ cảnh của Claude (điều chỉnh cho mô hình của bạn)
 
 
 def get_state_file(session_id: str) -> str:
-    """Get temp file path for storing pre-message token count, isolated by session."""
+    """Lấy đường dẫn tệp tạm để lưu trữ số lượng token trước tin nhắn, tách biệt theo phiên."""
     return os.path.join(tempfile.gettempdir(), f"claude-context-{session_id}.json")
 
 
 def count_tokens_estimate(text: str) -> int:
     """
-    Estimate token count using character-based approximation.
+    Ước tính số lượng token bằng phép xấp xỉ dựa trên ký tự.
 
-    Uses ~4 characters per token ratio, which provides ~80-90% accuracy
-    for English text. Less accurate for code and non-English text.
+    Sử dụng tỷ lệ ~4 ký tự mỗi token, mang lại độ chính xác ~80-90%
+    cho văn bản tiếng Anh. Kém chính xác hơn đối với mã nguồn và văn bản không phải tiếng Anh.
     """
     return len(text) // 4
 
 
 def read_transcript(transcript_path: str) -> str:
-    """Read and concatenate all content from transcript file."""
+    """Đọc và nối tất cả nội dung từ tệp bản ghi (transcript)."""
     if not transcript_path or not os.path.exists(transcript_path):
         return ""
 
@@ -47,7 +47,7 @@ def read_transcript(transcript_path: str) -> str:
         for line in f:
             try:
                 entry = json.loads(line.strip())
-                # Extract text content from various message formats
+                # Trích xuất nội dung văn bản từ các định dạng tin nhắn khác nhau
                 if "message" in entry:
                     msg = entry["message"]
                     if isinstance(msg.get("content"), str):
@@ -63,28 +63,28 @@ def read_transcript(transcript_path: str) -> str:
 
 
 def handle_user_prompt_submit(data: dict) -> None:
-    """Pre-message hook: Save current token count before request."""
+    """Hook trước tin nhắn: Lưu số lượng token hiện tại trước khi thực hiện yêu cầu."""
     session_id = data.get("session_id", "unknown")
     transcript_path = data.get("transcript_path", "")
 
     transcript_content = read_transcript(transcript_path)
     current_tokens = count_tokens_estimate(transcript_content)
 
-    # Save to temp file for later comparison
+    # Lưu vào tệp tạm để so sánh sau
     state_file = get_state_file(session_id)
     with open(state_file, "w") as f:
         json.dump({"pre_tokens": current_tokens}, f)
 
 
 def handle_stop(data: dict) -> None:
-    """Post-response hook: Calculate and report token delta."""
+    """Hook sau phản hồi: Tính toán và báo cáo sự thay đổi token."""
     session_id = data.get("session_id", "unknown")
     transcript_path = data.get("transcript_path", "")
 
     transcript_content = read_transcript(transcript_path)
     current_tokens = count_tokens_estimate(transcript_content)
 
-    # Load pre-message count
+    # Tải lại số lượng token trước tin nhắn
     state_file = get_state_file(session_id)
     pre_tokens = 0
     if os.path.exists(state_file):
@@ -95,19 +95,19 @@ def handle_stop(data: dict) -> None:
         except (json.JSONDecodeError, IOError):
             pass
 
-    # Calculate delta
+    # Tính toán delta
     delta_tokens = current_tokens - pre_tokens
     remaining = CONTEXT_LIMIT - current_tokens
     percentage = (current_tokens / CONTEXT_LIMIT) * 100
 
-    # Report usage (stderr so it doesn't interfere with hook output)
+    # Báo cáo việc sử dụng (stderr để không can thiệp vào đầu ra của hook)
     print(
-        f"Context (estimated): ~{current_tokens:,} tokens "
-        f"({percentage:.1f}% used, ~{remaining:,} remaining)",
+        f"Ngữ cảnh (ước tính): ~{current_tokens:,} token "
+        f"({percentage:.1f}% đã dùng, còn ~{remaining:,})",
         file=sys.stderr,
     )
     if delta_tokens > 0:
-        print(f"This request: ~{delta_tokens:,} tokens", file=sys.stderr)
+        print(f"Yêu cầu này: ~{delta_tokens:,} token", file=sys.stderr)
 
 
 def main():

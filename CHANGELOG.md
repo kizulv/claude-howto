@@ -1,109 +1,109 @@
-# Changelog
+# Nhật ký thay đổi (Changelog)
 
-## v2.2.0 — 2026-03-26
+## v2.2.0 — 26-03-2026
 
-### Documentation
+### Tài liệu
 
-- Sync all tutorials and references with Claude Code v2.1.84 (f78c094) @luongnv89
-  - Update slash commands to 55+ built-in + 5 bundled skills, mark 3 deprecated
-  - Expand hook events from 18 to 25, add `agent` hook type (now 4 types)
-  - Add Auto Mode, Channels, Voice Dictation to advanced features
-  - Add `effort`, `shell` skill frontmatter fields; `initialPrompt`, `disallowedTools` agent fields
-  - Add WebSocket MCP transport, elicitation, 2KB tool cap
-  - Add plugin LSP support, `userConfig`, `${CLAUDE_PLUGIN_DATA}`
-  - Update all reference docs (CATALOG, QUICK_REFERENCE, LEARNING-ROADMAP, INDEX)
-- Rewrite README as landing-page-structured guide (32a0776) @luongnv89
+- Đồng bộ hóa tất cả các hướng dẫn và tham chiếu với Claude Code v2.1.84 (f78c094) @luongnv89
+  - Cập nhật các lệnh slash thành hơn 55 lệnh tích hợp + 5 skill đóng gói, đánh dấu 3 lệnh đã lỗi thời (deprecated)
+  - Mở rộng các sự kiện hook từ 18 lên 25, thêm loại hook `agent` (hiện có 4 loại)
+  - Thêm Auto Mode, Channels, Voice Dictation vào các tính năng nâng cao
+  - Thêm các trường frontmatter `effort`, `shell` cho skill; các trường `initialPrompt`, `disallowedTools` cho agent
+  - Thêm transport WebSocket cho MCP, elicitation, giới hạn công cụ 2KB
+  - Thêm hỗ trợ LSP cho plugin, `userConfig`, `${CLAUDE_PLUGIN_DATA}`
+  - Cập nhật tất cả tài liệu tham khảo (CATALOG, QUICK_REFERENCE, LEARNING-ROADMAP, INDEX)
+- Viết lại README dưới dạng hướng dẫn có cấu trúc trang đích (landing page) (32a0776) @luongnv89
 
-### Bug Fixes
+### Sửa lỗi
 
-- Add missing cSpell words and README sections for CI compliance (93f9d51) @luongnv89
-- Add `Sandboxing` to cSpell dictionary (b80ce6f) @luongnv89
+- Thêm các từ còn thiếu trong cSpell và các phần README để tuân thủ CI (93f9d51) @luongnv89
+- Thêm `Sandboxing` vào từ điển cSpell (b80ce6f) @luongnv89
 
-**Full Changelog**: https://github.com/luongnv89/claude-howto/compare/v2.1.1...v2.2.0
-
----
-
-## v2.1.1 — 2026-03-13
-
-### Bug Fixes
-
-- Remove dead marketplace link failing CI link checks (3fdf0d6) @luongnv89
-- Add `sandboxed` and `pycache` to cSpell dictionary (dc64618) @luongnv89
-
-**Full Changelog**: https://github.com/luongnv89/claude-howto/compare/v2.1.0...v2.1.1
+**Toàn bộ thay đổi**: https://github.com/luongnv89/claude-howto/compare/v2.1.1...v2.2.0
 
 ---
 
-## v2.1.0 — 2026-03-13
+## v2.1.1 — 13-03-2026
 
-### Features
+### Sửa lỗi
 
-- Add adaptive learning path with self-assessment and lesson quiz skills (1ef46cd) @luongnv89
-  - `/self-assessment` — interactive proficiency quiz across 10 feature areas with personalized learning path
-  - `/lesson-quiz [lesson]` — per-lesson knowledge check with 8-10 targeted questions
+- Loại bỏ liên kết marketplace đã hỏng làm lỗi kiểm tra liên kết của CI (3fdf0d6) @luongnv89
+- Thêm `sandboxed` và `pycache` vào từ điển cSpell (dc64618) @luongnv89
 
-### Bug Fixes
-
-- Update broken URLs, deprecations, and outdated references (8fe4520) @luongnv89
-- Fix broken links in resources and self-assessment skill (7a05863) @luongnv89
-- Use tilde fences for nested code blocks in concepts guide (5f82719) @VikalpP
-- Add missing words to cSpell dictionary (8df7572) @luongnv89
-
-### Documentation
-
-- Phase 5 QA — fix consistency, URLs, and terminology across docs (00bbe4c) @luongnv89
-- Complete Phases 3-4 — new feature coverage and reference doc updates (132de29) @luongnv89
-- Add MCPorter runtime to MCP context bloat section (ef52705) @luongnv89
-- Add missing commands, features, and settings across 6 guides (4bc8f15) @luongnv89
-- Add style guide based on existing repo conventions (84141d0) @luongnv89
-- Add self-assessment row to guide comparison table (8fe0c96) @luongnv89
-- Add VikalpP to contributors list for PR #7 (d5b4350) @luongnv89
-- Add self-assessment and lesson-quiz skill references to README and roadmap (d5a6106) @luongnv89
-
-### New Contributors
-
-- @VikalpP made their first contribution in #7
-
-**Full Changelog**: https://github.com/luongnv89/claude-howto/compare/v2.0.0...v2.1.0
+**Toàn bộ thay đổi**: https://github.com/luongnv89/claude-howto/compare/v2.1.0...v2.1.1
 
 ---
 
-## v2.0.0 — 2026-02-01
+## v2.1.0 — 13-03-2026
 
-### Features
+### Tính năng
 
-- Sync all documentation with Claude Code February 2026 features (487c96d)
-  - Update 26 files across all 10 tutorial directories and 7 reference documents
-  - Add documentation for **Auto Memory** — persistent learnings per project
-  - Add documentation for **Remote Control**, **Web Sessions**, and **Desktop App**
-  - Add documentation for **Agent Teams** (experimental multi-agent collaboration)
-  - Add documentation for **MCP OAuth 2.0**, **Tool Search**, and **Claude.ai Connectors**
-  - Add documentation for **Persistent Memory** and **Worktree Isolation** for subagents
-  - Add documentation for **Background Subagents**, **Task List**, **Prompt Suggestions**
-  - Add documentation for **Sandboxing** and **Managed Settings** (Enterprise)
-  - Add documentation for **HTTP Hooks** and 7 new hook events
-  - Add documentation for **Plugin Settings**, **LSP Servers**, and Marketplace updates
-  - Add documentation for **Summarize from Checkpoint** rewind option
-  - Document 17 new slash commands (`/fork`, `/desktop`, `/teleport`, `/tasks`, `/fast`, etc.)
-  - Document new CLI flags (`--worktree`, `--from-pr`, `--remote`, `--teleport`, `--teammate-mode`, etc.)
-  - Document new environment variables for auto memory, effort levels, agent teams, and more
+- Thêm lộ trình học tập thích ứng với các skill tự đánh giá và bài kiểm tra bài học (1ef46cd) @luongnv89
+  - `/self-assessment` — bài kiểm tra trình độ tương tác qua 10 lĩnh vực tính năng với lộ trình học tập cá nhân hóa
+  - `/lesson-quiz [lesson]` — kiểm tra kiến thức theo từng bài học với 8-10 câu hỏi mục tiêu
 
-### Design
+### Sửa lỗi
 
-- Redesign logo to compass-bracket mark with minimal palette (20779db)
+- Cập nhật các URL bị hỏng, các phần lỗi thời và các tham chiếu cũ (8fe4520) @luongnv89
+- Sửa các liên kết hỏng trong tài nguyên và skill tự đánh giá (7a05863) @luongnv89
+- Sử dụng dấu ngã (tilde fences) cho các khối mã lồng nhau trong hướng dẫn khái niệm (5f82719) @VikalpP
+- Thêm các từ còn thiếu vào từ điển cSpell (8df7572) @luongnv89
 
-### Bug Fixes / Corrections
+### Tài liệu
 
-- Update model names: Sonnet 4.5 → **Sonnet 4.6**, Opus 4.5 → **Opus 4.6**
-- Fix permission mode names: replace fictional "Unrestricted/Confirm/Read-only" with actual `default`/`acceptEdits`/`plan`/`dontAsk`/`bypassPermissions`
-- Fix hook events: remove fictional `PreCommit`/`PostCommit`/`PrePush`, add real events (`SubagentStart`, `WorktreeCreate`, `ConfigChange`, etc.)
-- Fix CLI syntax: replace `claude-code --headless` with `claude -p` (print mode)
-- Fix checkpoint commands: replace fictional `/checkpoint save/list/rewind/diff` with actual `Esc+Esc` / `/rewind` interface
-- Fix session management: replace fictional `/session list/new/switch/save` with real `/resume`/`/rename`/`/fork`
-- Fix plugin manifest format: migrate `plugin.yaml` → `.claude-plugin/plugin.json`
-- Fix MCP config paths: `~/.claude/mcp.json` → `.mcp.json` (project) / `~/.claude.json` (user)
-- Fix documentation URLs: `docs.claude.com` → `docs.anthropic.com`; remove fictional `plugins.claude.com`
-- Remove fictional configuration fields across multiple files
-- Update all "Last Updated" dates to February 2026
+- QA Giai đoạn 5 — sửa tính nhất quán, URL và thuật ngữ trên toàn bộ tài liệu (00bbe4c) @luongnv89
+- Hoàn thành Giai đoạn 3-4 — bao phủ các tính năng mới và cập nhật tài liệu tham khảo (132de29) @luongnv89
+- Thêm runtime MCPorter vào phần thảo luận về MCP context (ef52705) @luongnv89
+- Thêm các lệnh, tính năng và cài đặt còn thiếu trên 6 hướng dẫn (4bc8f15) @luongnv89
+- Thêm hướng dẫn phong cách (style guide) dựa trên các quy ước hiện có của kho lưu trữ (84141d0) @luongnv89
+- Thêm hàng tự đánh giá vào bảng so sánh hướng dẫn (8fe0c96) @luongnv89
+- Thêm @VikalpP vào danh sách người đóng góp cho PR #7 (d5b4350) @luongnv89
+- Thêm tham chiếu skill tự đánh giá và bài kiểm tra vào README và lộ trình (d5a6106) @luongnv89
 
-**Full Changelog**: https://github.com/luongnv89/claude-howto/compare/20779db...v2.0.0
+### Người đóng góp mới
+
+- @VikalpP đã đóng góp lần đầu tiên trong #7
+
+**Toàn bộ thay đổi**: https://github.com/luongnv89/claude-howto/compare/v2.0.0...v2.1.0
+
+---
+
+## v2.0.0 — 01-02-2026
+
+### Tính năng
+
+- Đồng bộ hóa tất cả tài liệu với các tính năng của Claude Code tháng 2 năm 2026 (487c96d)
+  - Cập nhật 26 tệp trên tất cả 10 thư mục hướng dẫn và 7 tài liệu tham khảo
+  - Thêm tài liệu cho **Auto Memory** — học tập bền vững theo từng dự án
+  - Thêm tài liệu cho **Remote Control**, **Web Sessions**, và **Desktop App**
+  - Thêm tài liệu cho **Agent Teams** (cộng tác đa agent thực nghiệm)
+  - Thêm tài liệu cho **MCP OAuth 2.0**, **Tool Search**, và **Claude.ai Connectors**
+  - Thêm tài liệu cho **Persistent Memory** và **Worktree Isolation** cho các subagent
+  - Thêm tài liệu cho **Background Subagents**, **Task List**, **Prompt Suggestions**
+  - Thêm tài liệu cho **Sandboxing** và **Managed Settings** (Doanh nghiệp)
+  - Thêm tài liệu cho **HTTP Hooks** và 7 sự kiện hook mới
+  - Thêm tài liệu cho **Plugin Settings**, **LSP Servers**, và cập nhật Marketplace
+  - Thêm tài liệu cho tùy chọn tua lại **Summarize from Checkpoint**
+  - Tài liệu hóa 17 lệnh slash mới (`/fork`, `/desktop`, `/teleport`, `/tasks`, `/fast`, v.v.)
+  - Tài liệu hóa các flag CLI mới (`--worktree`, `--from-pr`, `--remote`, `--teleport`, `--teammate-mode`, v.v.)
+  - Tài liệu hóa các biến môi trường mới cho auto memory, mức độ nỗ lực, agent teams, và nhiều hơn nữa
+
+### Thiết kế
+
+- Thiết kế lại logo thành biểu tượng compass-bracket với bảng màu tối giản (20779db)
+
+### Sửa lỗi / Điều chỉnh
+
+- Cập nhật tên mô hình: Sonnet 4.5 → **Sonnet 4.6**, Opus 4.5 → **Opus 4.6**
+- Sửa tên các chế độ cấp quyền: thay thế các tên giả định bằng tên thực tế `default`/`acceptEdits`/`plan`/`dontAsk`/`bypassPermissions`
+- Sửa các sự kiện hook: loại bỏ các sự kiện giả định, thêm các sự kiện thực tế (`SubagentStart`, `WorktreeCreate`, `ConfigChange`, v.v.)
+- Sửa cú pháp CLI: thay thế `claude-code --headless` bằng `claude -p` (chế độ in)
+- Sửa các lệnh checkpoint: thay thế các lệnh giả bằng giao diện `Esc+Esc` / `/rewind` thực tế
+- Sửa quản lý phiên làm việc: thay thế các lệnh giả bằng `/resume`/`/rename`/`/fork` thực tế
+- Sửa định dạng manifest plugin: chuyển đổi `plugin.yaml` → `.claude-plugin/plugin.json`
+- Sửa đường dẫn cấu hình MCP: `~/.claude/mcp.json` → `.mcp.json` (dự án) / `~/.claude.json` (người dùng)
+- Sửa URL tài liệu: `docs.claude.com` → `docs.anthropic.com`
+- Loại bỏ các trường cấu hình không có thực trên nhiều tệp
+- Cập nhật tất cả các ngày "Cập nhật lần cuối" thành tháng 2 năm 2026
+
+**Toàn bộ thay đổi**: https://github.com/luongnv89/claude-howto/compare/20779db...v2.0.0

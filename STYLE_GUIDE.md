@@ -3,37 +3,37 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Style Guide
+# Hướng dẫn phong cách (Style Guide)
 
-> Conventions and formatting rules for contributing to Claude How To. Follow this guide to keep content consistent, professional, and easy to maintain.
+> Các quy ước và quy tắc định dạng để đóng góp cho Claude How To. Hãy tuân thủ hướng dẫn này để giữ cho nội dung nhất quán, chuyên nghiệp và dễ bảo trì.
 
 ---
 
-## Table of Contents
+## Mục lục
 
-- [File and Folder Naming](#file-and-folder-naming)
-- [Document Structure](#document-structure)
-- [Headings](#headings)
-- [Text Formatting](#text-formatting)
-- [Lists](#lists)
-- [Tables](#tables)
-- [Code Blocks](#code-blocks)
-- [Links and Cross-References](#links-and-cross-references)
-- [Diagrams](#diagrams)
-- [Emoji Usage](#emoji-usage)
+- [Đặt tên Tệp và Thư mục](#đặt-tên-tệp-và-thư-mục)
+- [Cấu trúc tài liệu](#cấu-trúc-tài-liệu)
+- [Tiêu đề (Headings)](#tiêu-đề-headings)
+- [Định dạng văn bản](#định-dạng-văn-bản)
+- [Danh sách (Lists)](#danh-sách-lists)
+- [Bảng (Tables)](#bảng-tables)
+- [Khối mã (Code Blocks)](#khối-mã-code-blocks)
+- [Liên kết và Tham chiếu chéo](#liên kết-và-tham-chiếu-chéo)
+- [Sơ đồ (Diagrams)](#sơ-đồ-diagrams)
+- [Cách dùng Emoji](#cách-dùng-emoji)
 - [YAML Frontmatter](#yaml-frontmatter)
-- [Images and Media](#images-and-media)
-- [Tone and Voice](#tone-and-voice)
-- [Commit Messages](#commit-messages)
-- [Checklist for Authors](#checklist-for-authors)
+- [Hình ảnh và Phương tiện](#hình-ảnh-và-phương-tiện)
+- [Giọng văn và Thái độ](#giọng-văn-và-thái-độ)
+- [Thông điệp Commit](#thông-điệp-commit)
+- [Danh sách kiểm tra cho Tác giả](#danh-sách-kiểm-tra-cho-tác-giả)
 
 ---
 
-## File and Folder Naming
+## Đặt tên Tệp và Thư mục
 
-### Lesson Folders
+### Thư mục bài học
 
-Lesson folders use a **two-digit numbered prefix** followed by a **kebab-case** descriptor:
+Các thư mục bài học sử dụng **tiền tố số có hai chữ số** theo sau là phần mô tả định dạng **kebab-case**:
 
 ```
 01-slash-commands/
@@ -43,588 +43,304 @@ Lesson folders use a **two-digit numbered prefix** followed by a **kebab-case** 
 05-mcp/
 ```
 
-The number reflects the learning path order from beginner to advanced.
+Các con số phản ánh thứ tự lộ trình học tập từ cơ bản đến nâng cao.
 
-### File Names
+### Tên tệp
 
-| Type | Convention | Examples |
+| Loại | Quy ước | Ví dụ |
 |------|-----------|----------|
-| **Lesson README** | `README.md` | `01-slash-commands/README.md` |
-| **Feature file** | Kebab-case `.md` | `code-reviewer.md`, `generate-api-docs.md` |
+| **Bài học README** | `README.md` | `01-slash-commands/README.md` |
+| **Tệp tính năng** | Kebab-case `.md` | `code-reviewer.md`, `generate-api-docs.md` |
 | **Shell script** | Kebab-case `.sh` | `format-code.sh`, `validate-input.sh` |
-| **Config file** | Standard names | `.mcp.json`, `settings.json` |
-| **Memory file** | Scope-prefixed | `project-CLAUDE.md`, `personal-CLAUDE.md` |
-| **Top-level docs** | UPPER_CASE `.md` | `CATALOG.md`, `QUICK_REFERENCE.md`, `CONTRIBUTING.md` |
-| **Image assets** | Kebab-case | `pr-slash-command.png`, `claude-howto-logo.svg` |
+| **Tệp cấu hình** | Tên tiêu chuẩn | `.mcp.json`, `settings.json` |
+| **Tệp bộ nhớ** | Tiền tố phạm vi | `project-CLAUDE.md`, `personal-CLAUDE.md` |
+| **Tài liệu cấp cao** | CHỮ_HOA `.md` | `CATALOG.md`, `QUICK_REFERENCE.md`, `CONTRIBUTING.md` |
+| **Hình ảnh** | Kebab-case | `pr-slash-command.png`, `claude-howto-logo.svg` |
 
-### Rules
+### Quy tắc
 
-- Use **lowercase** for all file and folder names (except top-level docs like `README.md`, `CATALOG.md`)
-- Use **hyphens** (`-`) as word separators, never underscores or spaces
-- Keep names descriptive but concise
+- Sử dụng **chữ thường** cho tất cả tên tệp và thư mục (ngoại trừ các tài liệu cấp cao như `README.md`, `CATALOG.md`)
+- Sử dụng **dấu gạch nối** (`-`) để phân tách từ, không bao giờ dùng dấu gạch dưới hoặc khoảng trắng
+- Đặt tên mô tả nhưng súc tích
 
 ---
 
-## Document Structure
+## Cấu trúc tài liệu
 
-### Root README
+### README gốc
 
-The root `README.md` follows this order:
+Tệp `README.md` ở thư mục gốc tuân theo thứ tự sau:
 
-1. Logo (`<picture>` element with dark/light variants)
-2. H1 title
-3. Introductory blockquote (one-line value proposition)
-4. "Why This Guide?" section with comparison table
-5. Horizontal rule (`---`)
-6. Table of Contents
-7. Feature Catalog
-8. Quick Navigation
-9. Learning Path
-10. Feature sections
-11. Getting Started
-12. Best Practices / Troubleshooting
-13. Contributing / License
+1. Logo (phần tử `<picture>` với các biến thể sáng/tối)
+2. Tiêu đề H1
+3. Đoạn trích dẫn giới thiệu (blockquote - giá trị cốt lõi trong một dòng)
+4. Phần "Tại sao có hướng dẫn này?" với bảng so sánh
+5. Đường kẻ ngang (`---`)
+6. Mục lục
+7. Danh mục tính năng
+8. Điều hướng nhanh
+9. Lộ trình học tập
+10. Các phần tính năng
+11. Bắt đầu (Getting Started)
+12. Thực hành tốt nhất / Khắc phục sự cố
+13. Đóng góp / Giấy phép
 
-### Lesson README
+### README bài học
 
-Each lesson `README.md` follows this order:
+Mỗi bài học `README.md` tuân theo thứ tự sau:
 
-1. H1 title (e.g., `# Slash Commands`)
-2. Brief overview paragraph
-3. Quick reference table (optional)
-4. Architecture diagram (Mermaid)
-5. Detailed sections (H2)
-6. Practical examples (numbered, 4-6 examples)
-7. Best practices (Do's and Don'ts tables)
-8. Troubleshooting
-9. Related guides / Official documentation
-10. Document metadata footer
+1. Tiêu đề H1 (ví dụ: `# Slash Commands`)
+2. Đoạn văn tổng quan ngắn gọn
+3. Bảng tham khảo nhanh (tùy chọn)
+4. Sơ đồ kiến trúc (Mermaid)
+5. Các phần chi tiết (H2)
+6. Các ví dụ thực tế (đánh số, từ 4-6 ví dụ)
+7. Thực hành tốt nhất (bảng Nên và Không nên)
+8. Khắc phục sự cố
+9. Các hướng dẫn liên quan / Tài liệu chính thức
+10. Chân trang siêu dữ liệu tài liệu
 
-### Feature/Example File
+### Tệp Tính năng/Ví dụ
 
-Individual feature files (e.g., `optimize.md`, `pr.md`):
+Các tệp tính năng riêng lẻ (ví dụ: `optimize.md`, `pr.md`):
 
-1. YAML frontmatter (if applicable)
-2. H1 title
-3. Purpose / description
-4. Usage instructions
-5. Code examples
-6. Customization tips
+1. YAML frontmatter (nếu có)
+2. Tiêu đề H1
+3. Mục đích / Mô tả
+4. Hướng dẫn sử dụng
+5. Các ví dụ mã
+6. Mẹo tùy chỉnh
 
-### Section Separators
+### Phân cách các phần
 
-Use horizontal rules (`---`) to separate major document regions:
+Sử dụng đường kẻ ngang (`---`) để phân tách các vùng chính trong tài liệu:
 
 ```markdown
 ---
 
-## New Major Section
+## Phần chính mới
 ```
 
-Place them after the introductory blockquote and between logically distinct parts of the document.
+Đặt chúng sau phần trích dẫn giới thiệu và giữa các phần logic khác nhau của tài liệu.
 
 ---
 
-## Headings
+## Tiêu đề (Headings)
 
-### Hierarchy
+### Phân cấp
 
-| Level | Use | Example |
+| Cấp | Sử dụng | Ví dụ |
 |-------|-----|---------|
-| `#` H1 | Page title (one per document) | `# Slash Commands` |
-| `##` H2 | Major sections | `## Best Practices` |
-| `###` H3 | Subsections | `### Adding a Skill` |
-| `####` H4 | Sub-subsections (rare) | `#### Configuration Options` |
+| `#` H1 | Tiêu đề trang (một tệp có một tiêu đề) | `# Slash Commands` |
+| `##` H2 | Các phần chính | `## Thực hành tốt nhất` |
+| `###` H3 | Các phần phụ | `### Thêm một Skill` |
+| `####` H4 | Phần phụ nhỏ hơn (hiếm dùng) | `#### Các tùy chọn cấu hình` |
 
-### Rules
+### Quy tắc
 
-- **One H1 per document** — the page title only
-- **Never skip levels** — don't jump from H2 to H4
-- **Keep headings concise** — aim for 2-5 words
-- **Use sentence case** — capitalize first word and proper nouns only (exception: feature names stay as-is)
-- **Add emoji prefixes only on root README** section headers (see [Emoji Usage](#emoji-usage))
+- **Một H1 mỗi tài liệu** — chỉ dành cho tiêu đề trang
+- **Không bao giờ nhảy cấp** — không nhảy từ H2 sang H4
+- **Giữ tiêu đề súc tích** — mục tiêu từ 2-5 từ
+- **Sử dụng viết hoa chữ cái đầu** — chỉ viết hoa từ đầu tiên và danh từ riêng (ngoại trừ: tên tính năng giữ nguyên)
+- **Chỉ thêm tiền tố emoji trên các tiêu đề phần README gốc** (xem [Cách dùng Emoji](#cách-dùng-emoji))
 
 ---
 
-## Text Formatting
+## Định dạng văn bản
 
-### Emphasis
+### Nhấn mạnh
 
-| Style | When to Use | Example |
+| Kiểu | Khi nào sử dụng | Ví dụ |
 |-------|------------|---------|
-| **Bold** (`**text**`) | Key terms, labels in tables, important concepts | `**Installation**:` |
-| *Italic* (`*text*`) | First use of a technical term, book/doc titles | `*frontmatter*` |
-| `Code` (`` `text` ``) | File names, commands, config values, code references | `` `CLAUDE.md` `` |
+| **In đậm** (`**văn bản**`) | Các thuật ngữ chính, nhãn trong bảng, khái niệm quan trọng | `**Cài đặt**:` |
+| *In nghiêng* (`*văn bản*`) | Lần đầu dùng thuật ngữ kỹ thuật, tiêu đề sách/tài liệu | `*frontmatter*` |
+| `Code` (`` `văn bản` ``) | Tên tệp, câu lệnh, giá trị cấu hình, tham chiếu mã | `` `CLAUDE.md` `` |
 
-### Blockquotes for Callouts
+### Blockquotes cho các ghi chú
 
-Use blockquotes with bold prefixes for important notes:
+Sử dụng blockquotes với tiền tố in đậm cho các lưu ý quan trọng:
 
 ```markdown
-> **Note**: Custom slash commands have been merged into skills since v2.0.
+> **Ghi chú**: Các câu lệnh slash tùy chỉnh đã được gộp vào skills kể từ v2.0.
 
-> **Important**: Never commit API keys or credentials.
+> **Quan trọng**: Không bao giờ commit các khóa API hoặc thông tin xác thực.
 
-> **Tip**: Combine memory with skills for maximum effectiveness.
+> **Mẹo**: Kết hợp bộ nhớ với skills để đạt hiệu quả tối đa.
 ```
 
-Supported callout types: **Note**, **Important**, **Tip**, **Warning**.
-
-### Paragraphs
-
-- Keep paragraphs short (2-4 sentences)
-- Add a blank line between paragraphs
-- Lead with the key point, then provide context
-- Explain the "why" not just the "what"
+Các loại ghi chú được hỗ trợ: **Ghi chú** (Note), **Quan trọng** (Important), **Mẹo** (Tip), **Cảnh báo** (Warning).
 
 ---
 
-## Lists
+## Danh sách (Lists)
 
-### Unordered Lists
+### Danh sách không thứ tự
 
-Use dashes (`-`) with 2-space indentation for nesting:
-
-```markdown
-- First item
-- Second item
-  - Nested item
-  - Another nested item
-    - Deep nested (avoid going deeper than 3 levels)
-- Third item
-```
-
-### Ordered Lists
-
-Use numbered lists for sequential steps, instructions, and ranked items:
+Sử dụng dấu gạch ngang (`-`) với thụt đầu dòng 2 khoảng trắng để lồng nhau:
 
 ```markdown
-1. First step
-2. Second step
-   - Sub-point detail
-   - Another sub-point
-3. Third step
+- Mục thứ nhất
+- Mục thứ hai
+  - Mục con
+  - Một mục con khác
+    - Mục sâu hơn (tránh đi sâu quá 3 cấp)
+- Mục thứ ba
 ```
 
-### Descriptive Lists
+### Danh sách có thứ tự
 
-Use bold labels for key-value style lists:
+Sử dụng danh sách đánh số cho các bước tuần tự, hướng dẫn và các mục có xếp hạng:
 
 ```markdown
-- **Performance bottlenecks** - identify O(n^2) operations, inefficient loops
-- **Memory leaks** - find unreleased resources, circular references
-- **Algorithm improvements** - suggest better algorithms or data structures
+1. Bước đầu tiên
+2. Bước thứ hai
+   - Chi tiết điểm phụ
+   - Một điểm phụ khác
+3. Bước thứ ba
 ```
 
-### Rules
+### Quy tắc
 
-- Maintain consistent indentation (2 spaces per level)
-- Add a blank line before and after a list
-- Keep list items parallel in structure (all start with verb, or all are nouns, etc.)
-- Avoid nesting deeper than 3 levels
+- Duy trì thụt đầu dòng nhất quán (2 khoảng trắng mỗi cấp)
+- Thêm một dòng trống trước và sau một danh sách
+- Tránh lồng nhau sâu quá 3 cấp
 
 ---
 
-## Tables
+## Bảng (Tables)
 
-### Standard Format
+### Định dạng tiêu chuẩn
 
 ```markdown
-| Column 1 | Column 2 | Column 3 |
+| Cột 1 | Cột 2 | Cột 3 |
 |----------|----------|----------|
-| Data     | Data     | Data     |
+| Dữ liệu  | Dữ liệu  | Dữ liệu  |
 ```
 
-### Common Table Patterns
+### Quy tắc
 
-**Feature comparison (3-4 columns):**
-
-```markdown
-| Feature | Invocation | Persistence | Best For |
-|---------|-----------|------------|----------|
-| **Slash Commands** | Manual (`/cmd`) | Session only | Quick shortcuts |
-| **Memory** | Auto-loaded | Cross-session | Long-term learning |
-```
-
-**Do's and Don'ts:**
-
-```markdown
-| Do | Don't |
-|----|-------|
-| Use descriptive names | Use vague names |
-| Keep files focused | Overload a single file |
-```
-
-**Quick reference:**
-
-```markdown
-| Aspect | Details |
-|--------|---------|
-| **Purpose** | Generate API documentation |
-| **Scope** | Project-level |
-| **Complexity** | Intermediate |
-```
-
-### Rules
-
-- **Bold table headers** when they are row labels (first column)
-- Align pipes for readability in source (optional but preferred)
-- Keep cell content concise; use links for details
-- Use `code formatting` for commands and file paths inside cells
+- **In đậm tiêu đề bảng** khi chúng là nhãn hàng (cột đầu tiên)
+- Giữ nội dung trong ô súc tích; sử dụng liên kết cho chi tiết
+- Sử dụng `định dạng mã` cho các câu lệnh và đường dẫn tệp bên trong ô
 
 ---
 
-## Code Blocks
+## Khối mã (Code Blocks)
 
-### Language Tags
+### Thẻ ngôn ngữ (Language Tags)
 
-Always specify a language tag for syntax highlighting:
+Luôn chỉ định thẻ ngôn ngữ để làm nổi bật cú pháp:
 
-| Language | Tag | Use For |
+| Ngôn ngữ | Thẻ | Sử dụng cho |
 |----------|-----|---------|
-| Shell | `bash` | CLI commands, scripts |
-| Python | `python` | Python code |
-| JavaScript | `javascript` | JS code |
-| TypeScript | `typescript` | TS code |
-| JSON | `json` | Configuration files |
-| YAML | `yaml` | Frontmatter, config |
-| Markdown | `markdown` | Markdown examples |
-| SQL | `sql` | Database queries |
-| Plain text | (no tag) | Expected output, directory trees |
-
-### Conventions
-
-```bash
-# Comment explaining what the command does
-claude mcp add notion --transport http https://mcp.notion.com/mcp
-```
-
-- Add a **comment line** before non-obvious commands
-- Make all examples **copy-paste ready**
-- Show **both simple and advanced** versions when relevant
-- Include **expected output** when it aids understanding (use untagged code block)
-
-### Installation Blocks
-
-Use this pattern for installation instructions:
-
-```bash
-# Copy files to your project
-cp 01-slash-commands/*.md .claude/commands/
-```
-
-### Multi-step Workflows
-
-```bash
-# Step 1: Create the directory
-mkdir -p .claude/commands
-
-# Step 2: Copy the templates
-cp 01-slash-commands/*.md .claude/commands/
-
-# Step 3: Verify installation
-ls .claude/commands/
-```
+| Shell | `bash` | Các câu lệnh CLI, script |
+| Python | `python` | Mã Python |
+| JSON | `json` | Tệp cấu hình |
+| YAML | `yaml` | Frontmatter, cấu hình |
+| Markdown | `markdown` | Ví dụ Markdown |
+| Plain text | (không thẻ) | Kết quả mong đợi, cây thư mục |
 
 ---
 
-## Links and Cross-References
+## Liên kết và Tham chiếu chéo
 
-### Internal Links (Relative)
+### Liên kết nội bộ (Tương đối)
 
-Use relative paths for all internal links:
+Sử dụng đường dẫn tương đối cho tất cả các liên kết nội bộ:
 
 ```markdown
 [Slash Commands](01-slash-commands/)
-[Skills Guide](03-skills/)
-[Memory Architecture](02-memory/#memory-architecture)
+[Hướng dẫn Skills](03-skills/)
 ```
 
-From a lesson folder back to root or sibling:
+### Liên kết ngoài (Tuyệt đối)
+
+Sử dụng URL đầy đủ với văn bản liên kết mô tả:
 
 ```markdown
-[Back to main guide](../README.md)
-[Related: Skills](../03-skills/)
+[Tài liệu chính thức của Anthropic](https://code.claude.com/docs/en/overview)
 ```
 
-### External Links (Absolute)
-
-Use full URLs with descriptive anchor text:
-
-```markdown
-[Anthropic's official documentation](https://code.claude.com/docs/en/overview)
-```
-
-- Never use "click here" or "this link" as anchor text
-- Use descriptive text that makes sense out of context
-
-### Section Anchors
-
-Link to sections within the same document using GitHub-style anchors:
-
-```markdown
-[Feature Catalog](#-feature-catalog)
-[Best Practices](#best-practices)
-```
-
-### Related Guides Pattern
-
-End lessons with a related guides section:
-
-```markdown
-## Related Guides
-
-- [Slash Commands](../01-slash-commands/) - Quick shortcuts
-- [Memory](../02-memory/) - Persistent context
-- [Skills](../03-skills/) - Reusable capabilities
-```
+- Không bao giờ sử dụng "nhấn vào đây" làm văn bản liên kết
 
 ---
 
-## Diagrams
+## Sơ đồ (Diagrams)
 
 ### Mermaid
 
-Use Mermaid for all diagrams. Supported types:
+Sử dụng Mermaid cho tất cả các sơ đồ.
 
-- `graph TB` / `graph LR` — architecture, hierarchy, flow
-- `sequenceDiagram` — interaction flows
-- `timeline` — chronological sequences
+### Quy tắc
 
-### Style Conventions
-
-Apply consistent colors using style blocks:
-
-```mermaid
-graph TB
-    A["Component A"] --> B["Component B"]
-    B --> C["Component C"]
-
-    style A fill:#e1f5fe,stroke:#333,color:#333
-    style B fill:#fce4ec,stroke:#333,color:#333
-    style C fill:#e8f5e9,stroke:#333,color:#333
-```
-
-**Color palette:**
-
-| Color | Hex | Use For |
-|-------|-----|---------|
-| Light blue | `#e1f5fe` | Primary components, inputs |
-| Light pink | `#fce4ec` | Processing, middleware |
-| Light green | `#e8f5e9` | Outputs, results |
-| Light yellow | `#fff9c4` | Configuration, optional |
-| Light purple | `#f3e5f5` | User-facing, UI |
-
-### Rules
-
-- Use `["Label text"]` for node labels (enables special characters)
-- Use `<br/>` for line breaks within labels
-- Keep diagrams simple (max 10-12 nodes)
-- Add a brief text description below the diagram for accessibility
-- Use top-to-bottom (`TB`) for hierarchies, left-to-right (`LR`) for workflows
+- Sử dụng `["Văn bản nhãn"]` cho nhãn node (cho phép ký tự đặc biệt)
+- Giữ sơ đồ đơn giản (tối đa 10-12 nodes)
+- Thêm mô tả văn bản ngắn bên dưới sơ đồ để hỗ trợ khả năng truy cập (accessibility)
+- Sử dụng trên-dưới (`TB`) cho phân cấp, trái-sang-phải (`LR`) cho quy trình làm việc
 
 ---
 
-## Emoji Usage
+## Cách dùng Emoji
 
-### Where Emojis Are Used
+### Nơi sử dụng Emoji
 
-Emojis are used **sparingly and purposefully** — only in specific contexts:
+Emoji được sử dụng **tiết kiệm và có mục đích** — chỉ trong các ngữ cảnh cụ thể:
 
-| Context | Emojis | Example |
+| Ngữ cảnh | Emojis | Ví dụ |
 |---------|--------|---------|
-| Root README section headers | Category icons | `## 📚 Learning Path` |
-| Skill level indicators | Colored circles | 🟢 Beginner, 🔵 Intermediate, 🔴 Advanced |
-| Do's and Don'ts | Check/cross marks | ✅ Do this, ❌ Don't do this |
-| Complexity ratings | Stars | ⭐⭐⭐ |
-
-### Standard Emoji Set
-
-| Emoji | Meaning |
-|-------|---------|
-| 📚 | Learning, guides, documentation |
-| ⚡ | Getting started, quick reference |
-| 🎯 | Features, quick reference |
-| 🎓 | Learning paths |
-| 📊 | Statistics, comparisons |
-| 🚀 | Installation, quick commands |
-| 🟢 | Beginner level |
-| 🔵 | Intermediate level |
-| 🔴 | Advanced level |
-| ✅ | Recommended practice |
-| ❌ | Avoid / anti-pattern |
-| ⭐ | Complexity rating unit |
-
-### Rules
-
-- **Never use emojis in body text** or paragraphs
-- **Only use emojis in headers** on the root README (not in lesson READMEs)
-- **Do not add decorative emojis** — every emoji should convey meaning
-- Keep emoji usage consistent with the table above
+| Tiêu đề phần README gốc | Các biểu tượng danh mục | `## 📚 Lộ trình học tập` |
+| Chỉ báo cấp độ kỹ năng | Các vòng tròn màu | 🟢 Người mới, 🔵 Trung cấp, 🔴 Nâng cao |
+| Nên và Không nên | Dấu tích/gạch chéo | ✅ Nên làm, ❌ Không nên làm |
+| Xếp hạng độ phức tạp | Các ngôi sao | ⭐⭐⭐ |
 
 ---
 
 ## YAML Frontmatter
 
-### Feature Files (Skills, Commands, Agents)
+### Tệp tính năng (Skills, Commands, Agents)
 
 ```yaml
 ---
-name: unique-identifier
-description: What this feature does and when to use it
+name: dinh-danh-duy-nhat
+description: Tính năng này làm gì và khi nào nên dùng
 allowed-tools: Bash, Read, Grep
 ---
 ```
 
-### Optional Fields
+### Quy tắc
 
-```yaml
----
-name: my-feature
-description: Brief description
-argument-hint: "[file-path] [options]"
-allowed-tools: Bash, Read, Grep, Write, Edit
-model: opus                        # opus, sonnet, or haiku
-disable-model-invocation: true     # User-only invocation
-user-invocable: false              # Hidden from user menu
-context: fork                      # Run in isolated subagent
-agent: Explore                     # Agent type for context: fork
----
-```
-
-### Rules
-
-- Place frontmatter at the very top of the file
-- Use **kebab-case** for the `name` field
-- Keep `description` to one sentence
-- Only include fields that are needed
+- Đặt frontmatter ở ngay đầu tệp
+- Sử dụng **kebab-case** cho trường `name`
+- Giữ `description` trong một câu
 
 ---
 
-## Images and Media
+## Giọng văn và Thái độ
 
-### Logo Pattern
+### Phong cách viết
 
-All documents that start with a logo use the `<picture>` element for dark/light mode support:
-
-```html
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
-</picture>
-```
-
-### Screenshots
-
-- Store in the relevant lesson folder (e.g., `01-slash-commands/pr-slash-command.png`)
-- Use kebab-case file names
-- Include descriptive alt text
-- Prefer SVG for diagrams, PNG for screenshots
-
-### Rules
-
-- Always provide alt text for images
-- Keep image file sizes reasonable (< 500KB for PNGs)
-- Use relative paths for image references
-- Store images in the same directory as the document that references them, or in `assets/` for shared images
+- **Chuyên nghiệp nhưng dễ tiếp cận** — chính xác về kỹ thuật mà không gây ngợp bởi thuật ngữ chuyên ngành
+- **Thể chủ động** — "Tạo một tệp" thay vì "Một tệp nên được tạo"
+- **Hướng dẫn trực tiếp** — "Chạy lệnh này" thay vì "Bạn có thể muốn chạy lệnh này"
+- **Thân thiện với người mới** — giả định người đọc mới sử dụng Claude Code, chứ không phải mới học lập trình
 
 ---
 
-## Tone and Voice
+## Danh sách kiểm tra cho Tác giả
 
-### Writing Style
+Trước khi gửi nội dung, hãy kiểm tra:
 
-- **Professional but approachable** — technical accuracy without jargon overload
-- **Active voice** — "Create a file" not "A file should be created"
-- **Direct instructions** — "Run this command" not "You might want to run this command"
-- **Beginner-friendly** — assume the reader is new to Claude Code, not new to programming
-
-### Content Principles
-
-| Principle | Example |
-|-----------|---------|
-| **Show, don't tell** | Provide working examples, not abstract descriptions |
-| **Progressive complexity** | Start simple, add depth in later sections |
-| **Explain the "why"** | "Use memory for... because..." not just "Use memory for..." |
-| **Copy-paste ready** | Every code block should work when pasted directly |
-| **Real-world context** | Use practical scenarios, not contrived examples |
-
-### Vocabulary
-
-- Use "Claude Code" (not "Claude CLI" or "the tool")
-- Use "skill" (not "custom command" — legacy term)
-- Use "lesson" or "guide" for the numbered sections
-- Use "example" for individual feature files
-
----
-
-## Commit Messages
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-type(scope): description
-```
-
-### Types
-
-| Type | Use For |
-|------|---------|
-| `feat` | New feature, example, or guide |
-| `fix` | Bug fix, correction, broken link |
-| `docs` | Documentation improvements |
-| `refactor` | Restructuring without changing behavior |
-| `style` | Formatting changes only |
-| `test` | Test additions or changes |
-| `chore` | Build, dependencies, CI |
-
-### Scopes
-
-Use the lesson name or file area as scope:
-
-```
-feat(slash-commands): Add API documentation generator
-docs(memory): Improve personal preferences example
-fix(README): Correct table of contents link
-docs(skills): Add comprehensive code review skill
-```
-
----
-
-## Document Metadata Footer
-
-Lesson READMEs end with a metadata block:
-
-```markdown
----
-**Last Updated**: March 2026
-**Claude Code Version**: 2.1+
-**Compatible Models**: Claude Sonnet 4.6, Claude Opus 4.6, Claude Haiku 4.5
-```
-
-- Use month + year format (e.g., "March 2026")
-- Update the version when features change
-- List all compatible models
-
----
-
-## Checklist for Authors
-
-Before submitting content, verify:
-
-- [ ] File/folder names use kebab-case
-- [ ] Document starts with H1 title (one per file)
-- [ ] Heading hierarchy is correct (no skipped levels)
-- [ ] All code blocks have language tags
-- [ ] Code examples are copy-paste ready
-- [ ] Internal links use relative paths
-- [ ] External links have descriptive anchor text
-- [ ] Tables are properly formatted
-- [ ] Emojis follow the standard set (if used at all)
-- [ ] Mermaid diagrams use the standard color palette
-- [ ] No sensitive information (API keys, credentials)
-- [ ] YAML frontmatter is valid (if applicable)
-- [ ] Images have alt text
-- [ ] Paragraphs are short and focused
-- [ ] Related guides section links to relevant lessons
-- [ ] Commit message follows conventional commits format
+- [ ] Tên tệp/thư mục dùng kebab-case
+- [ ] Tài liệu bắt đầu bằng tiêu đề H1 (một tệp có một cái)
+- [ ] Phân cấp tiêu đề chính xác (không nhảy cấp)
+- [ ] Tất cả khối mã có thẻ ngôn ngữ
+- [ ] Các ví dụ mã sẵn sàng để sao chép-dán
+- [ ] Liên kết nội bộ dùng đường dẫn tương đối
+- [ ] Liên kết ngoài có văn bản liên kết mô tả
+- [ ] Bảng được định dạng đúng
+- [ ] Emojis tuân thủ bộ tiêu chuẩn (nếu có dùng)
+- [ ] Sơ đồ Mermaid dùng bảng màu tiêu chuẩn
+- [ ] Không có thông tin nhạy cảm (khóa API, thông tin xác thực)
+- [ ] Hình ảnh có văn bản thay thế (alt text)
+- [ ] Các đoạn văn ngắn và tập trung
+- [ ] Thông điệp commit tuân theo định dạng conventional commits

@@ -1,87 +1,87 @@
 ---
 name: code-refactor
-description: Systematic code refactoring based on Martin Fowler's methodology. Use when users ask to refactor code, improve code structure, reduce technical debt, clean up legacy code, eliminate code smells, or improve code maintainability. This skill guides through a phased approach with research, planning, and safe incremental implementation.
+description: Tái cấu trúc mã nguồn một cách hệ thống dựa trên phương pháp luận của Martin Fowler. Sử dụng khi người dùng yêu cầu tái cấu trúc mã nguồn, cải thiện cấu trúc mã, giảm nợ kỹ thuật, dọn dẹp mã nguồn cũ, loại bỏ các "mùi" mã nguồn (code smells), hoặc cải thiện khả năng bảo trì. Kỹ năng này hướng dẫn thực hiện qua cách tiếp cận theo từng giai đoạn gồm nghiên cứu, lập kế hoạch và triển khai tăng dần an toàn.
 ---
 
-# Code Refactoring Skill
+# Kỹ năng Tái cấu trúc Mã nguồn (Code Refactoring Skill)
 
-A systematic approach to refactoring code based on Martin Fowler's *Refactoring: Improving the Design of Existing Code* (2nd Edition). This skill emphasizes safe, incremental changes backed by tests.
+Một cách tiếp cận hệ thống để tái cấu trúc mã nguồn dựa trên cuốn sách *Refactoring: Improving the Design of Existing Code* (Ấn bản lần 2) của Martin Fowler. Kỹ năng này nhấn mạnh vào các thay đổi nhỏ, tăng dần và an toàn được hỗ trợ bởi kiểm thử (tests).
 
-> "Refactoring is the process of changing a software system in such a way that it does not alter the external behavior of the code yet improves its internal structure." — Martin Fowler
+> "Tái cấu trúc là quá trình thay đổi một hệ thống phần mềm theo cách không làm thay đổi hành vi bên ngoài của mã nguồn nhưng lại cải thiện cấu trúc bên trong của nó." — Martin Fowler
 
-## Core Principles
+## Các nguyên tắc cốt lõi (Core Principles)
 
-1. **Behavior Preservation**: External behavior must remain unchanged
-2. **Small Steps**: Make tiny, testable changes
-3. **Test-Driven**: Tests are the safety net
-4. **Continuous**: Refactoring is ongoing, not a one-time event
-5. **Collaborative**: User approval required at each phase
+1. **Bảo toàn hành vi (Behavior Preservation)**: Hành vi bên ngoài phải không đổi.
+2. **Các bước nhỏ (Small Steps)**: Thực hiện những thay đổi cực nhỏ, có thể kiểm thử được.
+3. **Hướng kiểm thử (Test-Driven)**: Kiểm thử là tấm lưới an toàn.
+4. **Liên tục (Continuous)**: Tái cấu trúc là việc đang diễn ra, không phải sự kiện một lần.
+5. **Cộng tác (Collaborative)**: Yêu cầu sự phê duyệt của người dùng tại mỗi giai đoạn.
 
-## Workflow Overview
+## Tổng quan quy trình (Workflow Overview)
 
 ```
-Phase 1: Research & Analysis
+Giai đoạn 1: Nghiên cứu & Phân tích
     ↓
-Phase 2: Test Coverage Assessment
+Giai đoạn 2: Đánh giá độ bao phủ kiểm thử
     ↓
-Phase 3: Code Smell Identification
+Giai đoạn 3: Nhận diện "Mùi" mã nguồn (Code Smell)
     ↓
-Phase 4: Refactoring Plan Creation
+Giai đoạn 4: Tạo kế hoạch tái cấu trúc
     ↓
-Phase 5: Incremental Implementation
+Giai đoạn 5: Triển khai tăng dần
     ↓
-Phase 6: Review & Iteration
+Giai đoạn 6: Review & Lặp lại
 ```
 
 ---
 
-## Phase 1: Research & Analysis
+## Giai đoạn 1: Nghiên cứu & Phân tích (Research & Analysis)
 
-### Objectives
-- Understand the codebase structure and purpose
-- Identify the scope of refactoring
-- Gather context about business requirements
+### Mục tiêu
+- Hiểu cấu trúc và mục đích của mã nguồn.
+- Xác định phạm vi tái cấu trúc.
+- Thu thập ngữ cảnh về các yêu cầu nghiệp vụ.
 
-### Questions to Ask User
-Before starting, clarify:
+### Các câu hỏi cần đặt cho Người dùng
+Trước khi bắt đầu, hãy làm rõ:
 
-1. **Scope**: Which files/modules/functions need refactoring?
-2. **Goals**: What problems are you trying to solve? (readability, performance, maintainability)
-3. **Constraints**: Are there any areas that should NOT be changed?
-4. **Timeline pressure**: Is this blocking other work?
-5. **Test status**: Do tests exist? Are they passing?
+1. **Phạm vi**: Những tệp/module/hàm nào cần tái cấu trúc?
+2. **Mục tiêu**: Bạn đang cố gắng giải quyết vấn đề gì? (khả năng đọc, hiệu năng, khả năng bảo trì)
+3. **Ràng buộc**: Có khu vực nào KHÔNG được phép thay đổi không?
+4. **Áp lực thời gian**: Việc này có đang chặn công việc khác không?
+5. **Trạng thái kiểm thử**: Đã có các bản kiểm thử chưa? Chúng có đang chạy thành công (pass) không?
 
-### Actions
-- [ ] Read and understand the target code
-- [ ] Identify dependencies and integrations
-- [ ] Document current architecture
-- [ ] Note any existing technical debt markers (TODOs, FIXMEs)
+### Hành động (Actions)
+- [ ] Đọc và hiểu mã nguồn mục tiêu.
+- [ ] Xác định các phụ thuộc (dependencies) và tích hợp.
+- [ ] Ghi lại kiến trúc hiện tại.
+- [ ] Ghi chú bất kỳ dấu hiệu nợ kỹ thuật hiện có nào (TODO, FIXME).
 
-### Output
-Present findings to user:
-- Code structure summary
-- Identified problem areas
-- Initial recommendations
-- **Request approval to proceed**
+### Đầu ra (Output)
+Trình bày các phát hiện cho người dùng:
+- Tóm tắt cấu trúc mã nguồn.
+- Các khu vực có vấn đề đã xác định.
+- Các khuyến nghị ban đầu.
+- **Yêu cầu phê duyệt để tiếp tục**.
 
 ---
 
-## Phase 2: Test Coverage Assessment
+## Giai đoạn 2: Đánh giá độ bao phủ kiểm thử (Test Coverage Assessment)
 
-### Why Tests Matter
-> "Refactoring without tests is like driving without a seatbelt." — Martin Fowler
+### Tại sao kiểm thử lại quan trọng
+> "Tái cấu trúc mà không có kiểm thử giống như lái xe mà không thắt dây an toàn." — Martin Fowler
 
-Tests are the **key enabler** of safe refactoring. Without them, you risk introducing bugs.
+Kiểm thử là **yếu tố then chốt** để tái cấu trúc an toàn. Không có chúng, bạn có nguy cơ tạo ra lỗi (bugs).
 
-### Assessment Steps
+### Các bước đánh giá
 
-1. **Check for existing tests**
+1. **Kiểm tra các bản kiểm thử hiện có**
    ```bash
-   # Look for test files
+   # Tìm các tệp kiểm thử
    find . -name "*test*" -o -name "*spec*" | head -20
    ```
 
-2. **Run existing tests**
+2. **Chạy các bản kiểm thử hiện có**
    ```bash
    # JavaScript/TypeScript
    npm test
@@ -93,7 +93,7 @@ Tests are the **key enabler** of safe refactoring. Without them, you risk introd
    mvn test
    ```
 
-3. **Check coverage (if available)**
+3. **Kiểm tra độ bao phủ (nếu có)**
    ```bash
    # JavaScript
    npm run test:coverage
@@ -102,303 +102,303 @@ Tests are the **key enabler** of safe refactoring. Without them, you risk introd
    pytest --cov=.
    ```
 
-### Decision Point: Ask User
+### Điểm quyết định: Hỏi Người dùng
 
-**If tests exist and pass:**
-- Proceed to Phase 3
+**Nếu kiểm thử đã tồn tại và chạy thành công:**
+- Chuyển sang Giai đoạn 3.
 
-**If tests are missing or incomplete:**
-Present options:
-1. Write tests first (recommended)
-2. Add tests incrementally during refactoring
-3. Proceed without tests (risky - requires user acknowledgment)
+**Nếu thiếu kiểm thử hoặc kiểm thử không đầy đủ:**
+Trình bày các lựa chọn:
+1. Viết kiểm thử trước (khuyến nghị).
+2. Thêm kiểm thử dần dần trong quá trình tái cấu trúc.
+3. Tiếp tục mà không có kiểm thử (rủi ro - yêu cầu người dùng xác nhận).
 
-**If tests are failing:**
-- STOP. Fix failing tests before refactoring
-- Ask user: Should we fix tests first?
+**Nếu kiểm thử đang thất bại (fail):**
+- DỪNG LẠI. Sửa các bản kiểm thử bị thất bại trước khi tái cấu trúc.
+- Hỏi người dùng: Chúng ta có nên sửa kiểm thử trước không?
 
-### Test Writing Guidelines (if needed)
+### Hướng dẫn viết kiểm thử (nếu cần)
 
-For each function being refactored, ensure tests cover:
-- Happy path (normal operation)
-- Edge cases (empty inputs, null, boundaries)
-- Error scenarios (invalid inputs, exceptions)
+Đối với mỗi hàm đang được tái cấu trúc, hãy đảm bảo các bản kiểm thử bao phủ:
+- Luồng thông thường (Happy path - hoạt động bình thường)
+- Các trường hợp biên (Edge cases - đầu vào trống, null, ranh giới)
+- Các kịch bản lỗi (đầu vào không hợp lệ, ngoại lệ)
 
-Use the "red-green-refactor" cycle:
-1. Write failing test (red)
-2. Make it pass (green)
-3. Refactor
+Sử dụng chu trình "red-green-refactor":
+1. Viết bản kiểm thử thất bại (red)
+2. Làm cho nó vượt qua (green)
+3. Tái cấu trúc (refactor)
 
 ---
 
-## Phase 3: Code Smell Identification
+## Giai đoạn 3: Nhận diện "Mùi" mã nguồn (Code Smell Identification)
 
-### What Are Code Smells?
-Symptoms of deeper problems in code. They're not bugs, but indicators that the code could be improved.
+### "Mùi" mã nguồn là gì?
+Là các triệu chứng của những vấn đề sâu hơn trong mã nguồn. Chúng không phải là lỗi (bugs), mà là các dấu hiệu cho thấy mã nguồn có thể được cải thiện.
 
-### Common Code Smells to Check
+### Các loại Mùi mã nguồn phổ biến cần kiểm tra
 
-See [references/code-smells.md](references/code-smells.md) for the complete catalog.
+Xem tệp [references/code-smells.md](references/code-smells.md) để biết danh mục đầy đủ.
 
-#### Quick Reference
+#### Tham khảo nhanh
 
-| Smell | Signs | Impact |
+| Mùi (Smell) | Dấu hiệu | Tác động |
 |-------|-------|--------|
-| **Long Method** | Methods > 30-50 lines | Hard to understand, test, maintain |
-| **Duplicated Code** | Same logic in multiple places | Bug fixes needed in multiple places |
-| **Large Class** | Class with too many responsibilities | Violates Single Responsibility |
-| **Feature Envy** | Method uses another class's data more | Poor encapsulation |
-| **Primitive Obsession** | Overuse of primitives instead of objects | Missing domain concepts |
-| **Long Parameter List** | Methods with 4+ parameters | Hard to call correctly |
-| **Data Clumps** | Same data items appearing together | Missing abstraction |
-| **Switch Statements** | Complex switch/if-else chains | Hard to extend |
-| **Speculative Generality** | Code "just in case" | Unnecessary complexity |
-| **Dead Code** | Unused code | Confusion, maintenance burden |
+| **Hàm quá dài (Long Method)** | Hàm > 30-50 dòng | Khó hiểu, khó kiểm thử, khó bảo trì |
+| **Mã bị lặp (Duplicated Code)** | Cùng một logic ở nhiều nơi | Cần sửa lỗi ở nhiều vị trí |
+| **Lớp quá lớn (Large Class)** | Lớp có quá nhiều trách nhiệm | Vi phạm nguyên tắc Đơn trách nhiệm (Single Responsibility) |
+| **Ganh tỵ tính năng (Feature Envy)** | Một hàm sử dụng dữ liệu của lớp khác quá nhiều | Đóng gói kém |
+| **Ám ảnh kiểu nguyên thủy (Primitive Obsession)** | Quá lạm dụng các kiểu dữ liệu nguyên thủy thay vì các đối tượng | Thiếu các khái niệm miền (domain concepts) |
+| **Danh sách tham số dài** | Các hàm có từ 4 tham số trở lên | Khó gọi chính xác |
+| **Nhóm dữ liệu (Data Clumps)** | Các mục dữ liệu luôn xuất hiện cùng nhau | Thiếu sự trừu tượng hóa |
+| **Câu lệnh Switch** | Các chuỗi switch/if-else phức tạp | Khó mở rộng |
+| **Tính khái quát giả tạo** | Mã nguồn được viết "để phòng hờ" | Phức tạp không cần thiết |
+| **Mã chết (Dead Code)** | Mã không bao giờ được sử dụng | Gây nhầm lẫn, gánh nặng bảo trì |
 
-### Analysis Steps
+### Các bước phân tích
 
-1. **Automated Analysis** (if scripts available)
+1. **Phân tích Tự động** (nếu có các script):
    ```bash
-   python scripts/detect-smells.py <file>
+   python scripts/detect-smells.py <tên_tệp>
    ```
 
-2. **Manual Review**
-   - Walk through code systematically
-   - Note each smell with location and severity
-   - Categorize by impact (Critical/High/Medium/Low)
+2. **Review Thủ công**
+   - Đi qua mã nguồn một cách hệ thống.
+   - Ghi lại từng "mùi" kèm theo vị trí và mức độ nghiêm trọng.
+   - Phân loại theo tác động (Nghiêm trọng/Cao/Trung bình/Thấp).
 
-3. **Prioritization**
-   Focus on smells that:
-   - Block current development
-   - Cause bugs or confusion
-   - Affect most-changed code paths
+3. **Ưu tiên hóa**
+   Tập trung vào các "mùi" mà:
+   - Đang chặn việc phát triển hiện tại.
+   - Gây ra lỗi hoặc sự nhầm lẫn.
+   - Ảnh hưởng đến các luồng mã nguồn hay bị thay đổi nhất.
 
-### Output: Smell Report
+### Đầu ra: Báo cáo "Mùi" mã nguồn (Smell Report)
 
-Present to user:
-- List of identified smells with locations
-- Severity assessment for each
-- Recommended priority order
-- **Request approval on priorities**
+Trình bày cho người dùng:
+- Danh sách các "mùi" đã xác định kèm theo vị trí.
+- Đánh giá mức độ nghiêm trọng cho từng loại.
+- Thứ tự ưu tiên khuyến nghị.
+- **Yêu cầu phê duyệt về thứ tự ưu tiên**.
 
 ---
 
-## Phase 4: Refactoring Plan Creation
+## Giai đoạn 4: Tạo kế hoạch tái cấu trúc (Refactoring Plan Creation)
 
-### Selecting Refactorings
+### Lựa chọn kỹ thuật tái cấu trúc
 
-For each smell, select an appropriate refactoring from the catalog.
+Với mỗi "mùi", hãy chọn một kỹ thuật tái cấu trúc thích hợp từ danh mục.
 
-See [references/refactoring-catalog.md](references/refactoring-catalog.md) for the complete list.
+Xem tệp [references/refactoring-catalog.md](references/refactoring-catalog.md) để biết danh sách đầy đủ.
 
-#### Smell-to-Refactoring Mapping
+#### Ánh xạ giữa Mùi và Kỹ thuật tái cấu trúc
 
-| Code Smell | Recommended Refactoring(s) |
+| Mùi mã nguồn | Kỹ thuật tái cấu trúc khuyến nghị |
 |------------|---------------------------|
-| Long Method | Extract Method, Replace Temp with Query |
-| Duplicated Code | Extract Method, Pull Up Method, Form Template Method |
-| Large Class | Extract Class, Extract Subclass |
-| Feature Envy | Move Method, Move Field |
-| Primitive Obsession | Replace Primitive with Object, Replace Type Code with Class |
-| Long Parameter List | Introduce Parameter Object, Preserve Whole Object |
-| Data Clumps | Extract Class, Introduce Parameter Object |
-| Switch Statements | Replace Conditional with Polymorphism |
-| Speculative Generality | Collapse Hierarchy, Inline Class, Remove Dead Code |
-| Dead Code | Remove Dead Code |
+| Hàm quá dài | Trích xuất Hàm (Extract Method), Thay thế biến tạm bằng Truy vấn (Replace Temp with Query) |
+| Mã bị lặp | Trích xuất Hàm, Đẩy hàm lên lớp cha (Pull Up Method), Tạo khuôn mẫu hàm (Form Template Method) |
+| Lớp quá lớn | Trích xuất Lớp (Extract Class), Trích xuất Lớp con (Extract Subclass) |
+| Ganh tỵ tính năng | Di chuyển Hàm (Move Method), Di chuyển Trường (Move Field) |
+| Ám ảnh kiểu nguyên thủy | Thay thế kiểu nguyên thủy bằng Đối tượng, Thay thế mã loại bằng Lớp |
+| Danh sách tham số dài | Giới thiệu Đối tượng tham số (Introduce Parameter Object), Bảo toàn toàn bộ đối tượng |
+| Nhóm dữ liệu | Trích xuất Lớp, Giới thiệu Đối tượng tham số |
+| Câu lệnh Switch | Thay thế điều kiện bằng Đa hình (Polymorphism) |
+| Tính khái quát giả tạo | Thu gọn phân cấp (Collapse Hierarchy), Nội dòng hóa lớp (Inline Class), Xóa mã chết |
+| Mã chết | Xóa mã chết |
 
-### Plan Structure
+### Cấu trúc Kế hoạch
 
-Use the template at [templates/refactoring-plan.md](templates/refactoring-plan.md).
+Sử dụng mẫu tại [templates/refactoring-plan.md](templates/refactoring-plan.md).
 
-For each refactoring:
-1. **Target**: What code will change
-2. **Smell**: What problem it addresses
-3. **Refactoring**: Which technique to apply
-4. **Steps**: Detailed micro-steps
-5. **Risks**: What could go wrong
-6. **Rollback**: How to undo if needed
+Với mỗi kỹ thuật tái cấu trúc:
+1. **Mục tiêu**: Mã nguồn nào sẽ thay đổi.
+2. **Mùi**: Vấn đề nào đang được giải quyết.
+3. **Kỹ thuật**: Kỹ thuật nào sẽ được áp dụng.
+4. **Các bước**: Các bước thực hiện cực nhỏ (micro-steps).
+5. **Rủi ro**: Những gì có thể sai sót.
+6. **Rollback**: Cách khôi phục nếu cần.
 
-### Phased Approach
+### Tiếp cận theo từng giai đoạn
 
-**CRITICAL**: Introduce refactoring gradually in phases.
+**QUAN TRỌNG**: Thực hiện tái cấu trúc dần dần theo các giai đoạn.
 
-**Phase A: Quick Wins** (Low risk, high value)
-- Rename variables for clarity
-- Extract obvious duplicate code
-- Remove dead code
+**Giai đoạn A: Thắng nhanh (Quick Wins)** (Rủi ro thấp, giá trị cao)
+- Đổi tên biến cho rõ ràng.
+- Trích xuất mã bị lặp hiển nhiên.
+- Xóa mã chết.
 
-**Phase B: Structural Improvements** (Medium risk)
-- Extract methods from long functions
-- Introduce parameter objects
-- Move methods to appropriate classes
+**Giai đoạn B: Cải thiện cấu trúc** (Rủi ro trung bình)
+- Trích xuất hàm từ các hàm dài.
+- Giới thiệu các đối tượng tham số.
+- Di chuyển hàm vào các lớp thích hợp.
 
-**Phase C: Architectural Changes** (Higher risk)
-- Replace conditionals with polymorphism
-- Extract classes
-- Introduce design patterns
+**Giai đoạn C: Thay đổi kiến trúc** (Rủi ro cao hơn)
+- Thay thế các câu lệnh điều kiện bằng đa hình.
+- Trích xuất các lớp mới.
+- Áp dụng các mẫu thiết kế (design patterns).
 
-### Decision Point: Present Plan to User
+### Điểm quyết định: Trình bày kế hoạch cho Người dùng
 
-Before implementation:
-- Show complete refactoring plan
-- Explain each phase and its risks
-- Get explicit approval for each phase
-- **Ask**: "Should I proceed with Phase A?"
-
----
-
-## Phase 5: Incremental Implementation
-
-### The Golden Rule
-> "Change → Test → Green? → Commit → Next step"
-
-### Implementation Rhythm
-
-For each refactoring step:
-
-1. **Pre-check**
-   - Tests are passing (green)
-   - Code compiles
-
-2. **Make ONE small change**
-   - Follow the mechanics from the catalog
-   - Keep changes minimal
-
-3. **Verify**
-   - Run tests immediately
-   - Check for compilation errors
-
-4. **If tests pass (green)**
-   - Commit with descriptive message
-   - Move to next step
-
-5. **If tests fail (red)**
-   - STOP immediately
-   - Undo the change
-   - Analyze what went wrong
-   - Ask user if unclear
-
-### Commit Strategy
-
-Each commit should be:
-- **Atomic**: One logical change
-- **Reversible**: Easy to revert
-- **Descriptive**: Clear commit message
-
-Example commit messages:
-```
-refactor: Extract calculateTotal() from processOrder()
-refactor: Rename 'x' to 'customerCount' for clarity
-refactor: Remove unused validateOldFormat() method
-```
-
-### Progress Reporting
-
-After each sub-phase, report to user:
-- Changes made
-- Tests still passing?
-- Any issues encountered
-- **Ask**: "Continue with next batch?"
+Trước khi triển khai:
+- Hiển thị kế hoạch tái cấu trúc đầy đủ.
+- Giải thích từng giai đoạn và rủi ro của nó.
+- Nhận sự phê duyệt rõ ràng cho từng giai đoạn.
+- **Hỏi**: "Tôi có nên tiếp tục với Giai đoạn A không?"
 
 ---
 
-## Phase 6: Review & Iteration
+## Giai đoạn 5: Triển khai tăng dần (Incremental Implementation)
 
-### Post-Refactoring Checklist
+### Quy tắc Vàng
+> "Thay đổi → Kiểm thử → Thành công (Green)? → Commit → Bước tiếp theo"
 
-- [ ] All tests passing
-- [ ] No new warnings/errors
-- [ ] Code compiles successfully
-- [ ] Behavior unchanged (manual verification)
-- [ ] Documentation updated if needed
-- [ ] Commit history is clean
+### Nhịp độ Triển khai
 
-### Metrics Comparison
+Với mỗi bước tái cấu trúc:
 
-Run complexity analysis before and after:
+1. **Kiểm tra trước (Pre-check)**
+   - Các bản kiểm thử đang vượt qua (green).
+   - Mã nguồn có thể biên dịch được.
+
+2. **Thực hiện MỘT thay đổi nhỏ**
+   - Tuân theo các bước kỹ thuật từ danh mục.
+   - Giữ các thay đổi ở mức tối thiểu.
+
+3. **Xác minh (Verify)**
+   - Chạy các bản kiểm thử ngay lập tức.
+   - Kiểm tra các lỗi biên dịch.
+
+4. **Nếu kiểm thử vượt qua (green)**
+   - Commit với thông điệp mô tả rõ ràng.
+   - Chuyển sang bước tiếp theo.
+
+5. **Nếu kiểm thử thất bại (red)**
+   - DỪNG LẠI ngay lập tức.
+   - Hoàn tác (Undo) thay đổi.
+   - Phân tích điều gì đã sai.
+   - Hỏi người dùng nếu không rõ ràng.
+
+### Chiến lược Commit
+
+Mỗi lần commit nên là:
+- **Nguyên tử (Atomic)**: Một thay đổi logic duy nhất.
+- **Có thể đảo ngược (Reversible)**: Dễ dàng quay lại phiên bản trước.
+- **Mô tả rõ ràng**: Thông điệp commit dễ hiểu.
+
+Ví dụ thông điệp commit:
+```
+refactor: Trích xuất calculateTotal() từ processOrder()
+refactor: Đổi tên 'x' thành 'customerCount' cho rõ ràng
+refactor: Xóa hàm validateOldFormat() không còn sử dụng
+```
+
+### Báo cáo Tiến độ
+
+Sau mỗi giai đoạn nhỏ, báo cáo cho người dùng:
+- Các thay đổi đã thực hiện.
+- Kiểm thử vẫn vượt qua chứ?
+- Bất kỳ vấn đề nào gặp phải.
+- **Hỏi**: "Tiếp tục với nhóm công việc tiếp theo chứ?"
+
+---
+
+## Giai đoạn 6: Review & Lặp lại (Review & Iteration)
+
+### Danh sách kiểm tra sau khi Tái cấu trúc
+
+- [ ] Tất cả các bản kiểm thử đều vượt qua.
+- [ ] Không có các cảnh báo/lỗi mới.
+- [ ] Mã nguồn biên dịch thành công.
+- [ ] Hành vi không đổi (xác minh thủ công).
+- [ ] Tài liệu hướng dẫn đã được cập nhật nếu cần.
+- [ ] Lịch sử commit sạch sẽ.
+
+### So sánh các chỉ số (Metrics Comparison)
+
+Chạy phân tích độ phức tạp trước và sau khi thực hiện:
 ```bash
-python scripts/analyze-complexity.py <file>
+python scripts/analyze-complexity.py <tên_tệp>
 ```
 
-Present improvements:
-- Lines of code change
-- Cyclomatic complexity change
-- Maintainability index change
+Trình bày các cải tiến:
+- Thay đổi số dòng mã nguồn (LOC).
+- Thay đổi độ phức tạp vòng đời (Cyclomatic complexity).
+- Thay đổi chỉ số khả năng bảo trì.
 
-### User Review
+### Review từ Người dùng
 
-Present final results:
-- Summary of all changes
-- Before/after code comparison
-- Metrics improvements
-- Remaining technical debt
-- **Ask**: "Are you satisfied with these changes?"
+Trình bày kết quả cuối cùng:
+- Tóm tắt tất cả các thay đổi.
+- So sánh mã nguồn trước/sau.
+- Cải thiện về các chỉ số.
+- Các khoản nợ kỹ thuật còn lại.
+- **Hỏi**: "Bạn có hài lòng với những thay đổi này không?"
 
-### Next Steps
+### Các bước tiếp theo
 
-Discuss with user:
-- Additional smells to address?
-- Schedule follow-up refactoring?
-- Apply similar changes elsewhere?
-
----
-
-## Important Guidelines
-
-### When to STOP and Ask
-
-Always pause and consult user when:
-- Unsure about business logic
-- Change might affect external APIs
-- Test coverage is inadequate
-- Significant architectural decision needed
-- Risk level increases
-- You encounter unexpected complexity
-
-### Safety Rules
-
-1. **Never refactor without tests** (unless user explicitly acknowledges risk)
-2. **Never make big changes** - break into tiny steps
-3. **Never skip the test run** after each change
-4. **Never continue if tests fail** - fix or rollback first
-5. **Never assume** - when in doubt, ask
-
-### What NOT to Do
-
-- Don't combine refactoring with feature additions
-- Don't refactor during production emergencies
-- Don't refactor code you don't understand
-- Don't over-engineer - keep it simple
-- Don't refactor everything at once
+Thảo luận với người dùng:
+- Còn "mùi" nào cần xử lý nữa không?
+- Lập lịch cho các đợt tái cấu trúc tiếp theo?
+- Áp dụng các thay đổi tương tự ở những nơi khác?
 
 ---
 
-## Quick Start Example
+## Các hướng dẫn quan trọng
 
-### Scenario: Long Method with Duplication
+### Khi nào nên DỪNG LẠI và Hỏi
 
-**Before:**
+Luôn tạm dừng và tham khảo ý kiến người dùng khi:
+- Không chắc chắn về logic nghiệp vụ.
+- Thay đổi có thể ảnh hưởng đến các API bên ngoài.
+- Độ bao phủ kiểm thử không đầy đủ.
+- Cần đưa ra quyết định kiến trúc quan trọng.
+- Mức độ rủi ro tăng lên.
+- Bạn gặp phải sự phức tạp không ngờ tới.
+
+### Các Quy tắc An toàn
+
+1. **Không bao giờ tái cấu trúc mà không có kiểm thử** (trừ khi người dùng chấp nhận rủi ro một cách rõ ràng).
+2. **Không bao giờ thực hiện các thay đổi lớn** - hãy chia chúng thành các bước cực nhỏ.
+3. **Không bao giờ bỏ qua bước chạy kiểm thử** sau mỗi thay đổi.
+4. **Không bao giờ tiếp tục nếu kiểm thử thất bại** - hãy sửa lỗi hoặc rollback trước.
+5. **Không bao giờ giả định** - khi nghi ngờ, hãy hỏi.
+
+### Những việc KHÔNG được làm
+
+- Đừng kết hợp tái cấu trúc với việc thêm tính năng mới.
+- Đừng tái cấu trúc khi đang có sự cố khẩn cấp trên môi trường production.
+- Đừng tái cấu trúc đoạn mã mà bạn không hiểu.
+- Đừng thiết kế quá mức (over-engineer) - hãy giữ nó đơn giản.
+- Đừng tái cấu trúc mọi thứ cùng một lúc.
+
+---
+
+## Ví dụ Bắt đầu Nhanh (Quick Start Example)
+
+### Kịch bản: Hàm quá dài với việc lặp lại mã nguồn
+
+**Trước:**
 ```javascript
 function processOrder(order) {
-  // 150 lines of code with:
-  // - Duplicated validation logic
-  // - Inline calculations
-  // - Mixed responsibilities
+  // 150 dòng mã nguồn với:
+  // - Logic xác thực bị lặp lại
+  // - Các tính toán nội dòng (inline)
+  // - Nhiều trách nhiệm hỗn hợp
 }
 ```
 
-**Refactoring Steps:**
+**Các bước tái cấu trúc:**
 
-1. **Ensure tests exist** for processOrder()
-2. **Extract** validation into validateOrder()
-3. **Test** - should pass
-4. **Extract** calculation into calculateOrderTotal()
-5. **Test** - should pass
-6. **Extract** notification into notifyCustomer()
-7. **Test** - should pass
-8. **Review** - processOrder() now orchestrates 3 clear functions
+1. **Đảm bảo đã có các bản kiểm thử** cho `processOrder()`.
+2. **Trích xuất** logic xác thực vào hàm `validateOrder()`.
+3. **Kiểm thử** - kết quả phải vượt qua (pass).
+4. **Trích xuất** tính toán vào hàm `calculateOrderTotal()`.
+5. **Kiểm thử** - kết quả phải vượt qua.
+6. **Trích xuất** thông báo vào hàm `notifyCustomer()`.
+7. **Kiểm thử** - kết quả phải vượt qua.
+8. **Review** - `processOrder()` bây giờ chỉ điều phối 3 hàm con rõ ràng.
 
-**After:**
+**Sau:**
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -410,17 +410,17 @@ function processOrder(order) {
 
 ---
 
-## References
+## Tham chiếu
 
-- [Code Smells Catalog](references/code-smells.md) - Complete list of code smells
-- [Refactoring Catalog](references/refactoring-catalog.md) - Refactoring techniques
-- [Refactoring Plan Template](templates/refactoring-plan.md) - Planning template
+- [Danh mục "Mùi" mã nguồn](references/code-smells.md) - Danh sách đầy đủ.
+- [Danh mục Kỹ thuật tái cấu trúc](references/refactoring-catalog.md) - Các kỹ thuật chi tiết.
+- [Mẫu Kế hoạch tái cấu trúc](templates/refactoring-plan.md) - Mẫu lập kế hoạch.
 
-## Scripts
+## Các script hỗ trợ
 
-- `scripts/analyze-complexity.py` - Analyze code complexity metrics
-- `scripts/detect-smells.py` - Automated smell detection
+- `scripts/analyze-complexity.py` - Phân tích các chỉ số độ phức tạp.
+- `scripts/detect-smells.py` - Tự động nhận diện "mùi" mã nguồn.
 
-## Version History
+## Lịch sử Phiên bản
 
-- v1.0.0 (2025-01-15): Initial release with Fowler methodology, phased approach, user consultation points
+- v1.0.0 (2025-01-15): Phiên bản đầu tiên với phương pháp luận của Fowler, tiếp cận theo giai đoạn và các điểm tham vấn người dùng.

@@ -1,19 +1,19 @@
 ---
-description: Create comprehensive API documentation from source code
+description: Tạo tài liệu API toàn diện từ mã nguồn
 ---
 
-# API Documentation Generator
+# Trình tạo tài liệu API
 
-Generate API documentation by:
+Tạo tài liệu API bằng cách:
 
-1. Scanning all files in `/src/api/`
-2. Extracting function signatures and JSDoc comments
-3. Organizing by endpoint/module
-4. Creating markdown with examples
-5. Including request/response schemas
-6. Adding error documentation
+1. Quét tất cả các file trong `/src/api/`
+2. Trích xuất các chữ ký hàm (function signatures) và các bình luận JSDoc
+3. Tổ chức theo endpoint/module
+4. Tạo file markdown với các ví dụ thực tế
+5. Bao gồm các schema yêu cầu/phản hồi (request/response schemas)
+6. Thêm tài liệu về các lỗi (error documentation)
 
-Output format:
-- Markdown file in `/docs/api.md`
-- Include curl examples for all endpoints
-- Add TypeScript types
+Định dạng đầu ra:
+- File Markdown tại `/docs/api.md`
+- Bao gồm các ví dụ lệnh curl cho tất cả các endpoint
+- Thêm các kiểu dữ liệu TypeScript (TypeScript types)

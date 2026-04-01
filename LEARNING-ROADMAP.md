@@ -3,74 +3,74 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# 📚 Claude Code Learning Roadmap
+# 📚 Lộ trình học tập Claude Code
 
-**New to Claude Code?** This guide helps you master Claude Code features at your own pace. Whether you're a complete beginner or an experienced developer, start with the self-assessment quiz below to find the right path for you.
+**Bạn mới sử dụng Claude Code?** Hướng dẫn này giúp bạn làm chủ các tính năng của Claude Code theo tốc độ của riêng mình. Dù bạn là người mới bắt đầu hay một nhà phát triển dày dạn kinh nghiệm, hãy bắt đầu với bài kiểm tra tự đánh giá dưới đây để tìm ra con đường phù hợp nhất với bạn.
 
 ---
 
-## 🧭 Find Your Level
+## 🧭 Xác định cấp độ của bạn
 
-Not everyone starts from the same place. Take this quick self-assessment to find the right entry point.
+Không phải ai cũng bắt đầu từ cùng một điểm. Hãy thực hiện bài tự đánh giá nhanh này để tìm điểm xuất phát phù hợp.
 
-**Answer these questions honestly:**
+**Trả lời các câu hỏi sau một cách trung thực:**
 
-- [ ] I can start Claude Code and have a conversation (`claude`)
-- [ ] I have created or edited a CLAUDE.md file
-- [ ] I have used at least 3 built-in slash commands (e.g., /help, /compact, /model)
-- [ ] I have created a custom slash command or skill (SKILL.md)
-- [ ] I have configured an MCP server (e.g., GitHub, database)
-- [ ] I have set up hooks in ~/.claude/settings.json
-- [ ] I have created or used custom subagents (.claude/agents/)
-- [ ] I have used print mode (`claude -p`) for scripting or CI/CD
+- [ ] Tôi có thể khởi động Claude Code và thực hiện một cuộc hội thoại (`claude`)
+- [ ] Tôi đã tạo hoặc chỉnh sửa tệp CLAUDE.md
+- [ ] Tôi đã sử dụng ít nhất 3 slash commands có sẵn (ví dụ: /help, /compact, /model)
+- [ ] Tôi đã tạo một slash command tùy chỉnh hoặc skill (SKILL.md)
+- [ ] Tôi đã cấu hình một máy chủ MCP (ví dụ: GitHub, database)
+- [ ] Tôi đã thiết lập hooks trong ~/.claude/settings.json
+- [ ] Tôi đã tạo hoặc sử dụng subagents tùy chỉnh (.claude/agents/)
+- [ ] Tôi đã sử dụng chế độ in (`claude -p`) cho kịch bản (scripting) hoặc CI/CD
 
-**Your Level:**
+**Cấp độ của bạn:**
 
-| Checks | Level | Start At | Time to Complete |
+| Số câu chọn | Cấp độ | Bắt đầu từ | Thời gian hoàn thành |
 |--------|-------|----------|------------------|
-| 0-2 | **Level 1: Beginner** — Getting Started | [Milestone 1A](#milestone-1a-first-commands--memory) | ~3 hours |
-| 3-5 | **Level 2: Intermediate** — Building Workflows | [Milestone 2A](#milestone-2a-automation-skills--hooks) | ~5 hours |
-| 6-8 | **Level 3: Advanced** — Power User & Team Lead | [Milestone 3A](#milestone-3a-advanced-features) | ~5 hours |
+| 0-2 | **Cấp độ 1: Người mới (Beginner)** — Bắt đầu | [Cột mốc 1A](#cột-mốc-1a-các-câu-lệnh-đầu-tiên--bộ-nhớ) | ~3 giờ |
+| 3-5 | **Cấp độ 2: Trung cấp (Intermediate)** — Xây dựng quy trình | [Cột mốc 2A](#cột-mốc-2a-tự-động-hóa-skills--hooks) | ~5 giờ |
+| 6-8 | **Cấp độ 3: Nâng cao (Advanced)** — Chuyên gia & Trưởng nhóm | [Cột mốc 3A](#cột-mốc-3a-các-tính-năng-nâng-cao) | ~5 giờ |
 
-> **Tip**: If you're unsure, start one level lower. It's better to review familiar material quickly than to miss foundational concepts.
+> **Mẹo**: Nếu bạn không chắc chắn, hãy bắt đầu thấp hơn một cấp độ. Xem lại tài liệu đã biết nhanh chóng vẫn tốt hơn là bỏ lỡ các khái niệm nền tảng.
 
-> **Interactive version**: Run `/self-assessment` in Claude Code for a guided, interactive quiz that scores your proficiency across all 10 feature areas and generates a personalized learning path.
-
----
-
-## 🎯 Learning Philosophy
-
-The folders in this repository are numbered in **recommended learning order** based on three key principles:
-
-1. **Dependencies** - Foundational concepts come first
-2. **Complexity** - Easier features before advanced ones
-3. **Frequency of Use** - Most common features taught early
-
-This approach ensures you build a solid foundation while gaining immediate productivity benefits.
+> **Phiên bản tương tác**: Chạy `/self-assessment` trong Claude Code để thực hiện bài kiểm tra có hướng dẫn, tính điểm mức độ thành thạo của bạn trên cả 10 lĩnh vực tính năng và tạo ra một lộ trình học tập được cá nhân hóa.
 
 ---
 
-## 🗺️ Your Learning Path
+## 🎯 Triết lý học tập
+
+Các thư mục trong kho lưu trữ này được đánh số theo **thứ tự học tập khuyến nghị** dựa trên ba nguyên tắc chính:
+
+1. **Sự phụ thuộc (Dependencies)** - Các khái niệm nền tảng được ưu tiên trước
+2. **Độ phức tạp (Complexity)** - Các tính năng dễ học trước các tính năng nâng cao
+3. **Tần suất sử dụng (Frequency of Use)** - Các tính năng phổ biến nhất được dạy sớm
+
+Cách tiếp cận này đảm bảo bạn xây dựng được nền tảng vững chắc trong khi vẫn nhận được lợi ích về năng suất ngay lập tức.
+
+---
+
+## 🗺️ Lộ trình của bạn
 
 ```mermaid
 graph TD
-    Q["🧭 Self-Assessment Quiz<br/>Find Your Level"] --> L1
+    Q["🧭 Kiểm tra Tự đánh giá<br/>Tìm cấp độ của bạn"] --> L1
     Q --> L2
     Q --> L3
 
-    subgraph L1["🟢 Level 1: Beginner — Getting Started"]
+    subgraph L1["🟢 Cấp độ 1: Người mới — Bắt đầu"]
         direction LR
-        A["1A: First Commands & Memory<br/>Slash Commands + Memory"] --> B["1B: Safe Exploration<br/>Checkpoints + CLI Basics"]
+        A["1A: Câu lệnh đầu tiên & Bộ nhớ<br/>Slash Commands + Memory"] --> B["1B: Khám phá An toàn<br/>Checkpoints + CLI cơ bản"]
     end
 
-    subgraph L2["🔵 Level 2: Intermediate — Building Workflows"]
+    subgraph L2["🔵 Cấp độ 2: Trung cấp — Xây dựng quy trình"]
         direction LR
-        C["2A: Automation<br/>Skills + Hooks"] --> D["2B: Integration<br/>MCP + Subagents"]
+        C["2A: Tự động hóa<br/>Skills + Hooks"] --> D["2B: Tích hợp<br/>MCP + Subagents"]
     end
 
-    subgraph L3["🔴 Level 3: Advanced — Power User"]
+    subgraph L3["🔴 Cấp độ 3: Nâng cao — Chuyên gia"]
         direction LR
-        E["3A: Advanced Features<br/>Planning + Permissions"] --> F["3B: Team & Distribution<br/>Plugins + CLI Mastery"]
+        E["3A: Tính năng Nâng cao<br/>Lập kế hoạch + Quyền hạn"] --> F["3B: Nhóm & Phân phối<br/>Plugins + CLI Chuyên sâu"]
     end
 
     L1 --> L2
@@ -85,174 +85,163 @@ graph TD
     style F fill:#B71C1C,color:#fff
 ```
 
-**Color Legend:**
-- 💜 Purple: Self-Assessment Quiz
-- 🟢 Green: Level 1 — Beginner path
-- 🔵 Blue / 🟡 Gold: Level 2 — Intermediate path
-- 🔴 Red: Level 3 — Advanced path
+**Chú giải màu sắc:**
+- 💜 Tím: Bài kiểm tra Tự đánh giá
+- 🟢 Xanh lá: Cấp độ 1 — Đường cho người mới
+- 🔵 Xanh dương / 🟡 Vàng: Cấp độ 2 — Đường trung cấp
+- 🔴 Đỏ: Cấp độ 3 — Đường nâng cao
 
 ---
 
-## 📊 Complete Roadmap Table
+## 📊 Bảng lộ trình chi tiết
 
-| Step | Feature | Complexity | Time | Level | Dependencies | Why Learn This | Key Benefits |
+| Bước | Tính năng | Độ phức tạp | Thời gian | Cấp độ | Phụ thuộc | Tại sao nên học | Lợi ích chính |
 |------|---------|-----------|------|-------|--------------|----------------|--------------|
-| **1** | [Slash Commands](01-slash-commands/) | ⭐ Beginner | 30 min | Level 1 | None | Quick productivity wins (55+ built-in + 5 bundled skills) | Instant automation, team standards |
-| **2** | [Memory](02-memory/) | ⭐⭐ Beginner+ | 45 min | Level 1 | None | Essential for all features | Persistent context, preferences |
-| **3** | [Checkpoints](08-checkpoints/) | ⭐⭐ Intermediate | 45 min | Level 1 | Session management | Safe exploration | Experimentation, recovery |
-| **4** | [CLI Basics](10-cli/) | ⭐⭐ Beginner+ | 30 min | Level 1 | None | Core CLI usage | Interactive & print mode |
-| **5** | [Skills](03-skills/) | ⭐⭐ Intermediate | 1 hour | Level 2 | Slash Commands | Automatic expertise | Reusable capabilities, consistency |
-| **6** | [Hooks](06-hooks/) | ⭐⭐ Intermediate | 1 hour | Level 2 | Tools, Commands | Workflow automation (25 events, 4 types) | Validation, quality gates |
-| **7** | [MCP](05-mcp/) | ⭐⭐⭐ Intermediate+ | 1 hour | Level 2 | Configuration | Live data access | Real-time integration, APIs |
-| **8** | [Subagents](04-subagents/) | ⭐⭐⭐ Intermediate+ | 1.5 hours | Level 2 | Memory, Commands | Complex task handling (6 built-in including Bash) | Delegation, specialized expertise |
-| **9** | [Advanced Features](09-advanced-features/) | ⭐⭐⭐⭐⭐ Advanced | 2-3 hours | Level 3 | All previous | Power user tools | Planning, Auto Mode, Channels, Voice Dictation, permissions |
-| **10** | [Plugins](07-plugins/) | ⭐⭐⭐⭐ Advanced | 2 hours | Level 3 | All previous | Complete solutions | Team onboarding, distribution |
-| **11** | [CLI Mastery](10-cli/) | ⭐⭐⭐ Advanced | 1 hour | Level 3 | Recommended: All | Master command-line usage | Scripting, CI/CD, automation |
+| **1** | [Slash Commands](01-slash-commands/) | ⭐ Mới bắt đầu | 30 phút | Cấp độ 1 | Không | Tăng năng suất nhanh chóng | Tự động hóa tức thì, tiêu chuẩn nhóm |
+| **2** | [Memory](02-memory/) | ⭐⭐ Cơ bản+ | 45 phút | Cấp độ 1 | Không | Thiết yếu cho mọi tính năng | Ngữ cảnh bền vững, tùy chỉnh cá nhân |
+| **3** | [Checkpoints](08-checkpoints/) | ⭐⭐ Trung cấp | 45 phút | Cấp độ 1 | Quản lý phiên | Khám phá an toàn | Thử nghiệm, khôi phục |
+| **4** | [CLI cơ bản](10-cli/) | ⭐⭐ Cơ bản+ | 30 phút | Cấp độ 1 | Không | Cách dùng CLI cốt lõi | Chế độ tương tác & chế độ in |
+| **5** | [Skills](03-skills/) | ⭐⭐ Trung cấp | 1 giờ | Cấp độ 2 | Slash Commands | Chuyên môn tự động | Khả năng tái sử dụng, tính nhất quán |
+| **6** | [Hooks](06-hooks/) | ⭐⭐ Trung cấp | 1 giờ | Cấp độ 2 | Tools, Commands | Tự động hóa quy trình | Xác thực, kiểm soát chất lượng |
+| **7** | [MCP](05-mcp/) | ⭐⭐⭐ Trung cấp+ | 1 giờ | Cấp độ 2 | Cấu hình | Truy cập dữ liệu thời gian thực | Tích hợp ngoại vi, APIs |
+| **8** | [Subagents](04-subagents/) | ⭐⭐⭐ Trung cấp+ | 1.5 giờ | Cấp độ 2 | Memory, Commands | Xử lý tác vụ phức tạp | Ủy quyền, chuyên môn hóa |
+| **9** | [Advanced Features](09-advanced-features/) | ⭐⭐⭐⭐⭐ Nâng cao | 2-3 giờ | Cấp độ 3 | Tất cả trước đó | Công cụ cho chuyên gia | Lập kế hoạch, Auto Mode, Channels, Voice, Quyền hạn |
+| **10** | [Plugins](07-plugins/) | ⭐⭐⭐⭐ Nâng cao | 2 giờ | Cấp độ 3 | Tất cả trước đó | Giải pháp hoàn chỉnh | Triển khai cho nhóm, phân phối |
+| **11** | [CLI chuyên sâu](10-cli/) | ⭐⭐⭐ Nâng cao | 1 giờ | Cấp độ 3 | Khuyến nghị: Tất cả | Làm chủ dòng lệnh | Scripting, CI/CD, tự động hóa |
 
-**Total Learning Time**: ~11-13 hours (or jump to your level and save time)
+**Tổng thời gian học tập**: ~11-13 giờ (hoặc nhảy đến cấp độ của bạn để tiết kiệm thời gian)
 
 ---
 
-## 🟢 Level 1: Beginner — Getting Started
+## 🟢 Cấp độ 1: Người mới (Beginner) — Bắt đầu
 
-**For**: Users with 0-2 quiz checks
-**Time**: ~3 hours
-**Focus**: Immediate productivity, understanding fundamentals
-**Outcome**: Comfortable daily user, ready for Level 2
+**Dành cho**: Người dùng chọn 0-2 câu trong bài kiểm tra
+**Thời gian**: ~3 giờ
+**Tập trung**: Hiệu quả tức thì, hiểu các kiến thức cơ bản
+**Kết quả**: Người dùng hàng ngày thoải mái, sẵn sàng cho Cấp độ 2
 
-### Milestone 1A: First Commands & Memory
+### Cột mốc 1A: Các câu lệnh đầu tiên & Bộ nhớ
 
-**Topics**: Slash Commands + Memory
-**Time**: 1-2 hours
-**Complexity**: ⭐ Beginner
-**Goal**: Immediate productivity boost with custom commands and persistent context
+**Chủ đề**: Slash Commands + Memory
+**Thời gian**: 1-2 giờ
+**Độ phức tạp**: ⭐ Mới bắt đầu
+**Mục tiêu**: Tăng năng suất ngay lập tức với các câu lệnh tùy chỉnh và ngữ cảnh bền vững
 
-#### What You'll Achieve
-✅ Create custom slash commands for repetitive tasks
-✅ Set up project memory for team standards
-✅ Configure personal preferences
-✅ Understand how Claude loads context automatically
+#### Những gì bạn sẽ đạt được
+✅ Tạo các slash command tùy chỉnh cho các tác vụ lặp đi lặp lại
+✅ Thiết lập bộ nhớ dự án cho các tiêu chuẩn nhóm
+✅ Cấu hình các tùy chỉnh cá nhân
+✅ Hiểu cách Claude tự động tải ngữ cảnh
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Install your first slash command
+# Bài 1: Cài đặt slash command đầu tiên
 mkdir -p .claude/commands
 cp 01-slash-commands/optimize.md .claude/commands/
 
-# Exercise 2: Create project memory
+# Bài 2: Tạo bộ nhớ dự án
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
-# Exercise 3: Try it out
-# In Claude Code, type: /optimize
+# Bài 3: Thử nghiệm
+# Trong Claude Code, nhập: /optimize
 ```
 
-#### Success Criteria
-- [ ] Successfully invoke `/optimize` command
-- [ ] Claude remembers your project standards from CLAUDE.md
-- [ ] You understand when to use slash commands vs. memory
+#### Tiêu chí thành công
+- [ ] Gọi thành công câu lệnh `/optimize`
+- [ ] Claude nhớ các tiêu chuẩn dự án của bạn từ CLAUDE.md
+- [ ] Bạn hiểu khi nào nên dùng slash command so với memory
 
-#### Next Steps
-Once comfortable, read:
+#### Bước tiếp theo
+Sau khi đã thoải mái, hãy đọc:
 - [01-slash-commands/README.md](01-slash-commands/README.md)
 - [02-memory/README.md](02-memory/README.md)
 
-> **Check your understanding**: Run `/lesson-quiz slash-commands` or `/lesson-quiz memory` in Claude Code to test what you've learned.
-
 ---
 
-### Milestone 1B: Safe Exploration
+### Cột mốc 1B: Khám phá An toàn
 
-**Topics**: Checkpoints + CLI Basics
-**Time**: 1 hour
-**Complexity**: ⭐⭐ Beginner+
-**Goal**: Learn to experiment safely and use core CLI commands
+**Chủ đề**: Checkpoints + CLI cơ bản
+**Thời gian**: 1 giờ
+**Độ phức tạp**: ⭐⭐ Cơ bản+
+**Mục tiêu**: Học cách thử nghiệm an toàn và sử dụng các lệnh CLI cốt lõi
 
-#### What You'll Achieve
-✅ Create and restore checkpoints for safe experimentation
-✅ Understand interactive vs. print mode
-✅ Use basic CLI flags and options
-✅ Process files via piping
+#### Những gì bạn sẽ đạt được
+✅ Tạo và khôi phục checkpoint để thử nghiệm an toàn
+✅ Hiểu sự khác biệt giữa chế độ tương tác (interactive) và chế độ in (print)
+✅ Sử dụng các cờ (flags) và tùy chọn CLI cơ bản
+✅ Xử lý tệp thông qua đường ống (piping)
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Try checkpoint workflow
-# In Claude Code:
-# Make some experimental changes, then press Esc+Esc or use /rewind
-# Select the checkpoint before your experiment
-# Choose "Restore code and conversation" to go back
+# Bài 1: Thử quy trình checkpoint
+# Trong Claude Code:
+# Thực hiện một số thay đổi thử nghiệm, sau đó nhấn Esc+Esc hoặc dùng /rewind
+# Chọn checkpoint trước khi thử nghiệm
+# Chọn "Restore code and conversation" để quay lại
 
-# Exercise 2: Interactive vs Print mode
-claude "explain this project"           # Interactive mode
-claude -p "explain this function"       # Print mode (non-interactive)
+# Bài 2: Chế độ Interactive vs Print
+claude "explain this project"           # Chế độ tương tác
+claude -p "explain this function"       # Chế độ in (không tương tác)
 
-# Exercise 3: Process file content via piping
+# Bài 3: Xử lý nội dung tệp qua piping
 cat error.log | claude -p "explain this error"
 ```
 
-#### Success Criteria
-- [ ] Created and reverted to a checkpoint
-- [ ] Used both interactive and print mode
-- [ ] Piped a file to Claude for analysis
-- [ ] Understand when to use checkpoints for safe experimentation
+#### Tiêu chí thành công
+- [ ] Đã tạo và quay lại một checkpoint
+- [ ] Đã sử dụng cả chế độ tương tác và chế độ in
+- [ ] Đã pipe nội dung tệp vào Claude để phân tích
+- [ ] Hiểu khi nào nên dùng checkpoint để thử nghiệm an toàn
 
-#### Next Steps
-- Read: [08-checkpoints/README.md](08-checkpoints/README.md)
-- Read: [10-cli/README.md](10-cli/README.md)
-- **Ready for Level 2!** Proceed to [Milestone 2A](#milestone-2a-automation-skills--hooks)
-
-> **Check your understanding**: Run `/lesson-quiz checkpoints` or `/lesson-quiz cli` to verify you're ready for Level 2.
+#### Bước tiếp theo
+- Đọc: [08-checkpoints/README.md](08-checkpoints/README.md)
+- Đọc: [10-cli/README.md](10-cli/README.md)
+- **Sẵn sàng cho Cấp độ 2!** Tiến tới [Cột mốc 2A](#cột-mốc-2a-tự-động-hóa-skills--hooks)
 
 ---
 
-## 🔵 Level 2: Intermediate — Building Workflows
+## 🔵 Cấp độ 2: Trung cấp — Xây dựng quy trình
 
-**For**: Users with 3-5 quiz checks
-**Time**: ~5 hours
-**Focus**: Automation, integration, task delegation
-**Outcome**: Automated workflows, external integrations, ready for Level 3
+**Dành cho**: Người dùng chọn 3-5 câu trong bài kiểm tra
+**Thời gian**: ~5 giờ
+**Tập trung**: Tự động hóa, tích hợp, ủy quyền tác vụ
+**Kết quả**: Các quy trình làm việc tự động, tích hợp bên ngoài, sẵn sàng cho Cấp độ 3
 
-### Prerequisites Check
-
-Before starting Level 2, make sure you're comfortable with these Level 1 concepts:
-
-- [ ] Can create and use slash commands ([01-slash-commands/](01-slash-commands/))
-- [ ] Have set up project memory via CLAUDE.md ([02-memory/](02-memory/))
-- [ ] Know how to create and restore checkpoints ([08-checkpoints/](08-checkpoints/))
-- [ ] Can use `claude` and `claude -p` from the command line ([10-cli/](10-cli/))
-
-> **Gaps?** Review the linked tutorials above before continuing.
+### Kiểm tra điều kiện tiên quyết
+Trước khi bắt đầu Cấp độ 2, hãy đảm bảo bạn đã nắm vững các khái niệm Cấp độ 1:
+- [ ] Có thể tạo và dùng slash commands ([01-slash-commands/](01-slash-commands/))
+- [ ] Đã thiết lập bộ nhớ dự án qua CLAUDE.md ([02-memory/](02-memory/))
+- [ ] Biết cách tạo và khôi phục checkpoint ([08-checkpoints/](08-checkpoints/))
+- [ ] Có thể dùng `claude` và `claude -p` từ dòng lệnh ([10-cli/](10-cli/))
 
 ---
 
-### Milestone 2A: Automation (Skills + Hooks)
+### Cột mốc 2A: Tự động hóa (Skills + Hooks)
 
-**Topics**: Skills + Hooks
-**Time**: 2-3 hours
-**Complexity**: ⭐⭐ Intermediate
-**Goal**: Automate common workflows and quality checks
+**Chủ đề**: Skills + Hooks
+**Thời gian**: 2-3 giờ
+**Độ phức tạp**: ⭐⭐ Trung cấp
+**Mục tiêu**: Tự động hóa các quy trình chung và kiểm tra chất lượng
 
-#### What You'll Achieve
-✅ Auto-invoke specialized capabilities with YAML frontmatter (including `effort` and `shell` fields)
-✅ Set up event-driven automation across 25 hook events
-✅ Use all 4 hook types (command, http, prompt, agent)
-✅ Enforce code quality standards
-✅ Create custom hooks for your workflow
+#### Những gì bạn sẽ đạt được
+✅ Tự động gọi các khả năng chuyên biệt với YAML frontmatter
+✅ Thiết lập tự động hóa dựa trên sự kiện qua 25 sự kiện hook
+✅ Sử dụng cả 4 loại hook (command, http, prompt, agent)
+✅ Áp đặt các tiêu chuẩn chất lượng mã nguồn
+✅ Tạo các hook tùy chỉnh cho quy trình của bạn
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Install a skill
+# Bài 1: Cài đặt một skill
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Exercise 2: Set up hooks
+# Bài 2: Thiết lập hooks
 mkdir -p ~/.claude/hooks
 cp 06-hooks/pre-tool-check.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/pre-tool-check.sh
 
-# Exercise 3: Configure hooks in settings
-# Add to ~/.claude/settings.json:
+# Bài 3: Cấu hình hooks trong cài đặt
+# Thêm vào ~/.claude/settings.json:
 {
   "hooks": {
     "PreToolUse": [
@@ -270,478 +259,271 @@ chmod +x ~/.claude/hooks/pre-tool-check.sh
 }
 ```
 
-#### Success Criteria
-- [ ] Code review skill automatically invoked when relevant
-- [ ] PreToolUse hook runs before tool execution
-- [ ] You understand skill auto-invocation vs. hook event triggers
+#### Tiêu chí thành công
+- [ ] Skill review mã nguồn tự động được gọi khi phù hợp
+- [ ] Hook PreToolUse chạy trước khi thực thi công cụ
+- [ ] Bạn hiểu sự khác biệt giữa tự động gọi skill vs kích hoạt hook theo sự kiện
 
-#### Next Steps
-- Create your own custom skill
-- Set up additional hooks for your workflow
-- Read: [03-skills/README.md](03-skills/README.md)
-- Read: [06-hooks/README.md](06-hooks/README.md)
-
-> **Check your understanding**: Run `/lesson-quiz skills` or `/lesson-quiz hooks` to test your knowledge before moving on.
+#### Bước tiếp theo
+- Tạo skill tùy chỉnh của riêng bạn
+- Thiết lập thêm các hook cho quy trình làm việc
+- Đọc: [03-skills/README.md](03-skills/README.md)
+- Đọc: [06-hooks/README.md](06-hooks/README.md)
 
 ---
 
-### Milestone 2B: Integration (MCP + Subagents)
+### Cột mốc 2B: Tích hợp (MCP + Subagents)
 
-**Topics**: MCP + Subagents
-**Time**: 2-3 hours
-**Complexity**: ⭐⭐⭐ Intermediate+
-**Goal**: Integrate external services and delegate complex tasks
+**Chủ đề**: MCP + Subagents
+**Thời gian**: 2-3 giờ
+**Độ phức tạp**: ⭐⭐⭐ Trung cấp+
+**Mục tiêu**: Tích hợp các dịch vụ bên ngoài và ủy quyền các tác vụ phức tạp
 
-#### What You'll Achieve
-✅ Access live data from GitHub, databases, etc.
-✅ Delegate work to specialized AI agents
-✅ Understand when to use MCP vs. subagents
-✅ Build integrated workflows
+#### Những gì bạn sẽ đạt được
+✅ Truy cập dữ liệu thời gian thực từ GitHub, cơ sở dữ liệu, v.v.
+✅ Ủy quyền công việc cho các AI agents chuyên biệt
+✅ Hiểu khi nào dùng MCP so với subagents
+✅ Xây dựng các quy trình tích hợp
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Set up GitHub MCP
+# Bài 1: Thiết lập GitHub MCP
 export GITHUB_TOKEN="your_github_token"
 claude mcp add github -- npx -y @modelcontextprotocol/server-github
 
-# Exercise 2: Test MCP integration
-# In Claude Code: /mcp__github__list_prs
+# Bài 2: Kiểm tra tích hợp MCP
+# Trong Claude Code: /mcp__github__list_prs
 
-# Exercise 3: Install subagents
+# Bài 3: Cài đặt subagents
 mkdir -p .claude/agents
 cp 04-subagents/*.md .claude/agents/
 ```
 
-#### Integration Exercise
-Try this complete workflow:
-1. Use MCP to fetch a GitHub PR
-2. Let Claude delegate review to code-reviewer subagent
-3. Use hooks to run tests automatically
+#### Bài tập tích hợp
+Thử quy trình hoàn chỉnh này:
+1. Dùng MCP để lấy một PR từ GitHub
+2. Để Claude ủy quyền việc review cho subagent code-reviewer
+3. Dùng hooks để chạy các bài test tự động
 
-#### Success Criteria
-- [ ] Successfully query GitHub data via MCP
-- [ ] Claude delegates complex tasks to subagents
-- [ ] You understand the difference between MCP and subagents
-- [ ] Combined MCP + subagents + hooks in a workflow
+#### Tiêu chí thành công
+- [ ] Truy vấn thành công dữ liệu GitHub qua MCP
+- [ ] Claude ủy quyền các tác vụ phức tạp cho subagents
+- [ ] Hiểu sự khác biệt giữa MCP và subagents
+- [ ] Kết hợp được MCP + subagents + hooks trong một quy trình
 
-#### Next Steps
-- Set up additional MCP servers (database, Slack, etc.)
-- Create custom subagents for your domain
-- Read: [05-mcp/README.md](05-mcp/README.md)
-- Read: [04-subagents/README.md](04-subagents/README.md)
-- **Ready for Level 3!** Proceed to [Milestone 3A](#milestone-3a-advanced-features)
-
-> **Check your understanding**: Run `/lesson-quiz mcp` or `/lesson-quiz subagents` to verify you're ready for Level 3.
+#### Bước tiếp theo
+- Thiết lập thêm các máy chủ MCP (database, Slack, v.v.)
+- Tạo subagents tùy chỉnh cho lĩnh vực của bạn
+- Đọc: [05-mcp/README.md](05-mcp/README.md)
+- Đọc: [04-subagents/README.md](04-subagents/README.md)
+- **Sẵn sàng cho Cấp độ 3!** Tiến tới [Cột mốc 3A](#cột-mốc-3a-các-tính-năng-nâng-cao)
 
 ---
 
-## 🔴 Level 3: Advanced — Power User & Team Lead
+## 🔴 Cấp độ 3: Nâng cao — Chuyên gia & Trưởng nhóm
 
-**For**: Users with 6-8 quiz checks
-**Time**: ~5 hours
-**Focus**: Team tooling, CI/CD, enterprise features, plugin development
-**Outcome**: Power user, can set up team workflows and CI/CD
+**Dành cho**: Người dùng chọn 6-8 câu trong bài kiểm tra
+**Thời gian**: ~5 giờ
+**Tập trung**: Công cụ cho nhóm, CI/CD, tính năng doanh nghiệp, phát triển plugin
+**Kết quả**: Chuyên gia sử dụng, có thể thiết lập quy trình cho nhóm và CI/CD
 
-### Prerequisites Check
-
-Before starting Level 3, make sure you're comfortable with these Level 2 concepts:
-
-- [ ] Can create and use skills with auto-invocation ([03-skills/](03-skills/))
-- [ ] Have set up hooks for event-driven automation ([06-hooks/](06-hooks/))
-- [ ] Can configure MCP servers for external data ([05-mcp/](05-mcp/))
-- [ ] Know how to use subagents for task delegation ([04-subagents/](04-subagents/))
-
-> **Gaps?** Review the linked tutorials above before continuing.
+### Kiểm tra điều kiện tiên quyết
+Trước khi bắt đầu cấp độ 3, hãy đảm bảo bạn đã nắm vững các khái niệm Cấp độ 2:
+- [ ] Có thể tạo và dùng skills với tính năng tự động gọi ([03-skills/](03-skills/))
+- [ ] Đã thiết lập hooks cho tự động hóa dựa trên sự kiện ([06-hooks/](06-hooks/))
+- [ ] Có thể cấu hình máy chủ MCP cho dữ liệu bên ngoài ([05-mcp/](05-mcp/))
+- [ ] Biết cách dùng subagents để ủy quyền tác vụ ([04-subagents/](04-subagents/))
 
 ---
 
-### Milestone 3A: Advanced Features
+### Cột mốc 3A: Các tính năng nâng cao
 
-**Topics**: Advanced Features (Planning, Permissions, Extended Thinking, Auto Mode, Channels, Voice Dictation, Remote/Desktop/Web)
-**Time**: 2-3 hours
-**Complexity**: ⭐⭐⭐⭐⭐ Advanced
-**Goal**: Master advanced workflows and power user tools
+**Chủ đề**: Các tính năng nâng cao (Planning, Permissions, Extended Thinking, Auto Mode, Channels, Voice, Remote/Desktop/Web)
+**Thời gian**: 2-3 giờ
+**Độ phức tạp**: ⭐⭐⭐⭐⭐ Nâng cao
+**Mục tiêu**: Làm chủ các quy trình nâng cao và công cụ cho chuyên gia
 
-#### What You'll Achieve
-✅ Planning mode for complex features
-✅ Fine-grained permission control with 6 modes (default, acceptEdits, plan, auto, dontAsk, bypassPermissions)
-✅ Extended thinking via Alt+T / Option+T toggle
-✅ Background task management
-✅ Auto Memory for learned preferences
-✅ Auto Mode with background safety classifier
-✅ Channels for structured multi-session workflows
-✅ Voice Dictation for hands-free interaction
-✅ Remote control, desktop app, and web sessions
-✅ Agent Teams for multi-agent collaboration
+#### Những gì bạn sẽ đạt được
+✅ Chế độ lập kế hoạch (Planning mode) cho các tính năng phức tạp
+✅ Kiểm soát quyền hạn chi tiết với 6 chế độ
+✅ Tư duy mở rộng (Extended thinking) qua phím tắt Alt+T / Option+T
+✅ Quản lý tác vụ chạy nền
+✅ Auto Memory cho các tùy chỉnh đã học được
+✅ Auto Mode với bộ phân loại an toàn chạy nền
+✅ Channels cho các quy trình làm việc đa phiên có cấu trúc
+✅ Đọc chính tả bằng giọng nói (Voice Dictation)
+✅ Điều khiển từ xa (Remote control), ứng dụng máy tính và phiên trên web
+✅ Đội ngũ Agent (Agent Teams) để cộng tác đa agent
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Use planning mode
-/plan Implement user authentication system
+# Bài 1: Sử dụng chế độ lập kế hoạch
+/plan Triển khai hệ thống xác thực người dùng
 
-# Exercise 2: Try permission modes (6 available: default, acceptEdits, plan, auto, dontAsk, bypassPermissions)
-claude --permission-mode plan "analyze this codebase"
-claude --permission-mode acceptEdits "refactor the auth module"
-claude --permission-mode auto "implement the feature"
+# Bài 2: Thử các chế độ quyền hạn (6 chế độ: default, acceptEdits, plan, auto, dontAsk, bypassPermissions)
+claude --permission-mode plan "phân tích mã nguồn này"
+claude --permission-mode acceptEdits "tái cấu trúc module auth"
 
-# Exercise 3: Enable extended thinking
-# Press Alt+T (Option+T on macOS) during a session to toggle
+# Bài 3: Bật tư duy mở rộng (Extended thinking)
+# Nhấn Alt+T (Option+T trên macOS) trong phiên làm việc để bật/tắt
 
-# Exercise 4: Advanced checkpoint workflow
-# 1. Create checkpoint "Clean state"
-# 2. Use planning mode to design a feature
-# 3. Implement with subagent delegation
-# 4. Run tests in background
-# 5. If tests fail, rewind to checkpoint
-# 6. Try alternative approach
-
-# Exercise 5: Try auto mode (background safety classifier)
-claude --permission-mode auto "implement user settings page"
-
-# Exercise 6: Enable agent teams
-export CLAUDE_AGENT_TEAMS=1
-# Ask Claude: "Implement feature X using a team approach"
-
-# Exercise 7: Scheduled tasks
-/loop 5m /check-status
-# Or use CronCreate for persistent scheduled tasks
-
-# Exercise 8: Channels for multi-session workflows
-# Use channels to organize work across sessions
-
-# Exercise 9: Voice Dictation
-# Use voice input for hands-free interaction with Claude Code
+# Bài 4: Chế độ Auto Mode
+claude --permission-mode auto "triển khai trang cài đặt người dùng"
 ```
 
-#### Success Criteria
-- [ ] Used planning mode for a complex feature
-- [ ] Configured permission modes (plan, acceptEdits, auto, dontAsk)
-- [ ] Toggled extended thinking with Alt+T / Option+T
-- [ ] Used auto mode with background safety classifier
-- [ ] Used background tasks for long operations
-- [ ] Explored Channels for multi-session workflows
-- [ ] Tried Voice Dictation for hands-free input
-- [ ] Understand Remote Control, Desktop App, and Web sessions
-- [ ] Enabled and used Agent Teams for collaborative tasks
-- [ ] Used `/loop` for recurring tasks or scheduled monitoring
+#### Tiêu chí thành công
+- [ ] Đã dùng chế độ lập kế hoạch cho một tính năng phức tạp
+- [ ] Đã cấu hình các chế độ quyền hạn phù hợp (plan, acceptEdits, auto...)
+- [ ] Đã bật/tắt tư duy mở rộng bằng phím tắt
+- [ ] Đã dùng auto mode với bộ phân loại an toàn chạy nền
+- [ ] Hiểu về Remote Control, Desktop App, và Web sessions
+- [ ] Đã thử nghiệm Đội ngũ Agent cho các tác vụ cộng tác
 
-#### Next Steps
-- Read: [09-advanced-features/README.md](09-advanced-features/README.md)
-
-> **Check your understanding**: Run `/lesson-quiz advanced` to test your mastery of power user features.
+#### Bước tiếp theo
+- Đọc: [09-advanced-features/README.md](09-advanced-features/README.md)
 
 ---
 
-### Milestone 3B: Team & Distribution (Plugins + CLI Mastery)
+### Cột mốc 3B: Nhóm & Phân phối (Plugins + CLI Chuyên sâu)
 
-**Topics**: Plugins + CLI Mastery + CI/CD
-**Time**: 2-3 hours
-**Complexity**: ⭐⭐⭐⭐ Advanced
-**Goal**: Build team tooling, create plugins, master CI/CD integration
+**Chủ đề**: Plugins + CLI chuyên sâu + CI/CD
+**Thời gian**: 2-3 giờ
+**Độ phức tạp**: ⭐⭐⭐⭐ Nâng cao
+**Mục tiêu**: Xây dựng công cụ cho nhóm, tạo plugins, làm chủ tích hợp CI/CD
 
-#### What You'll Achieve
-✅ Install and create complete bundled plugins
-✅ Master CLI for scripting and automation
-✅ Set up CI/CD integration with `claude -p`
-✅ JSON output for automated pipelines
-✅ Session management and batch processing
+#### Những gì bạn sẽ đạt được
+✅ Cài đặt và tạo các plugins đóng gói hoàn chỉnh
+✅ Làm chủ CLI cho kịch bản và tự động hóa
+✅ Thiết lập tích hợp CI/CD với `claude -p`
+✅ Đầu ra định dạng JSON cho các pipeline tự động
+✅ Quản lý phiên làm việc và xử lý hàng loạt (batch)
 
-#### Hands-on Exercises
-
+#### Bài thực hành
 ```bash
-# Exercise 1: Install a complete plugin
-# In Claude Code: /plugin install pr-review
+# Bài 1: Cài đặt một plugin hoàn chỉnh
+# Trong Claude Code: /plugin install pr-review
 
-# Exercise 2: Print mode for CI/CD
-claude -p "Run all tests and generate report"
+# Bài 2: Chế độ Print cho CI/CD
+claude -p "Chạy tất cả test và tạo báo cáo"
 
-# Exercise 3: JSON output for scripts
-claude -p --output-format json "list all functions"
+# Bài 3: Đầu ra JSON cho các kịch bản
+claude -p --output-format json "liệt kê tất cả các hàm"
 
-# Exercise 4: Session management and resumption
-claude -r "feature-auth" "continue implementation"
-
-# Exercise 5: CI/CD integration with constraints
-claude -p --max-turns 3 --output-format json "review code"
-
-# Exercise 6: Batch processing
-for file in *.md; do
-  claude -p --output-format json "summarize this: $(cat $file)" > ${file%.md}.summary.json
-done
+# Bài 4: Quản lý và tiếp tục phiên làm việc
+claude -r "feature-auth" "tiếp tục triển khai"
 ```
 
-#### CI/CD Integration Exercise
-Create a simple CI/CD script:
-1. Use `claude -p` to review changed files
-2. Output results as JSON
-3. Process with `jq` for specific issues
-4. Integrate into GitHub Actions workflow
+#### Tiêu chí thành công
+- [ ] Đã cài đặt và sử dụng thành công một plugin
+- [ ] Đã xây dựng hoặc sửa đổi một plugin cho nhóm của bạn
+- [ ] Đã dùng chế độ in (`claude -p`) trong CI/CD
+- [ ] Đã tạo đầu ra JSON cho lập trình kịch bản
+- [ ] Đã tích hợp Claude vào một quy trình CI/CD
 
-#### Success Criteria
-- [ ] Installed and used a plugin
-- [ ] Built or modified a plugin for your team
-- [ ] Used print mode (`claude -p`) in CI/CD
-- [ ] Generated JSON output for scripting
-- [ ] Resumed a previous session successfully
-- [ ] Created a batch processing script
-- [ ] Integrated Claude into a CI/CD workflow
-
-#### Real-World Use Cases for CLI
-- **Code Review Automation**: Run code reviews in CI/CD pipelines
-- **Log Analysis**: Analyze error logs and system outputs
-- **Documentation Generation**: Batch generate documentation
-- **Testing Insights**: Analyze test failures
-- **Performance Analysis**: Review performance metrics
-- **Data Processing**: Transform and analyze data files
-
-#### Next Steps
-- Read: [07-plugins/README.md](07-plugins/README.md)
-- Read: [10-cli/README.md](10-cli/README.md)
-- Create team-wide CLI shortcuts and plugins
-- Set up batch processing scripts
-
-> **Check your understanding**: Run `/lesson-quiz plugins` or `/lesson-quiz cli` to confirm your mastery.
+#### Bước tiếp theo
+- Đọc: [07-plugins/README.md](07-plugins/README.md)
+- Đọc: [10-cli/README.md](10-cli/README.md)
+- Tạo các phím tắt CLI và plugins dùng chung cho toàn nhóm
 
 ---
 
-## 🧪 Test Your Knowledge
+## 🧪 Kiểm tra kiến thức của bạn
 
-This repository includes two interactive skills you can use anytime in Claude Code to evaluate your understanding:
+Kho lưu trữ này bao gồm hai skill tương tác mà bạn có thể dùng bất cứ lúc nào trong Claude Code để đánh giá sự hiểu biết của mình:
 
-| Skill | Command | Purpose |
+| Skill | Câu lệnh | Mục đích |
 |-------|---------|---------|
-| **Self-Assessment** | `/self-assessment` | Evaluate your overall proficiency across all 10 features. Choose Quick (2 min) or Deep (5 min) mode to get a personalized skill profile and learning path. |
-| **Lesson Quiz** | `/lesson-quiz [lesson]` | Test your understanding of a specific lesson with 10 questions. Use before a lesson (pre-test), during (progress check), or after (mastery verification). |
-
-**Examples:**
-```
-/self-assessment                  # Find your overall level
-/lesson-quiz hooks                # Quiz on Lesson 06: Hooks
-/lesson-quiz 03                   # Quiz on Lesson 03: Skills
-/lesson-quiz advanced-features    # Quiz on Lesson 09
-```
+| **Self-Assessment** | `/self-assessment` | Đánh giá mức độ thành thạo tổng thể trên cả 10 tính năng. Chọn chế độ Nhanh (2 phút) hoặc Sâu (5 phút) để nhận hồ sơ kỹ năng và lộ trình học tập. |
+| **Lesson Quiz** | `/lesson-quiz [lesson]` | Kiểm tra sự hiểu biết của bạn về một bài học cụ thể với 10 câu hỏi. Dùng trước bài học (pre-test), trong lúc học (kiểm tra tiến độ), hoặc sau đó (xác nhận thành thạo). |
 
 ---
 
-## ⚡ Quick Start Paths
+## ⚡ Các con đường bắt đầu nhanh
 
-### If You Only Have 15 Minutes
-**Goal**: Get your first win
+### Nếu bạn chỉ có 15 phút
+**Mục tiêu**: Có được kết quả đầu tiên
+1. Sao chép một slash command: `cp 01-slash-commands/optimize.md .claude/commands/`
+2. Thử trong Claude Code: `/optimize`
+3. Đọc: [01-slash-commands/README.md](01-slash-commands/README.md)
 
-1. Copy one slash command: `cp 01-slash-commands/optimize.md .claude/commands/`
-2. Try it in Claude Code: `/optimize`
-3. Read: [01-slash-commands/README.md](01-slash-commands/README.md)
-
-**Outcome**: You'll have a working slash command and understand the basics
-
----
-
-### If You Have 1 Hour
-**Goal**: Set up essential productivity tools
-
-1. **Slash commands** (15 min): Copy and test `/optimize` and `/pr`
-2. **Project memory** (15 min): Create CLAUDE.md with your project standards
-3. **Install a skill** (15 min): Set up code-review skill
-4. **Try them together** (15 min): See how they work in harmony
-
-**Outcome**: Basic productivity boost with commands, memory, and auto-skills
+### Nếu bạn có 1 giờ
+**Mục tiêu**: Thiết lập các công cụ năng suất thiết yếu
+1. **Slash commands** (15 phút): Sao chép và thử `/optimize` và `/pr`
+2. **Project memory** (15 phút): Tạo CLAUDE.md với các tiêu chuẩn dự án của bạn
+3. **Cài đặt skill** (15 phút): Thiết lập skill code-review
+4. **Thử nghiệm kết hợp** (15 phút): Xem cách chúng hoạt động cùng nhau
 
 ---
 
-### If You Have a Weekend
-**Goal**: Become proficient with most features
+## 💡 Mẹo học tập
 
-**Saturday Morning** (3 hours):
-- Complete Milestone 1A: Slash Commands + Memory
-- Complete Milestone 1B: Checkpoints + CLI Basics
+### ✅ Nên làm
+- **Làm bài kiểm tra trước** để tìm điểm bắt đầu
+- **Hoàn thành các bài tập thực hành** cho mỗi cột mốc
+- **Bắt đầu đơn giản** và tăng dần độ phức tạp
+- **Thử nghiệm an toàn** bằng cách dùng checkpoints
+- **Chia sẻ kiến thức** với nhóm của bạn
 
-**Saturday Afternoon** (3 hours):
-- Complete Milestone 2A: Skills + Hooks
-- Complete Milestone 2B: MCP + Subagents
-
-**Sunday** (4 hours):
-- Complete Milestone 3A: Advanced Features
-- Complete Milestone 3B: Plugins + CLI Mastery + CI/CD
-- Build a custom plugin for your team
-
-**Outcome**: You'll be a Claude Code power user ready to train others and automate complex workflows
+### ❌ Không nên
+- **Bỏ qua kiểm tra điều kiện tiên quyết** khi nhảy lên cấp độ cao hơn
+- **Cố gắng học mọi thứ cùng lúc** - sẽ dễ bị ngợp
+- **Sao chép cấu hình mà không hiểu** - bạn sẽ không biết cách gỡ lỗi
+- **Quên kiểm tra lại** - luôn xác nhận các tính năng hoạt động đúng
 
 ---
 
-## 💡 Learning Tips
+## 📈 Theo dõi tiến độ
 
-### ✅ Do
+Dùng các danh sách này để theo dõi tiến độ của bạn.
 
-- **Take the quiz first** to find your starting point
-- **Complete hands-on exercises** for each milestone
-- **Start simple** and add complexity gradually
-- **Test each feature** before moving to the next
-- **Take notes** on what works for your workflow
-- **Refer back** to earlier concepts as you learn advanced topics
-- **Experiment safely** using checkpoints
-- **Share knowledge** with your team
+### 🟢 Cấp độ 1: Người mới
+- [ ] Hoàn thành [01-slash-commands](01-slash-commands/)
+- [ ] Hoàn thành [02-memory](02-memory/)
+- [ ] Tạo được slash command tùy chỉnh đầu tiên
+- [ ] Thiết lập được project memory
+- [ ] Hoàn thành [08-checkpoints](08-checkpoints/)
+- [ ] Hoàn thành kiến thức cơ bản [10-cli](10-cli/)
 
-### ❌ Don't
+### 🔵 Cấp độ 2: Trung cấp
+- [ ] Hoàn thành [03-skills](03-skills/)
+- [ ] Hoàn thành [06-hooks](06-hooks/)
+- [ ] Cài đặt được skill đầu tiên
+- [ ] Thiết lập được hook PreToolUse
+- [ ] Hoàn thành [05-mcp](05-mcp/)
+- [ ] Hoàn thành [04-subagents](04-subagents/)
 
-- **Skip the prerequisites check** when jumping to a higher level
-- **Try to learn everything at once** - it's overwhelming
-- **Copy configurations without understanding them** - you won't know how to debug
-- **Forget to test** - always verify features work
-- **Rush through milestones** - take time to understand
-- **Ignore the documentation** - each README has valuable details
-- **Work in isolation** - discuss with teammates
-
----
-
-## 🎓 Learning Styles
-
-### Visual Learners
-- Study the mermaid diagrams in each README
-- Watch the command execution flow
-- Draw your own workflow diagrams
-- Use the visual learning path above
-
-### Hands-on Learners
-- Complete every hands-on exercise
-- Experiment with variations
-- Break things and fix them (use checkpoints!)
-- Create your own examples
-
-### Reading Learners
-- Read each README thoroughly
-- Study the code examples
-- Review the comparison tables
-- Read the blog posts linked in resources
-
-### Social Learners
-- Set up pair programming sessions
-- Teach concepts to teammates
-- Join Claude Code community discussions
-- Share your custom configurations
+### 🔴 Cấp độ 3: Nâng cao
+- [ ] Hoàn thành [09-advanced-features](09-advanced-features/)
+- [ ] Sử dụng thành công chế độ lập kế hoạch
+- [ ] Cấu hình các chế độ quyền (bao gồm auto)
+- [ ] Hoàn thành [07-plugins](07-plugins/)
+- [ ] Hoàn thành [10-cli](10-cli/) nâng cao
+- [ ] Tích hợp được Claude vào pipeline CI/CD
 
 ---
 
-## 📈 Progress Tracking
+## 🎯 Tiếp theo là gì sau khi hoàn thành?
 
-Use these checklists to track your progress by level. Run `/self-assessment` anytime to get an updated skill profile, or `/lesson-quiz [lesson]` after each tutorial to verify your understanding.
-
-### 🟢 Level 1: Beginner
-- [ ] Completed [01-slash-commands](01-slash-commands/)
-- [ ] Completed [02-memory](02-memory/)
-- [ ] Created first custom slash command
-- [ ] Set up project memory
-- [ ] **Milestone 1A achieved**
-- [ ] Completed [08-checkpoints](08-checkpoints/)
-- [ ] Completed [10-cli](10-cli/) basics
-- [ ] Created and reverted to a checkpoint
-- [ ] Used interactive and print mode
-- [ ] **Milestone 1B achieved**
-
-### 🔵 Level 2: Intermediate
-- [ ] Completed [03-skills](03-skills/)
-- [ ] Completed [06-hooks](06-hooks/)
-- [ ] Installed first skill
-- [ ] Set up PreToolUse hook
-- [ ] **Milestone 2A achieved**
-- [ ] Completed [05-mcp](05-mcp/)
-- [ ] Completed [04-subagents](04-subagents/)
-- [ ] Connected GitHub MCP
-- [ ] Created custom subagent
-- [ ] Combined integrations in a workflow
-- [ ] **Milestone 2B achieved**
-
-### 🔴 Level 3: Advanced
-- [ ] Completed [09-advanced-features](09-advanced-features/)
-- [ ] Used planning mode successfully
-- [ ] Configured permission modes (6 modes including auto)
-- [ ] Used auto mode with safety classifier
-- [ ] Used extended thinking toggle
-- [ ] Explored Channels and Voice Dictation
-- [ ] **Milestone 3A achieved**
-- [ ] Completed [07-plugins](07-plugins/)
-- [ ] Completed [10-cli](10-cli/) advanced usage
-- [ ] Set up print mode (`claude -p`) CI/CD
-- [ ] Created JSON output for automation
-- [ ] Integrated Claude into CI/CD pipeline
-- [ ] Created team plugin
-- [ ] **Milestone 3B achieved**
+Khi bạn đã hoàn thành tất cả các cột mốc:
+1. **Tạo tài liệu cho nhóm** - Viết hướng dẫn thiết lập Claude Code cho nhóm của bạn
+2. **Xây dựng plugins tùy chỉnh** - Đóng gói các quy trình làm việc của nhóm
+3. **Khám phá Auto Mode** - Để Claude làm việc tự trị với bộ phân loại an toàn
+4. **Chia sẻ ví dụ** - Chia sẻ các cấu hình hữu ích với cộng đồng
+5. **Hướng dẫn người khác** - Giúp đồng nghiệp cùng học tập
 
 ---
 
-## 🆘 Common Learning Challenges
-
-### Challenge 1: "Too many concepts at once"
-**Solution**: Focus on one milestone at a time. Complete all exercises before moving forward.
-
-### Challenge 2: "Don't know which feature to use when"
-**Solution**: Refer to the [Use Case Matrix](README.md#use-case-matrix) in the main README.
-
-### Challenge 3: "Configuration not working"
-**Solution**: Check the [Troubleshooting](README.md#troubleshooting) section and verify file locations.
-
-### Challenge 4: "Concepts seem to overlap"
-**Solution**: Review the [Feature Comparison](README.md#feature-comparison) table to understand differences.
-
-### Challenge 5: "Hard to remember everything"
-**Solution**: Create your own cheat sheet. Use checkpoints to experiment safely.
-
-### Challenge 6: "I'm experienced but not sure where to start"
-**Solution**: Take the [Self-Assessment Quiz](#-find-your-level) above. Skip to your level and use the prerequisites check to identify any gaps.
+## 📚 Tài nguyên bổ sung
+- [Tài liệu Claude Code](https://code.claude.com/docs/en/overview)
+- [Tài liệu Anthropic](https://docs.anthropic.com)
+- [Đặc tả Giao thức MCP](https://modelcontextprotocol.io)
 
 ---
 
-## 🎯 What's Next After Completion?
-
-Once you've completed all milestones:
-
-1. **Create team documentation** - Document your team's Claude Code setup
-2. **Build custom plugins** - Package your team's workflows
-3. **Explore Remote Control** - Control Claude Code sessions programmatically from external tools
-4. **Try Web Sessions** - Use Claude Code through browser-based interfaces for remote development
-5. **Use the Desktop App** - Access Claude Code features through the native desktop application
-6. **Use Auto Mode** - Let Claude work autonomously with a background safety classifier
-7. **Leverage Auto Memory** - Let Claude learn your preferences automatically over time
-8. **Set up Agent Teams** - Coordinate multiple agents on complex, multi-faceted tasks
-9. **Use Channels** - Organize work across structured multi-session workflows
-10. **Try Voice Dictation** - Use hands-free voice input for interaction with Claude Code
-11. **Use Scheduled Tasks** - Automate recurring checks with `/loop` and cron tools
-12. **Contribute examples** - Share with the community
-13. **Mentor others** - Help teammates learn
-14. **Optimize workflows** - Continuously improve based on usage
-15. **Stay updated** - Follow Claude Code releases and new features
+**Cập nhật cuối**: Tháng 3 năm 2026
+**Duy trì bởi**: Những người đóng góp Claude How-To
+**Giấy phép**: Mục đích giáo dục, tự do sử dụng và điều chỉnh
 
 ---
 
-## 📚 Additional Resources
-
-### Official Documentation
-- [Claude Code Documentation](https://code.claude.com/docs/en/overview)
-- [Anthropic Documentation](https://docs.anthropic.com)
-- [MCP Protocol Specification](https://modelcontextprotocol.io)
-
-### Blog Posts
-- [Discovering Claude Code Slash Commands](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
-
-### Community
-- [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
-- [MCP Servers Repository](https://github.com/modelcontextprotocol/servers)
-
----
-
-## 💬 Feedback & Support
-
-- **Found an issue?** Create an issue in the repository
-- **Have a suggestion?** Submit a pull request
-- **Need help?** Check the documentation or ask the community
-
----
-
-**Last Updated**: March 2026
-**Maintained by**: Claude How-To Contributors
-**License**: Educational purposes, free to use and adapt
-
----
-
-[← Back to Main README](README.md)
+[← Quay lại README chính](README.md)

@@ -1,45 +1,45 @@
-# My Development Preferences
+# Sở thích phát triển của tôi (My Development Preferences)
 
-## About Me
-- **Experience Level**: 8 years full-stack development
-- **Preferred Languages**: TypeScript, Python
-- **Communication Style**: Direct, with examples
-- **Learning Style**: Visual diagrams with code
+## Về tôi
+- **Kinh nghiệm**: 8 năm phát triển full-stack
+- **Ngôn ngữ yêu thích**: TypeScript, Python
+- **Phong cách giao tiếp**: Trực tiếp, kèm theo ví dụ
+- **Phong cách học tập**: Sơ đồ trực quan kèm theo mã nguồn
 
-## Code Preferences
+## Sở thích về mã nguồn (Code Preferences)
 
-### Error Handling
-I prefer explicit error handling with try-catch blocks and meaningful error messages.
-Avoid generic errors. Always log errors for debugging.
+### Xử lý lỗi (Error Handling)
+Tôi thích xử lý lỗi một cách rõ ràng bằng các khối try-catch và các thông báo lỗi có nghĩa.
+Tránh các lỗi chung chung. Luôn ghi nhật ký (log) lỗi để phục vụ việc gỡ lỗi.
 
-### Comments
-Use comments for WHY, not WHAT. Code should be self-documenting.
-Comments should explain business logic or non-obvious decisions.
+### Chú thích (Comments)
+Sử dụng chú thích để giải thích TẠI SAO (WHY), không phải CÁI GÌ (WHAT). Mã nguồn nên có khả năng tự giải thích (self-documenting).
+Các chú thích nên giải thích logic nghiệp vụ hoặc các quyết định không hiển nhiên.
 
-### Testing
-I prefer TDD (test-driven development).
-Write tests first, then implementation.
-Focus on behavior, not implementation details.
+### Kiểm thử (Testing)
+Tôi thích phương pháp TDD (phát triển dựa trên kiểm thử).
+Viết kiểm thử trước, sau đó mới triển khai mã nguồn.
+Tập trung vào hành vi (behavior), không phải chi tiết triển khai.
 
-### Architecture
-I prefer modular, loosely-coupled design.
-Use dependency injection for testability.
-Separate concerns (Controllers, Services, Repositories).
+### Kiến trúc (Architecture)
+Tôi thích thiết kế theo mô-đun (modular), ít phụ thuộc (loosely-coupled).
+Sử dụng tiêm phụ thuộc (dependency injection) để dễ dàng kiểm thử.
+Tách biệt các mối quan tâm (Controllers, Services, Repositories).
 
-## Debugging Preferences
-- Use console.log with prefix: `[DEBUG]`
-- Include context: function name, relevant variables
-- Use stack traces when available
-- Always include timestamps in logs
+## Sở thích gỡ lỗi (Debugging Preferences)
+- Sử dụng console.log với tiền tố: `[DEBUG]`
+- Bao gồm ngữ cảnh: tên hàm, các biến liên quan
+- Sử dụng stack traces khi có sẵn
+- Luôn bao gồm dấu thời gian (timestamps) trong nhật ký
 
-## Communication
-- Explain complex concepts with diagrams
-- Show concrete examples before explaining theory
-- Include before/after code snippets
-- Summarize key points at the end
+## Giao tiếp
+- Giải thích các khái niệm phức tạp bằng sơ đồ
+- Hiển thị các ví dụ cụ thể trước khi giải thích lý thuyết
+- Bao gồm các đoạn mã trước/sau khi thay đổi
+- Tóm tắt các điểm chính ở cuối
 
-## Project Organization
-I organize my projects as:
+## Tổ chức Dự án
+Tôi tổ chức các dự án của mình như sau:
 ```
 project/
   ├── src/
@@ -52,9 +52,9 @@ project/
   └── docker/
 ```
 
-## Tooling
-- **IDE**: VS Code with vim keybindings
-- **Terminal**: Zsh with Oh-My-Zsh
-- **Format**: Prettier (100 char line length)
-- **Linter**: ESLint with airbnb config
-- **Test Framework**: Jest with React Testing Library
+## Công cụ (Tooling)
+- **IDE**: VS Code với phím tắt vim
+- **Terminal**: Zsh với Oh-My-Zsh
+- **Định dạng**: Prettier (Độ dài dòng 100 ký tự)
+- **Linter**: ESLint với cấu hình airbnb
+- **Framework kiểm thử**: Jest với React Testing Library

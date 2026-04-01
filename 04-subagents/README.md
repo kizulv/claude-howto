@@ -3,104 +3,104 @@
   <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Subagents - Complete Reference Guide
+# Subagents - Hướng dẫn Tham chiếu Đầy đủ
 
-Subagents are specialized AI assistants that Claude Code can delegate tasks to. Each subagent has a specific purpose, uses its own context window separate from the main conversation, and can be configured with specific tools and a custom system prompt.
+Subagents là các trợ lý AI chuyên biệt mà Claude Code có thể ủy quyền thực hiện các nhiệm vụ. Mỗi subagent có một mục đích cụ thể, sử dụng cửa sổ ngữ cảnh riêng biệt với hội thoại chính, và có thể được cấu hình với các công cụ cụ thể cũng như prompt hệ thống tùy chỉnh.
 
-## Table of Contents
+## Mục lục
 
-1. [Overview](#overview)
-2. [Key Benefits](#key-benefits)
-3. [File Locations](#file-locations)
-4. [Configuration](#configuration)
-5. [Built-in Subagents](#built-in-subagents)
-6. [Managing Subagents](#managing-subagents)
-7. [Using Subagents](#using-subagents)
-8. [Resumable Agents](#resumable-agents)
-9. [Chaining Subagents](#chaining-subagents)
-10. [Persistent Memory for Subagents](#persistent-memory-for-subagents)
-11. [Background Subagents](#background-subagents)
-12. [Worktree Isolation](#worktree-isolation)
-13. [Restrict Spawnable Subagents](#restrict-spawnable-subagents)
-14. [`claude agents` CLI Command](#claude-agents-cli-command)
-15. [Agent Teams (Experimental)](#agent-teams-experimental)
-16. [Plugin Subagent Security](#plugin-subagent-security)
-17. [Architecture](#architecture)
-18. [Context Management](#context-management)
-19. [When to Use Subagents](#when-to-use-subagents)
-20. [Best Practices](#best-practices)
-21. [Example Subagents in This Folder](#example-subagents-in-this-folder)
-22. [Installation Instructions](#installation-instructions)
-23. [Related Concepts](#related-concepts)
-
----
-
-## Overview
-
-Subagents enable delegated task execution in Claude Code by:
-
-- Creating **isolated AI assistants** with separate context windows
-- Providing **customized system prompts** for specialized expertise
-- Enforcing **tool access control** to limit capabilities
-- Preventing **context pollution** from complex tasks
-- Enabling **parallel execution** of multiple specialized tasks
-
-Each subagent operates independently with a clean slate, receiving only the specific context necessary for their task, then returning results to the main agent for synthesis.
-
-**Quick Start**: Use the `/agents` command to create, view, edit, and manage your subagents interactively.
+1. [Tổng quan](#tổng-quan)
+2. [Lợi ích Chính](#lợi-ích-chính)
+3. [Vị trí Tệp](#vị-trí-tệp)
+4. [Cấu hình](#cấu-hình)
+5. [Subagents Tích hợp](#subagents-tích-hợp)
+6. [Quản lý Subagents](#quản-lý-subagents)
+7. [Sử dụng Subagents](#sử-dụng-subagents)
+8. [Agent có thể Tiếp tục (Resumable Agents)](#agent-có-thể-tiếp-tục-resumable-agents)
+9. [Chuỗi Subagents (Chaining Subagents)](#chuỗi-subagents-chaining-subagents)
+10. [Bộ nhớ Bền vững cho Subagents](#bộ-nhớ-bền-vững-cho-subagents)
+11. [Subagents Chạy nền (Background Subagents)](#subagents-chạy-nền-background-subagents)
+12. [Cách ly Worktree (Worktree Isolation)](#cách-ly-worktree-worktree-isolation)
+13. [Hạn chế các Subagent có thể Khởi tạo](#hạn-chế-các-subagent-có-thể-khởi-tạo)
+14. [Lệnh CLI `claude agents`](#lệnh-cli-claude-agents)
+15. [Đội ngũ Agent (Agent Teams - Thử nghiệm)](#đội-ngũ-agent-agent-teams---thử-nghiệm)
+16. [Bảo mật Subagent của Plugin](#bảo-mật-subagent-của-plugin)
+17. [Kiến trúc](#kiến-trúc)
+18. [Quản lý Ngữ cảnh](#quản-lý-ngữ-cảnh)
+19. [Khi nào nên Sử dụng Subagents](#khi-nao-nên-sử-dụng-subagents)
+20. [Thực hành Tốt nhất](#thực-hành-tốt-nhất)
+21. [Các Subagent Ví dụ trong Thư mục này](#các-subagent-ví-dụ-trong-thư-mục-này)
+22. [Hướng dẫn Cài đặt](#hướng-dẫn-cài-đặt)
+23. [Các Khái niệm Liên quan](#các-khái-niệm-liên quan)
 
 ---
 
-## Key Benefits
+## Tổng quan (Overview)
 
-| Benefit | Description |
+Subagents cho phép ủy quyền thực thi nhiệm vụ trong Claude Code bằng cách:
+
+- Tạo ra các **trợ lý AI biệt lập** với các cửa sổ ngữ cảnh riêng biệt.
+- Cung cấp các **prompt hệ thống tùy chỉnh** cho chuyên môn chuyên biệt.
+- Áp dụng **kiểm soát truy cập công cụ** để hạn chế các khả năng.
+- Ngăn chặn **ô nhiễm ngữ cảnh** từ các nhiệm vụ phức tạp.
+- Cho phép **thực thi song song** nhiều nhiệm vụ chuyên biệt.
+
+Mỗi subagent hoạt động độc lập với một trạng thái sạch, chỉ nhận ngữ cảnh cụ thể cần thiết cho nhiệm vụ của chúng, sau đó trả lại kết quả cho agent chính để tổng hợp.
+
+**Bắt đầu nhanh**: Sử dụng lệnh `/agents` để tạo, xem, chỉnh sửa và quản lý các subagent của bạn một cách tương tác.
+
+---
+
+## Lợi ích Chính (Key Benefits)
+
+| Lợi ích | Mô tả |
 |---------|-------------|
-| **Context preservation** | Operates in separate context, preventing pollution of main conversation |
-| **Specialized expertise** | Fine-tuned for specific domains with higher success rates |
-| **Reusability** | Use across different projects and share with teams |
-| **Flexible permissions** | Different tool access levels for different subagent types |
-| **Scalability** | Multiple agents work on different aspects simultaneously |
+| **Bảo tồn ngữ cảnh** | Hoạt động trong ngữ cảnh riêng biệt, ngăn chặn sự ô nhiễm của hội thoại chính. |
+| **Chuyên môn chuyên biệt** | Được tinh chỉnh cho các lĩnh vực cụ thể với tỷ lệ thành công cao hơn. |
+| **Khả năng tái sử dụng** | Sử dụng trên các dự án khác nhau và chia sẻ với đội ngũ. |
+| **Quyền hạn linh hoạt** | Các cấp độ truy cập công cụ khác nhau cho các loại subagent khác nhau. |
+| **Khả năng mở rộng** | Nhiều agent làm việc trên các khía cạnh khác nhau đồng thời. |
 
 ---
 
-## File Locations
+## Vị trí Tệp (File Locations)
 
-Subagent files can be stored in multiple locations with different scopes:
+Các tệp subagent có thể được lưu trữ ở nhiều vị trí với phạm vi khác nhau:
 
-| Priority | Type | Location | Scope |
+| Ưu tiên | Loại | Vị trí | Phạm vi |
 |----------|------|----------|-------|
-| 1 (highest) | **CLI-defined** | Via `--agents` flag (JSON) | Session only |
-| 2 | **Project subagents** | `.claude/agents/` | Current project |
-| 3 | **User subagents** | `~/.claude/agents/` | All projects |
-| 4 (lowest) | **Plugin agents** | Plugin `agents/` directory | Via plugins |
+| 1 (cao nhất) | **Xác định qua CLI** | Qua cờ `--agents` (JSON) | Chỉ trong phiên làm việc |
+| 2 | **Subagent dự án** | `.claude/agents/` | Dự án hiện tại |
+| 3 | **Subagent người dùng** | `~/.claude/agents/` | Tất cả dự án |
+| 4 (thấp nhất) | **Agent của plugin** | Thư mục `agents/` của plugin | Qua plugin |
 
-When duplicate names exist, higher-priority sources take precedence.
+Khi tồn tại tên trùng lặp, các nguồn có độ ưu tiên cao hơn sẽ được ưu tiên.
 
 ---
 
-## Configuration
+## Cấu hình (Configuration)
 
-### File Format
+### Định dạng Tệp
 
-Subagents are defined in YAML frontmatter followed by the system prompt in markdown:
+Subagents được định nghĩa trong YAML frontmatter theo sau là prompt hệ thống bằng markdown:
 
 ```yaml
 ---
-name: your-sub-agent-name
-description: Description of when this subagent should be invoked
-tools: tool1, tool2, tool3  # Optional - inherits all tools if omitted
-disallowedTools: tool4  # Optional - explicitly disallowed tools
-model: sonnet  # Optional - sonnet, opus, haiku, or inherit
-permissionMode: default  # Optional - permission mode
-maxTurns: 20  # Optional - limit agentic turns
-skills: skill1, skill2  # Optional - skills to preload into context
-mcpServers: server1  # Optional - MCP servers to make available
-memory: user  # Optional - persistent memory scope (user, project, local)
-background: false  # Optional - run as background task
-effort: high  # Optional - reasoning effort (low, medium, high, max)
-isolation: worktree  # Optional - git worktree isolation
-initialPrompt: "Start by analyzing the codebase"  # Optional - auto-submitted first turn
-hooks:  # Optional - component-scoped hooks
+name: ten-sub-agent-cua-ban
+description: Mô tả khi nào subagent này nên được gọi
+tools: tool1, tool2, tool3  # Tùy chọn - kế thừa tất cả công cụ nếu bỏ qua
+disallowedTools: tool4  # Tùy chọn - các công cụ bị từ chối rõ ràng
+model: sonnet  # Tùy chọn - sonnet, opus, haiku, hoặc kế thừa
+permissionMode: default  # Tùy chọn - chế độ cấp quyền
+maxTurns: 20  # Tùy chọn - giới hạn số lượt (turns) của agent
+skills: skill1, skill2  # Tùy chọn - các kỹ năng cần tải trước vào ngữ cảnh
+mcpServers: server1  # Tùy chọn - các máy chủ MCP cần cung cấp
+memory: user  # Tùy chọn - phạm vi bộ nhớ bền vững (user, project, local)
+background: false  # Tùy chọn - chạy như một tác vụ nền
+effort: high  # Tùy chọn - nỗ lực lập luận (low, medium, high, max)
+isolation: worktree  # Tùy chọn - cách ly git worktree
+initialPrompt: "Bắt đầu bằng việc phân tích mã nguồn"  # Tùy chọn - lượt đầu tiên tự động gửi
+hooks:  # Tùy chọn - các hook trong phạm vi thành phần
   PreToolUse:
     - matcher: "Bash"
       hooks:
@@ -108,194 +108,194 @@ hooks:  # Optional - component-scoped hooks
           command: "./scripts/security-check.sh"
 ---
 
-Your subagent's system prompt goes here. This can be multiple paragraphs
-and should clearly define the subagent's role, capabilities, and approach
-to solving problems.
+Nội dung prompt hệ thống của subagent nằm ở đây. Đây có thể là nhiều đoạn văn
+và nên định nghĩa rõ ràng vai trò, khả năng và cách tiếp cận của subagent
+để giải quyết vấn đề.
 ```
 
-### Configuration Fields
+### Các trường Cấu hình
 
-| Field | Required | Description |
+| Trường | Bắt buộc | Mô tả |
 |-------|----------|-------------|
-| `name` | Yes | Unique identifier (lowercase letters and hyphens) |
-| `description` | Yes | Natural language description of purpose. Include "use PROACTIVELY" to encourage automatic invocation |
-| `tools` | No | Comma-separated list of specific tools. Omit to inherit all tools. Supports `Agent(agent_name)` syntax to restrict spawnable subagents |
-| `disallowedTools` | No | Comma-separated list of tools the subagent must not use |
-| `model` | No | Model to use: `sonnet`, `opus`, `haiku`, full model ID, or `inherit`. Defaults to configured subagent model |
-| `permissionMode` | No | `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, `plan` |
-| `maxTurns` | No | Maximum number of agentic turns the subagent can take |
-| `skills` | No | Comma-separated list of skills to preload. Injects full skill content into the subagent's context at startup |
-| `mcpServers` | No | MCP servers to make available to the subagent |
-| `hooks` | No | Component-scoped hooks (PreToolUse, PostToolUse, Stop) |
-| `memory` | No | Persistent memory directory scope: `user`, `project`, or `local` |
-| `background` | No | Set to `true` to always run this subagent as a background task |
-| `effort` | No | Reasoning effort level: `low`, `medium`, `high`, or `max` |
-| `isolation` | No | Set to `worktree` to give the subagent its own git worktree |
-| `initialPrompt` | No | Auto-submitted first turn when the subagent runs as the main agent |
+| `name` | Có | Định danh duy nhất (chữ cái thường và dấu gạch ngang) |
+| `description` | Có | Mô tả mục đích bằng ngôn ngữ tự nhiên. Bao gồm "Sử dụng CHỦ ĐỘNG (PROACTIVELY)" để khuyến khích gọi tự động. |
+| `tools` | Không | Danh sách các công cụ cụ thể, phân cách bằng dấu phẩy. Bỏ qua để kế thừa tất cả công cụ. Hỗ trợ cú pháp `Agent(ten_agent)` để hạn chế các subagent có thể khởi tạo. |
+| `disallowedTools` | Không | Danh sách các công cụ mà subagent không được phép sử dụng. |
+| `model` | Không | Mô hình sử dụng: `sonnet`, `opus`, `haiku`, ID mô hình đầy đủ, hoặc `inherit` (kế thừa). Mặc định theo cấu hình subagent. |
+| `permissionMode` | Không | `default`, `acceptEdits`, `dontAsk`, `bypassPermissions`, `plan` |
+| `maxTurns` | Không | Số lượt (turns) tối đa mà subagent có thể thực hiện. |
+| `skills` | Không | Danh sách các kỹ năng cần tải trước. Chèn toàn bộ nội dung kỹ năng vào ngữ cảnh của subagent khi khởi động. |
+| `mcpServers` | Không | Các máy chủ MCP cung cấp cho subagent. |
+| `hooks` | Không | Các hook phạm vi thành phần (PreToolUse, PostToolUse, Stop). |
+| `memory` | Không | Phạm vi thư mục bộ nhớ bền vững: `user`, `project`, hoặc `local`. |
+| `background` | Không | Đặt thành `true` để luôn chạy subagent này như một tác vụ nền. |
+| `effort` | Không | Mức độ nỗ lực lập luận: `low`, `medium`, `high`, hoặc `max`. |
+| `isolation` | Không | Đặt thành `worktree` để cung cấp cho subagent một git worktree riêng. |
+| `initialPrompt` | Không | Lượt đầu tiên tự động gửi khi subagent chạy như một agent chính. |
 
-### Tool Configuration Options
+### Các tùy chọn Cấu hình Công cụ
 
-**Option 1: Inherit All Tools (omit the field)**
+**Tùy chọn 1: Kế thừa Tất cả Công cụ (bỏ qua trường này)**
 ```yaml
 ---
 name: full-access-agent
-description: Agent with all available tools
+description: Agent có quyền truy cập vào tất cả các công cụ khả dụng
 ---
 ```
 
-**Option 2: Specify Individual Tools**
+**Tùy chọn 2: Chỉ định các Công cụ Riêng lẻ**
 ```yaml
 ---
 name: limited-agent
-description: Agent with specific tools only
+description: Agent chỉ có các công cụ cụ thể
 tools: Read, Grep, Glob, Bash
 ---
 ```
 
-**Option 3: Conditional Tool Access**
+**Tùy chọn 3: Truy cập Công cụ có Điều kiện**
 ```yaml
 ---
 name: conditional-agent
-description: Agent with filtered tool access
+description: Agent với quyền truy cập công cụ đã được lọc
 tools: Read, Bash(npm:*), Bash(test:*)
 ---
 ```
 
-### CLI-Based Configuration
+### Cấu hình dựa trên CLI
 
-Define subagents for a single session using the `--agents` flag with JSON format:
+Định nghĩa subagents cho một phiên làm việc duy nhất bằng cách sử dụng cờ `--agents` với định dạng JSON:
 
 ```bash
 claude --agents '{
   "code-reviewer": {
-    "description": "Expert code reviewer. Use proactively after code changes.",
-    "prompt": "You are a senior code reviewer. Focus on code quality, security, and best practices.",
+    "description": "Chuyên gia review mã nguồn. Sử dụng chủ động sau khi thay đổi mã nguồn.",
+    "prompt": "Bạn là một senior code reviewer. Tập trung vào chất lượng mã nguồn, bảo mật và các thực hành tốt nhất.",
     "tools": ["Read", "Grep", "Glob", "Bash"],
     "model": "sonnet"
   }
 }'
 ```
 
-**JSON Format for `--agents` flag:**
+**Định dạng JSON cho cờ `--agents`:**
 
 ```json
 {
-  "agent-name": {
-    "description": "Required: when to invoke this agent",
-    "prompt": "Required: system prompt for the agent",
-    "tools": ["Optional", "array", "of", "tools"],
-    "model": "optional: sonnet|opus|haiku"
+  "ten-agent": {
+    "description": "Bắt buộc: khi nào nên gọi agent này",
+    "prompt": "Bắt buộc: prompt hệ thống cho agent",
+    "tools": ["Tùy chọn", "mảng", "các", "công cụ"],
+    "model": "tùy chọn: sonnet|opus|haiku"
   }
 }
 ```
 
-**Priority of Agent Definitions:**
+**Độ ưu tiên của các Định nghĩa Agent:**
 
-Agent definitions are loaded with this priority order (first match wins):
-1. **CLI-defined** - `--agents` flag (session only, JSON)
-2. **Project-level** - `.claude/agents/` (current project)
-3. **User-level** - `~/.claude/agents/` (all projects)
-4. **Plugin-level** - Plugin `agents/` directory
+Các định nghĩa agent được tải theo thứ tự ưu tiên này (khớp đầu tiên sẽ thắng):
+1. **Xác định qua CLI** - cờ `--agents` (chỉ trong phiên làm việc, JSON)
+2. **Cấp độ Dự án** - `.claude/agents/` (dự án hiện tại)
+3. **Cấp độ Người dùng** - `~/.claude/agents/` (tất cả dự án)
+4. **Cấp độ Plugin** - Thư mục `agents/` của plugin
 
-This allows CLI definitions to override all other sources for a single session.
+Điều này cho phép các định nghĩa CLI ghi đè tất cả các nguồn khác trong một phiên làm việc duy nhất.
 
 ---
 
-## Built-in Subagents
+## Subagents Tích hợp (Built-in Subagents)
 
-Claude Code includes several built-in subagents that are always available:
+Claude Code bao gồm một số subagent tích hợp luôn sẵn sàng:
 
-| Agent | Model | Purpose |
+| Agent | Mô hình | Mục đích |
 |-------|-------|---------|
-| **general-purpose** | Inherits | Complex, multi-step tasks |
-| **Plan** | Inherits | Research for plan mode |
-| **Explore** | Haiku | Read-only codebase exploration (quick/medium/very thorough) |
-| **Bash** | Inherits | Terminal commands in separate context |
-| **statusline-setup** | Sonnet | Configure status line |
-| **Claude Code Guide** | Haiku | Answer Claude Code feature questions |
+| **general-purpose** | Kế thừa | Các nhiệm vụ phức tạp, nhiều bước. |
+| **Plan** | Kế thừa | Nghiên cứu cho chế độ lập kế hoạch (plan mode). |
+| **Explore** | Haiku | Khám phá mã nguồn ở chế độ chỉ đọc (nhanh/vừa/rất kỹ). |
+| **Bash** | Kế thừa | Các lệnh terminal trong ngữ cảnh riêng biệt. |
+| **statusline-setup** | Sonnet | Cấu hình dòng trạng thái (status line). |
+| **Claude Code Guide** | Haiku | Trả lời các câu hỏi về tính năng của Claude Code. |
 
-### General-Purpose Subagent
+### Subagent Đa năng (General-Purpose Subagent)
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Inherits from parent |
-| **Tools** | All tools |
-| **Purpose** | Complex research tasks, multi-step operations, code modifications |
+| **Mô hình** | Kế thừa từ agent cha |
+| **Công cụ** | Tất cả các công cụ |
+| **Mục đích** | Các nhiệm vụ nghiên cứu phức tạp, các hoạt động nhiều bước, sửa đổi mã nguồn. |
 
-**When used**: Tasks requiring both exploration and modification with complex reasoning.
+**Khi nào sử dụng**: Các nhiệm vụ yêu cầu cả khám phá và sửa đổi với lập luận phức tạp.
 
-### Plan Subagent
+### Subagent Lập kế hoạch (Plan Subagent)
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Inherits from parent |
-| **Tools** | Read, Glob, Grep, Bash |
-| **Purpose** | Used automatically in plan mode to research codebase |
+| **Mô hình** | Kế thừa từ agent cha |
+| **Công cụ** | Read, Glob, Grep, Bash |
+| **Mục đích** | Được sử dụng tự động trong chế độ lập kế hoạch để nghiên cứu mã nguồn. |
 
-**When used**: When Claude needs to understand the codebase before presenting a plan.
+**Khi nào sử dụng**: Khi Claude cần hiểu mã nguồn trước khi đưa ra bản kế hoạch.
 
-### Explore Subagent
+### Subagent Khám phá (Explore Subagent)
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Haiku (fast, low-latency) |
-| **Mode** | Strictly read-only |
-| **Tools** | Glob, Grep, Read, Bash (read-only commands only) |
-| **Purpose** | Fast codebase searching and analysis |
+| **Mô hình** | Haiku (nhanh, độ trễ thấp) |
+| **Chế độ** | Nghiêm ngặt chỉ đọc |
+| **Công cụ** | Glob, Grep, Read, Bash (chỉ các lệnh chỉ đọc) |
+| **Mục đích** | Tìm kiếm và phân tích mã nguồn một cách nhanh chóng. |
 
-**When used**: When searching/understanding code without making changes.
+**Khi nào sử dụng**: Khi tìm kiếm/tìm hiểu mã nguồn mà không thực hiện thay đổi.
 
-**Thoroughness Levels** - Specify the depth of exploration:
-- **"quick"** - Fast searches with minimal exploration, good for finding specific patterns
-- **"medium"** - Moderate exploration, balanced speed and thoroughness, default approach
-- **"very thorough"** - Comprehensive analysis across multiple locations and naming conventions, may take longer
+**Các mức độ kỹ lưỡng** - Chỉ định độ sâu của việc khám phá:
+- **"quick"** (nhanh) - Tìm kiếm nhanh với mức độ khám phá tối thiểu, tốt để tìm các mẫu hình cụ thể.
+- **"medium"** (vừa) - Khám phá vừa phải, cân bằng giữa tốc độ và sự kỹ lưỡng, là cách tiếp cận mặc định.
+- **"very thorough"** (rất kỹ lưỡng) - Phân tích toàn diện trên nhiều vị trí và quy ước đặt tên, có thể mất nhiều thời gian hơn.
 
-### Bash Subagent
+### Subagent Bash
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Inherits from parent |
-| **Tools** | Bash |
-| **Purpose** | Execute terminal commands in a separate context window |
+| **Mô hình** | Kế thừa từ agent cha |
+| **Công cụ** | Bash |
+| **Mục đích** | Thực thi các lệnh terminal trong một cửa sổ ngữ cảnh riêng biệt. |
 
-**When used**: When running shell commands that benefit from isolated context.
+**Khi nào sử dụng**: Khi chạy các lệnh shell hưởng lợi từ ngữ cảnh biệt lập.
 
-### Statusline Setup Subagent
+### Subagent Thiết lập Dòng trạng thái (Statusline Setup Subagent)
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Sonnet |
-| **Tools** | Read, Write, Bash |
-| **Purpose** | Configure the Claude Code status line display |
+| **Mô hình** | Sonnet |
+| **Công cụ** | Read, Write, Bash |
+| **Mục đích** | Cấu hình hiển thị dòng trạng thái của Claude Code. |
 
-**When used**: When setting up or customizing the status line.
+**Khi nào sử dụng**: Khi thiết lập hoặc tùy chỉnh dòng trạng thái.
 
-### Claude Code Guide Subagent
+### Subagent Hướng dẫn Claude Code (Claude Code Guide Subagent)
 
-| Property | Value |
+| Thuộc tính | Giá trị |
 |----------|-------|
-| **Model** | Haiku (fast, low-latency) |
-| **Tools** | Read-only |
-| **Purpose** | Answer questions about Claude Code features and usage |
+| **Mô hình** | Haiku (nhanh, độ trễ thấp) |
+| **Công cụ** | Chỉ đọc |
+| **Mục đích** | Trả lời các câu hỏi về tính năng và cách sử dụng Claude Code. |
 
-**When used**: When users ask questions about how Claude Code works or how to use specific features.
+**Khi nào sử dụng**: Khi người dùng đặt câu hỏi về cách Claude Code hoạt động hoặc cách sử dụng các tính năng cụ thể.
 
 ---
 
-## Managing Subagents
+## Quản lý Subagents (Managing Subagents)
 
-### Using the `/agents` Command (Recommended)
+### Sử dụng Lệnh `/agents` (Khuyến nghị)
 
 ```bash
 /agents
 ```
 
-This provides an interactive menu to:
-- View all available subagents (built-in, user, and project)
-- Create new subagents with guided setup
-- Edit existing custom subagents and tool access
-- Delete custom subagents
-- See which subagents are active when duplicates exist
+Lệnh này cung cấp một menu tương tác để:
+- Xem tất cả các subagent khả dụng (tích hợp, người dùng và dự án).
+- Tạo subagent mới với hướng dẫn thiết lập.
+- Chỉnh sửa các subagent tùy chỉnh hiện có và quyền truy cập công cụ.
+- Xóa các subagent tùy chỉnh.
+- Xem subagent nào đang hoạt động khi có sự trùng lặp.
 
 ### Direct File Management
 
@@ -303,18 +303,6 @@ This provides an interactive menu to:
 # Create a project subagent
 mkdir -p .claude/agents
 cat > .claude/agents/test-runner.md << 'EOF'
----
-name: test-runner
-description: Use proactively to run tests and fix failures
----
-
-You are a test automation expert. When you see code changes, proactively
-run the appropriate tests. If tests fail, analyze the failures and fix
-them while preserving the original test intent.
-EOF
-
-# Create a user subagent (available in all projects)
-mkdir -p ~/.claude/agents
 ```
 
 ---
@@ -611,23 +599,23 @@ User: Build the authentication module. Use a team — one teammate for the API e
       one for the database schema, and one for the test suite.
 ```
 
-Claude will create the team, assign tasks, and coordinate the work automatically.
+Claude sẽ tự động tạo nhóm, giao nhiệm vụ và điều phối công việc.
 
-### Display modes
+### Chế độ Hiển thị (Display modes)
 
-Control how teammate activity is displayed:
+Kiểm soát cách hiển thị hoạt động của các thành viên trong nhóm (teammate):
 
-| Mode | Flag | Description |
+| Chế độ | Cờ (Flag) | Mô tả |
 |------|------|-------------|
-| **Auto** | `--teammate-mode auto` | Automatically chooses the best display mode for your terminal |
-| **In-process** | `--teammate-mode in-process` | Shows teammate output inline in the current terminal (default) |
-| **Split-panes** | `--teammate-mode tmux` | Opens each teammate in a separate tmux or iTerm2 pane |
+| **Auto** | `--teammate-mode auto` | Tự động chọn chế độ hiển thị tốt nhất cho terminal của bạn. |
+| **In-process** | `--teammate-mode in-process` | Hiển thị đầu ra của teammate ngay trong terminal hiện tại (mặc định). |
+| **Split-panes** | `--teammate-mode tmux` | Mở mỗi teammate trong một khung (pane) tmux hoặc iTerm2 riêng biệt. |
 
 ```bash
 claude --teammate-mode tmux
 ```
 
-You can also set the display mode in `settings.json`:
+Bạn cũng có thể thiết lập chế độ hiển thị trong `settings.json`:
 
 ```json
 {
@@ -635,38 +623,40 @@ You can also set the display mode in `settings.json`:
 }
 ```
 
-> **Note**: Split-pane mode requires tmux or iTerm2. It is not available in VS Code terminal, Windows Terminal, or Ghostty.
+> **Lưu ý**: Chế độ Split-pane yêu cầu tmux hoặc iTerm2. Nó không khả dụng trong terminal của VS Code, Windows Terminal, hoặc Ghostty.
 
-### Navigation
+### Điều hướng (Navigation)
 
-Use `Shift+Down` to navigate between teammates in split-pane mode.
+Sử dụng `Shift+Down` để điều hướng giữa các teammate trong chế độ split-pane.
 
-### Team Configuration
+### Cấu hình Nhóm (Team Configuration)
 
-Team configurations are stored at `~/.claude/teams/{team-name}/config.json`.
+Cấu hình nhóm được lưu trữ tại `~/.claude/teams/{team-name}/config.json`.
 
-### Architecture
+---
+
+### Kiến trúc (Architecture)
 
 ```mermaid
 graph TB
-    Lead["Team Lead<br/>(Coordinator)"]
-    TaskList["Shared Task List<br/>(Dependencies)"]
-    Mailbox["Mailbox<br/>(Messages)"]
-    T1["Teammate 1<br/>(Own Context)"]
-    T2["Teammate 2<br/>(Own Context)"]
-    T3["Teammate 3<br/>(Own Context)"]
+    Lead["Trưởng nhóm<br/>(Điều phối)"]
+    TaskList["Danh sách Nhiệm vụ Chung<br/>(Phụ thuộc)"]
+    Mailbox["Hòm thư<br/>(Tin nhắn)"]
+    T1["Thành viên 1<br/>(Ngữ cảnh riêng)"]
+    T2["Thành viên 2<br/>(Ngữ cảnh riêng)"]
+    T3["Thành viên 3<br/>(Ngữ cảnh riêng)"]
 
-    Lead -->|assigns tasks| TaskList
-    Lead -->|sends messages| Mailbox
-    TaskList -->|picks up work| T1
-    TaskList -->|picks up work| T2
-    TaskList -->|picks up work| T3
-    T1 -->|reads/writes| Mailbox
-    T2 -->|reads/writes| Mailbox
-    T3 -->|reads/writes| Mailbox
-    T1 -->|updates status| TaskList
-    T2 -->|updates status| TaskList
-    T3 -->|updates status| TaskList
+    Lead -->|giao nhiệm vụ| TaskList
+    Lead -->|gửi tin nhắn| Mailbox
+    TaskList -->|nhận việc| T1
+    TaskList -->|nhận việc| T2
+    TaskList -->|nhận việc| T3
+    T1 -->|đọc/ghi| Mailbox
+    T2 -->|đọc/ghi| Mailbox
+    T3 -->|đọc/ghi| Mailbox
+    T1 -->|cập nhật trạng thái| TaskList
+    T2 -->|cập nhật trạng thái| TaskList
+    T3 -->|cập nhật trạng thái| TaskList
 
     style Lead fill:#e1f5fe,stroke:#333,color:#333
     style TaskList fill:#fff9c4,stroke:#333,color:#333
@@ -676,127 +666,127 @@ graph TB
     style T3 fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-**Key components**:
+**Các thành phần chính**:
 
-- **Team Lead**: The main Claude Code session that creates the team, assigns tasks, and coordinates
-- **Shared Task List**: A synchronized list of tasks with automatic dependency tracking
-- **Mailbox**: An inter-agent messaging system for teammates to communicate status and coordinate
-- **Teammates**: Independent Claude Code instances, each with their own context window
+- **Trưởng nhóm (Team Lead)**: Phiên làm việc Claude Code chính giúp tạo nhóm, giao nhiệm vụ và điều phối.
+- **Danh sách Nhiệm vụ Chung (Shared Task List)**: Một danh sách các nhiệm vụ được đồng bộ hóa với tính năng theo dõi phụ thuộc tự động.
+- **Hòm thư (Mailbox)**: Hệ thống tin nhắn giữa các agent để các thành viên trao đổi trạng thái và điều phối.
+- **Thành viên (Teammates)**: Các phiên bản Claude Code độc lập, mỗi phiên bản có cửa sổ ngữ cảnh riêng.
 
-### Task assignment and messaging
+### Giao nhiệm vụ và Nhắn tin
 
-The team lead breaks work into tasks and assigns them to teammates. The shared task list handles:
+Trưởng nhóm chia nhỏ công việc thành các nhiệm vụ và giao cho các thành viên. Danh sách nhiệm vụ chung xử lý:
 
-- **Automatic dependency management** — tasks wait for their dependencies to complete
-- **Status tracking** — teammates update task status as they work
-- **Inter-agent messaging** — teammates send messages via the mailbox for coordination (e.g., "Database schema is ready, you can start writing queries")
+- **Quản lý phụ thuộc tự động** — các nhiệm vụ chờ đợi các phần phụ thuộc của chúng hoàn thành.
+- **Theo dõi trạng thái** — các thành viên cập nhật trạng thái nhiệm vụ khi họ làm việc.
+- **Nhắn tin giữa các agent** — các thành viên gửi tin nhắn qua hòm thư để điều phối (ví dụ: "Schema cơ sở dữ liệu đã sẵn sàng, bạn có thể bắt đầu viết truy vấn").
 
-### Plan approval workflow
+### Quy trình Phê duyệt Kế hoạch
 
-For complex tasks, the team lead creates an execution plan before teammates begin work. The user reviews and approves the plan, ensuring the team's approach aligns with expectations before any code changes are made.
+Đối với các nhiệm vụ phức tạp, trưởng nhóm tạo một kế hoạch thực thi trước khi các thành viên bắt đầu làm việc. Người dùng xem xét và phê duyệt kế hoạch, đảm bảo cách tiếp cận của nhóm phù hợp với mong đợi trước khi thực hiện bất kỳ thay đổi mã nguồn nào.
 
-### Hook events for teams
+### Các sự kiện Hook cho Nhóm
 
-Agent Teams introduce two additional [hook events](../06-hooks/):
+Agent Teams giới thiệu thêm hai [sự kiện hook](../06-hooks/):
 
-| Event | Fires When | Use Case |
+| Sự kiện | Kích hoạt khi | Trường hợp sử dụng |
 |-------|-----------|----------|
-| `TeammateIdle` | A teammate finishes its current task and has no pending work | Trigger notifications, assign follow-up tasks |
-| `TaskCompleted` | A task in the shared task list is marked complete | Run validation, update dashboards, chain dependent work |
+| `TeammateIdle` | Một thành viên hoàn thành nhiệm vụ hiện tại và không còn việc đang chờ | Kích hoạt thông báo, giao nhiệm vụ tiếp theo |
+| `TaskCompleted` | Một nhiệm vụ trong danh sách chung được đánh dấu hoàn thành | Chạy xác minh, cập nhật dashboard, chuỗi công việc phụ thuộc |
 
-### Best practices
+### Thực hành tốt nhất
 
-- **Team size**: Keep teams at 3-5 teammates for optimal coordination
-- **Task sizing**: Break work into tasks that take 5-15 minutes each — small enough to parallelize, large enough to be meaningful
-- **Avoid file conflicts**: Assign different files or directories to different teammates to prevent merge conflicts
-- **Start simple**: Use in-process mode for your first team; switch to split-panes once comfortable
-- **Clear task descriptions**: Provide specific, actionable task descriptions so teammates can work independently
+- **Quy mô nhóm**: Giữ nhóm ở mức 3-5 thành viên để điều phối tối ưu.
+- **Kích thước nhiệm vụ**: Chia nhỏ công việc thành các nhiệm vụ mất khoảng 5-15 phút mỗi nhiệm vụ — đủ nhỏ để chạy song song, đủ lớn để có ý nghĩa.
+- **Tránh xung đột tệp**: Giao các tệp hoặc thư mục khác nhau cho các thành viên khác nhau để ngăn ngừa xung đột gộp (merge conflicts).
+- **Bắt đầu đơn giản**: Sử dụng chế độ in-process cho nhóm đầu tiên của bạn; chuyển sang split-panes khi đã quen thuộc.
+- **Mô tả nhiệm vụ rõ ràng**: Cung cấp mô tả nhiệm vụ cụ thể, có thể thực hiện được để các thành viên có thể làm việc độc lập.
 
-### Limitations
+### Hạn chế
 
-- **Experimental**: Feature behavior may change in future releases
-- **No session resumption**: In-process teammates cannot be resumed after a session ends
-- **One team per session**: Cannot create nested teams or multiple teams in a single session
-- **Fixed leadership**: The team lead role cannot be transferred to a teammate
-- **Split-pane restrictions**: tmux/iTerm2 required; not available in VS Code terminal, Windows Terminal, or Ghostty
-- **No cross-session teams**: Teammates exist only within the current session
+- **Thử nghiệm**: Hành vi của tính năng có thể thay đổi trong các bản phát hành tương lai.
+- **Không phục hồi phiên**: Các thành viên in-process không thể được tiếp tục sau khi phiên làm việc kết thúc.
+- **Một nhóm mỗi phiên**: Không thể tạo các nhóm lồng nhau hoặc nhiều nhóm trong một phiên làm việc duy nhất.
+- **Lãnh đạo cố định**: Vai trò trưởng nhóm không thể chuyển nhượng cho thành viên khác.
+- **Hạn chế Split-pane**: Yêu cầu tmux/iTerm2; không khả dụng trong terminal VS Code, Windows Terminal, hoặc Ghostty.
+- **Không hỗ trợ liên phiên**: Các thành viên chỉ tồn tại trong phiên làm việc hiện tại.
 
-> **Warning**: Agent Teams is experimental. Test with non-critical work first and monitor teammate coordination for unexpected behavior.
-
----
-
-## Plugin Subagent Security
-
-Plugin-provided subagents have restricted frontmatter capabilities for security. The following fields are **not allowed** in plugin subagent definitions:
-
-- `hooks` - Cannot define lifecycle hooks
-- `mcpServers` - Cannot configure MCP servers
-- `permissionMode` - Cannot override permission settings
-
-This prevents plugins from escalating privileges or executing arbitrary commands through subagent hooks.
+> **Cảnh báo**: Agent Teams là tính năng thử nghiệm. Hãy thử với các công việc không quan trọng trước và theo dõi sự điều phối của các thành viên để tránh các hành vi không mong muốn.
 
 ---
 
-## Architecture
+## Bảo mật Subagent của Plugin (Plugin Subagent Security)
 
-### High-Level Architecture
+Các subagent do plugin cung cấp có các khả năng frontmatter bị hạn chế để đảm bảo bảo mật. Các trường sau đây **không được phép** trong định nghĩa subagent của plugin:
+
+- `hooks` - Không thể định nghĩa các hook vòng đời.
+- `mcpServers` - Không thể cấu hình các máy chủ MCP.
+- `permissionMode` - Không thể ghi đè các thiết lập quyền hạn.
+
+Điều này ngăn chặn các plugin leo thang đặc quyền hoặc thực thi các lệnh tùy ý thông qua các hook của subagent.
+
+---
+
+## Kiến trúc (Architecture)
+
+### Kiến trúc Cấp cao
 
 ```mermaid
 graph TB
-    User["User"]
-    Main["Main Agent<br/>(Coordinator)"]
+    User["Người dùng"]
+    Main["Main Agent<br/>(Điều phối)"]
     Reviewer["Code Reviewer<br/>Subagent"]
     Tester["Test Engineer<br/>Subagent"]
     Docs["Documentation<br/>Subagent"]
 
-    User -->|asks| Main
-    Main -->|delegates| Reviewer
-    Main -->|delegates| Tester
-    Main -->|delegates| Docs
-    Reviewer -->|returns result| Main
-    Tester -->|returns result| Main
-    Docs -->|returns result| Main
-    Main -->|synthesizes| User
+    User -->|yêu cầu| Main
+    Main -->|ủy quyền| Reviewer
+    Main -->|ủy quyền| Tester
+    Main -->|ủy quyền| Docs
+    Reviewer -->|trả về kết quả| Main
+    Tester -->|trả về kết quả| Main
+    Docs -->|trả về kết quả| Main
+    Main -->|tổng hợp| User
 ```
 
-### Subagent Lifecycle
+### Vòng đời Subagent
 
 ```mermaid
 sequenceDiagram
     participant User
     participant MainAgent as Main Agent
     participant CodeReviewer as Code Reviewer<br/>Subagent
-    participant Context as Separate<br/>Context Window
+    participant Context as Cửa sổ<br/>Ngữ cảnh Riêng
 
-    User->>MainAgent: "Build new auth feature"
-    MainAgent->>MainAgent: Analyze task
-    MainAgent->>CodeReviewer: "Review this code"
-    CodeReviewer->>Context: Initialize clean context
-    Context->>CodeReviewer: Load reviewer instructions
-    CodeReviewer->>CodeReviewer: Perform review
-    CodeReviewer-->>MainAgent: Return findings
-    MainAgent->>MainAgent: Incorporate results
-    MainAgent-->>User: Provide synthesis
+    User->>MainAgent: "Xây dựng tính năng xác thực mới"
+    MainAgent->>MainAgent: Phân tích nhiệm vụ
+    MainAgent->>CodeReviewer: "Review mã nguồn này"
+    CodeReviewer->>Context: Khởi tạo ngữ cảnh sạch
+    Context->>CodeReviewer: Tải hướng dẫn cho reviewer
+    CodeReviewer->>CodeReviewer: Thực hiện review
+    CodeReviewer-->>MainAgent: Trả về kết quả tìm thấy
+    MainAgent->>MainAgent: Kết hợp kết quả
+    MainAgent-->>User: Cung cấp kết quả tổng hợp
 ```
 
 ---
 
-## Context Management
+## Quản lý Ngữ cảnh (Context Management)
 
 ```mermaid
 graph TB
-    A["Main Agent Context<br/>50,000 tokens"]
-    B["Subagent 1 Context<br/>20,000 tokens"]
-    C["Subagent 2 Context<br/>20,000 tokens"]
-    D["Subagent 3 Context<br/>20,000 tokens"]
+    A["Ngữ cảnh Main Agent<br/>50,000 tokens"]
+    B["Ngữ cảnh Subagent 1<br/>20,000 tokens"]
+    C["Ngữ cảnh Subagent 2<br/>20,000 tokens"]
+    D["Ngữ cảnh Subagent 3<br/>20,000 tokens"]
 
-    A -->|Clean slate| B
-    A -->|Clean slate| C
-    A -->|Clean slate| D
+    A -->|Trạng thái sạch| B
+    A -->|Trạng thái sạch| C
+    A -->|Trạng thái sạch| D
 
-    B -->|Results only| A
-    C -->|Results only| A
-    D -->|Results only| A
+    B -->|Chỉ kết quả| A
+    C -->|Chỉ kết quả| A
+    D -->|Chỉ kết quả| A
 
     style A fill:#e1f5fe
     style B fill:#fff9c4
@@ -804,272 +794,272 @@ graph TB
     style D fill:#fff9c4
 ```
 
-### Key Points
+### Điểm mấu chốt
 
-- Each subagent gets a **fresh context window** without the main conversation history
-- Only the **relevant context** is passed to the subagent for their specific task
-- Results are **distilled** back to the main agent
-- This prevents **context token exhaustion** on long projects
+- Mỗi subagent nhận được một **cửa sổ ngữ cảnh mới** mà không có lịch sử hội thoại chính.
+- Chỉ **ngữ cảnh liên quan** mới được chuyển cho subagent cho nhiệm vụ cụ thể của chúng.
+- Kết quả được **chắt lọc** (distilled) trở lại agent chính.
+- Điều này giúp ngăn chặn việc **cạn kiệt token ngữ cảnh** trong các dự án dài.
 
-### Performance Considerations
+### Cân nhắc về Hiệu suất
 
-- **Context efficiency** - Agents preserve main context, enabling longer sessions
-- **Latency** - Subagents start with clean slate and may add latency gathering initial context
+- **Hiệu quả ngữ cảnh** - Các agent bảo tồn ngữ cảnh chính, cho phép các phiên làm việc dài hơn.
+- **Độ trễ (Latency)** - Các subagent bắt đầu với trạng thái sạch và có thể gây thêm độ trễ khi thu thập ngữ cảnh ban đầu.
 
-### Key Behaviors
+### Các Hành vi Chính
 
-- **No nested spawning** - Subagents cannot spawn other subagents
-- **Background permissions** - Background subagents auto-deny any permissions that are not pre-approved
-- **Backgrounding** - Press `Ctrl+B` to background a currently running task
-- **Transcripts** - Subagent transcripts are stored at `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`
-- **Auto-compaction** - Subagent context auto-compacts at ~95% capacity (override with `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` environment variable)
+- **Không tạo lồng nhau** - Các subagent không thể tạo ra các subagent khác.
+- **Quyền hạn chạy nền** - Các subagent chạy nền tự động từ chối bất kỳ quyền nào chưa được phê duyệt trước.
+- **Chuyển vào nền** - Nhấn `Ctrl+B` để chuyển một tác vụ đang chạy vào chế độ nền.
+- **Bản ghi (Transcripts)** - Bản ghi của subagent được lưu trữ tại `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`.
+- **Tự động nén (Auto-compaction)** - Ngữ cảnh của subagent tự động nén khi đạt ~95% dung lượng (ghi đè bằng biến môi trường `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`).
 
 ---
 
-## When to Use Subagents
+## Khi nào nên Sử dụng Subagents (When to Use Subagents)
 
-| Scenario | Use Subagent | Why |
+| Kịch bản | Sử dụng Subagent | Tại sao |
 |----------|--------------|-----|
-| Complex feature with many steps | Yes | Separate concerns, prevent context pollution |
-| Quick code review | No | Unnecessary overhead |
-| Parallel task execution | Yes | Each subagent has own context |
-| Specialized expertise needed | Yes | Custom system prompts |
-| Long-running analysis | Yes | Prevents main context exhaustion |
-| Single task | No | Adds latency unnecessarily |
+| Tính năng phức tạp với nhiều bước | Có | Tách biệt các mối quan tâm, ngăn ngừa ô nhiễm ngữ cảnh |
+| Review mã nguồn nhanh | Không | Chi phí vận hành không cần thiết |
+| Thực thi tác vụ song song | Có | Mỗi subagent có ngữ cảnh riêng |
+| Cần chuyên môn chuyên biệt | Có | Prompt hệ thống tùy chỉnh |
+| Phân tích chạy dài | Có | Ngăn chặn việc cạn kiệt ngữ cảnh chính |
+| Tác vụ đơn lẻ | Không | Gây thêm độ trễ không cần thiết |
 
 ---
 
-## Best Practices
+## Thực hành Tốt nhất (Best Practices)
 
-### Design Principles
+### Nguyên tắc Thiết kế
 
-**Do:**
-- Start with Claude-generated agents - Generate initial subagent with Claude, then iterate to customize
-- Design focused subagents - Single, clear responsibilities rather than one doing everything
-- Write detailed prompts - Include specific instructions, examples, and constraints
-- Limit tool access - Grant only necessary tools for the subagent's purpose
-- Version control - Check project subagents into version control for team collaboration
+**Nên (Do):**
+- **Bắt đầu với agent do Claude tạo ra** - Tạo subagent ban đầu với Claude, sau đó lặp lại để tùy chỉnh.
+- **Thiết kế subagent tập trung** - Trách nhiệm đơn lẻ, rõ ràng thay vì một agent làm mọi việc.
+- **Viết prompt chi tiết** - Bao gồm các hướng dẫn cụ thể, ví dụ và các ràng buộc.
+- **Giới hạn truy cập công cụ** - Chỉ cấp các công cụ cần thiết cho mục đích của subagent.
+- **Kiểm soát phiên bản** - Đưa các subagent của dự án vào hệ thống kiểm soát phiên bản để cộng tác nhóm.
 
-**Don't:**
-- Create overlapping subagents with same roles
-- Give subagents unnecessary tool access
-- Use subagents for simple, single-step tasks
-- Mix concerns in one subagent's prompt
-- Forget to pass necessary context
+**Không nên (Don't):**
+- Tạo các subagent chồng chéo với cùng một vai trò.
+- Cấp quyền truy cập công cụ không cần thiết cho subagent.
+- Sử dụng subagent cho các tác vụ đơn giản, một bước.
+- Trộn lẫn các mối quan tâm trong prompt của một subagent.
+- Quên cung cấp ngữ cảnh cần thiết.
 
-### System Prompt Best Practices
+### Thực hành Tốt nhất cho System Prompt
 
-1. **Be Specific About Role**
+1. **Nêu cụ thể vai trò (Role)**
    ```
-   You are an expert code reviewer specializing in [specific areas]
-   ```
-
-2. **Define Priorities Clearly**
-   ```
-   Review priorities (in order):
-   1. Security Issues
-   2. Performance Problems
-   3. Code Quality
+   Bạn là một chuyên gia review mã nguồn chuyên về [lĩnh vực cụ thể]
    ```
 
-3. **Specify Output Format**
+2. **Xác định Thứ tự Ưu tiên Rõ ràng**
    ```
-   For each issue provide: Severity, Category, Location, Description, Fix, Impact
-   ```
-
-4. **Include Action Steps**
-   ```
-   When invoked:
-   1. Run git diff to see recent changes
-   2. Focus on modified files
-   3. Begin review immediately
+   Thứ tự ưu tiên review (theo thứ tự):
+   1. Các vấn đề Bảo mật
+   2. Các vấn đề Hiệu suất
+   3. Chất lượng Mã nguồn
    ```
 
-### Tool Access Strategy
+3. **Chỉ định Định dạng Đầu ra (Output Format)**
+   ```
+   Đối với mỗi vấn đề, hãy cung cấp: Mức độ nghiêm trọng, Danh mục, Vị trí, Mô tả, Cách khắc phục, Tác động
+   ```
 
-1. **Start Restrictive**: Begin with only essential tools
-2. **Expand Only When Needed**: Add tools as requirements demand
-3. **Read-Only When Possible**: Use Read/Grep for analysis agents
-4. **Sandboxed Execution**: Limit Bash commands to specific patterns
+4. **Bao gồm các Bước Hành động (Action Steps)**
+   ```
+   Khi được gọi:
+   1. Chạy git diff để xem các thay đổi gần đây
+   2. Tập trung vào các tệp đã sửa đổi
+   3. Bắt đầu review ngay lập tức
+   ```
+
+### Chiến lược Truy cập Công cụ
+
+1. **Bắt đầu hạn chế**: Bắt đầu chỉ với các công cụ thiết yếu.
+2. **Mở rộng chỉ khi cần thiết**: Thêm công cụ khi yêu cầu đòi hỏi.
+3. **Chỉ đọc khi có thể**: Sử dụng Read/Grep cho các agent phân tích.
+4. **Thực thi trong Sandbox**: Giới hạn các lệnh Bash theo các mẫu cụ thể.
 
 ---
 
-## Example Subagents in This Folder
+## Các Subagent Ví dụ trong Thư mục này (Example Subagents in This Folder)
 
-This folder contains ready-to-use example subagents:
+Thư mục này chứa các subagent ví dụ sẵn sàng sử dụng:
 
 ### 1. Code Reviewer (`code-reviewer.md`)
 
-**Purpose**: Comprehensive code quality and maintainability analysis
+**Mục đích**: Phân tích chất lượng mã nguồn và khả năng bảo trì toàn diện.
 
-**Tools**: Read, Grep, Glob, Bash
+**Công cụ**: Read, Grep, Glob, Bash
 
-**Specialization**:
-- Security vulnerability detection
-- Performance optimization identification
-- Code maintainability assessment
-- Test coverage analysis
+**Chuyên môn**:
+- Phát hiện lỗ hổng bảo mật
+- Xác định các cơ hội tối ưu hóa hiệu suất
+- Đánh giá khả năng bảo trì mã nguồn
+- Phân tích độ bao phủ kiểm thử (test coverage)
 
-**Use When**: You need automated code reviews with focus on quality and security
+**Sử dụng khi**: Bạn cần review mã nguồn tự động tập trung vào chất lượng và bảo mật.
 
 ---
 
 ### 2. Test Engineer (`test-engineer.md`)
 
-**Purpose**: Test strategy, coverage analysis, and automated testing
+**Mục đích**: Chiến lược kiểm thử, phân tích độ bao phủ và kiểm thử tự động.
 
-**Tools**: Read, Write, Bash, Grep
+**Công cụ**: Read, Write, Bash, Grep
 
-**Specialization**:
-- Unit test creation
-- Integration test design
-- Edge case identification
-- Coverage analysis (>80% target)
+**Chuyên môn**:
+- Tạo các bài kiểm thử đơn vị (unit tests)
+- Thiết kế các bài kiểm thử tích hợp (integration tests)
+- Xác định các trường hợp biên (edge cases)
+- Phân tích độ bao phủ (mục tiêu >80%)
 
-**Use When**: You need comprehensive test suite creation or coverage analysis
+**Sử dụng khi**: Bạn cần tạo bộ kiểm thử toàn diện hoặc phân tích độ bao phủ.
 
 ---
 
 ### 3. Documentation Writer (`documentation-writer.md`)
 
-**Purpose**: Technical documentation, API docs, and user guides
+**Mục đích**: Tài liệu kỹ thuật, tài liệu API và hướng dẫn người dùng.
 
-**Tools**: Read, Write, Grep
+**Công cụ**: Read, Write, Grep
 
-**Specialization**:
-- API endpoint documentation
-- User guide creation
-- Architecture documentation
-- Code comment improvement
+**Chuyên môn**:
+- Viết tài liệu cho các điểm cuối (endpoints) API
+- Tạo hướng dẫn người dùng
+- Viết tài liệu kiến trúc
+- Cải thiện các chú thích (comments) trong mã nguồn
 
-**Use When**: You need to create or update project documentation
+**Sử dụng khi**: Bạn cần tạo hoặc cập nhật tài liệu dự án.
 
 ---
 
 ### 4. Secure Reviewer (`secure-reviewer.md`)
 
-**Purpose**: Security-focused code review with minimal permissions
+**Mục đích**: Review mã nguồn tập trung vào bảo mật với quyền hạn tối thiểu.
 
-**Tools**: Read, Grep
+**Công cụ**: Read, Grep
 
-**Specialization**:
-- Security vulnerability detection
-- Authentication/authorization issues
-- Data exposure risks
-- Injection attack identification
+**Chuyên môn**:
+- Phát hiện lỗ hổng bảo mật
+- Các vấn đề xác thực/phân quyền (authentication/authorization)
+- Rủi ro lộ dữ liệu
+- Xác định tấn công tiêm nhiễm (injection attacks)
 
-**Use When**: You need security audits without modification capabilities
+**Sử dụng khi**: Bạn cần kiểm tra bảo mật mà không cần khả năng sửa đổi mã nguồn.
 
 ---
 
 ### 5. Implementation Agent (`implementation-agent.md`)
 
-**Purpose**: Full implementation capabilities for feature development
+**Mục đích**: Khả năng triển khai đầy đủ cho việc phát triển tính năng.
 
-**Tools**: Read, Write, Edit, Bash, Grep, Glob
+**Công cụ**: Read, Write, Edit, Bash, Grep, Glob
 
-**Specialization**:
-- Feature implementation
-- Code generation
-- Build and test execution
-- Codebase modification
+**Chuyên môn**:
+- Triển khai tính năng
+- Tạo mã nguồn
+- Thực thi build và kiểm thử
+- Sửa đổi cơ sở mã nguồn (codebase)
 
-**Use When**: You need a subagent to implement features end-to-end
+**Sử dụng khi**: Bạn cần một subagent để triển khai các tính năng từ đầu đến cuối.
 
 ---
 
 ### 6. Debugger (`debugger.md`)
 
-**Purpose**: Debugging specialist for errors, test failures, and unexpected behavior
+**Mục đích**: Chuyên gia sửa lỗi cho các lỗi, bài kiểm thử thất bại và các hành vi không mong muốn.
 
-**Tools**: Read, Edit, Bash, Grep, Glob
+**Công cụ**: Read, Edit, Bash, Grep, Glob
 
-**Specialization**:
-- Root cause analysis
-- Error investigation
-- Test failure resolution
-- Minimal fix implementation
+**Chuyên môn**:
+- Phân tích nguyên nhân gốc rễ (root cause analysis)
+- Điều tra lỗi
+- Giải quyết các bài kiểm thử thất bại
+- Triển khai các bản sửa lỗi tối thiểu
 
-**Use When**: You encounter bugs, errors, or unexpected behavior
+**Sử dụng khi**: Bạn gặp phải bug, lỗi hoặc hành vi không mong muốn.
 
 ---
 
 ### 7. Data Scientist (`data-scientist.md`)
 
-**Purpose**: Data analysis expert for SQL queries and data insights
+**Mục đích**: Chuyên gia phân tích dữ liệu cho các truy vấn SQL và thông tin chi tiết về dữ liệu.
 
-**Tools**: Bash, Read, Write
+**Công cụ**: Bash, Read, Write
 
-**Specialization**:
-- SQL query optimization
-- BigQuery operations
-- Data analysis and visualization
-- Statistical insights
+**Chuyên môn**:
+- Tối ưu hóa truy vấn SQL
+- Các hoạt động BigQuery
+- Phân tích dữ liệu và trực quan hóa
+- Thông tin chi tiết về thống kê
 
-**Use When**: You need data analysis, SQL queries, or BigQuery operations
+**Sử dụng khi**: Bạn cần phân tích dữ liệu, truy vấn SQL hoặc các hoạt động BigQuery.
 
 ---
 
-## Installation Instructions
+## Hướng dẫn Cài đặt (Installation Instructions)
 
-### Method 1: Using /agents Command (Recommended)
+### Cách 1: Sử dụng Lệnh /agents (Khuyến nghị)
 
 ```bash
 /agents
 ```
 
-Then:
-1. Select 'Create New Agent'
-2. Choose project-level or user-level
-3. Describe your subagent in detail
-4. Select tools to grant access (or leave blank to inherit all)
-5. Save and use
+Sau đó:
+1. Chọn 'Create New Agent'
+2. Chọn cấp độ dự án (project-level) hoặc cấp độ người dùng (user-level)
+3. Mô tả subagent của bạn một cách chi tiết
+4. Chọn các công cụ để cấp quyền (hoặc để trống để kế thừa tất cả)
+5. Lưu và sử dụng
 
-### Method 2: Copy to Project
+### Cách 2: Sao chép vào Dự án
 
-Copy the agent files to your project's `.claude/agents/` directory:
+Sao chép các tệp agent vào thư mục `.claude/agents/` của dự án bạn:
 
 ```bash
-# Navigate to your project
+# Di chuyển đến dự án của bạn
 cd /path/to/your/project
 
-# Create agents directory if it doesn't exist
+# Tạo thư mục agents nếu chưa tồn tại
 mkdir -p .claude/agents
 
-# Copy all agent files from this folder
+# Sao chép tất cả các tệp agent từ thư mục này
 cp /path/to/04-subagents/*.md .claude/agents/
 
-# Remove the README (not needed in .claude/agents)
+# Xóa tệp README (không cần thiết trong .claude/agents)
 rm .claude/agents/README.md
 ```
 
-### Method 3: Copy to User Directory
+### Cách 3: Sao chép vào Thư mục Người dùng
 
-For agents available in all your projects:
+Đối với các agent khả dụng trong tất cả các dự án của bạn:
 
 ```bash
-# Create user agents directory
+# Tạo thư mục agents cho người dùng
 mkdir -p ~/.claude/agents
 
-# Copy agents
+# Sao chép các agent
 cp /path/to/04-subagents/code-reviewer.md ~/.claude/agents/
 cp /path/to/04-subagents/debugger.md ~/.claude/agents/
-# ... copy others as needed
+# ... sao chép các agent khác nếu cần
 ```
 
-### Verification
+### Xác minh (Verification)
 
-After installation, verify the agents are recognized:
+Sau khi cài đặt, hãy xác minh các agent đã được nhận diện chưa:
 
 ```bash
 /agents
 ```
 
-You should see your installed agents listed alongside the built-in ones.
+Bạn sẽ thấy các agent đã cài đặt được liệt kê cùng với các agent tích hợp sẵn.
 
 ---
 
-## File Structure
+## Cấu trúc Tệp (File Structure)
 
 ```
 project/
@@ -1087,55 +1077,55 @@ project/
 
 ---
 
-## Related Concepts
+## Các Khái niệm Liên quan (Related Concepts)
 
-### Related Features
+### Các Tính năng Liên quan
 
-- **[Slash Commands](../01-slash-commands/)** - Quick user-invoked shortcuts
-- **[Memory](../02-memory/)** - Persistent cross-session context
-- **[Skills](../03-skills/)** - Reusable autonomous capabilities
-- **[MCP Protocol](../05-mcp/)** - Real-time external data access
-- **[Hooks](../06-hooks/)** - Event-driven shell command automation
-- **[Plugins](../07-plugins/)** - Bundled extension packages
+- **[Slash Commands](../01-slash-commands/)** - Các phím tắt nhanh do người dùng gọi
+- **[Memory](../02-memory/)** - Ngữ cảnh bền vững xuyên suốt các phiên làm việc
+- **[Skills](../03-skills/)** - Các khả năng tự trị có thể tái sử dụng
+- **[MCP Protocol](../05-mcp/)** - Truy cập dữ liệu bên ngoài theo thời gian thực
+- **[Hooks](../06-hooks/)** - Tự động hóa lệnh shell theo sự kiện
+- **[Plugins](../07-plugins/)** - Các gói mở rộng được đóng gói
 
-### Comparison with Other Features
+### So sánh với các Tính năng khác
 
-| Feature | User-Invoked | Auto-Invoked | Persistent | External Access | Isolated Context |
+| Tính năng | Người dùng gọi | Tự động gọi | Bền vững | Truy cập Bên ngoài | Ngữ cảnh Cô lập |
 |---------|--------------|--------------|-----------|------------------|------------------|
-| **Slash Commands** | Yes | No | No | No | No |
-| **Subagents** | Yes | Yes | No | No | Yes |
-| **Memory** | Auto | Auto | Yes | No | No |
-| **MCP** | Auto | Yes | No | Yes | No |
-| **Skills** | Yes | Yes | No | No | No |
+| **Slash Commands** | Có | Không | Không | Không | Không |
+| **Subagents** | Có | Có | Không | Không | Có |
+| **Memory** | Tự động | Tự động | Có | Không | Không |
+| **MCP** | Tự động | Có | Không | Có | Không |
+| **Skills** | Có | Có | Không | Không | Không |
 
-### Integration Pattern
+### Mô hình Tích hợp
 
 ```mermaid
 graph TD
-    User["User Request"] --> Main["Main Agent"]
-    Main -->|Uses| Memory["Memory<br/>(Context)"]
-    Main -->|Queries| MCP["MCP<br/>(Live Data)"]
-    Main -->|Invokes| Skills["Skills<br/>(Auto Tools)"]
-    Main -->|Delegates| Subagents["Subagents<br/>(Specialists)"]
+    User["Yêu cầu Người dùng"] --> Main["Main Agent"]
+    Main -->|Sử dụng| Memory["Memory<br/>(Ngữ cảnh)"]
+    Main -->|Truy vấn| MCP["MCP<br/>(Dữ liệu trực tiếp)"]
+    Main -->|Gọi| Skills["Skills<br/>(Công cụ tự động)"]
+    Main -->|Ủy quyền| Subagents["Subagents<br/>(Chuyên gia)"]
 
-    Subagents -->|Use| Memory
-    Subagents -->|Query| MCP
-    Subagents -->|Isolated| Context["Clean Context<br/>Window"]
+    Subagents -->|Sử dụng| Memory
+    Subagents -->|Truy vấn| MCP
+    Subagents -->|Cô lập| Context["Cửa sổ<br/>Ngữ cảnh Sạch"]
 ```
 
 ---
 
-## Additional Resources
+## Tài liệu Bổ sung (Additional Resources)
 
-- [Official Subagents Documentation](https://code.claude.com/docs/en/sub-agents)
-- [CLI Reference](https://code.claude.com/docs/en/cli-reference) - `--agents` flag and other CLI options
-- [Plugins Guide](../07-plugins/) - For bundling agents with other features
-- [Skills Guide](../03-skills/) - For auto-invoked capabilities
-- [Memory Guide](../02-memory/) - For persistent context
-- [Hooks Guide](../06-hooks/) - For event-driven automation
+- [Tài liệu Subagents Chính thức](https://code.claude.com/docs/en/sub-agents)
+- [Tham khảo CLI](https://code.claude.com/docs/en/cli-reference) - cờ `--agents` và các tùy chọn CLI khác
+- [Hướng dẫn Plugins](../07-plugins/) - Để đóng gói agent với các tính năng khác
+- [Hướng dẫn Skills](../03-skills/) - Cho các khả năng tự động gọi
+- [Hướng dẫn Memory](../02-memory/) - Cho ngữ cảnh bền vững
+- [Hướng dẫn Hooks](../06-hooks/) - Cho tự động hóa theo sự kiện
 
 ---
 
-*Last updated: March 2026*
+*Cập nhật lần cuối: Tháng 3 năm 2026*
 
-*This guide covers complete subagent configuration, delegation patterns, and best practices for Claude Code.*
+*Hướng dẫn này bao gồm cấu hình subagent đầy đủ, các mô hình ủy quyền và các thực hành tốt nhất cho Claude Code.*

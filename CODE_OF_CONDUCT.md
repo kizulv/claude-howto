@@ -1,217 +1,161 @@
-# Contributor Code of Conduct
+# Quy tắc ứng xử của người đóng góp
 
-## Our Commitment
+## Cam kết của chúng tôi
 
-We are committed to providing a welcoming and inspiring community for all. We pledge that participating in our community is a harassment-free experience for everyone, regardless of age, body size, caste, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socioeconomic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+Chúng tôi cam kết cung cấp một cộng đồng cởi mở và đầy cảm hứng cho tất cả mọi người. Chúng tôi hứa rằng việc tham gia vào cộng đồng của chúng tôi là một trải nghiệm không có sự quấy rối cho tất cả mọi người, bất kể tuổi tác, kích thước cơ thể, đẳng cấp, khuyết tật, dân tộc, đặc điểm giới tính, bản dạng và biểu hiện giới tính, mức độ kinh nghiệm, trình độ học vấn, tình trạng kinh tế xã hội, quốc tịch, ngoại hình, chủng tộc, tôn giáo, hoặc định hướng tình dục.
 
-We are dedicated to providing a positive, inclusive, and safe environment where all contributors feel respected, valued, and empowered to contribute their best work.
+Chúng tôi tận tâm cung cấp một môi trường tích cực, hòa nhập và an toàn, nơi tất cả những người đóng góp cảm thấy được tôn trọng, được coi trọng và được trao quyền để đóng góp những công việc tốt nhất của họ.
 
-## Our Standards
+## Các tiêu chuẩn của chúng tôi
 
-Examples of behavior that contributes to creating a positive environment include:
+Ví dụ về các hành vi góp phần tạo ra một môi trường tích cực bao gồm:
 
-### Be Respectful
-- Use welcoming and inclusive language
-- Be respectful of differing opinions, viewpoints, and experiences
-- Accept constructive criticism gracefully
-- Respect cultural and linguistic differences
-- Acknowledge and celebrate diverse backgrounds
+### Hãy tôn trọng
+- Sử dụng ngôn ngữ cởi mở và hòa nhập
+- Tôn trọng các ý kiến, quan điểm và trải nghiệm khác nhau
+- Chấp nhận những lời phê bình mang tính xây dựng một cách lịch sự
+- Tôn trọng sự khác biệt về văn hóa và ngôn ngữ
+- Ghi nhận và tôn vinh các nguồn gốc đa dạng
 
-### Be Collaborative
-- Work together to resolve conflicts
-- Give credit and recognize others' contributions
-- Help others learn and grow
-- Share knowledge and ask questions
-- Support fellow community members
+### Hãy cộng tác
+- Làm việc cùng nhau để giải quyết xung đột
+- Ghi nhận công lao và sự đóng góp của người khác
+- Giúp đỡ người khác học hỏi và phát triển
+- Chia sẻ kiến thức và đặt câu hỏi
+- Hỗ trợ các thành viên khác trong cộng đồng
 
-### Be Professional
-- Keep discussions focused and productive
-- Avoid demeaning or insulting remarks
-- Stay on topic in issues and discussions
-- Use clear and respectful communication
-- Assume good intent in others' messages
+### Hãy chuyên nghiệp
+- Giữ cho các cuộc thảo luận tập trung và hiệu quả
+- Tránh các nhận xét hạ thấp hoặc lăng mạ
+- Luôn tập trung vào chủ đề trong các issue và cuộc thảo luận
+- Sử dụng giao tiếp rõ ràng và tôn trọng
+- Giả định ý định tốt trong thông điệp của người khác
 
-### Be Inclusive
-- Welcome new contributors
-- Help onboard people new to the project
-- Provide constructive feedback
-- Include people with different perspectives
-- Create space for quiet voices to be heard
+### Hãy hòa nhập
+- Chào đón những người đóng góp mới
+- Giúp đỡ những người mới bắt đầu dự án
+- Cung cấp phản hồi mang tính xây dựng
+- Bao gồm những người có quan điểm khác nhau
+- Tạo không gian cho những tiếng nói ít được chú ý hơn được lắng nghe
 
-## Unacceptable Behavior
+## Hành vi không thể chấp nhận
 
-The following behaviors are considered harassment and are unacceptable within our community:
+Các hành vi sau đây被 coi là quấy rối và không thể chấp nhận được trong cộng đồng của chúng tôi:
 
-### Harassment and Discrimination
-- Offensive comments related to gender, gender identity and expression, sexual orientation, disability, mental illness, neuro(a)typicality, physical appearance, body size, age, race, or religion
-- Unwelcome comments regarding a person's lifestyle choices and practices
-- Deliberate misgendering or use of 'dead' or rejected names
-- Gratuitous or off-topic sexual images or behavior
-- Physical contact and simulated physical contact without consent or after a request to stop
+### Quấy rối và Phân biệt đối xử
+- Các bình luận xúc phạm liên quan đến giới tính, bản dạng và biểu hiện giới tính, định hướng tình dục, khuyết tật, bệnh tâm thần, ngoại hình, kích thước cơ thể, tuổi tác, chủng tộc hoặc tôn giáo
+- Các bình luận không mong muốn liên quan đến lựa chọn lối sống và thực hành của một người
+- Cố tình gọi sai giới tính hoặc sử dụng tên cũ (dead names) đã bị từ chối
+- Các hình ảnh hoặc hành vi tình dục không phù hợp hoặc ngoài chủ đề
+- Tiếp xúc vật lý và tiếp xúc vật lý mô phỏng mà không có sự đồng ý hoặc sau khi có yêu cầu dừng lại
 
-### Abusive Behavior
-- Threats of violence or violent language directed against another person
-- Incitement of violence or violent language toward any individual
-- Deliberate intimidation
-- Stalking or following
-- Harassment through repeated contact
-- Any other conduct which could reasonably be considered inappropriate
+### Hành vi lăng mạ
+- Các đe dọa bạo lực hoặc ngôn ngữ bạo lực nhắm vào người khác
+- Xúi giục bạo lực đối với bất kỳ cá nhân nào
+- Cố tình đe dọa
+- Rình rập hoặc theo dõi
+- Quấy rối thông qua việc liên lạc lặp đi lặp lại
+- Bất kỳ hành vi nào khác có thể được coi là không phù hợp một cách hợp lý
 
-### Online Harassment
-- Sustained disruption of online discussion
-- Publishing others' private information (doxxing)
-- Unwelcome sexual attention or advances
-- Trolling or intentional disruption
-- Spam or repetitive advertising
-- Spreading misinformation or disinformation
+### Quấy rối trực tuyến
+- Làm gián đoạn liên tục các cuộc thảo luận trực tuyến
+- Công khai thông tin riêng tư của người khác (doxxing)
+- Sự chú ý hoặc tán tỉnh tình dục không mong muốn
+- Trolling hoặc cố ý gây gián đoạn
+- Spam hoặc quảng cáo lặp đi lặp lại
+- Lan truyền thông tin sai lệch hoặc tin giả
 
-### Retaliation
-- Taking retaliatory action against someone for reporting a violation
-- Treating someone unfairly because they reported unacceptable behavior
-- Threatening to report someone in retaliation
+### Trả đũa
+- Thực hiện hành động trả đũa đối với người đã báo cáo vi phạm
+- Đối xử bất công với ai đó vì họ đã báo cáo hành vi không thể chấp nhận
+- Đe dọa báo cáo ai đó để trả đũa
 
-## Scope
+## Phạm vi
 
-This Code of Conduct applies to:
-- All community spaces (GitHub issues, pull requests, discussions, etc.)
-- Project repositories and documentation
-- Events and gatherings organized by or representing the project
-- Public spaces where individuals are representing the project or the community
-- Private communications when they relate to project business
+Quy tắc ứng xử này áp dụng cho:
+- Tất cả các không gian cộng đồng (GitHub issues, pull requests, discussions, v.v.)
+- Kho lưu trữ và tài liệu của dự án
+- Các sự kiện và cuộc họp do dự án tổ chức hoặc đại diện cho dự án
+- Các không gian công cộng nơi các cá nhân đang đại diện cho dự án hoặc cộng đồng
+- Các liên lạc riêng tư khi chúng liên quan đến công việc của dự án
 
-The Code of Conduct applies to all project spaces, and it also applies when an individual is representing the project or community in public spaces. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+Quy tắc ứng xử này áp dụng cho tất cả các không gian dự án, và nó cũng áp dụng khi một cá nhân đại diện cho dự án hoặc cộng đồng trong các không gian công cộng.
 
-## Enforcement
+## Thực thi
 
-Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+Các nhà lãnh đạo cộng đồng có trách nhiệm làm rõ và thực thi các tiêu chuẩn về hành vi có thể chấp nhận của chúng tôi và sẽ thực hiện hành động khắc phục phù hợp và công bằng đối với bất kỳ hành vi nào mà họ cho là không phù hợp, đe dọa, xúc phạm hoặc có hại.
 
-### Reporting a Violation
+### Báo cáo vi phạm
 
-If you experience or witness unacceptable behavior, or have any other concerns, please report it by:
+Nếu bạn gặp phải hoặc chứng kiến hành vi không thể chấp nhận, hoặc có bất kỳ lo ngại nào khác, vui lòng báo cáo bằng cách:
+1. **Email**: Liên hệ với những người duy trì dự án
+2. **GitHub Issues**: Tính năng báo cáo riêng tư (nếu có)
+3. **Tin nhắn trực tiếp**: Liên hệ trực tiếp với người duy trì dự án
 
-1. **Email**: Contact the project maintainers at [provide contact method if available]
-2. **GitHub Issues**: Private report feature (if available in your GitHub settings)
-3. **Direct Message**: Contact a project maintainer directly
+Vui lòng cung cấp:
+- Thông tin liên hệ của bạn
+- Tên của những người liên quan (nếu bạn cảm thấy thoải mái khi chia sẻ)
+- Mô tả về sự việc
+- Ngữ cảnh và bất kỳ liên kết liên quan nào
 
-Please provide:
-- Your contact information
-- Names of those involved (if you feel comfortable sharing)
-- Description of the incident
-- Context and any relevant links
-- How the incident affected you
+**Tất cả các báo cáo sẽ được giữ bí mật.**
 
-**All reports will be kept confidential.**
+### Điều tra và Phản hồi
 
-### Investigation and Response
+Các nhà lãnh đạo cộng đồng sẽ:
+- Xem xét và điều tra tất cả các khiếu nại một cách nhanh chóng và công bằng
+- Giữ bí mật đối với người báo cáo
+- Phản hồi cho người báo cáo về tình trạng báo cáo của họ
+- Thực hiện hành động thích hợp dựa trên kết quả điều tra
 
-Community leaders will:
-- Review and investigate all complaints promptly and fairly
-- Maintain confidentiality with respect to the reporter
-- Respond to the reporter about the status of their report
-- Take appropriate action based on findings
+Các hành động có thể bao gồm:
+- Cảnh báo riêng tư hoặc hướng dẫn
+- Xin lỗi công khai (nếu người vi phạm đồng ý)
+- Loại bỏ tạm thời hoặc vĩnh viễn khỏi các không gian cộng đồng
+- Mất đặc quyền đóng góp
+- Chuyển tiếp lên GitHub hoặc các nền tảng khác nếu cần
 
-Possible actions include:
-- Private warning or coaching
-- Public apology (if the violator agrees)
-- Temporary or permanent removal from community spaces
-- Loss of contributor privileges
-- Escalation to GitHub or other platforms as needed
+## Hướng dẫn về sự bất đồng tôn trọng
 
-### Appeal Process
+Bất đồng là điều tự nhiên trong các cộng đồng kỹ thuật. Dưới đây là cách bất đồng một cách tôn trọng:
 
-If you believe a decision was made in error, you may appeal by:
-1. Providing new information or context
-2. Requesting a review by multiple maintainers
-3. Following up within 30 days of the initial decision
+### Nên làm
+- ✅ Tập trung vào ý tưởng, không phải vào con người
+- ✅ Đặt các câu hỏi làm rõ
+- ✅ Ghi nhận các điểm hợp lý trong quan điểm đối lập
+- ✅ Sử dụng các câu khẳng định "Tôi" ("Tôi không đồng ý vì...")
+- ✅ Trích dẫn nguồn và bằng chứng
+- ✅ Cảm ơn người khác vì quan điểm của họ
 
-## Guidelines for Respectful Disagreement
+### Không nên làm
+- ❌ Tấn công cá nhân
+- ❌ Sử dụng ngôn ngữ coi thường ("Cái đó thật ngớ ngẩn")
+- ❌ Giả định ý đồ xấu
+- ❌ Nhắc lại các xung đột quá khứ không liên quan
+- ❌ Leo thang giọng điệu hoặc trở nên thù địch
+- ❌ Cố tình hiểu sai quan điểm của người khác
 
-Disagreements are natural in technical communities. Here's how to disagree respectfully:
+## Lợi ích của việc tuân thủ Quy tắc này
 
-### Do's
-- ✅ Focus on the idea, not the person
-- ✅ Ask clarifying questions
-- ✅ Acknowledge valid points in opposing views
-- ✅ Use "I" statements ("I disagree because...")
-- ✅ Cite sources and evidence
-- ✅ Thank others for their perspective
+Bằng cách duy trì một cộng đồng tôn trọng và hòa nhập, chúng tôi:
+- Thu hút những người đóng góp đa dạng với các quan điểm khác nhau
+- Tạo ra các giải pháp tốt hơn thông qua sự cộng tác
+- Xây dựng các mối quan hệ mạnh mẽ hơn
+- Làm cho dự án trở nên thân thiện hơn với những người mới
+- Tạo ra tài liệu và ví dụ chất lượng cao hơn
+- Thúc đẩy một văn hóa học hỏi và phát triển
 
-### Don'ts
-- ❌ Make personal attacks
-- ❌ Use dismissive language ("That's stupid")
-- ❌ Assume bad intent
-- ❌ Bring up unrelated past conflicts
-- ❌ Escalate tone or become hostile
-- ❌ Deliberately misrepresent others' views
+## Ghi nhận
 
-### Example of Respectful Disagreement
-```
-❌ Bad: "That's a dumb idea and you clearly don't understand the project."
+Quy tắc ứng xử này được điều chỉnh từ:
+- [Contributor Covenant](https://www.contributor-covenant.org/)
+- [Mozilla Community Participation Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/)
+- [Python Community Code of Conduct](https://www.python.org/psf/conduct/)
 
-✅ Good: "I see your point, but I'm concerned this approach might
-not scale well with larger projects. Have you considered the
-performance implications shown in this benchmark? I'd love to
-hear your thoughts on this."
-```
+## Lịch sử phiên bản
 
-## Building Bridges
-
-We believe in the power of dialogue and reconciliation:
-
-- If someone calls out your behavior, listen and reflect
-- Be willing to apologize if you've caused harm
-- Support others in learning and growth
-- Recognize that people make mistakes
-- Focus on solutions, not blame
-- Assume good intent while holding people accountable
-
-## Benefits of Following This Code
-
-By maintaining a respectful and inclusive community, we:
-- Attract diverse contributors with varied perspectives
-- Create better solutions through collaboration
-- Build stronger relationships
-- Make the project more welcoming to newcomers
-- Produce higher-quality documentation and examples
-- Foster a culture of learning and growth
-
-## Special Considerations
-
-### For Maintainers
-- Lead by example in adhering to this Code
-- Be responsive to reports
-- Be transparent about decisions
-- Help resolve conflicts fairly
-- Create a safe environment for all
-
-### For Contributors
-- Assume good intent from maintainers and other contributors
-- Provide constructive feedback
-- Support newcomers
-- Help enforce community standards
-- Take ownership of the community culture
-
-### For Everyone
-- Remember there's a human behind every message
-- Take breaks if you're feeling frustrated
-- Reach out to community leaders if you need support
-- Help create the community you want to be part of
-
-## Attribution
-
-This Code of Conduct is adapted from:
-- The [Contributor Covenant](https://www.contributor-covenant.org/)
-- The [Mozilla Community Participation Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/)
-- The [Python Community Code of Conduct](https://www.python.org/psf/conduct/)
-
-## Questions?
-
-If you have questions about this Code of Conduct, please reach out to the project maintainers.
-
-## Version History
-
-- **Version 1.0** (January 2026) - Initial Code of Conduct
+- **Phiên bản 1.0** (Tháng 1 năm 2026) - Quy tắc ứng xử ban đầu
 
 ---
 
-**Thank you for helping us create a welcoming, inclusive, and respectful community!** 🌟
+**Cảm ơn bạn đã giúp chúng tôi tạo ra một cộng đồng cởi mở, hòa nhập và tôn trọng!** 🌟

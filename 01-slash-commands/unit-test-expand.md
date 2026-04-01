@@ -1,25 +1,25 @@
 ---
-name: Expand Unit Tests
-description: Increase test coverage by targeting untested branches and edge cases
+name: Mở rộng Unit Tests
+description: Tăng độ bao phủ kiểm thử bằng cách nhắm vào các nhánh chưa được kiểm thử và các trường hợp biên
 tags: testing, coverage, unit-tests
 ---
 
-# Expand Unit Tests
+# Mở rộng Unit Tests
 
-Expand existing unit tests adapted to project's testing framework:
+Mở rộng các bài kiểm thử đơn vị (unit tests) hiện có phù hợp với framework kiểm thử của dự án:
 
-1. **Analyze coverage**: Run coverage report to identify untested branches, edge cases, and low-coverage areas
-2. **Identify gaps**: Review code for logical branches, error paths, boundary conditions, null/empty inputs
-3. **Write tests** using project's framework:
+1. **Phân tích độ bao phủ (Coverage)**: Chạy báo cáo độ bao phủ để xác định các nhánh chưa được kiểm thử, các trường hợp biên và các khu vực có độ bao phủ thấp
+2. **Xác định lỗ hổng**: Rà soát mã nguồn để tìm các nhánh logic, các đường dẫn lỗi (error paths), điều kiện biên, đầu vào null/rỗng
+3. **Viết các bài kiểm thử** sử dụng framework của dự án:
    - Jest/Vitest/Mocha (JavaScript/TypeScript)
    - pytest/unittest (Python)
    - Go testing/testify (Go)
    - Rust test framework (Rust)
-4. **Target specific scenarios**:
-   - Error handling and exceptions
-   - Boundary values (min/max, empty, null)
-   - Edge cases and corner cases
-   - State transitions and side effects
-5. **Verify improvement**: Run coverage again, confirm measurable increase
+4. **Nhắm mục tiêu vào các kịch bản cụ thể**:
+   - Xử lý lỗi và các ngoại lệ (exceptions)
+   - Các giá trị biên (min/max, rỗng, null)
+   - Các trường hợp biên (edge cases) và các trường hợp góc (corner cases)
+   - Chuyển đổi trạng thái và các tác dụng phụ (side effects)
+5. **Xác minh sự cải thiện**: Chạy lại báo cáo độ bao phủ, xác nhận sự gia tăng có thể đo lường được
 
-Present new test code blocks only. Follow existing test patterns and naming conventions.
+Chỉ trình bày các khối mã kiểm thử mới. Tuân theo các mẫu kiểm thử và quy ước đặt tên hiện có.

@@ -3,222 +3,222 @@
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Claude Code Examples - Complete Index
+# Mục lục Ví dụ Claude Code - Đầy đủ
 
-This document provides a complete index of all example files organized by feature type.
+Tài liệu này cung cấp mục lục đầy đủ của tất cả các tệp ví dụ được tổ chức theo loại tính năng.
 
-## Summary Statistics
+## Thống kê tóm tắt
 
-- **Total Files**: 100+ files
-- **Categories**: 10 feature categories
-- **Plugins**: 3 complete plugins
-- **Skills**: 6 complete skills
-- **Hooks**: 8 example hooks
-- **Ready to Use**: All examples
+- **Tổng số tệp**: hơn 100 tệp
+- **Danh mục**: 10 danh mục tính năng
+- **Plugins**: 3 plugin hoàn chỉnh
+- **Skills**: 6 skill hoàn chỉnh
+- **Hooks**: 8 hook ví dụ
+- **Sẵn sàng sử dụng**: Tất cả các ví dụ
 
 ---
 
-## 01. Slash Commands (10 files)
+## 01. Slash Commands (10 tệp)
 
-User-invoked shortcuts for common workflows.
+Các phím tắt do người dùng gọi cho các quy trình làm việc phổ biến.
 
-| File | Description | Use Case |
+| Tệp | Mô tả | Tình huống sử dụng |
 |------|-------------|----------|
-| `optimize.md` | Code optimization analyzer | Find performance issues |
-| `pr.md` | Pull request preparation | PR workflow automation |
-| `generate-api-docs.md` | API documentation generator | Generate API docs |
-| `commit.md` | Commit message helper | Standardized commits |
-| `setup-ci-cd.md` | CI/CD pipeline setup | DevOps automation |
-| `push-all.md` | Push all changes | Quick push workflow |
-| `unit-test-expand.md` | Expand unit test coverage | Test automation |
-| `doc-refactor.md` | Documentation refactoring | Doc improvements |
-| `pr-slash-command.png` | Screenshot example | Visual reference |
-| `README.md` | Documentation | Setup and usage guide |
+| `optimize.md` | Trình phân tích tối ưu hóa mã | Tìm các vấn đề hiệu suất |
+| `pr.md` | Chuẩn bị Pull request | Tự động hóa quy trình PR |
+| `generate-api-docs.md` | Trình tạo tài liệu API | Tạo tài liệu API |
+| `commit.md` | Trợ lý thông điệp commit | Chuẩn hóa các commit |
+| `setup-ci-cd.md` | Thiết lập pipeline CI/CD | Tự động hóa DevOps |
+| `push-all.md` | Push tất cả thay đổi | Quy trình push nhanh |
+| `unit-test-expand.md` | Mở rộng độ bao phủ unit test | Tự động hóa kiểm thử |
+| `doc-refactor.md` | Tái cấu trúc tài liệu | Cải thiện tài liệu |
+| `pr-slash-command.png` | Ví dụ ảnh chụp màn hình | Tham chiếu trực quan |
+| `README.md` | Tài liệu hướng dẫn | Hướng dẫn thiết lập và sử dụng |
 
-**Installation Path**: `.claude/commands/`
+**Đường dẫn cài đặt**: `.claude/commands/`
 
-**Usage**: `/optimize`, `/pr`, `/generate-api-docs`, `/commit`, `/setup-ci-cd`, `/push-all`, `/unit-test-expand`, `/doc-refactor`
+**Sử dụng**: `/optimize`, `/pr`, `/generate-api-docs`, `/commit`, `/setup-ci-cd`, `/push-all`, `/unit-test-expand`, `/doc-refactor`
 
 ---
 
-## 02. Memory (6 files)
+## 02. Memory (6 tệp)
 
-Persistent context and project standards.
+Ngữ cảnh bền vững và các tiêu chuẩn dự án.
 
-| File | Description | Scope | Location |
+| Tệp | Mô tả | Phạm vi | Vị trí |
 |------|-------------|-------|----------|
-| `project-CLAUDE.md` | Team project standards | Project-wide | `./CLAUDE.md` |
-| `directory-api-CLAUDE.md` | API-specific rules | Directory | `./src/api/CLAUDE.md` |
-| `personal-CLAUDE.md` | Personal preferences | User | `~/.claude/CLAUDE.md` |
-| `memory-saved.png` | Screenshot: memory saved | - | Visual reference |
-| `memory-ask-claude.png` | Screenshot: ask Claude | - | Visual reference |
-| `README.md` | Documentation | - | Reference |
+| `project-CLAUDE.md` | Tiêu chuẩn dự án nhóm | Toàn dự án | `./CLAUDE.md` |
+| `directory-api-CLAUDE.md` | Quy tắc riêng cho API | Thư mục | `./src/api/CLAUDE.md` |
+| `personal-CLAUDE.md` | Tùy chỉnh cá nhân | Người dùng | `~/.claude/CLAUDE.md` |
+| `memory-saved.png` | Ảnh chụp: đã lưu bộ nhớ | - | Tham chiếu trực quan |
+| `memory-ask-claude.png` | Ảnh chụp: hỏi Claude | - | Tham chiếu trực quan |
+| `README.md` | Tài liệu hướng dẫn | - | Tham chiếu |
 
-**Installation**: Copy to appropriate location
+**Cài đặt**: Copy vào vị trí tương ứng
 
-**Usage**: Automatically loaded by Claude
+**Sử dụng**: Được Claude tự động tải
 
 ---
 
-## 03. Skills (28 files)
+## 03. Skills (28 tệp)
 
-Auto-invoked capabilities with scripts and templates.
+Các khả năng tự động gọi kèm theo script và mẫu.
 
-### Code Review Skill (5 files)
+### Code Review Skill (5 tệp)
 ```
 code-review/
-├── SKILL.md                          # Skill definition
+├── SKILL.md                          # Định nghĩa Skill
 ├── scripts/
-│   ├── analyze-metrics.py            # Code metrics analyzer
-│   └── compare-complexity.py         # Complexity comparison
+│   ├── analyze-metrics.py            # Trình phân tích chỉ số mã
+│   └── compare-complexity.py         # So sánh độ phức tạp
 └── templates/
-    ├── review-checklist.md           # Review checklist
-    └── finding-template.md           # Finding documentation
+    ├── review-checklist.md           # Danh sách kiểm tra review
+    └── finding-template.md           # Tài liệu phát hiện
 ```
 
-**Purpose**: Comprehensive code review with security, performance, and quality analysis
+**Mục đích**: Review code toàn diện với phân tích bảo mật, hiệu suất và chất lượng.
 
-**Auto-invoked**: When reviewing code
+**Tự động gọi**: Khi thực hiện review code.
 
 ---
 
-### Brand Voice Skill (4 files)
+### Brand Voice Skill (4 tệp)
 ```
 brand-voice/
-├── SKILL.md                          # Skill definition
+├── SKILL.md                          # Định nghĩa Skill
 ├── templates/
-│   ├── email-template.txt            # Email format
-│   └── social-post-template.txt      # Social media format
-└── tone-examples.md                  # Example messages
+│   ├── email-template.txt            # Định dạng email
+│   └── social-post-template.txt      # Định dạng bài đăng mạng xã hội
+└── tone-examples.md                  # Các thông điệp ví dụ
 ```
 
-**Purpose**: Ensure consistent brand voice in communications
+**Mục đích**: Đảm bảo giọng văn thương hiệu nhất quán trong giao tiếp.
 
-**Auto-invoked**: When creating marketing copy
+**Tự động gọi**: Khi tạo nội dung marketing.
 
 ---
 
-### Documentation Generator Skill (2 files)
+### Documentation Generator Skill (2 tệp)
 ```
 doc-generator/
-├── SKILL.md                          # Skill definition
-└── generate-docs.py                  # Python doc extractor
+├── SKILL.md                          # Định nghĩa Skill
+└── generate-docs.py                  # Trình trích xuất doc Python
 ```
 
-**Purpose**: Generate comprehensive API documentation from source code
+**Mục đích**: Tạo tài liệu API toàn diện từ mã nguồn.
 
-**Auto-invoked**: When creating/updating API documentation
+**Tự động gọi**: Khi tạo/cập nhật tài liệu API.
 
 ---
 
-### Refactor Skill (5 files)
+### Refactor Skill (5 tệp)
 ```
 refactor/
-├── SKILL.md                          # Skill definition
+├── SKILL.md                          # Định nghĩa Skill
 ├── scripts/
-│   ├── analyze-complexity.py         # Complexity analyzer
-│   └── detect-smells.py              # Code smell detector
+│   ├── analyze-complexity.py         # Trình phân tích độ phức tạp
+│   └── detect-smells.py              # Trình phát hiện code smell
 ├── references/
-│   ├── code-smells.md                # Code smells catalog
-│   └── refactoring-catalog.md        # Refactoring patterns
+│   ├── code-smells.md                # Danh mục code smells
+│   └── refactoring-catalog.md        # Các mẫu refactoring
 └── templates/
-    └── refactoring-plan.md           # Refactoring plan template
+    └── refactoring-plan.md           # Mẫu kế hoạch refactoring
 ```
 
-**Purpose**: Systematic code refactoring with complexity analysis
+**Mục đích**: Tái cấu trúc mã hệ thống với phân tích độ phức tạp.
 
-**Auto-invoked**: When refactoring code
+**Tự động gọi**: Khi thực hiện refactor mã.
 
 ---
 
-### Claude MD Skill (1 file)
+### Claude MD Skill (1 tệp)
 ```
 claude-md/
-└── SKILL.md                          # Skill definition
+└── SKILL.md                          # Định nghĩa Skill
 ```
 
-**Purpose**: Manage and optimize CLAUDE.md files
+**Mục đích**: Quản lý và tối ưu hóa các tệp CLAUDE.md.
 
 ---
 
-### Blog Draft Skill (3 files)
+### Blog Draft Skill (3 tệp)
 ```
 blog-draft/
-├── SKILL.md                          # Skill definition
+├── SKILL.md                          # Định nghĩa Skill
 └── templates/
-    ├── draft-template.md             # Blog draft template
-    └── outline-template.md           # Blog outline template
+    ├── draft-template.md             # Mẫu bản thảo blog
+    └── outline-template.md           # Mẫu dàn ý blog
 ```
 
-**Purpose**: Draft blog posts with consistent structure
+**Mục đích**: Soạn thảo các bài đăng blog với cấu trúc nhất quán.
 
-**Plus**: `README.md` - Skills overview and usage guide
+**Ngoài ra**: `README.md` - Tổng quan về Skills và hướng dẫn sử dụng.
 
-**Installation Path**: `~/.claude/skills/` or `.claude/skills/`
+**Đường dẫn cài đặt**: `~/.claude/skills/` hoặc `.claude/skills/`
 
 ---
 
-## 04. Subagents (9 files)
+## 04. Subagents (9 tệp)
 
-Specialized AI assistants with custom capabilities.
+Các trợ lý AI chuyên biệt với các khả năng tùy chỉnh.
 
-| File | Description | Tools | Use Case |
+| Tệp | Mô tả | Công cụ | Tình huống sử dụng |
 |------|-------------|-------|----------|
-| `code-reviewer.md` | Code quality analysis | read, grep, diff, lint_runner | Comprehensive reviews |
-| `test-engineer.md` | Test coverage analysis | read, write, bash, grep | Test automation |
-| `documentation-writer.md` | Documentation creation | read, write, grep | Doc generation |
-| `secure-reviewer.md` | Security review (read-only) | read, grep | Security audits |
-| `implementation-agent.md` | Full implementation | read, write, bash, grep, edit, glob | Feature development |
-| `debugger.md` | Debugging specialist | read, bash, grep | Bug investigation |
-| `data-scientist.md` | Data analysis specialist | read, write, bash | Data workflows |
-| `clean-code-reviewer.md` | Clean code standards | read, grep | Code quality |
-| `README.md` | Documentation | - | Setup and usage guide |
+| `code-reviewer.md` | Phân tích chất lượng mã | read, grep, diff, lint_runner | Review toàn diện |
+| `test-engineer.md` | Phân tích độ bao phủ kiểm thử | read, write, bash, grep | Tự động hóa kiểm thử |
+| `documentation-writer.md` | Tạo tài liệu | read, write, grep | Tạo doc |
+| `secure-reviewer.md` | Review bảo mật (read-only) | read, grep | Kiểm tra bảo mật |
+| `implementation-agent.md` | Triển khai đầy đủ | read, write, bash, grep, edit, glob | Phát triển tính năng |
+| `debugger.md` | Chuyên gia gỡ lỗi | read, bash, grep | Điều tra lỗi |
+| `data-scientist.md` | Chuyên gia phân tích dữ liệu | read, write, bash | Quy trình dữ liệu |
+| `clean-code-reviewer.md` | Tiêu chuẩn Clean code | read, grep | Chất lượng mã |
+| `README.md` | Tài liệu hướng dẫn | - | Hướng dẫn thiết lập và sử dụng |
 
-**Installation Path**: `.claude/agents/`
+**Đường dẫn cài đặt**: `.claude/agents/`
 
-**Usage**: Automatically delegated by main agent
+**Sử dụng**: Tự động được ủy quyền bởi agent chính.
 
 ---
 
-## 05. MCP Protocol (5 files)
+## 05. MCP Protocol (5 tệp)
 
-External tool and API integrations.
+Tích hợp các công cụ và API bên ngoài.
 
-| File | Description | Integrates With | Use Case |
+| Tệp | Mô tả | Tích hợp với | Tình huống sử dụng |
 |------|-------------|-----------------|----------|
-| `github-mcp.json` | GitHub integration | GitHub API | PR/issue management |
-| `database-mcp.json` | Database queries | PostgreSQL/MySQL | Live data queries |
-| `filesystem-mcp.json` | File operations | Local filesystem | File management |
-| `multi-mcp.json` | Multiple servers | GitHub + DB + Slack | Complete integration |
-| `README.md` | Documentation | - | Setup and usage guide |
+| `github-mcp.json` | Tích hợp GitHub | GitHub API | Quản lý PR/issue |
+| `database-mcp.json` | Truy vấn cơ sở dữ liệu | PostgreSQL/MySQL | Truy vấn dữ liệu sống |
+| `filesystem-mcp.json` | Thao tác hệ thống tệp | Hệ thống tệp cục bộ | Quản lý tệp |
+| `multi-mcp.json` | Nhiều máy chủ | GitHub + DB + Slack | Tích hợp hoàn chỉnh |
+| `README.md` | Tài liệu hướng dẫn | - | Hướng dẫn thiết lập và sử dụng |
 
-**Installation Path**: `.mcp.json` (project scope) or `~/.claude.json` (user scope)
+**Đường dẫn cài đặt**: `.mcp.json` (phạm vi dự án) hoặc `~/.claude.json` (phạm vi người dùng)
 
-**Usage**: `/mcp__github__list_prs`, etc.
+**Sử dụng**: `/mcp__github__list_prs`, vv.
 
 ---
 
-## 06. Hooks (9 files)
+## 06. Hooks (9 tệp)
 
-Event-driven automation scripts that execute automatically.
+Các script tự động hóa dựa trên sự kiện được thực thi tự động.
 
-| File | Description | Event | Use Case |
+| Tệp | Mô tả | Sự kiện | Tình huống sử dụng |
 |------|-------------|-------|----------|
-| `format-code.sh` | Auto-format code | PreToolUse:Write | Code formatting |
-| `pre-commit.sh` | Run tests before commit | PreToolUse:Bash | Test automation |
-| `security-scan.sh` | Security scanning | PostToolUse:Write | Security checks |
-| `log-bash.sh` | Log bash commands | PostToolUse:Bash | Command logging |
-| `validate-prompt.sh` | Validate prompts | PreToolUse | Input validation |
-| `notify-team.sh` | Send notifications | Notification | Team notifications |
-| `context-tracker.py` | Track context window usage | PostToolUse | Context monitoring |
-| `context-tracker-tiktoken.py` | Token-based context tracking | PostToolUse | Precise token counting |
-| `README.md` | Documentation | - | Setup and usage guide |
+| `format-code.sh` | Tự động định dạng mã | PreToolUse:Write | Định dạng mã |
+| `pre-commit.sh` | Chạy kiểm thử trước khi commit | PreToolUse:Bash | Tự động hóa kiểm thử |
+| `security-scan.sh` | Quét bảo mật | PostToolUse:Write | Kiểm tra bảo mật |
+| `log-bash.sh` | Ghi nhật ký lệnh bash | PostToolUse:Bash | Ghi nhật ký lệnh |
+| `validate-prompt.sh` | Xác thực prompt | PreToolUse | Xác thực đầu vào |
+| `notify-team.sh` | Gửi thông báo | Notification | Thông báo cho nhóm |
+| `context-tracker.py` | Theo dõi sử dụng context window | PostToolUse | Giám sát ngữ cảnh |
+| `context-tracker-tiktoken.py` | Theo dõi ngữ cảnh dựa trên token | PostToolUse | Đếm token chính xác |
+| `README.md` | Tài liệu hướng dẫn | - | Hướng dẫn thiết lập và sử dụng |
 
-**Installation Path**: Configure in `~/.claude/settings.json`
+**Đường dẫn cài đặt**: Cấu hình trong `~/.claude/settings.json`
 
-**Usage**: Configured in settings, executed automatically
+**Sử dụng**: Được cấu hình trong cài đặt, thực thi tự động.
 
-**Hook Types** (4 types, 25 events):
+**Các loại Hook** (4 loại, 25 sự kiện):
 - Tool Hooks: PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest
 - Session Hooks: SessionStart, SessionEnd, Stop, StopFailure, SubagentStart, SubagentStop
 - Task Hooks: UserPromptSubmit, TaskCompleted, TaskCreated, TeammateIdle
@@ -226,273 +226,246 @@ Event-driven automation scripts that execute automatically.
 
 ---
 
-## 07. Plugins (3 complete plugins, 40 files)
+## 07. Plugins (3 plugin hoàn chỉnh, 40 tệp)
 
-Bundled collections of features.
+Các bộ sưu tập tính năng đi kèm.
 
-### PR Review Plugin (10 files)
+### PR Review Plugin (10 tệp)
 ```
 pr-review/
 ├── .claude-plugin/
 │   └── plugin.json                   # Plugin manifest
 ├── commands/
-│   ├── review-pr.md                  # Comprehensive review
-│   ├── check-security.md             # Security check
-│   └── check-tests.md                # Test coverage check
+│   ├── review-pr.md                  # Review toàn diện
+│   ├── check-security.md             # Kiểm tra bảo mật
+│   └── check-tests.md                # Kiểm tra độ bao phủ kiểm thử
 ├── agents/
-│   ├── security-reviewer.md          # Security specialist
-│   ├── test-checker.md               # Test specialist
-│   └── performance-analyzer.md       # Performance specialist
+│   ├── security-reviewer.md          # Chuyên gia bảo mật
+│   ├── test-checker.md               # Chuyên gia kiểm thử
+│   └── performance-analyzer.md       # Chuyên gia hiệu suất
 ├── mcp/
-│   └── github-config.json            # GitHub integration
+│   └── github-config.json            # Tích hợp GitHub
 ├── hooks/
-│   └── pre-review.js                 # Pre-review validation
-└── README.md                         # Plugin documentation
+│   └── pre-review.js                 # Xác thực trước review
+└── README.md                         # Tài liệu hướng dẫn plugin
 ```
 
-**Features**: Security analysis, test coverage, performance impact
+**Tính năng**: Phân tích bảo mật, độ bao phủ kiểm thử, tác động hiệu suất.
 
-**Commands**: `/review-pr`, `/check-security`, `/check-tests`
+**Câu lệnh**: `/review-pr`, `/check-security`, `/check-tests`
 
-**Installation**: `/plugin install pr-review`
+**Cài đặt**: `/plugin install pr-review`
 
 ---
 
-### DevOps Automation Plugin (15 files)
+### DevOps Automation Plugin (15 tệp)
 ```
 devops-automation/
 ├── .claude-plugin/
 │   └── plugin.json                   # Plugin manifest
 ├── commands/
-│   ├── deploy.md                     # Deployment
-│   ├── rollback.md                   # Rollback
-│   ├── status.md                     # System status
-│   └── incident.md                   # Incident response
+│   ├── deploy.md                     # Triển khai
+│   ├── rollback.md                   # Quay lại (Rollback)
+│   ├── status.md                     # Trạng thái hệ thống
+│   └── incident.md                   # Phản ứng sự cố
 ├── agents/
-│   ├── deployment-specialist.md      # Deployment expert
-│   ├── incident-commander.md         # Incident coordinator
-│   └── alert-analyzer.md             # Alert analyzer
+│   ├── deployment-specialist.md      # Chuyên gia triển khai
+│   ├── incident-commander.md         # Điều phối viên sự cố
+│   └── alert-analyzer.md             # Phân tích cảnh báo
 ├── mcp/
-│   └── kubernetes-config.json        # Kubernetes integration
+│   └── kubernetes-config.json        # Tích hợp Kubernetes
 ├── hooks/
-│   ├── pre-deploy.js                 # Pre-deployment checks
-│   └── post-deploy.js                # Post-deployment tasks
+│   ├── pre-deploy.js                 # Kiểm tra trước triển khai
+│   └── post-deploy.js                # Tác vụ sau triển khai
 ├── scripts/
-│   ├── deploy.sh                     # Deployment automation
-│   ├── rollback.sh                   # Rollback automation
-│   └── health-check.sh               # Health checks
-└── README.md                         # Plugin documentation
+│   ├── deploy.sh                     # Tự động hóa triển khai
+│   ├── rollback.sh                   # Tự động hóa rollback
+│   └── health-check.sh               # Kiểm tra sức khỏe hệ thống
+└── README.md                         # Tài liệu hướng dẫn plugin
 ```
 
-**Features**: Kubernetes deployment, rollback, monitoring, incident response
+**Tính năng**: Triển khai Kubernetes, rollback, giám sát, phản ứng sự cố.
 
-**Commands**: `/deploy`, `/rollback`, `/status`, `/incident`
+**Câu lệnh**: `/deploy`, `/rollback`, `/status`, `/incident`
 
-**Installation**: `/plugin install devops-automation`
+**Cài đặt**: `/plugin install devops-automation`
 
 ---
 
-### Documentation Plugin (14 files)
+### Documentation Plugin (14 tệp)
 ```
 documentation/
 ├── .claude-plugin/
 │   └── plugin.json                   # Plugin manifest
 ├── commands/
-│   ├── generate-api-docs.md          # API docs generation
-│   ├── generate-readme.md            # README creation
-│   ├── sync-docs.md                  # Doc synchronization
-│   └── validate-docs.md              # Doc validation
+│   ├── generate-api-docs.md          # Tạo tài liệu API
+│   ├── generate-readme.md            # Tạo README
+│   ├── sync-docs.md                  # Đồng bộ hóa tài liệu
+│   └── validate-docs.md              # Xác thực tài liệu
 ├── agents/
-│   ├── api-documenter.md             # API doc specialist
-│   ├── code-commentator.md           # Code comment specialist
-│   └── example-generator.md          # Example creator
+│   ├── api-documenter.md             # Chuyên gia doc API
+│   ├── code-commentator.md           # Chuyên gia chú thích mã
+│   └── example-generator.md          # Trình tạo ví dụ
 ├── mcp/
-│   └── github-docs-config.json       # GitHub integration
+│   └── github-docs-config.json       # Tích hợp GitHub
 ├── templates/
-│   ├── api-endpoint.md               # API endpoint template
-│   ├── function-docs.md              # Function doc template
-│   └── adr-template.md               # ADR template
-└── README.md                         # Plugin documentation
+│   ├── api-endpoint.md               # Mẫu endpoint API
+│   ├── function-docs.md              # Mẫu doc hàm
+│   └── adr-template.md               # Mẫu ADR
+└── README.md                         # Tài liệu hướng dẫn plugin
 ```
 
-**Features**: API docs, README generation, doc sync, validation
+**Tính năng**: Tài liệu API, tạo README, đồng bộ hóa và xác thực tài liệu.
 
-**Commands**: `/generate-api-docs`, `/generate-readme`, `/sync-docs`, `/validate-docs`
+**Câu lệnh**: `/generate-api-docs`, `/generate-readme`, `/sync-docs`, `/validate-docs`
 
-**Installation**: `/plugin install documentation`
+**Cài đặt**: `/plugin install documentation`
 
-**Plus**: `README.md` - Plugins overview and usage guide
+**Ngoài ra**: `README.md` - Tổng quan về Plugins và hướng dẫn sử dụng.
 
 ---
 
-## 08. Checkpoints and Rewind (2 files)
+## 08. Checkpoints và Rewind (2 tệp)
 
-Save conversation state and explore alternative approaches.
+Lưu trạng thái hội thoại và khám phá các hướng tiếp cận khác nhau.
 
-| File | Description | Content |
+| Tệp | Mô tả | Nội dung |
 |------|-------------|---------|
-| `README.md` | Documentation | Comprehensive checkpoint guide |
-| `checkpoint-examples.md` | Real-world examples | Database migration, performance optimization, UI iteration, debugging |
-| | | |
+| `README.md` | Tài liệu hướng dẫn | Hướng dẫn toàn diện về checkpoint |
+| `checkpoint-examples.md` | Ví dụ thực tế | Di chuyển DB, tối ưu hiệu suất, lặp lại giao diện, gỡ lỗi |
 
-**Key Concepts**:
-- **Checkpoint**: Snapshot of conversation state
-- **Rewind**: Return to previous checkpoint
-- **Branch Point**: Explore multiple approaches
+**Khái niệm chính**:
+- **Checkpoint**: Ảnh chụp trạng thái hội thoại
+- **Rewind**: Quay lại checkpoint trước đó
+- **Branch Point**: Khám phá nhiều hướng tiếp cận
 
-**Usage**:
+**Sử dụng**:
 ```
-# Checkpoints are created automatically with every user prompt
-# To rewind, press Esc twice or use:
+# Checkpoints được tạo tự động với mỗi prompt của người dùng
+# Để quay lại: nhấn Esc hai lần hoặc sử dụng:
 /rewind
-# Then choose: Restore code and conversation, Restore conversation,
-# Restore code, Summarize from here, or Never mind
+# Sau đó chọn: Restore code and conversation, Restore conversation,
+# Restore code, Summarize from here, hoặc Never mind
 ```
 
-**Use Cases**:
-- Try different implementations
-- Recover from mistakes
-- Safe experimentation
-- Compare solutions
+**Tình huống sử dụng**:
+- Thử các cách triển khai khác nhau
+- Khắc phục sai lầm
+- Thử nghiệm an toàn
+- So sánh các giải pháp
 - A/B testing
 
 ---
 
-## 09. Advanced Features (3 files)
+## 09. Advanced Features (3 tệp)
 
-Advanced capabilities for complex workflows.
+Các khả năng nâng cao cho các quy trình làm việc phức tạp.
 
-| File | Description | Features |
+| Tệp | Mô tả | Tính năng |
 |------|-------------|----------|
-| `README.md` | Complete guide | All advanced features documentation |
-| `config-examples.json` | Configuration examples | 10+ use-case-specific configurations |
-| `planning-mode-examples.md` | Planning examples | REST API, database migration, refactoring |
-| Scheduled Tasks | Recurring tasks with `/loop` and cron tools | Automated recurring workflows |
-| Chrome Integration | Browser automation via headless Chromium | Web testing and scraping |
-| Remote Control (expanded) | Connection methods, security, comparison table | Remote session management |
-| Keyboard Customization | Custom keybindings, chord support, contexts | Personalized shortcuts |
-| Desktop App (expanded) | Connectors, launch.json, enterprise features | Desktop integration |
-| | | |
+| `README.md` | Hướng dẫn đầy đủ | Tài liệu về tất cả tính năng nâng cao |
+| `config-examples.json` | Ví dụ cấu hình | Hơn 10 cấu hình cho các trường hợp cụ thể |
+| `planning-mode-examples.md` | Ví dụ lập kế hoạch | REST API, di chuyển DB, refactoring |
+| Tác vụ định kỳ | Tác vụ lặp lại với `/loop` và công cụ cron | Quy trình tự động lặp lại |
+| Tích hợp Chrome | Tự động hóa trình duyệt qua headless Chromium | Kiểm thử web và cào dữ liệu |
+| Remote Control (mở rộng) | Phương thức kết nối, bảo mật, bảng so sánh | Quản lý phiên từ xa |
+| Tùy chỉnh bàn phím | Cấu hình phím tắt riêng, hỗ trợ chord, ngữ cảnh | Phím tắt cá nhân hóa |
+| Desktop App (mở rộng) | Trình kết nối, launch.json, tính năng doanh nghiệp | Tích hợp máy tính để bàn |
 
-**Advanced Features Covered**:
+**Các tính năng nâng cao bao gồm**:
 
 ### Planning Mode
-- Create detailed implementation plans
-- Time estimates and risk assessment
-- Systematic task breakdown
+- Tạo kế hoạch triển khai chi tiết
+- Ước tính thời gian và đánh giá rủi ro
+- Phân chia nhiệm vụ có hệ thống
 
 ### Extended Thinking
-- Deep reasoning for complex problems
-- Architectural decision analysis
-- Trade-off evaluation
+- Suy luận sâu cho các vấn đề phức tạp
+- Phân tích quyết định kiến trúc
+- Đánh giá sự đánh đổi (trade-offs)
 
 ### Background Tasks
-- Long-running operations without blocking
-- Parallel development workflows
-- Task management and monitoring
+- Các hoạt động chạy lâu mà không gây nghẽn
+- Quy trình phát triển song song
+- Quản lý và giám sát tác vụ
 
 ### Permission Modes
-- **default**: Ask for approval on risky actions
-- **acceptEdits**: Auto-accept file edits, ask for others
-- **plan**: Read-only analysis, no modifications
-- **auto**: Automatically approve safe actions, prompt for risky ones
-- **dontAsk**: Accept all actions except risky ones
-- **bypassPermissions**: Accept all (requires `--dangerously-skip-permissions`)
+- **default**: Hỏi ý kiến cho các hành động nguy hiểm
+- **acceptEdits**: Tự động chấp nhận sửa đổi tệp, hỏi cái khác
+- **plan**: Phân tích read-only, không sửa đổi
+- **auto**: Tự động phê duyệt hành động an toàn, hỏi cái nguy hiểm
+- **dontAsk**: Chấp nhận tất cả hành động trừ cái nguy hiểm
+- **bypassPermissions**: Chấp nhận tất cả (yêu cầu `--dangerously-skip-permissions`)
 
 ### Headless Mode (`claude -p`)
-- CI/CD integration
-- Automated task execution
-- Batch processing
+- Tích hợp CI/CD
+- Thực thi tác vụ tự động
+- Xử lý hàng loạt
 
 ### Session Management
-- Multiple work sessions
-- Session switching and saving
-- Session persistence
+- Nhiều phiên làm việc đa dạng
+- Chuyển đổi và lưu phiên
+- Lưu trữ phiên bền vững
 
-### Interactive Features
-- Keyboard shortcuts
-- Command history
+### Tính năng tương tác
+- Phím tắt bàn phím
+- Lịch sử câu lệnh
 - Tab completion
-- Multi-line input
+- Nhập liệu nhiều dòng
 
-### Configuration
-- Comprehensive settings management
-- Environment-specific configs
-- Per-project customization
-
-### Scheduled Tasks
-- Recurring tasks with `/loop` command
-- Cron tools: CronCreate, CronList, CronDelete
-- Automated recurring workflows
-
-### Chrome Integration
-- Browser automation via headless Chromium
-- Web testing and scraping capabilities
-- Page interaction and data extraction
-
-### Remote Control (expanded)
-- Connection methods and protocols
-- Security considerations and best practices
-- Comparison table of remote access options
-
-### Keyboard Customization
-- Custom keybindings configuration
-- Chord support for multi-key shortcuts
-- Context-aware keybinding activation
-
-### Desktop App (expanded)
-- Connectors for IDE integration
-- launch.json configuration
-- Enterprise features and deployment
+### Cấu hình
+- Quản lý cài đặt toàn diện
+- Cấu hình riêng cho từng môi trường
+- Tùy chỉnh cho từng dự án
 
 ---
 
-## 10. CLI Usage (1 file)
+## 10. CLI Usage (1 tệp)
 
-Command-line interface usage patterns and reference.
+Các mẫu sử dụng và tham chiếu giao diện dòng lệnh.
 
-| File | Description | Content |
+| Tệp | Mô tả | Nội dung |
 |------|-------------|---------|
-| `README.md` | CLI documentation | Flags, options, and usage patterns |
+| `README.md` | Tài liệu CLI | Các cờ, tùy chọn và mẫu sử dụng |
 
-**Key CLI Features**:
-- `claude` - Start interactive session
-- `claude -p "prompt"` - Headless/non-interactive mode
-- `claude web` - Launch web session
-- `claude --model` - Select model (Sonnet 4.6, Opus 4.6)
-- `claude --permission-mode` - Set permission mode
-- `claude --remote` - Enable remote control via WebSocket
+**Các tính năng CLI chính**:
+- `claude` - Bắt đầu phiên tương tác
+- `claude -p "prompt"` - Chế độ headless/không tương tác
+- `claude web` - Mở phiên web
+- `claude --model` - Chọn model (Sonnet 4.6, Opus 4.6)
+- `claude --permission-mode` - Thiết lập chế độ quyền
+- `claude --remote` - Bật điều khiển từ xa qua WebSocket
 
 ---
 
-## Documentation Files (13 files)
+## Các tệp tài liệu (13 tệp)
 
-| File | Location | Description |
+| Tệp | Vị trí | Mô tả |
 |------|----------|-------------|
-| `README.md` | `/` | Main examples overview |
-| `INDEX.md` | `/` | This complete index |
-| `QUICK_REFERENCE.md` | `/` | Quick reference card |
-| `README.md` | `/01-slash-commands/` | Slash commands guide |
-| `README.md` | `/02-memory/` | Memory guide |
-| `README.md` | `/03-skills/` | Skills guide |
-| `README.md` | `/04-subagents/` | Subagents guide |
-| `README.md` | `/05-mcp/` | MCP guide |
-| `README.md` | `/06-hooks/` | Hooks guide |
-| `README.md` | `/07-plugins/` | Plugins guide |
-| `README.md` | `/08-checkpoints/` | Checkpoints guide |
-| `README.md` | `/09-advanced-features/` | Advanced features guide |
-| `README.md` | `/10-cli/` | CLI guide |
+| `README.md` | `/` | Tổng quan chính về các ví dụ |
+| `INDEX.md` | `/` | Mục lục đầy đủ này |
+| `QUICK_REFERENCE.md` | `/` | Thẻ tham chiếu nhanh |
+| `README.md` | `/01-slash-commands/` | Hướng dẫn Slash commands |
+| `README.md` | `/02-memory/` | Hướng dẫn Memory |
+| `README.md` | `/03-skills/` | Hướng dẫn Skills |
+| `README.md` | `/04-subagents/` | Hướng dẫn Subagents |
+| `README.md` | `/05-mcp/` | Hướng dẫn MCP |
+| `README.md` | `/06-hooks/` | Hướng dẫn Hooks |
+| `README.md` | `/07-plugins/` | Hướng dẫn Plugins |
+| `README.md` | `/08-checkpoints/` | Hướng dẫn Checkpoints |
+| `README.md` | `/09-advanced-features/` | Hướng dẫn tính năng nâng cao |
+| `README.md` | `/10-cli/` | Hướng dẫn CLI |
 
 ---
 
-## Complete File Tree
+## Cấu trúc tệp đầy đủ (File Tree)
 
 ```
 claude-howto/
-├── README.md                                    # Main overview
-├── INDEX.md                                     # This file
-├── QUICK_REFERENCE.md                           # Quick reference card
-├── claude_concepts_guide.md                     # Original guide
+├── README.md                                    # Tổng quan chính
+├── INDEX.md                                     # Tệp này
+├── QUICK_REFERENCE.md                           # Thẻ tham chiếu nhanh
+├── claude_concepts_guide.md                     # Hướng dẫn gốc
 │
 ├── 01-slash-commands/                           # Slash Commands
 │   ├── optimize.md
@@ -655,109 +628,109 @@ claude-howto/
 
 ---
 
-## Quick Start by Use Case
+## Bắt đầu nhanh theo Tình huống
 
-### Code Quality & Reviews
+### Chất lượng mã & Review
 ```bash
-# Install slash command
+# Cài đặt slash command
 cp 01-slash-commands/optimize.md .claude/commands/
 
-# Install subagent
+# Cài đặt subagent
 cp 04-subagents/code-reviewer.md .claude/agents/
 
-# Install skill
+# Cài đặt skill
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Or install complete plugin
+# Hoặc cài đặt plugin hoàn chỉnh
 /plugin install pr-review
 ```
 
-### DevOps & Deployment
+### DevOps & Triển khai
 ```bash
-# Install plugin (includes everything)
+# Cài đặt plugin (bao gồm tất cả)
 /plugin install devops-automation
 ```
 
-### Documentation
+### Tài liệu
 ```bash
-# Install slash command
+# Cài đặt slash command
 cp 01-slash-commands/generate-api-docs.md .claude/commands/
 
-# Install subagent
+# Cài đặt subagent
 cp 04-subagents/documentation-writer.md .claude/agents/
 
-# Install skill
+# Cài đặt skill
 cp -r 03-skills/doc-generator ~/.claude/skills/
 
-# Or install complete plugin
+# Hoặc cài đặt plugin hoàn chỉnh
 /plugin install documentation
 ```
 
-### Team Standards
+### Tiêu chuẩn nhóm
 ```bash
-# Set up project memory
+# Thiết lập bộ nhớ dự án
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
-# Edit to match your team's standards
+# Sửa đổi để phù hợp với tiêu chuẩn nhóm của bạn
 ```
 
-### External Integrations
+### Tích hợp bên ngoài
 ```bash
-# Set environment variables
+# Thiết lập biến môi trường
 export GITHUB_TOKEN="your_token"
 export DATABASE_URL="postgresql://..."
 
-# Install MCP config (project scope)
+# Cài đặt cấu hình MCP (phạm vi dự án)
 cp 05-mcp/multi-mcp.json .mcp.json
 ```
 
-### Automation & Validation
+### Tự động hóa & Xác thực
 ```bash
-# Install hooks
+# Cài đặt hooks
 mkdir -p ~/.claude/hooks
 cp 06-hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 
-# Configure hooks in settings (~/.claude/settings.json)
-# See 06-hooks/README.md
+# Cấu hình hooks trong cài đặt (~/.claude/settings.json)
+# Xem 06-hooks/README.md
 ```
 
-### Safe Experimentation
+### Thử nghiệm an toàn
 ```bash
-# Checkpoints are created automatically with every user prompt
-# To rewind: press Esc+Esc or use /rewind
-# Then choose what to restore from the rewind menu
+# Checkpoints được tạo tự động với mỗi prompt của người dùng
+# Để quay lại: nhấn Esc+Esc hoặc sử dụng /rewind
+# Sau đó chọn nội dung cần khôi phục từ menu rewind
 
-# See 08-checkpoints/README.md for examples
+# Xem 08-checkpoints/README.md để biết ví dụ
 ```
 
-### Advanced Workflows
+### Quy trình nâng cao
 ```bash
-# Configure advanced features
-# See 09-advanced-features/config-examples.json
+# Cấu hình tính năng nâng cao
+# Xem 09-advanced-features/config-examples.json
 
-# Use planning mode
+# Sử dụng planning mode
 /plan Implement feature X
 
-# Use permission modes
-claude --permission-mode plan          # For code review (read-only)
-claude --permission-mode acceptEdits   # Auto-accept edits
-claude --permission-mode auto          # Auto-approve safe actions
+# Sử dụng chế độ quyền
+claude --permission-mode plan          # Review code (read-only)
+claude --permission-mode acceptEdits   # Tự động chấp nhận edits
+claude --permission-mode auto          # Tự động phê duyệt hành động an toàn
 
-# Run in headless mode for CI/CD
+# Chạy ở chế độ headless cho CI/CD
 claude -p "Run tests and report results"
 
-# Run background tasks
+# Chạy tác vụ nền
 Run tests in background
 
-# See 09-advanced-features/README.md for complete guide
+# Xem 09-advanced-features/README.md để biết hướng dẫn đầy đủ
 ```
 
 ---
 
-## Feature Coverage Matrix
+## Ma trận Bao phủ tính năng
 
-| Category | Commands | Agents | MCP | Hooks | Scripts | Templates | Docs | Images | Total |
+| Danh mục | Commands | Agents | MCP | Hooks | Scripts | Templates | Docs | Images | Tổng |
 |----------|----------|--------|-----|-------|---------|-----------|------|--------|-------|
 | **01 Slash Commands** | 8 | - | - | - | - | - | 1 | 1 | **10** |
 | **02 Memory** | - | - | - | - | - | 3 | 1 | 2 | **6** |
@@ -772,111 +745,29 @@ Run tests in background
 
 ---
 
-## Learning Path
+## Lộ trình học tập
 
-### Beginner (Week 1)
-1. ✅ Read `README.md`
-2. ✅ Install 1-2 slash commands
-3. ✅ Create project memory file
-4. ✅ Try basic commands
+### Mới bắt đầu (Tuần 1)
+1. ✅ Đọc `README.md`
+2. ✅ Cài đặt 1-2 slash commands
+3. ✅ Tạo tệp bộ nhớ dự án
+4. ✅ Thử các câu lệnh cơ bản
 
-### Intermediate (Week 2-3)
-1. ✅ Set up GitHub MCP
-2. ✅ Install a subagent
-3. ✅ Try delegating tasks
-4. ✅ Install a skill
+### Trung bình (Tuần 2-3)
+1. ✅ Thiết lập GitHub MCP
+2. ✅ Cài đặt một subagent
+3. ✅ Thử ủy quyền tác vụ
+4. ✅ Cài đặt một skill
 
-### Advanced (Week 4+)
-1. ✅ Install complete plugin
-2. ✅ Create custom slash commands
-3. ✅ Create custom subagent
-4. ✅ Create custom skill
-5. ✅ Build your own plugin
+### Nâng cao (Tuần 4+)
+1. ✅ Cài đặt plugin hoàn chỉnh
+2. ✅ Tạo slash command tùy chỉnh
+3. ✅ Tạo subagent tùy chỉnh
+4. ✅ Tạo skill tùy chỉnh
+5. ✅ Xây dựng plugin của riêng bạn
 
-### Expert (Week 5+)
-1. ✅ Set up hooks for automation
-2. ✅ Use checkpoints for experimentation
-3. ✅ Configure planning mode
-4. ✅ Use permission modes effectively
-5. ✅ Set up headless mode for CI/CD
-6. ✅ Master session management
-
----
-
-## Search by Keyword
-
-### Performance
-- `01-slash-commands/optimize.md` - Performance analysis
-- `04-subagents/code-reviewer.md` - Performance review
-- `03-skills/code-review/` - Performance metrics
-- `07-plugins/pr-review/agents/performance-analyzer.md` - Performance specialist
-
-### Security
-- `04-subagents/secure-reviewer.md` - Security review
-- `03-skills/code-review/` - Security analysis
-- `07-plugins/pr-review/` - Security checks
-
-### Testing
-- `04-subagents/test-engineer.md` - Test engineer
-- `07-plugins/pr-review/commands/check-tests.md` - Test coverage
-
-### Documentation
-- `01-slash-commands/generate-api-docs.md` - API docs command
-- `04-subagents/documentation-writer.md` - Doc writer agent
-- `03-skills/doc-generator/` - Doc generator skill
-- `07-plugins/documentation/` - Complete doc plugin
-
-### Deployment
-- `07-plugins/devops-automation/` - Complete DevOps solution
-
-### Automation
-- `06-hooks/` - Event-driven automation
-- `06-hooks/pre-commit.sh` - Pre-commit automation
-- `06-hooks/format-code.sh` - Auto-formatting
-- `09-advanced-features/` - Headless mode for CI/CD
-
-### Validation
-- `06-hooks/security-scan.sh` - Security validation
-- `06-hooks/validate-prompt.sh` - Prompt validation
-
-### Experimentation
-- `08-checkpoints/` - Safe experimentation with rewind
-- `08-checkpoints/checkpoint-examples.md` - Real-world examples
-
-### Planning
-- `09-advanced-features/planning-mode-examples.md` - Planning mode examples
-- `09-advanced-features/README.md` - Extended thinking
-
-### Configuration
-- `09-advanced-features/config-examples.json` - Configuration examples
-
----
-
-## Notes
-
-- All examples are ready to use
-- Modify to fit your specific needs
-- Examples follow Claude Code best practices
-- Each category has its own README with detailed instructions
-- Scripts include proper error handling
-- Templates are customizable
-
----
-
-## Contributing
-
-Want to add more examples? Follow the structure:
-1. Create appropriate subdirectory
-2. Include README.md with usage
-3. Follow naming conventions
-4. Test thoroughly
-5. Update this index
-
----
-
-**Last Updated**: March 2026
-**Total Examples**: 100+ files
-**Categories**: 10 features
-**Hooks**: 8 automation scripts
-**Configuration Examples**: 10+ scenarios
-**Ready to Use**: All examples
+### Chuyên gia (Tuần 5+)
+1. ✅ Thiết lập hooks để tự động hóa
+2. ✅ Sử dụng checkpoints để thử nghiệm
+3. ✅ Cấu hình planning mode
+4. ✅ Sử dụng các chế độ quyền một cách hiệu quả

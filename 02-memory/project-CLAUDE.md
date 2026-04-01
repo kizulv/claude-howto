@@ -1,88 +1,88 @@
-# Project Configuration
+# Cấu hình Dự án (Project Configuration)
 
-## Project Overview
-- **Name**: E-commerce Platform
-- **Tech Stack**: Node.js, PostgreSQL, React 18, Docker
-- **Team Size**: 5 developers
-- **Deadline**: Q4 2025
+## Tổng quan Dự án (Project Overview)
+- **Tên**: Nền tảng Thương mại điện tử (E-commerce Platform)
+- **Công nghệ**: Node.js, PostgreSQL, React 18, Docker
+- **Quy mô đội ngũ**: 5 lập trình viên
+- **Thời hạn**: Quý 4 năm 2025
 
-## Architecture
+## Kiến trúc (Architecture)
 @docs/architecture.md
 @docs/api-standards.md
 @docs/database-schema.md
 
-## Development Standards
+## Tiêu chuẩn Phát triển (Development Standards)
 
-### Code Style
-- Use Prettier for formatting
-- Use ESLint with airbnb config
-- Maximum line length: 100 characters
-- Use 2-space indentation
+### Phong cách lập trình (Code Style)
+- Sử dụng Prettier để định dạng
+- Sử dụng ESLint với cấu hình airbnb
+- Độ dài dòng tối đa: 100 ký tự
+- Sử dụng thụt lề 2 khoảng trắng
 
-### Naming Conventions
-- **Files**: kebab-case (user-controller.js)
-- **Classes**: PascalCase (UserService)
-- **Functions/Variables**: camelCase (getUserById)
-- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
-- **Database Tables**: snake_case (user_accounts)
+### Quy ước đặt tên (Naming Conventions)
+- **Tệp (Files)**: kebab-case (user-controller.js)
+- **Lớp (Classes)**: PascalCase (UserService)
+- **Hàm/Biến (Functions/Variables)**: camelCase (getUserById)
+- **Hằng số (Constants)**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **Bảng cơ sở dữ liệu (Database Tables)**: snake_case (user_accounts)
 
-### Git Workflow
-- Branch names: `feature/description` or `fix/description`
-- Commit messages: Follow conventional commits
-- PR required before merge
-- All CI/CD checks must pass
-- Minimum 1 approval required
+### Quy trình Git (Git Workflow)
+- Tên nhánh: `feature/description` hoặc `fix/description`
+- Thông điệp commit: Tuân theo conventional commits
+- Yêu cầu PR trước khi merge
+- Tất cả các kiểm tra CI/CD phải vượt qua
+- Yêu cầu tối thiểu 1 phê duyệt
 
-### Testing Requirements
-- Minimum 80% code coverage
-- All critical paths must have tests
-- Use Jest for unit tests
-- Use Cypress for E2E tests
-- Test filenames: `*.test.ts` or `*.spec.ts`
+### Yêu cầu kiểm thử (Testing Requirements)
+- Độ bao phủ code tối thiểu 80%
+- Tất cả các đường dẫn quan trọng phải có bài kiểm thử
+- Sử dụng Jest cho unit tests
+- Sử dụng Cypress cho E2E tests
+- Tên tệp kiểm thử: `*.test.ts` hoặc `*.spec.ts`
 
-### API Standards
-- RESTful endpoints only
-- JSON request/response
-- Use HTTP status codes correctly
-- Version API endpoints: `/api/v1/`
-- Document all endpoints with examples
+### Tiêu chuẩn API (API Standards)
+- Chỉ sử dụng các endpoint RESTful
+- Yêu cầu/Phản hồi dạng JSON
+- Sử dụng mã trạng thái HTTP đúng cách
+- Gán phiên bản cho API endpoint: `/api/v1/`
+- Tài liệu hóa tất cả các endpoint kèm theo ví dụ
 
-### Database
-- Use migrations for schema changes
-- Never hardcode credentials
-- Use connection pooling
-- Enable query logging in development
-- Regular backups required
+### Cơ sở dữ liệu (Database)
+- Sử dụng migration cho các thay đổi schema
+- Không bao giờ để lộ thông tin xác thực (credentials)
+- Sử dụng kết nối theo cụm (connection pooling)
+- Bật nhật ký truy vấn (query logging) trong môi trường phát triển
+- Yêu cầu sao lưu định kỳ
 
-### Deployment
-- Docker-based deployment
-- Kubernetes orchestration
-- Blue-green deployment strategy
-- Automatic rollback on failure
-- Database migrations run before deploy
+### Triển khai (Deployment)
+- Triển khai dựa trên Docker
+- Điều phối bằng Kubernetes
+- Chiến lược triển khai Blue-green
+- Tự động hoàn tác (rollback) khi thất bại
+- Chạy migrations cơ sở dữ liệu trước khi triển khai
 
-## Common Commands
+## Các lệnh thông dụng (Common Commands)
 
-| Command | Purpose |
+| Lệnh | Mục đích |
 |---------|---------|
-| `npm run dev` | Start development server |
-| `npm test` | Run test suite |
-| `npm run lint` | Check code style |
-| `npm run build` | Build for production |
-| `npm run migrate` | Run database migrations |
+| `npm run dev` | Bắt đầu server phát triển |
+| `npm test` | Chạy bộ kiểm thử |
+| `npm run lint` | Kiểm tra phong cách lập trình |
+| `npm run build` | Build cho production |
+| `npm run migrate` | Chạy các bản di chuyển cơ sở dữ liệu |
 
-## Team Contacts
-- Tech Lead: Sarah Chen (@sarah.chen)
-- Product Manager: Mike Johnson (@mike.j)
+## Liên hệ đội ngũ (Team Contacts)
+- Trưởng nhóm kỹ thuật (Tech Lead): Sarah Chen (@sarah.chen)
+- Quản lý sản phẩm (Product Manager): Mike Johnson (@mike.j)
 - DevOps: Alex Kim (@alex.k)
 
-## Known Issues & Workarounds
-- PostgreSQL connection pooling limited to 20 during peak hours
-- Workaround: Implement query queuing
-- Safari 14 compatibility issues with async generators
-- Workaround: Use Babel transpiler
+## Các vấn đề đã biết & Cách khắc phục (Known Issues & Workarounds)
+- Kết nối PostgreSQL bị giới hạn ở mức 20 trong giờ cao điểm
+- Cách khắc phục: Triển khai hàng đợi truy vấn (query queuing)
+- Vấn đề tương thích Safari 14 với async generators
+- Cách khắc phục: Sử dụng trình chuyển đổi Babel
 
-## Related Projects
-- Analytics Dashboard: `/projects/analytics`
-- Mobile App: `/projects/mobile`
-- Admin Panel: `/projects/admin`
+## Các dự án liên quan (Related Projects)
+- Dashboard Phân tích: `/projects/analytics`
+- Ứng dụng Di động: `/projects/mobile`
+- Bảng Quản trị: `/projects/admin`

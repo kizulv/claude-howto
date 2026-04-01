@@ -1,274 +1,274 @@
 ---
 name: blog-draft
-description: Draft a blog post from ideas and resources. Use when users want to write a blog post, create content from research, or draft articles. Guides through research, brainstorming, outlining, and iterative drafting with version control.
+description: Soạn thảo một bài viết blog từ ý tưởng và tài nguyên. Sử dụng khi người dùng muốn viết bài blog, tạo nội dung từ nghiên cứu hoặc soạn thảo bài báo. Hướng dẫn thông qua các bước nghiên cứu, brainstorm, lập dàn ý và soạn thảo lặp lại với kiểm soát phiên bản.
 ---
 
-## User Input
+## Nhập liệu từ Người dùng (User Input)
 
 ```text
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding. User should provide:
-- **Idea/Topic**: The main concept or theme for the blog post
-- **Resources**: URLs, files, or references to research (optional but recommended)
-- **Target audience**: Who the blog post is for (optional)
-- **Tone/Style**: Formal, casual, technical, etc. (optional)
+Bạn **PHẢI** xem xét nội dung nhập liệu của người dùng trước khi tiếp tục. Người dùng nên cung cấp:
+- **Ý tưởng/Chủ đề**: Khái niệm hoặc chủ đề chính cho bài viết blog
+- **Tài nguyên**: URL, tệp hoặc tham chiếu để nghiên cứu (tùy chọn nhưng được khuyến nghị)
+- **Đối tượng mục tiêu**: Bài viết dành cho ai (tùy chọn)
+- **Tông điệu/Phong cách**: Trang trọng, thân mật, kỹ thuật, v.v. (tùy chọn)
 
-**IMPORTANT**: If the user is requesting updates to an **existing blog post**, skip steps 0-8 and start directly at **Step 9**. Read the existing draft file(s) first, then proceed with the iteration process.
+**QUAN TRỌNG**: Nếu người dùng yêu cầu cập nhật cho một **bài viết blog đã có**, hãy bỏ qua các bước 0-8 và bắt đầu trực tiếp tại **Bước 9**. Đọc các tệp bản thảo hiện có trước, sau đó tiếp tục quá trình lặp lại.
 
-## Execution Flow
+## Luồng thực thi (Execution Flow)
 
-Follow these steps sequentially. **Do not skip steps or proceed without user approval where indicated.**
+Thực hiện các bước này theo thứ tự. **Không bỏ qua các bước hoặc tiếp tục mà không có sự phê duyệt của người dùng tại các vị trị được chỉ định.**
 
-### Step 0: Create Project Folder
+### Bước 0: Tạo Thư mục Dự án
 
-1. Generate a folder name using format: `YYYY-MM-DD-short-topic-name`
-   - Use today's date
-   - Create a short, URL-friendly slug from the topic (lowercase, hyphens, max 5 words)
+1. Tạo tên thư mục theo định dạng: `YYYY-MM-DD-ten-chu-de-ngan`
+   - Sử dụng ngày hôm nay
+   - Tạo một slug ngắn, thân thiện với URL từ chủ đề (chữ thường, dấu gạch ngang, tối đa 5 từ)
 
-2. Create the folder structure:
+2. Tạo cấu trúc thư mục:
    ```
    blog-posts/
-   └── YYYY-MM-DD-short-topic-name/
+   └── YYYY-MM-DD-ten-chu-de-ngan/
        └── resources/
    ```
 
-3. Confirm folder creation with user before proceeding.
+3. Xác nhận việc tạo thư mục với người dùng trước khi tiếp tục.
 
-### Step 1: Research & Resource Collection
+### Bước 1: Nghiên cứu & Thu thập Tài nguyên
 
-1. Create `resources/` subfolder in the blog post directory
+1. Tạo thư mục con `resources/` trong thư mục bài viết blog
 
-2. For each provided resource:
-   - **URLs**: Fetch and save key information to `resources/` as markdown files
-   - **Files**: Read and summarize in `resources/`
-   - **Topics**: Use web search to gather up-to-date information
+2. Với mỗi tài nguyên được cung cấp:
+   - **URL**: Truy cập và lưu thông tin chính vào `resources/` dưới dạng các tệp markdown
+   - **Tệp**: Đọc và tóm tắt trong `resources/`
+   - **Chủ đề**: Sử dụng tìm kiếm web để thu thập thông tin mới nhất
 
-3. For each resource, create a summary file in `resources/`:
-   - `resources/source-1-[short-name].md`
-   - `resources/source-2-[short-name].md`
-   - etc.
+3. Với mỗi tài nguyên, tạo một tệp tóm tắt trong `resources/`:
+   - `resources/source-1-[ten-ngan].md`
+   - `resources/source-2-[ten-ngan].md`
+   - v.v.
 
-4. Each summary should include:
+4. Mỗi bản tóm tắt nên bao gồm:
    ```markdown
-   # Source: [Title/URL]
+   # Nguồn: [Tiêu đề/URL]
 
-   ## Key Points
-   - Point 1
-   - Point 2
+   ## Các điểm chính
+   - Điểm 1
+   - Điểm 2
 
-   ## Relevant Quotes/Data
-   - Quote or statistic 1
-   - Quote or statistic 2
+   ## Trích dẫn/Dữ liệu liên quan
+   - Trích dẫn hoặc số liệu thống kê 1
+   - Trích dẫn hoặc số liệu thống kê 2
 
-   ## How This Relates to Topic
-   Brief explanation of relevance
+   ## Mối liên hệ với Chủ đề
+   Giải thích ngắn gọn về mức độ liên quan
    ```
 
-5. Present research summary to user.
+5. Trình bày tóm tắt nghiên cứu cho người dùng.
 
-### Step 2: Brainstorm & Clarify
+### Bước 2: Brainstorm & Làm rõ
 
-1. Based on the idea and researched resources, present:
-   - **Main themes** identified from research
-   - **Potential angles** for the blog post
-   - **Key points** that should be covered
-   - **Gaps** in information that need clarification
+1. Dựa trên ý tưởng và các tài nguyên đã nghiên cứu, hãy trình bày:
+   - **Các chủ đề chính** được xác định từ nghiên cứu
+   - **Các góc tiếp cận tiềm năng** cho bài viết blog
+   - **Các điểm chính** cần được đề cập
+   - **Các lỗ hổng** thông tin cần làm rõ
 
-2. Ask clarifying questions:
-   - What is the main takeaway you want readers to have?
-   - Are there specific points from the research you want to emphasize?
-   - What's the target length? (short: 500-800 words, medium: 1000-1500, long: 2000+)
-   - Any points you want to exclude?
+2. Đặt các câu hỏi làm rõ:
+   - Thông điệp chính bạn muốn người đọc nhận được là gì?
+   - Có điểm cụ thể nào từ nghiên cứu mà bạn muốn nhấn mạnh không?
+   - Độ dài mục tiêu là bao nhiêu? (ngắn: 500-800 từ, trung bình: 1000-1500, dài: 2000+)
+   - Có điểm nào bạn muốn loại trừ không?
 
-3. **Wait for user responses before proceeding.**
+3. **Chờ phản hồi của người dùng trước khi tiếp tục.**
 
-### Step 3: Propose Outline
+### Bước 3: Đề xuất Dàn ý
 
-1. Create a structured outline including:
+1. Tạo một dàn ý có cấu trúc bao gồm:
 
    ```markdown
-   # Blog Post Outline: [Title]
+   # Dàn ý bài viết Blog: [Tiêu đề]
 
-   ## Meta Information
-   - **Target Audience**: [who]
-   - **Tone**: [style]
-   - **Target Length**: [word count]
-   - **Main Takeaway**: [key message]
+   ## Thông tin Meta
+   - **Đối tượng mục tiêu**: [ai]
+   - **Tông điệu**: [phong cách]
+   - **Độ dài mục tiêu**: [số lượng từ]
+   - **Thông điệp chính**: [thông điệp cốt lõi]
 
-   ## Proposed Structure
+   ## Cấu trúc đề xuất
 
-   ### Hook/Introduction
-   - Opening hook idea
-   - Context setting
-   - Thesis statement
+   ### Mở đầu/Hook
+   - Ý tưởng câu dẫn (hook)
+   - Thiết lập ngữ cảnh
+   - Tuyên bố chủ đề (thesis statement)
 
-   ### Section 1: [Title]
-   - Key point A
-   - Key point B
-   - Supporting evidence from [source]
+   ### Phần 1: [Tiêu đề]
+   - Điểm chính A
+   - Điểm chính B
+   - Bằng chứng hỗ trợ từ [nguồn]
 
-   ### Section 2: [Title]
-   - Key point A
-   - Key point B
+   ### Phần 2: [Tiêu đề]
+   - Điểm chính A
+   - Điểm chính B
 
-   [Continue for all sections...]
+   [Tiếp tục cho tất cả các phần...]
 
-   ### Conclusion
-   - Summary of key points
-   - Call to action or final thought
+   ### Kết luận
+   - Tóm tắt các điểm chính
+   - Lời kêu gọi hành động (Call to action) hoặc suy nghĩ cuối cùng
 
-   ## Sources to Cite
-   - Source 1
-   - Source 2
+   ## Các nguồn cần trích dẫn
+   - Nguồn 1
+   - Nguồn 2
    ```
 
-2. Present outline to user and **ask for approval or modifications**.
+2. Trình bày dàn ý cho người dùng và **yêu cầu phê duyệt hoặc sửa đổi**.
 
-### Step 4: Save Approved Outline
+### Bước 4: Lưu Dàn ý đã phê duyệt
 
-1. Once user approves the outline, save it to `OUTLINE.md` in the blog post folder.
+1. Sau khi người dùng phê duyệt dàn ý, hãy lưu nó vào tệp `OUTLINE.md` trong thư mục bài viết blog.
 
-2. Confirm the outline has been saved.
+2. Xác nhận rằng dàn ý đã được lưu.
 
-### Step 5: Commit Outline (if in git repo)
+### Bước 5: Commit Dàn ý (nếu đang ở trong repo git)
 
-1. Check if current directory is a git repository.
+1. Kiểm tra xem thư mục hiện tại có phải là một kho lưu trữ git không.
 
-2. If yes:
-   - Stage the new files: blog post folder, resources, and OUTLINE.md
-   - Create commit with message: `docs: Add outline for blog post - [topic-name]`
-   - Push to remote
+2. Nếu có:
+   - Stage các tệp mới: thư mục bài viết blog, tài nguyên và OUTLINE.md
+   - Tạo commit với thông điệp: `docs: Add outline for blog post - [topic-name]`
+   - Push lên remote
 
-3. If not a git repo, skip this step and inform user.
+3. Nếu không phải repo git, bỏ qua bước này và thông báo cho người dùng.
 
-### Step 6: Write Draft
+### Bước 6: Viết Bản thảo
 
-1. Based on the approved outline, write the full blog post draft.
+1. Dựa trên dàn ý đã phê duyệt, viết toàn bộ bản thảo bài viết blog.
 
-2. Follow the structure from OUTLINE.md exactly.
+2. Tuân thủ chính xác cấu trúc từ `OUTLINE.md`.
 
-3. Include:
-   - Engaging introduction with hook
-   - Clear section headers
-   - Supporting evidence and examples from research
-   - Smooth transitions between sections
-   - Strong conclusion with takeaway
-   - **Citations**: All comparisons, statistics, data points, and factual claims MUST cite the original source
+3. Bao gồm:
+   - Phần giới thiệu hấp dẫn với câu dẫn (hook)
+   - Các tiêu đề phần rõ ràng
+   - Bằng chứng và ví dụ hỗ trợ từ nghiên cứu
+   - Sự chuyển tiếp mượt mà giữa các phần
+   - Kết luận mạnh mẽ với thông điệp cốt lõi
+   - **Trích dẫn**: Tất cả các so sánh, số liệu thống kê, điểm dữ liệu và các tuyên bố thực tế PHẢI trích dẫn nguồn gốc
 
-4. Save the draft as `draft-v0.1.md` in the blog post folder.
+4. Lưu bản thảo dưới tên `draft-v0.1.md` trong thư mục bài viết blog.
 
-5. Format:
+5. Định dạng:
    ```markdown
-   # [Blog Post Title]
+   # [Tiêu đề Bài viết Blog]
 
-   *[Optional: subtitle or tagline]*
+   *[Tùy chọn: tiêu đề phụ hoặc tagline]*
 
-   [Full content with inline citations...]
+   [Nội dung đầy đủ với các trích dẫn nội dòng...]
 
    ---
 
-   ## References
-   - [1] Source 1 Title - URL or Citation
-   - [2] Source 2 Title - URL or Citation
-   - [3] Source 3 Title - URL or Citation
+   ## Tài liệu tham khảo
+   - [1] Tiêu đề Nguồn 1 - URL hoặc Trích dẫn
+   - [2] Tiêu đề Nguồn 2 - URL hoặc Trích dẫn
+   - [3] Tiêu đề Nguồn 3 - URL hoặc Trích dẫn
    ```
 
-6. **Citation Requirements**:
-   - Every data point, statistic, or comparison MUST have an inline citation
-   - Use numbered references [1], [2], etc., or named citations [Source Name]
-   - Link citations to the References section at the end
-   - Example: "Studies show that 65% of developers prefer TypeScript [1]"
-   - Example: "React outperforms Vue in rendering speed by 20% [React Benchmarks 2024]"
+6. **Yêu cầu về Trích dẫn**:
+   - Mọi điểm dữ liệu, số liệu thống kê hoặc so sánh PHẢI có trích dẫn nội dòng
+   - Sử dụng tham chiếu đánh số [1], [2], v.v., hoặc trích dẫn theo tên [Tên Nguồn]
+   - Liên kết các trích dẫn với phần Tài liệu tham khảo ở cuối bài
+   - Ví dụ: "Các nghiên cứu cho thấy 65% lập trình viên thích TypeScript [1]"
+   - Ví dụ: "React vượt trội hơn Vue về tốc độ render 20% [React Benchmarks 2024]"
 
-### Step 7: Commit Draft (if in git repo)
+### Bước 7: Commit Bản thảo (nếu ở trong repo git)
 
-1. Check if in git repository.
+1. Kiểm tra xem có đang ở trong kho lưu trữ git không.
 
-2. If yes:
-   - Stage the draft file
-   - Create commit with message: `docs: Add draft v0.1 for blog post - [topic-name]`
-   - Push to remote
+2. Nếu có:
+   - Stage tệp bản thảo
+   - Tạo commit với thông điệp: `docs: Add draft v0.1 for blog post - [topic-name]`
+   - Push lên remote
 
-3. If not a git repo, skip and inform user.
+3. Nếu không phải repo git, bỏ qua và thông báo cho người dùng.
 
-### Step 8: Present Draft for Review
+### Bước 8: Trình bày Bản thảo để Review
 
-1. Present the draft content to user.
+1. Trình bày nội dung bản thảo cho người dùng.
 
-2. Ask for feedback:
-   - Overall impression?
-   - Sections that need expansion or reduction?
-   - Tone adjustments needed?
-   - Missing information?
-   - Specific edits or rewrites?
+2. Yêu cầu phản hồi:
+   - Ấn tượng tổng thể?
+   - Các phần cần mở rộng hoặc thu gọn?
+   - Cần điều chỉnh tông điệu không?
+   - Thông tin còn thiếu?
+   - Các chỉnh sửa hoặc viết lại cụ thể?
 
-3. **Wait for user response.**
+3. **Chờ phản hồi của người dùng.**
 
-### Step 9: Iterate or Finalize
+### Bước 9: Lặp lại hoặc Hoàn tất
 
-**If user requests changes:**
-1. Note all requested modifications
-2. Return to Step 6 with the following adjustments:
-   - Increment version number (v0.2, v0.3, etc.)
-   - Incorporate all feedback
-   - Save as `draft-v[X.Y].md`
-   - Repeat Steps 7-8
+**Nếu người dùng yêu cầu thay đổi:**
+1. Ghi lại tất cả các sửa đổi được yêu cầu
+2. Quay lại Bước 6 với các điều chỉnh sau:
+   - Tăng số phiên bản (v0.2, v0.3, v.v.)
+   - Kết hợp tất cả phản hồi
+   - Lưu dưới tên `draft-v[X.Y].md`
+   - Lặp lại Bước 7-8
 
-**If user approves:**
-1. Confirm the final draft version
-2. Optionally rename to `final.md` if user requests
-3. Summarize the blog post creation process:
-   - Total versions created
-   - Key changes between versions
-   - Final word count
-   - Files created
+**Nếu người dùng phê duyệt:**
+1. Xác nhận phiên bản bản thảo cuối cùng
+2. Tùy chọn đổi tên thành `final.md` nếu người dùng yêu cầu
+3. Tóm tắt quá trình tạo bài viết blog:
+   - Tổng số phiên bản đã tạo
+   - Các thay đổi chính giữa các phiên bản
+   - Tổng số từ cuối cùng
+   - Các tệp đã tạo
 
-## Version Tracking
+## Theo dõi Phiên bản (Version Tracking)
 
-All drafts are preserved with incremental versioning:
-- `draft-v0.1.md` - Initial draft
-- `draft-v0.2.md` - After first round of feedback
-- `draft-v0.3.md` - After second round of feedback
-- etc.
+Tất cả các bản thảo được lưu trữ với số phiên bản tăng dần:
+- `draft-v0.1.md` - Bản thảo đầu tiên
+- `draft-v0.2.md` - Sau vòng phản hồi thứ nhất
+- `draft-v0.3.md` - Sau vòng phản hồi thứ hai
+- v.v.
 
-This allows tracking the evolution of the blog post and reverting if needed.
+Điều này cho phép theo dõi sự tiến hóa của bài viết blog và quay lại phiên bản cũ nếu cần.
 
-## Output Files Structure
+## Cấu trúc Tệp Đầu ra
 
 ```
 blog-posts/
-└── YYYY-MM-DD-topic-name/
+└── YYYY-MM-DD-ten-chu-de/
     ├── resources/
-    │   ├── source-1-name.md
-    │   ├── source-2-name.md
+    │   ├── source-1-ten.md
+    │   ├── source-2-ten.md
     │   └── ...
     ├── OUTLINE.md
     ├── draft-v0.1.md
-    ├── draft-v0.2.md (if iterations)
-    └── draft-v0.3.md (if more iterations)
+    ├── draft-v0.2.md (nếu có các lần lặp)
+    └── draft-v0.3.md (nếu có thêm các lần lặp)
 ```
 
-## Tips for Quality
+## Mẹo để đạt Chất lượng cao
 
-- **Hook**: Start with a question, surprising fact, or relatable scenario
-- **Flow**: Each paragraph should connect to the next
-- **Evidence**: Support claims with data from research
-- **Citations**: ALWAYS cite sources for:
-  - All statistics and data points (e.g., "According to [Source], 75% of...")
-  - Comparisons between products, services, or approaches (e.g., "X performs 2x faster than Y [Source]")
-  - Factual claims about market trends, research findings, or benchmarks
-  - Use inline citations with format: [Source Name] or [Author, Year]
-- **Voice**: Maintain consistent tone throughout
-- **Length**: Respect the target word count
-- **Readability**: Use short paragraphs, bullet points where appropriate
-- **CTA**: End with a clear call-to-action or thought-provoking question
+- **Câu dẫn (Hook)**: Bắt đầu bằng một câu hỏi, một sự thật đáng ngạc nhiên hoặc một tình huống dễ liên hệ
+- **Luồng văn bản (Flow)**: Mỗi đoạn văn nên kết nối mượt mà với đoạn tiếp theo
+- **Bằng chứng**: Hỗ trợ các tuyên bố bằng dữ liệu từ nghiên cứu
+- **Trích dẫn**: LUÔN LUÔN trích dẫn nguồn cho:
+  - Tất cả các số liệu thống kê và điểm dữ liệu (ví dụ: "Theo [Nguồn], 75%...")
+  - So sánh giữa các sản phẩm, dịch vụ hoặc cách tiếp cận (ví dụ: "X hoạt động nhanh gấp 2 lần Y [Nguồn]")
+  - Các tuyên bố thực tế về xu hướng thị trường, kết quả nghiên cứu hoặc benchmark
+  - Sử dụng trích dẫn nội dòng với định dạng: [Tên Nguồn] hoặc [Tác giả, Năm]
+- **Giọng văn (Voice)**: Duy trì tông điệu nhất quán xuyên suốt bài viết
+- **Độ dài**: Tôn trọng số lượng từ mục tiêu
+- **Khả năng đọc**: Sử dụng các đoạn văn ngắn, các điểm gạch đầu dòng khi thích hợp
+- **CTA**: Kết thúc bằng một lời kêu gọi hành động rõ ràng hoặc một câu hỏi gợi suy nghĩ
 
-## Notes
+## Ghi chú
 
-- Always wait for user approval at outlined checkpoints
-- Preserve all draft versions for history
-- Use web search for up-to-date information when URLs are provided
-- If resources are insufficient, ask user for more or suggest additional research
-- Adapt tone based on target audience (technical, general, business, etc.)
+- Luôn chờ sự phê duyệt của người dùng tại các điểm kiểm tra đã nêu
+- Giữ lại tất cả các phiên bản bản thảo để xem lịch sử
+- Sử dụng tìm kiếm web để cập nhật thông tin mới nhất khi các URL được cung cấp
+- Nếu tài nguyên không đủ, hãy yêu cầu người dùng thêm hoặc đề xuất nghiên cứu bổ sung
+- Điều chỉnh tông điệu dựa trên đối tượng mục tiêu (kỹ thuật, đại chúng, kinh doanh, v.v.)
